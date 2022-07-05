@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "state": {
+          "branch": null,
+          "revision": "becd9a729a37bdbef5bc39dc3c702b99f9e3d046",
+          "version": "5.2.2"
+        }
+      },
+      {
+        "package": "JzOsHttpExtension",
+        "repositoryURL": "https://github.com/sam38124/JzOsHttpExtension",
+        "state": {
+          "branch": null,
+          "revision": "b40142dcb54831f1d15e456a99c49449e803a53e",
+          "version": "1.0.2"
+        }
+      },
+      {
+        "package": "JzOsTaskHandler",
+        "repositoryURL": "https://github.com/sam38124/JzOsTaskHandler",
+        "state": {
+          "branch": null,
+          "revision": "d2c5f541a235f76585e3cabc27617dbefd609fb9",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "SwiftSoup",
+        "repositoryURL": "https://github.com/scinfu/SwiftSoup",
+        "state": {
+          "branch": null,
+          "revision": "774dc9c7213085db8aa59595e27c1cd22e428904",
+          "version": "2.3.2"
+        }
+      },
+      {
+        "package": "TestLibrary",
+        "repositoryURL": "https://github.com/sam38124/TestLibrary",
+        "state": {
+          "branch": "master",
+          "revision": "6cfca837cba81a9795da40c67f8fa937a9440f7f",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

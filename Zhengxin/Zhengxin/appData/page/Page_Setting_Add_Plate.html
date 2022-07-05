@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+    html{
+        width: 100%;
+        height: 100%;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+    }
+    .unSelect {
+        width: 50%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        color: #828282;
+        font-size: 16px;
+        background-color: #BBBBBB;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #BBBBBB;
+    }
+
+    .select {
+        width: 50%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 16px;
+        color: #002F51;
+        background-color: white;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #E64E00;
+
+    }
+    #nextBt{
+        width: calc(100% - 30px);
+        height: 50px;
+        background-color: #6AC6D7;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        border-radius: 20px;
+        border-width: 1px;
+        border-color: white;
+        margin-top: 10px;
+    }
+    input{
+        line-height: 50px;
+        font-size: 16px;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../jslib/EventLinstener.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    var selectType=1
+    lifeCycle.onCreateView=function () {
+     return `
+     <div  style="display:flex;align-items: center;height: 60px;width:100%;background-color: #002F51">
+    <img src="../img/btn_back.png" style="width: 50px;height: 50px;" onclick="glitter.goBack()">
+    <h3 style="color: white;flex: auto;margin-right: 0px;text-align: center;">新增車輛</h3>
+    <img src="../img/btn_home.png"  style="width: 50px;height: 50px;" onclick="glitter.goMenu()">
+</div>
+<div style="display: flex;width:100%;">
+<div class="unSelect select" id="frontSelect" onclick="frontSelect()">
+貨車/拖車頭
+</div>
+<div class="unSelect" id="rearSelect" onclick="rearSelect()">
+拖板車
+</div>
+</div>
+<div></div>
+<img id="carImg" src="../img/img_number_rear.png" style="width: 144px;height: 144px;margin-top: 10px;">
+<h3 style="color: white;font-weight: 600;font-size: 18px;margin-bottom: 0px;">請輸入車輛代號</h3>
+<h3 style="color: #FF9E00;margin-top: 5px;font-size: 14px;">(例如：車牌號碼)</h3>
+<input style="width:calc(100% - 80px);margin-left: 40px;margin-right: 40px;height: 50px;" id="plate">
+<div style="flex: auto;"></div>
+<div id="nextBt" onclick="next()">下一步</div>
+     `
+    }
+    function frontSelect() {
+        selectType=1
+        document.getElementById("frontSelect").classList.add('select');
+        document.getElementById("rearSelect").classList.remove('select');
+        $('#carImg').attr('src','../img/img_number_rear.png')
+    }
+
+    function rearSelect() {
+        selectType=2
+        document.getElementById("rearSelect").classList.add('select');
+        document.getElementById("frontSelect").classList.remove('select');
+        $('#carImg').attr('src','../img/img_number_front.png')
+    }
+    function next() {
+        var plate=$('#plate').val()
+        if(plate===''){
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '請輸入車輛代號!!')
+            return
+        }
+        glitter.setCar=glitter.getData_Setting_Model()
+        glitter.setCar.plateNumber=plate
+        if(selectType===1){
+            glitter.changePage('page/Page_Select_Make.html','Page_Select_Make',true,selectType)
+        }else{
+            glitter.changePage('page/Page_RearSelectType.html','Page_RearSelectType',true,selectType)
+        }
+    }
+
+    var originHeight = $(document).height()
+
+    $(document).bind('resize', function () {
+        if (originHeight > $(document).height()) {
+            $('#nextBt').hide()
+        } else {
+            $('#nextBt').show()
+        }
+    });
+</script>

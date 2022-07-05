@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+  <link href="../glitterBundle/bootstrap.css" rel="stylesheet">
+  <link href="../fontawesome-free-5.15.4-web/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/xcode.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <link href="../css/article.css" rel="stylesheet">
+
+</head>
+<style>
+  .caselist img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    position: relative;
+  }
+
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){
+    hljs.highlightAll();
+
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+<div class="inner">
+  <h3 style="font-size: 39px;font-weight: 400;margin-top: 10px;">Search MMY</h3>
+    <div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+    <h4>Use this api to get make,model,year.</h4>
+    <div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 10px;"></div>
+    <span>Request Method : <span class="text-danger">POST</span><br><br>
+    <span>Request URL : <a style="color: dodgerblue;cursor: pointer;"  target="_blank">https://bento2.orange-electronic.com/MmyApi</a></span><br>
+<br>
+<span>Content-Type : <span class="text-danger">application/json</span></span><br><br>
+
+<h3 class="text-primary">Get Make</h3>
+<div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+<span>Request Data : </span><br><br>
+${glitter.share.code.js(`
+{"request": "getMake"}
+
+`)}
+
+<br><br><span>Response Data : </span><br><br>
+${glitter.share.code.js(`
+//Will response array of make data．
+
+[
+    "Volvo",
+    "Volkswagen",
+    "Vauxhall",
+    "Toyota",
+    "Tesla",
+    "Tata Motors",
+    "Suzuki Motor",
+    "Subaru",
+    "Ssangyong Motor",
+    "Smart",
+    "Skoda",
+    "Seat",
+    "Saab",
+    "Rolls Royce",
+    "Renault",
+    "Ram truck",
+    "Porsche",
+    "Polestar",
+    "Peugeot",
+    "Pagani",
+    "Orange",
+    "Opel",
+    "Nissan",
+    "Mitsubishi Motors",
+    "Mini",
+    "Mercedes-Benz",
+    "Mercedes-AMG",
+    "McLaren",
+    "Mazda",
+    "Maserati",
+    "Man",
+    "Mahindra Rise",
+    "MG Motor",
+    "Lotus Cars",
+    "Lexus",
+    "Land Rover",
+    "Lancia",
+    "Lamborghini",
+    "Lada",
+    "Kia",
+    "Jeep",
+    "Jaguar",
+    "Infiniti",
+    "Hyundai",
+    "Hummer",
+    "Honda",
+    "GMC",
+    "Ford",
+    "Fiat",
+    "Ferrari",
+    "Dodge",
+    "Daewoo",
+    "Dacia",
+    "DS Automobiles",
+    "DR Automobiles",
+    "Cupra",
+    "Citroen",
+    "Chrysler",
+    "Chevrolet",
+    "Cadillac",
+    "Bugatti",
+    "Bentley Motors",
+    "BMW Motorcycle",
+    "BMW",
+    "Audi",
+    "Aston Martin",
+    "Alpine",
+    "Alpina Automobiles",
+    "Alfa Romeo",
+    "AI WAYS",
+    "ABARTH"
+]
+
+`)}
+<div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+<h3 class="text-primary">Get Model</h3>
+<div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+<span>Request Data : </span><br><br>
+${glitter.share.code.js(`
+{"request": "getModel","make":"BMW"}
+
+`)}
+
+<br><br><span>Response Data : </span><br><br>
+${glitter.share.code.js(`
+//Will response array of model data．
+
+[
+    "1 (E81 E87 E88)",
+    "1 (F20 F21)",
+    "1 (F40)/M135i xDrive",
+    "2 (F22/F45/F46)/M2",
+    "2 Coupe (G42)",
+    "2 Gran Coupe (F44)",
+    "3 (E46)/M3",
+    "3 (E90/E91/E92/E93)",
+    "3 (F30/F31/F34)",
+    "3 (G20/G21)/M340i",
+    "4 (F32/F33/F36)/M4",
+    "4 (G22/G23/G26)/M4",
+    "5 (E39)",
+    "5 (E60/E61)",
+    "5 (F10/F11/F07)",
+    "5 (G30/G31)",
+    "6 (E63/E64)",
+    "6 (F12/F13/F06)",
+    "6 Gran Turismo (G32)",
+    "7 (E38)",
+    "7 (E65, E66, E67))",
+    "7 (F01/F02/F03/F04)",
+    "7 (G11/G12)/M760Li",
+    "8 (G14/G15/G16)/M8",
+    "i3",
+    "i4/M50",
+    "i8",
+    "i8 Coupe/Roadster",
+    "iX",
+    "iX3",
+    "M3 (E92 E93)",
+    "M3 (F80)",
+    "M3 (G80)",
+    "M5 (F10)",
+    "M5 (F90)",
+    "M6",
+    "X1 SUV (E84)",
+    "X1 SUV (F48)",
+    "X2 SUV",
+    "X3 SUV (E83)",
+    "X3 SUV (F25)",
+    "X3 SUV (G01 F97)",
+    "X4 SUV (F26)",
+    "X4 SUV (G02)/M",
+    "X5 SUV (E53)",
+    "X5 SUV (E70)",
+    "X5 SUV (F15 F85)",
+    "X5 SUV (G05 F95)/M",
+    "X6 SUV (E71 E72)",
+    "X6 SUV (F16 F86)",
+    "X6 SUV (G06) M50i",
+    "X7 SUV/M50i",
+    "Z4 (E85 E86)",
+    "Z4 Roadster (E89)",
+    "Z4 Roadster (G29)/M"
+]
+
+`)}
+<div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+<h3 class="text-primary">Get Year</h3>
+<div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+<span>Request Data : </span><br><br>
+${glitter.share.code.js(`
+{
+    "request": "getYear",
+    "make": "BMW",
+    "model": "i3"
+}
+
+`)}
+
+<br><br><span>Response Data : </span><br><br>
+${glitter.share.code.js(`
+//Will response array of year data．
+
+["2013-\u003e"]
+
+`)}
+<div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+<h3 class="text-primary">GetMmyData</h3>
+<div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+<span>Request Data : </span><br><br>
+${glitter.share.code.js(`
+{
+    "request": "getMmyData",
+    "make": "BMW",
+    "model": "i3",
+    "year":"2013->"
+}
+`)}
+
+<br><br><span>Response Data : </span><br><br>
+${glitter.share.code.js(`
+//Will response array of mmy data．
+[
+    {
+        "Make": "BMW",
+        "Model": "i3",
+        "Year": "2013->",
+        "Direct Fit": "SI2056",
+        "Sensor": "SP201",
+         "Relearn Procedure (German)": "1. Korrigieren Sie den Reifenluftdruck anhand der Herstellervorgabe.\\\\n\\r\\n2. Aktiviere alle Sensoren mit dem Programmiergerät.\\\\n\\r\\n3. Parken Sie das Auto 15 Minuten lang.\\\\n\\r\\n4. Starte den Motor. (Reifendruck wählen und Reset drücken).\\\\n\\r\\n5. Fahren Sie mit mehr als 30 km/h, bis die ECU neue Sensor-IDs gelernt hat.\\\\n\\r\\n6. Der Vorgang sollte bis zu 20 Minuten dauern.\\\\n\\r\\nHINWEIS: Wenn der Sensor wie abgebildet in den Reifen montiert wird, öffnen Sie die Antenne auf der Rückseite des Geräts um den Sensor zu programmieren.\\r\\n"
+    }
+]
+`)}
+<div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+
+
+        </div>
+</div>
+    `
+  }
+
+</script>
+</body>
+</html>

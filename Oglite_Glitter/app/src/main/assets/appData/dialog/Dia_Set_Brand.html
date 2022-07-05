@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .unSelect {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid lightgray;
+        }
+        .Select {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid lightgray;
+            background-color: #1a4064;
+        }
+
+    .enter {
+        width: calc(100% - 30px);
+        height: 40px;
+        background-image: url("../img/btn_rectangle.png");
+        border-radius: 10px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+</style>
+<body>
+<script>
+    var frontSame=false
+    var allSame=false
+    var rearSame=false
+    var selectIndex = 0
+    lifeCycle.onCreate = function () {
+        try {
+            var havePosition=false
+            glitter.share.publicData.brand.map(function (data, position) {
+                if((position===0)&&(gBundle.data.TireBrand==='')){
+                    selectIndex = position
+                    havePosition=true
+                }
+                if (data.id === gBundle.data.TireBrand) {
+                    selectIndex = position
+                    havePosition=true
+                }
+            })
+            if(!havePosition){
+                selectIndex=glitter.share.publicData.brand.length
+                $('#other').val(gBundle.data.TireBrand)
+            }
+        } catch (e) {
+        }
+
+        glitter.share.publicData.brand.map(function (data) {
+            $('#selectItem').append(`<option>${data.name}</option>`)
+        })
+        $('#selectItem').append(`<option>${glitter.language(514)}</option>`)
+        $('#selectItem')[0].selectedIndex = selectIndex
+        updateSelectIndex(selectIndex)
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                    }
+                }
+            }
+        }
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+    <div style="width: 250px;background-color: white;border-radius: 10px;display: flex;flex-direction: column;align-items: center;justify-content: center;position: relative;
+   padding-bottom: 10px;">
+<img style="width: 30px;height: 30px;position: absolute;right: 10px;top:10px;" src="../img/close.png" onclick="glitter.closeDiaLog()">
+<h3 style="width: calc(100% - 20px);font-size: 16px;">${glitter.language(556)} / ${gBundle.position}</h3>
+<select id="selectItem" style="width: calc(100% - 20px);height: 40px;border-radius: 10px;border: 1px solid whitesmoke;background-color: white;" onchange="updateSelectIndex( $(this)[0].selectedIndex)">
+</select>
+<input style="width: calc(100% - 30px);height: 30px;font-size: 14px;margin-top: 10px;" id="other" placeholder="${glitter.language(555)}" oninput="updateSelectIndex(glitter.share.publicData.brand.length)">
+<div style="display: flex;margin-top: 10px;width: calc(100% - 30px);align-items: center;">
+<div class="unSelect click" onclick="$('.click').removeClass('Select');$(this).addClass('Select');frontSame=!frontSame;"></div>
+<span style="margin-left: 10px;">${glitter.language(553)}</span>
+</div>
+<div style="display: flex;margin-top: 10px;width: calc(100% - 30px);align-items: center;">
+<div class="unSelect click" onclick="$('.click').removeClass('Select');$(this).addClass('Select');allSame=!allSame;"></div>
+<span style="margin-left: 10px;">${glitter.language(554)}</span>
+</div>
+<div style="display: flex;margin-top: 10px;width: calc(100% - 30px);align-items: center;">
+<div class="unSelect click" onclick="$('.click').removeClass('Select');$(this).addClass('Select');rearSame=!rearSame;"></div>
+<span style="margin-left: 10px;">${glitter.language(576)}</span>
+</div>
+<div class="enter" onclick="gBundle.callback(frontSame,allSame,rearSame,reBackValue);glitter.closeDiaLog();">${glitter.language(415)}</div>
+</div>
+    `
+    }
+    var reBackValue=undefined
+    function updateSelectIndex(index) {
+        $('#other').hide()
+        selectIndex=index
+        if (index === glitter.share.publicData.brand.length) {
+            reBackValue=$('#other').val()
+            $('#other').show()
+        } else {
+            reBackValue= glitter.share.publicData.brand[index].id
+        }
+    }
+</script>
+</body>
+</html>

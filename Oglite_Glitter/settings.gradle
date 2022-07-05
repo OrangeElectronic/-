@@ -1,0 +1,2 @@
+include ':app',':blelibrary',':fotalibrary'
+rootProject.name = "Oglite_Glitter"

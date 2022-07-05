@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="190dp">
+
+    <RelativeLayout
+            android:id="@+id/b2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/bt_mmy_selecter" />
+
+        <TextView
+                android:id="@+id/tit"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="false"
+                android:gravity="center"
+                android:text="@string/Vehicle_data_selection"
+                android:textColor="@color/rocket_cl_black"
+                android:textSize="18sp" />
+    </RelativeLayout>
+</RelativeLayout>

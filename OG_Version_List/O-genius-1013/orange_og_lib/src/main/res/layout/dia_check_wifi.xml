@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_loading_r8" android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+        <TextView
+                android:text="jz.534"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" android:id="@+id/textView7" android:textAlignment="center"
+                android:gravity="center" android:textColor="@color/color_white" android:textSize="18sp"/>
+        <TextView
+                android:text="jz.535"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView8"
+                android:textColor="@color/color_white" android:gravity="center" android:textSize="16sp"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:id="@+id/view"
+                android:background="@color/color_white" android:layout_marginTop="20dp"/>
+        <TextView
+                android:text="jz.536"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" android:id="@+id/retry" android:textAlignment="center"
+                android:gravity="center" android:textColor="@color/color_white" android:textSize="18sp"
+        />
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:id="@+id/view3"
+                android:background="@color/color_white"/>
+        <TextView
+                android:text="jz.40"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" android:id="@+id/resetWifi" android:textAlignment="center"
+                android:gravity="center" android:textColor="@color/color_white" android:textSize="18sp"
+        />
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:id="@+id/view2"
+                android:background="@color/color_white"/>
+        <TextView
+                android:text="jz.3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" android:id="@+id/cancel" android:textAlignment="center"
+                android:gravity="center" android:textColor="@color/color_white" android:textSize="18sp"
+        />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link href="../glitterBundle/bootstrap2.css" rel="stylesheet">
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+
+</style>
+<body>
+</body>
+</html>
+<script>
+    var time=0
+    var clock=Clock()
+    var goMenu=true
+    lifeCycle.onCreate = function () {
+        $("#back").hide()
+        $('#spacer').hide()
+        glitter.share.toggleTitleBarMenu=function (){
+            goMenu=true
+            $("#back").attr('src','../img/menu.png')
+        }
+        glitter.share.setLowBattery=function (){
+            $('#battery').attr('src','../img/icon_replace.png')
+        }
+        glitter.changePageListener = function (tag) {
+            glitter.share.CancelError = false
+            $('#tlogo').hide()
+            // glitter.readRxReceive = function () {}
+            console.log("tag"+tag)
+            if(["Page_Program_Detail","Page_Comic_Relearm_Procedure"].indexOf(tag)===-1){
+                goMenu=false
+                $("#back").attr('src','../img/btn_back.png')
+            }
+            if(glitter.publicBeans.beta){
+                $('#titBar').css('background-color','dodgerblue')
+            }else{
+                $('#titBar').css('background-color','#005178')
+            }
+            if( clock.stop()>2000){
+                glitter.command.getBattery(function (result) {
+                clock.zeroing()
+                switch (result){
+                    case "00":
+                        $('#battery').attr('src','../img/icon_ok.png')
+                        break
+                    case "01":
+                        $('#battery').attr('src','../img/icon_low.png')
+                        break
+                    case "02":
+                        $('#battery').attr('src','../img/icon_ok.png')
+                        break
+                    case "03":
+                        $('#battery').attr('src','../img/icon_full.png')
+                        break
+                    case "FF":
+                        $('#battery').attr('src','../img/icon_replace.png')
+                        break
+                }
+                })
+            }
+            $("#back").show()
+            $('#spacer').show()
+            switch (tag){
+                case 'Page_Vehicle_Selection':
+                    switch (glitter.selectFunction.select){
+                        case glitter.selectFunction.enum.ReadSensor:
+                            $('#title').html(glitter.getLan(231))
+                            break
+                        case glitter.selectFunction.enum.Program:
+                            $('#title').html(glitter.getLan(12))
+                            break
+                        case glitter.selectFunction.enum.IdCopy:
+                            $('#title').html(glitter.getLan(13))
+                            break
+                        case glitter.selectFunction.enum.IdCopy_OBD:
+                            $('#title').html(glitter.getLan(401))
+                            break
+                        case glitter.selectFunction.enum.ObdRelearn:
+                            $('#title').html(glitter.getLan(15))
+                            break
+                        case glitter.selectFunction.enum.Relearn_Procedure:
+                            $('#title').html(glitter.getLan(135))
+                            break
+                    }
+                    break
+                case 'Page_Home':
+                    $('#tlogo').show()
+                    $('#spacer').hide()
+                    $("#back").hide()
+                    $('#title').html("O-Genius Lite")
+                    glitter.readRxReceive = function () {}
+                    break
+            }
+            if(glitter.publicBeans.country==="TW"){
+                $('#area').attr('src','../img/icon_tw.png')
+            }else if(glitter.publicBeans.country==="US"){
+                $('#area').attr('src','../img/icon_na.png')
+            }else{
+                $('#area').attr('src','../img/icon_eu.png')
+            }
+        }
+        if(glitter.publicBeans.country==="TW"){
+            $('#area').attr('src','../img/icon_tw.png')
+        }else if(glitter.publicBeans.country==="US"){
+            $('#area').attr('src','../img/icon_na.png')
+        }else{
+            $('#area').attr('src','../img/icon_eu.png')
+        }
+        if(glitter.publicBeans.beta){
+            $('#titBar').css('background-color','dodgerblue')
+        }else{
+            $('#titBar').css('background-color','#')
+        }
+
+
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `<div id="titBar" style="position:relative;height: 60px;background-color:#005178;width: 100%;display: flex;align-items: center;
+border-bottom: 4px solid #E94F06;box-sizing: border-box;">
+<img id="tlogo" style="width: 50px;height: 50px;margin-left: 10px;"  src="../img/tlogo.png">
+<img id="back" style="width: 50px;height: 50px;z-index: 5;" src="../img/btn_back.png" onclick="if(goMenu){glitter.goMenu()}else{glitter.goBack()}">
+<img id="area" style="width: 50px;height: 50px;" src="../img/icon_eu.png">
+<div class="flex-fill"></div>
+<h3 id="title" class="position-absolute w-100 h-100 fs-5 d-flex align-items-center justify-content-center m-0" style="color: white;" >O-Genius</h3>
+<div id="spacer" style="width: 50px;"></div>
+<img id="battery" style="width: 50px;height: 50px;" src="../img/icon_ok.png">
+</div>`
+    }
+
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+</script>

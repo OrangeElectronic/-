@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+
+</style>
+<body>
+</body>
+</html>
+<script>
+    var time=0
+    var clock=Clock()
+    lifeCycle.onCreate = function () {
+        $("#back").hide()
+        $('#spacer').hide()
+        glitter.changePageListener = function (tag) {
+            console.log("tag"+tag)
+            if(glitter.publicBeans.beta){
+                $('#titBar').css('background-color','dodgerblue')
+            }else{
+                $('#titBar').css('background-color','#E94F06')
+            }
+            if( clock.stop()>2000){
+                glitter.command.getBattery(function (result) {
+                clock.zeroing()
+                switch (result){
+                    case "00":
+                        $('#battery').attr('src','../img/icon_ok.png')
+                        break
+                    case "01":
+                        $('#battery').attr('src','../img/icon_low.png')
+                        break
+                    case "02":
+                        $('#battery').attr('src','../img/icon_ok.png')
+                        break
+                    case "03":
+                        $('#battery').attr('src','../img/icon_full.png')
+                        break
+                    case "FF":
+                        $('#battery').attr('src','../img/icon_replace.png')
+                        break
+                }
+                })
+            }
+            $("#back").show()
+            $('#spacer').show()
+            switch (tag){
+                case 'Page_Vehicle_Selection':
+                    switch (glitter.selectFunction.select){
+                        case glitter.selectFunction.enum.ReadSensor:
+                            $('#title').html(glitter.getLan(231))
+                            break
+                        case glitter.selectFunction.enum.Program:
+                            $('#title').html(glitter.getLan(12))
+                            break
+                        case glitter.selectFunction.enum.IdCopy:
+                            $('#title').html(glitter.getLan(13))
+                            break
+                        case glitter.selectFunction.enum.IdCopy_OBD:
+                            $('#title').html(glitter.getLan(401))
+                            break
+                        case glitter.selectFunction.enum.ObdRelearn:
+                            $('#title').html(glitter.getLan(15))
+                            break
+                        case glitter.selectFunction.enum.Relearn_Procedure:
+                            $('#title').html(glitter.getLan(135))
+                            break
+                    }
+                    break
+                case 'Page_Home':
+                    $('#spacer').hide()
+                    $("#back").hide()
+                    $('#title').html("O-Genius")
+                    break
+            }
+        }
+        if(glitter.publicBeans.beta){
+            $('#titBar').css('background-color','dodgerblue')
+        }else{
+            $('#titBar').css('background-color','#E94F06')
+        }
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `<div id="titBar" style="position:relative;height: 60px;background-color:#E94F06;width: 100%;display: flex;align-items: center;">
+<img id="back" style="width: 50px;height: 50px;" src="../img/btn_back.png" onclick="glitter.goBack()">
+<img style="width: 50px;height: 50px;" src="../img/icon_eu.png">
+<h3 id="title" style="color: white;flex: auto;text-align: center;">O-Genius</h3>
+<div id="spacer" style="width: 50px;"></div>
+<img id="battery" style="width: 50px;height: 50px;" src="../img/icon_ok.png">
+</div>`
+    }
+
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+</script>

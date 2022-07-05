@@ -1,0 +1,241 @@
+@media screen and (max-width: 769px) {
+    .item {
+        height: 30px;
+        font-size: 12px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+        margin-bottom: 0px;
+        color: lightgray;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .item:hover {
+        color: lightcoral !important;
+    }
+
+    .open {
+        color: lightcoral !important;
+        opacity: 1 !important;
+    }
+
+    .close {
+        color: lightcoral;
+        margin-right: 10px;
+        opacity: 0.4;
+    }
+
+    .doClose {
+        color: white;
+    }
+
+    .doOpen {
+        color: lightcoral !important;
+    }
+
+    .doIcon {
+        margin-left: 10px;
+        margin-right: 15px;
+        font-size: 16px;
+    }
+    .folderClose {
+        height: 30px;
+        overflow: hidden;
+        font-size: 12px;
+        color: black;
+        margin: 10px 0px 0px;
+
+    }
+
+    .folderOpen {
+        height: auto !important;
+        color: lightcoral !important;
+    }
+
+    .folder {
+        height: 30px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .folder:hover {
+        color: lightcoral !important;
+    }
+    .github {
+        min-width: 50px;
+        width:auto;
+        background-color: black;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 10px;
+        color: white;
+    }
+    .github svg{
+        display: none;
+    }
+    .github span{
+        display: none;
+    }
+    .navBar {
+        display: none;
+        height: 100%;
+    }
+    .navBar {
+        position: absolute;
+        background:#07192f;
+        width: 250px;
+        min-width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+
+    }
+
+
+}
+
+@media screen and (max-width: 900px) {
+
+    .github i{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 769px) {
+
+    .github {
+        width: 400px;
+        background-color: black;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 10px;
+        color: white;
+    }
+
+    #sample {
+        text-align: left;
+        height: 100%;
+    }
+
+
+    .navBar {
+        background:#07192f;
+        min-width: 250px;
+        height: 100%;
+        padding-top: 1%;
+        padding-left: 2%;
+        box-sizing: border-box;
+    }
+
+    .tit {
+        font-weight: 500;
+        font-size: 20px;
+        height: 100px;
+        letter-spacing: 1px
+    }
+
+    .spi {
+        height: 1px;
+        width: calc(100% + 40px);
+        background-color: rgba(148, 151, 155, 0.2);
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-top: 20px;
+    }
+
+    .folderClose {
+        height: 30px;
+        overflow: hidden;
+        font-size: 12px;
+        color: white !important;
+        margin: 10px 0px 0px;
+
+    }
+
+    .folderOpen {
+        height: auto !important;
+    }
+
+    .folder {
+        height: 30px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .folder:hover {
+
+        color: lightcoral !important;
+    }
+
+    .item {
+        height: 30px;
+        font-size: 12px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+        margin-bottom: 0px;
+        color: lightgray;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .item:hover {
+        color: lightcoral !important;
+    }
+
+    .open {
+        color: lightcoral !important;
+        opacity: 1 !important;
+    }
+
+    .close {
+        color: white;
+        margin-right: 10px;
+        opacity: 0.4;
+    }
+
+    .doClose {
+        color: white;
+    }
+
+    .doOpen {
+        color: lightcoral !important;
+    }
+
+    .doIcon {
+        margin-left: 10px;
+        margin-right: 15px;
+        font-size: 16px;
+    }
+
+}
+i{
+    font-size: 20px;
+}
+.custom-select {
+    background: white none;
+}
+::-webkit-scrollbar{
+    display: none;
+}

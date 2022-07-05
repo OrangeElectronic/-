@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+  <link href="../glitterBundle/bootstrap.css" rel="stylesheet">
+  <link href="../fontawesome-free-5.15.4-web/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/xcode.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <link href="../css/article.css" rel="stylesheet">
+
+</head>
+<style>
+  .caselist img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    position: relative;
+  }
+
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){
+    hljs.highlightAll();
+
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+<div class="inner">
+  <h3 style="font-size: 39px;font-weight: 400;margin-top: 10px;">HSNTSN</h3>
+    <div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+    <h4>Use this api to get hsnTsn detail about mmy and relearn procedure.</h4>
+    <div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 10px;"></div>
+    <span>Request Method : <span class="text-danger">POST</span><br><br>
+    <span>Request URL : <a style="color: dodgerblue;cursor: pointer;"  target="_blank">https://osomapi.orange-electronic.com:30678/api/GetHsnTsn</a></span><br>
+<br>
+<span>Content-Type : <span class="text-danger">application/json</span></span><br><br>
+<span>Request Data : </span><br><br>
+${glitter.share.code.js(`
+//JSON Format
+//Put account and password to verify your permissions
+//IP is to let us know who you are
+//If too many requests will block the request for this ip address ．
+{
+"account":"testAccount"
+,"Pwd":"1234"
+,"IP":""
+,"Hsn":"0005"
+,"Tsn":"ABC"
+,"Remark":""
+}
+
+`)}
+
+<br><br><span>Response Data : </span><br><br>
+${glitter.share.code.js(`
+//Will response array of mmy data．
+//Note : One hsnTSN may corresponding to multiple mmy data ．
+
+[
+    {
+        "Make": "BMW",
+        "Model": "5 (E60/E61)",
+        "Year": "2003-2009",
+        "Direct Fit": "BEA008",
+        "Sensor": "SP201",
+        "Relearn Procedure (German)": "1. Korrigieren Sie den Reifenluftdruck anhand der Herstellervorgabe.\\r\\n2. Aktiviere alle Sensoren mit dem Programmiergerät.\\r\\n3. Parken Sie das Auto 15 Minuten lang.\\r\\n4. Starte den Motor. (Reifendruck wählen und Reset drücken).\\r\\n5. Fahren Sie mit mehr als 30 km/h, bis die ECU neue Sensor-IDs gelernt hat.\\r\\n6. Der Vorgang sollte bis zu 20 Minuten dauern.\\r\\nHINWEIS: Wenn der Sensor wie abgebildet in den Reifen montiert wird, öffnen Sie die Antenne auf der Rückseite des Geräts um den Sensor zu programmieren.\\r\\n"
+    }
+]
+
+`)}
+
+
+
+
+        </div>
+</div>
+    `
+  }
+
+</script>
+</body>
+</html>

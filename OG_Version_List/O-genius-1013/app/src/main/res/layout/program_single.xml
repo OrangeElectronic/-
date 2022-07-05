@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content" android:layout_centerInParent="true"
+            android:background="@drawable/bg_loading_r8">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/ic_delete_menu"
+                android:id="@+id/imageView45" android:layout_alignParentEnd="true" android:layout_margin="10dp"/>
+        <TextView
+                android:text="jz.578"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView9"
+                android:layout_below="@id/imageView45" android:layout_marginLeft="10dp"
+                android:layout_marginEnd="10dp" android:gravity="center" android:textColor="@color/color_white"
+                android:textSize="20sp"/>
+        <com.orange.tpms.widget.GifView
+                android:layout_width="match_parent"
+                android:layout_height="300dp" app:srcCompat="@mipmap/oneby" android:id="@+id/imageView46"
+                android:layout_below="@id/textView9" android:layout_marginTop="20dp"/>
+    </RelativeLayout>
+</RelativeLayout>

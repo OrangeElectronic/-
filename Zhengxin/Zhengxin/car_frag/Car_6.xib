@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Car_6" customModule="Zhengxin" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zI3-Fr-PLx">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_6wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Hfb-xM-lb3">
+                            <rect key="frame" x="107" y="248" width="200" height="400"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="400" id="Qzi-vy-GzT"/>
+                                <constraint firstAttribute="width" constant="200" id="vS4-wr-5qZ"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="2ws-mU-rxA">
+                            <rect key="frame" x="129.5" y="355.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="gwp-QA-YOQ"/>
+                                <constraint firstAttribute="width" constant="55" id="rOX-lO-zpu"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="DTz-Oj-LqZ">
+                            <rect key="frame" x="229.5" y="500.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="Guy-cw-7Oy"/>
+                                <constraint firstAttribute="height" constant="55" id="cFZ-fm-fz5"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="3vU-fz-UlC">
+                            <rect key="frame" x="204.5" y="500.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="Hwh-yw-xpc"/>
+                                <constraint firstAttribute="height" constant="55" id="uDB-BT-fnX"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="Th3-C4-yVQ">
+                            <rect key="frame" x="154.5" y="500.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="ciT-Qn-Jcn"/>
+                                <constraint firstAttribute="height" constant="55" id="gWt-d4-29G"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="0k2-jN-9qv">
+                            <rect key="frame" x="129.5" y="500.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="K6X-ko-T5z"/>
+                                <constraint firstAttribute="height" constant="55" id="rbA-Ig-g5R"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="0OT-lm-g8b">
+                            <rect key="frame" x="229.5" y="355.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="Nck-5k-NU8"/>
+                                <constraint firstAttribute="height" constant="55" id="jCS-rg-EdO"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="4Xa-dn-X3k"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="DTz-Oj-LqZ" firstAttribute="centerX" secondItem="zI3-Fr-PLx" secondAttribute="centerX" constant="50" id="1t7-ts-NpH"/>
+                        <constraint firstItem="0OT-lm-g8b" firstAttribute="centerX" secondItem="zI3-Fr-PLx" secondAttribute="centerX" constant="50" id="25p-Yg-g7C"/>
+                        <constraint firstItem="2ws-mU-rxA" firstAttribute="centerX" secondItem="zI3-Fr-PLx" secondAttribute="centerX" constant="-50" id="9WM-CM-Biq"/>
+                        <constraint firstItem="Hfb-xM-lb3" firstAttribute="centerY" secondItem="zI3-Fr-PLx" secondAttribute="centerY" id="DfB-Py-XZr"/>
+                        <constraint firstItem="Hfb-xM-lb3" firstAttribute="centerX" secondItem="zI3-Fr-PLx" secondAttribute="centerX" id="EWF-gE-1LV"/>
+                        <constraint firstItem="0k2-jN-9qv" firstAttribute="centerY" secondItem="zI3-Fr-PLx" secondAttribute="centerY" constant="80" id="Hqj-G6-V3Q"/>
+                        <constraint firstItem="2ws-mU-rxA" firstAttribute="centerY" secondItem="zI3-Fr-PLx" secondAttribute="centerY" constant="-65" id="SOh-ev-zk3"/>
+                        <constraint firstItem="Th3-C4-yVQ" firstAttribute="centerY" secondItem="zI3-Fr-PLx" secondAttribute="centerY" constant="80" id="Wp1-lp-h77"/>
+                        <constraint firstItem="0k2-jN-9qv" firstAttribute="centerX" secondItem="zI3-Fr-PLx" secondAttribute="centerX" constant="-50" id="a8g-iS-VR1"/>
+                        <constraint firstItem="0OT-lm-g8b" firstAttribute="top" secondItem="2ws-mU-rxA" secondAttribute="top" id="b6E-ut-2c8"/>
+                        <constraint firstItem="Th3-C4-yVQ" firstAttribute="centerX" secondItem="zI3-Fr-PLx" secondAttribute="centerX" constant="-25" id="hNX-MA-evv"/>
+                        <constraint firstItem="3vU-fz-UlC" firstAttribute="centerY" secondItem="zI3-Fr-PLx" secondAttribute="centerY" constant="80" id="rwe-t2-bo9"/>
+                        <constraint firstItem="DTz-Oj-LqZ" firstAttribute="centerY" secondItem="zI3-Fr-PLx" secondAttribute="centerY" constant="80" id="tZV-xS-gDu"/>
+                        <constraint firstItem="3vU-fz-UlC" firstAttribute="centerX" secondItem="zI3-Fr-PLx" secondAttribute="centerX" constant="25" id="yoS-7s-Sya"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="zI3-Fr-PLx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="HML-gs-NIG"/>
+                <constraint firstAttribute="bottom" secondItem="zI3-Fr-PLx" secondAttribute="bottom" id="Wqk-bY-IOZ"/>
+                <constraint firstItem="zI3-Fr-PLx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eCN-tl-v8l"/>
+                <constraint firstItem="zI3-Fr-PLx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i3w-xe-cAc"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_wheel_normal" width="800" height="800"/>
+        <image name="img_6wheels" width="800" height="1600"/>
+    </resources>
+</document>

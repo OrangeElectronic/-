@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .content {
+        width: 80%;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        /*justify-content: center;*/
+        flex-direction: row;
+        background-color: #424A4F;
+        /*border-radius: 10px;*/
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../jsLib/lottie.js"></script>
+<body>
+</body>
+</html>
+<script>
+    //紀錄現在畫面方向，直向:false，橫向:true
+    var changeScreen=false
+    if(glitter.screenPage==="PORTRAIT" || glitter.screenPage===undefined){
+        changeScreen=false
+    }else{
+        changeScreen=true
+    }
+
+    glitter.share.orientationPageCallback.push( {callback:function (screen) {
+            console.log("setTire:"+screen)
+            if(screen==="PORTRAIT"){
+                changeScreen=false
+            }else{
+                changeScreen=true
+            }
+
+            $('body').html(lifeCycle.onCreateView())
+
+        },tag:"Dia_Progress_Spinner"})
+
+    var timeText=""
+    lifeCycle.onCreateView = function () {
+        //同步中
+        // <lottie-player src="../lottieFile/loading2.json"  background="transparent"  speed="1"  style="position:absolute;width: 200px;"  loop  autoplay></lottie-player>
+        return `
+        <div class="content" style="${changeScreen ? `width:50%`:`width:80%`};color: white">
+            <img style="width: 25%;height: 65%;" src="../image/Rolling-1s-200px.svg">
+            ${gBundle===undefined ? glitter.getLanguage("28") : gBundle.name}
+            <div style="flex: auto;color:white;"></div>
+            ${timeText}
+            <div style="width: 10px;">
+        </div>
+
+        `
+    }
+
+    lifeCycle.onCreate = function () {
+        glitter.deflationTime = function (time) {
+            timeText = time
+            $('body').html(lifeCycle.onCreateView())
+        }
+    }
+</script>

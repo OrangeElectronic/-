@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .bottomBar {
+        display: flex;
+        height: 60px;
+        background-color: #314A56;
+    }
+
+    .leftBottom {
+        background-image: url("../icon/btn_letf.png");
+        flex: auto;
+        height: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../icon/btn_right.png");
+        flex: auto;
+        height: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+    #Content {
+        overflow-y: scroll;
+        padding-bottom: 50px;
+        height: calc(100vh - 100px);
+    }
+ input{
+     font-size: 18px;
+     font-weight: 400;
+     height: 50px;
+     letter-spacing: 1px;
+ }
+</style>
+<body>
+<script>
+    gBundle={rfid:'',dot:''}
+    var toggle=false
+    lifeCycle.onCreate = function () {
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                    $(document.activeElement).trigger('input')
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                        $(document.activeElement).trigger('input')
+                    }
+                }else if(json.mKeyCode == 131){
+                    readRFID()
+                }
+            }
+        }
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+<div id="Content">
+    <div style="height: 60px;width:100%;background-color: #314A56;color: white;display: flex;align-items: center;justify-content: center;
+    font-weight: 400;">
+    ${(haveRead) ? glitter.getLan('643'):glitter.getLan('644')}
+</div>
+<div  style="height: 50px;background-color: #DEEFFF;display: flex;align-items: center;justify-content: center;">
+${glitter.getLan('640')}
+</div>
+<div style="height: 50px;width: 100%;padding: 5px;display: flex;align-items: center;justify-content: center;box-sizing: border-box;">
+<input id="tag" style="width: calc(100% - 20px);height: 50px;background-color: lightgray;padding-left: 10px;" value="${gBundle.rfid}" readonly>
+</div>
+<div  style="height: 50px;background-color: #DEEFFF;display: flex;align-items: center;justify-content: center;">
+${glitter.getLan('641')}
+</div>
+<div style="height: 50px;width: 100%;padding: 5px;display: flex;align-items: center;justify-content: center;box-sizing: border-box;">
+${(!haveRead) ? '':`<img src="../icon/icon_scan.png" style="width: 50px;height: 50px;background-color: #2F4C63;" onclick="readBarCode()">`}
+<input id="dot" style="width: calc(100% - 20px);height: 50px;background-color: white;border: 1px solid gray;padding-left: 10px;font-size: 16px;" value="${gBundle.dot}"
+onfocus="  setTimeout(function (){document.activeElement.scrollIntoView()},100);$('.bottomBar').hide()" onblur="  $('.bottomBar').show()">
+</div>
+</div>
+
+
+<div class="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" style="width: 120px;" onclick="
+          glitter.goBack()
+          " >
+        ${glitter.getLan(129)}
+        </div>
+         <div id="next" class="rightBottom" style="width: calc(100% - 120px);"  onclick="
+         if(haveRead){
+writeRFID()
+         }else {
+             readRFID()
+         }
+         ">
+        ${(haveRead) ? glitter.getLan('567'):glitter.getLan(644)}
+        </div>
+</div>
+
+    `
+    }
+    //scanBarCode
+
+    //讀取RFID
+    var haveRead=false
+    function readRFID(){
+        glitter.openDiaLog('dialog/DataLoading.html', 'DataLoading', false, false, '{}')
+        glitter.runJsInterFace('readRFID',{},function (response){
+            glitter.closeDiaLog()
+            if(response.result){
+                haveRead=true
+                var dot=hex_to_ascii(response.dot).replace(/[^A-Za-z0-9]/g,'')
+                var tagID=response.rfid
+                gBundle.rfid=response.rfid
+                gBundle.dot=dot
+                $('#tag').val(tagID)
+                $('#dot').val(dot)
+                console.log(dot)
+                lifeCycle.notifyDataChange()
+                glitter.runJsInterFace("playBeet",{},function (){})
+            }
+
+        })
+    }
+    //寫入RFID
+    function writeRFID(){
+        glitter.openDiaLog('dialog/DataLoading.html', 'DataLoading', false, false, '{}')
+        var dotData=ascii_to_hex($('#dot').val())
+        glitter.runJsInterFace('writeRFID',{
+            rfid:gBundle.rfid,
+            dot:dotData
+        },function (response){
+            glitter.closeDiaLog()
+            if(response.result){
+                glitter.openDiaLog('dialog/Dia_Success.html','Dia_Success',false,true,{},function (){})
+            }else {
+                glitter.openDiaLog('dialog/Dia_Error.html','Dia_Error',false,true,{},function (){})
+            }
+        })
+    }
+    function hex_to_ascii(str1) {
+        var hex = str1.toString();
+        var str = '';
+        for (var n = 0; n < hex.length; n += 2) {
+            str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+        }
+        return str;
+    }
+
+    function ascii_to_hex(str) {
+        var arr1 = [];
+        for (var n = 0, l = str.length; n < l; n++) {
+            var hex = Number(str.charCodeAt(n)).toString(16);
+            arr1.push(hex);
+        }
+        return arr1.join('');
+    }
+
+lifeCycle.onResume=function (){
+    glitter.keyEventListener = function (json) {
+        var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+        if (json.mAction == 0) {
+            if (keyb.indexOf(json.mKeyCode) !== -1) {
+                var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                $(document.activeElement).val(data2)
+                $(document.activeElement).trigger('input')
+            } else if (json.mKeyCode == 67) {
+                var data = $(document.activeElement).val()
+                if (data.length > 0) {
+                    $(document.activeElement).val(data.substring(0, data.length - 1))
+                    $(document.activeElement).trigger('input')
+                }
+            }else if(json.mKeyCode == 131){
+                readRFID()
+            }
+        }
+    }
+}
+
+    //ScanBarcode
+    function readBarCode(){
+        glitter.openDiaLog('dialog/DataLoading.html', 'DataLoading', false, false, '{}')
+        glitter.runJsInterFace('scanText',{},function (response){
+            glitter.closeDiaLog()
+            gBundle.dot=response.data
+            lifeCycle.notifyDataChange()
+            glitter.runJsInterFace("playBeet",{},function (){})
+        })
+    }
+</script>
+</body>
+</html>

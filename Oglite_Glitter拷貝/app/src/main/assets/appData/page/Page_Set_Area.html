@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: calc(100% - 60px);
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    h3 {
+        margin-top: 30px;
+        margin-left: 42px;
+        color: black;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .spinner {
+        background-color: white;
+        border-width: 1px;
+        border-color: #868e96;
+        border-style: solid;
+        height: 50px;
+        margin-left: 42px;
+        margin-right: 42px;
+        margin-top: 0;
+        background-image: url("../img/dropdown.png");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 15px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+    }
+
+    .bigBottom {
+        position: absolute;
+        background-image: url("../img/btn_rectangle.png");
+        width: 100%;
+        height: 50px;
+        bottom: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    var notSelect=glitter.getLan(440)
+    lifeCycle.onCreate = function () {
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+        <h3 id="areaH">${glitter.getLan(66)}</h3>
+        <div id="area" onclick="selectArea()" class="spinner">${glitter.getLan(440)}</div>
+         <h3 id="lanH">${glitter.getLan(69)}</h3>
+        <div id="language" onclick="selectLanguage()"  class="spinner">${glitter.getLan(440)}</div>
+        <div id="bigBottom" class="bigBottom" onclick="goNext()" >
+        ${glitter.getLan(192)}
+        </div>
+        `
+    }
+
+    //選擇地區
+    function selectArea() {
+        let tit = [glitter.getLan(441), glitter.getLan(442), glitter.getLan(443), glitter.getLan(444)]
+        glitter.openBottomSheet('dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#area').html(tit[index])
+                switch (tit[index]){
+                    case glitter.getLan(441):
+                        glitter.setPro("area", "EU")
+                        glitter.publicBeans.country="EU"
+                        break
+                    case glitter.getLan(442):
+                        glitter.setPro("area", "US")
+                        glitter.publicBeans.country="US"
+                        break
+                    case glitter.getLan(443):
+                        glitter.setPro("area", "TW")
+                        glitter.publicBeans.country="TW"
+                        break
+                    case glitter.getLan(444):
+                        glitter.setPro("area", "CN")
+                        glitter.publicBeans.country="CN"
+                        break
+                }
+                glitter.closeBottomSheet()
+            },
+            title: tit
+        }, "200px", true)
+    }
+
+    //選擇語言
+    function selectLanguage() {
+        let tit = [glitter.getLan(239), glitter.getLan(238), glitter.getLan(241), glitter.getLan(237), glitter.getLan(240), glitter.getLan(453), glitter.getLan(454),"Español","Czech-Slowakia",glitter.getLan(660),"日本","Français"]
+        let lanNumber = ["tw", "zh-rcn", "de", "en", "it", "sk", "da","Spanish","Czech-Slowakia","Russian","Japan","France"]
+        glitter.openBottomSheet('dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#language').html(tit[index])
+                glitter.publicBeans.language=lanNumber[index]
+                glitter.dataBase.query("language", `select ${'`'}${glitter.publicBeans.language}${'`'},id from language `, function (data) {
+                    glitter.getLan = function (id) {
+                        let lan = data.filter(function (item) {
+                            return item.id === `${id}`
+                        })
+                        if (lan.length > 0) {
+                            return lan[0][glitter.publicBeans.language]
+                        } else {
+                            return "" + id
+                        }
+                    }
+                }, ()=>{alert("initPublicBeansError1")})
+                glitter.closeBottomSheet()
+                $('#bigBottom').html(glitter.getLan(192))
+                $('#areaH').html(glitter.getLan(66))
+                $('#lanH').html(glitter.getLan(69))
+            },
+            title: tit
+        }, "300px", true)
+    }
+
+    //下一步
+    function goNext(){
+        if(($('#area').html()===notSelect)||($('#language').html()===notSelect)){
+            return
+        }
+        if(gBundle.toHome){
+            glitter.setHome("page/Page_Home.html","Page_Home",{})
+        }else{
+            glitter.changePage('page/Page_Policy.html','Page_Policy',true,{})
+        }
+    }
+</script>

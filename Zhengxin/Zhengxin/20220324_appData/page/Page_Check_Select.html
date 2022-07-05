@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+    }
+
+    html {
+        width: 100%;
+        height: 100%;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+    }
+
+    .unSelect {
+        width: 50%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        color: #828282;
+        font-size: 16px;
+        background-color: #BBBBBB;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #BBBBBB;
+    }
+
+    .select {
+        width: 50%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 16px;
+        color: #002F51;
+        background-color: white;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #E64E00;
+
+    }
+
+    .setBt {
+        display: flex;
+        width: calc((100%) / 2 - 15px);
+        border-radius: 10px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: white;
+        height: 48px;
+        background-color: #E64E00;
+        background-size: 50px 50px;
+        background-repeat: no-repeat;
+        background-image: url("../img/btn_reset.png");
+        color: white;
+        font-size: 14px;
+        line-height: 48px;
+        padding-left: 50px;
+        font-weight: 600;
+    }
+
+    .outPut {
+        display: flex;
+        width: calc((100%) / 2 - 15px);
+        border-radius: 10px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #3F99AA;
+        height: 48px;
+        background-size: 50px 50px;
+        background-repeat: no-repeat;
+        background-image: url("../img/btn_export_data.png");
+        color: white;
+        font-size: 14px;
+        line-height: 48px;
+        padding-left: 50px;
+        font-weight: 600;
+    }
+
+    .item {
+        display: flex;
+        margin-left: 80px;
+        margin-right: 10px;
+        height: 60px;
+        align-items: center;
+        width: calc(100% - 90px)
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreateView = function () {
+        return `
+    <div  style="display:flex;align-items: center;height: 60px;width:100%;background-color: #002F51">
+        <img src="../img/btn_back.png" style="width: 50px;height: 50px;" onclick="glitter.goBack()">
+        <h3 style="color: white;flex: auto;margin-right: 0px;text-align: center;">${glitter.getLan(691)}</h3>
+        <img src="../img/btn_home.png"  style="width: 50px;height: 50px;" onclick="glitter.goMenu()">
+    </div>
+<div style="width: 100%;height: 60px;line-height: 60px;text-align: center;background-color: white;
+     color: #002F51;">
+     ${glitter.getLan(692)}
+</div>
+<div style="margin-top:10px;height: 70px;width: calc(100% - 20px);margin-left:10px;display: flex;align-items: center;">
+<input style="height: 53px;border-style: none;border-width: 0;outline: none;flex: auto;padding-left: 5px;font-size: 16px;" placeholder="${glitter.getLan(693)}">
+<div style="width: 88px;height: 56px;background-color: #274B64;margin-left: -5px;color: white;display: flex;align-items: center;justify-content: center;">
+${glitter.getLan(694)}
+</div>
+</div>
+<div style="height: calc(100% - 170px);overflow-y: scroll;width: 100%;" id="itemList"></div>
+<div style="display: flex;height: 50px;align-items: center;">
+<img src="../img/app_img_logo.png" style="height: 40px;">
+<h3 style="color: white;font-size:14px;line-height: 40px;height: 40px;">${glitter.getLan(695)}</h3>
+</div>
+`
+    }
+    var selectType = 1
+    var item = rootActivity().carInterFace.getData_Setting_Car()
+    var adapter = undefined
+    lifeCycle.onCreate = function () {
+
+        $('input').keyup(function () {
+            console.log('.change = ' + $(this).val());
+            item = rootActivity().carInterFace.getData_Setting_Car().filter(word => word.plateNumber.toUpperCase().indexOf($(this).val().toUpperCase()) !== -1)
+            adapter.notifyDataSetChange()
+        });
+        adapter = new GlAdapter(document.getElementById('itemList'), function () {
+            return item.length
+        }, function (position) {
+            var type = item[position].carType
+            if (selectType === 1) {
+                if ((type.indexOf("F") === -1) && (type.indexOf("N") === -1)) {
+                    return ``
+                }
+            } else {
+                if ((type.indexOf("R") !== -1)) {
+                    return ``
+                }
+            }
+            try {
+                return `
+            <div style="height: 80px;width: 100%;display: flex;align-items: center;justify-content: center;" onclick="next(` + position + `)">
+            <div style="display: flex;height: 60px;width: calc(100% - 32px);margin-left:10px;background-color: #6AC6D7;border-radius: 20px;">
+            <img src="../img/tire.png" style="height: 60px;width: 60px;">
+            <div style="display:flex;align-items:center;height: 60px;flex: auto"><h3 style="color: white;font-size: 20px;margin-left: 5px;">`
+                    + glitter.unicodeToString(item[position].plateNumber) +
+                    `</h3>
+            <div style="flex: auto"></div>
+            <h3 style="color: white;font-size: 14px;margin-right: 10px;">` + (item[position].carType.indexOf("F") !== -1 ? glitter.getLan(696) : "") + `</h3>
+            </div>
+</div>
+</div>
+` + ((position === item.length - 1) ? "" : "<div style=\"margin-left:5px;margin-right:5px;height: 1px;background-color: #6ac6d7;\"></div>") + `
+            `
+            } catch (e) {
+                alert(item[position].plateNumber)
+                return ``
+            }
+
+        })
+    }
+
+    function next(position) {
+        glitter.checkCar = item[position]
+        var dataMap = {checkCar2: undefined, checkCar: glitter.checkCar}
+        glitter.setPro("lastSelectCar", JSON.stringify(dataMap), function (response) {
+        })
+        if (item[position].carType.indexOf("F") !== -1) {
+                glitter.changePage('page/Page_Check_Select_Rear.html', 'Page_Check_Select_Rear', true, 'Rear')
+        } else {
+            if (glitter.selectFunction === 'trigger') {
+                glitter.changePage('page/Page_Check_Detail.html', 'Page_Check_Detail', true, 1)
+            } else {
+                glitter.command.readCounter = 0
+                glitter.changePage('page/Page_Check_Detail_OBD.html', 'Page_Check_Detail_OBD', true, 1)
+            }
+        }
+    }
+
+    lifeCycle.onResume = function () {
+        item = rootActivity().carInterFace.getData_Setting_Car()
+        adapter.notifyDataSetChange()
+    }
+</script>

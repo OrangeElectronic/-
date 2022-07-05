@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+  html {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+  }
+
+  body {
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .leftBottom {
+    background-image: url("../img/btn_letf.png");
+    flex: auto;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .rightBottom {
+    background-image: url("../img/right_line.png");
+    background-color: #FF4400;
+    width: 60%;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){
+
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+<div style="width: 100%;height:calc(100% - 50px);overflow-x: hidden;overflow-y: scroll;">
+<div style="height: 60px;background-color: #1f333e;display: flex;align-content: center;justify-content: center;flex-direction: column;text-align: center;color: white;">HSN/TSN</div>
+<div style="height: 50px;display: flex;width: 100%;justify-content: space-around;margin-top: 15px;">
+<input style="width: 40%;border: 1px solid #1f333e;display: flex;text-align: center;font-size: 20px;" placeholder="HSN" id="HSN">
+<input style="width: 40%;border: 1px solid #1f333e;display: flex;text-align: center;font-size: 20px;" placeholder="TSN" id="TSN">
+</div>
+<div style="margin: 20px;text-align: center;">${glitter.getLan(520)}</div>
+<div style="text-align: center;margin: 20px;width: calc(100% - 40px);">
+<img src="../img/hsn_tsn_placeimage.png" style="width: 80%;">
+</div>
+</div>
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="glitter.goBack()" >
+        ${glitter.getLan(306)}
+        </div>
+         <div id="next" class="rightBottom" onclick="getHsnTsn()">
+        ${glitter.getLan(145)}
+        </div>
+</div>
+
+    `
+  }
+  lifeCycle.onResume = function () {
+  }
+  function getHsnTsn(){
+      glitter.runJsInterFace("DataBase_Query",
+          {string: `select * from HSNTSN_SUMMARY where (HSN='${$('#HSN').val().toUpperCase()}' and TSN='${$('#TSN').val().toUpperCase()}') `, name: 'mmy2'},
+          function (response) {
+          if(response.result){
+              if(response.data.length===0){
+                  glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(570))
+              }else{
+                  var data=response.data[0]
+                  glitter.runJsInterFace("DataBase_Query",
+                      {string: `select * from \`Summary table\` where  \`Summary table\`.make='${data.Make}' and  \`Summary table\`.Model='${data.Model}' and \`Summary table\`.Year='${data.Year}'`,
+                          name: "mmy"},
+                      function (response) {
+                          if (response.result) {
+                              if(response.data.length>0&&(glitter.share.tireStorage!==undefined)){
+                                  glitter.share.tireStorage.Tsn=$('#TSN').val()
+                                  glitter.share.tireStorage.Hsn=$('#HSN').val()
+                              }
+                              glitter.mmyInterFace.hsn=$('#HSN').val()
+                              glitter.mmyInterFace.tsn=$('#TSN').val()
+                              if (response.data.length === 1) {
+                                  glitter.mmyInterFace.selectMMY = response.data[0]
+                                  glitter.mmyInterFace.selectMake = response.data[0].Make
+                                  glitter.mmyInterFace.selectModel = response.data[0].Model
+                                  glitter.mmyInterFace.selectYear = response.data[0].Year
+                                  glitter.changePage('page/Page_Confirm_HSN_TSN.html','Page_Confirm_HSN_TSN',true,{})
+                              } else if(response.data.length===0){
+                                  glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(570))
+                              }else{
+                                  glitter.changePage('page/Page_Select_Hsn.html','Page_Select_Hsn',true,{data:response.data},function (){})
+                              }
+                          } else {
+                              glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(570))
+                          }
+                      })
+              }
+          }else{
+              glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(570))
+          }
+          })
+
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+    <script src="../glitterBundle/extension.js"></script>
+</head>
+<style>
+  html{
+    width: 100%;
+    height: 100%;
+  }
+  body{
+    width: 100%;
+    height: 100%;
+  }
+  .content{
+      padding-top: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(100% - 180px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .dateBar{
+    height: 50px;
+    background-color: #2F4C63;
+    color: white;display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nextBt{
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 30px;
+      font-weight: 600;
+  }
+  .dateHint{
+      width: calc(100% - 100px);
+      color: white;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      min-height: 30px;
+      justify-content: center;
+  }
+
+  .item{
+      width: calc(100% - 20px);
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .spi{
+      color: gray;
+      height: 1px;
+      min-height: 1px;
+      background-color: whitesmoke;
+      width: calc(100% - 20px);
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+  .item .bar{
+      width:100%;
+      height: 50px;
+      background-color: rgba(7, 73, 123, 100);
+      color: white;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid whitesmoke;
+  }
+  .flexBox{
+      display: flex;
+      background-color: #E3F4FD ;
+      width: 100%;
+      height: 50px;
+  }
+  .flexBox .left{
+    width: 40%;
+      border: 1px solid lightgray;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10px;
+  }
+  .flexBox .right{
+      width: 60%;
+      padding-left: 10px;
+      border: 1px solid lightgray;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+  }
+
+  .next{
+      background-image: url("../img/button_selsect_Quantity_Normal.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 150px;
+      height: 50px;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-top: 10px;
+  }
+</style>
+<body>
+
+<script>
+    var selectDate=new Date()
+  lifeCycle.onCreate=function (){
+      getAppointMent()
+      // glitter.addObserver(selectDate,"date",function (response){
+      //     alert(selectDate.date)
+      //     $('#dateHint').html()
+      // })
+  }
+  function addDay(day){
+      selectDate.addDays(day)
+      $('#dateHint').html(selectDate.format("yyyy/MM/dd"))
+      getAppointMent()
+      if(selectDate.format("yyyy/MM/dd")===new Date().format("yyyy/MM/dd")){
+          $('#backBt').html(``)
+          $('#backBt').unbind('click').removeAttr('onclick')
+      }else{
+          $('#backBt').html(`<<`)
+          $('#backBt').click(function (){
+              console.log('click')
+              addDay(-1)
+          })
+      }
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+     <div class="dateBar">
+         <div class="nextBt" id="backBt"></div>
+        <h3 id="dateHint" class="dateHint">${selectDate.format("yyyy/MM/dd")}</h3>
+        <div class="nextBt" onmousedown="addDay(1)">>></div>
+</div>
+<div class="content" id="content">
+</div>
+
+    `
+  }
+//     <h3 style="background-color: #2F4C63;color: white;height: 50px;width: 100%;display: flex;align-items: center;justify-content: center;margin: 0;
+// font-size: 15px;" className="d-none" onClick="
+// glitter.goMenu()
+// glitter.changePage('tireStorage/Page_Edit_Store_Info.html','Page_Edit_Store_Info',true,{})
+// ">${glitter.getLan(544)}</h3>
+  var data=undefined
+    var colorToggle=true
+  function getAppointMent(){
+      colorToggle=!colorToggle
+      glitter.postRequest("TireHotel","getAppoint",{
+          time: selectDate.getTime(),
+          account:glitter.share.account
+      },function (response){
+          if(!response){
+              getAppointMent()
+              return}
+          if(response.result){
+              var html=``
+              data=response.data
+              response.data.map(function (data,position){
+                  colorToggle=!colorToggle
+                  html+=`<div class="item" >
+<div class="bar" style="${(colorToggle) ? 'background-color: rgba(7, 73, 123, 100);':'background-color: orangered;'}">NO.0${position+1}</div>
+<div class="flexBox" style="background-color: white;">
+<div class="left">${glitter.language(467)}</div>
+<div class="right">${data.Lplate}</div>
+</div>
+<div class="flexBox">
+<div class="left">${glitter.language(547)}</div>
+<div class="right">${data.Fname}</div>
+</div>
+<div class="flexBox">
+<div class="left">${glitter.language(548)}</div>
+<div class="right">${data.RTime}</div>
+</div>
+<div class="flexBox">
+<div class="left">${glitter.language(537)}</div>
+<div class="right">${data.Remark}</div>
+</div>
+<div class="next" onmousedown="toStoreInfo(${position})">${glitter.language(145)}</div>
+</div>
+<div class="spi"></div>`
+              })
+              $('#content').html(html)
+             // alert(JSON.stringify(response.data))
+          }
+      })
+  }
+
+  function toStoreInfo(position){
+        glitter.changePage('tireStorage/Page_Store_Info.html','Page_Store_Info',true,data[position])
+  }
+</script>
+</body>
+</html>

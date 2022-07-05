@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .content {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: calc(100% - 60px);
+        text-align: center;
+    }
+
+    .dateBar {
+        height: 50px;
+        background-color: #2F4C63;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nextBt {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+    }
+
+    .dateHint {
+        width: calc(100% - 100px);
+        color: white;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .colFlex {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        align-items: center;
+    }
+
+    .colFlex img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .colFlex h3 {
+        font-size: 20px;
+        color: #2F4C63;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .spi {
+        color: gray;
+        height: 1px;
+        min-height: 1px;
+        background-color: whitesmoke;
+        width: calc(100% - 20px);
+    }
+
+    .Flex {
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        width: calc(100% - 30px);
+    }
+
+    .Flex img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .Flex h3 {
+        font-size: 17px;
+        color: #2F4C63;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+
+</body>
+<script>
+    lifeCycle.onCreate = function () {
+        if (!glitter.isOG) {
+            glitter.share.getMMY = function (sql, response) {
+                glitter.dataBase.query("mmy", sql
+                    , function (resu) {
+                        response({result: true, data: resu})
+                    }, function () {
+                        response({result: false})
+                    })
+            }
+            glitter.share.account=glitter.publicBeans.account
+        }
+
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+<div class="content">
+<div class="colFlex" onmousedown="glitter.changePage('tireStorage/Page_Reservation_List.html','Page_Reservation_List',true,{})">
+<img src="../img/Button_Normal-49.png" >
+<h3>${glitter.language(543)}</h3>
+</div>
+<div class="spi"></div>
+<div class="Flex" onmousedown="glitter.changePage('tireStorage/Page_Edit_Store_Info.html','Page_Edit_Store_Info',true,{})">
+<img src="../img/Button_Normal-46.png" >
+<h3>${glitter.language(544)}</h3>
+</div>
+<div class="spi"></div>
+<div class="Flex" onclick=" glitter.changePage('tireStorage/Page_Search_Selection.html','Page_Search_Selection',true,{})">
+<img src="../img/Button_Normal-44.png">
+<h3>${glitter.language(770)}</h3>
+</div>
+<div class="spi"></div>
+<div class="Flex" onclick="glitter.changePage('tireStorage/Page_History.html','Page_History',true,{})">
+<img src="../img/Button_Normal-45.png">
+<h3>${glitter.language(546)}</h3>
+</div>
+</div>
+        `
+    }
+</script>
+</html>

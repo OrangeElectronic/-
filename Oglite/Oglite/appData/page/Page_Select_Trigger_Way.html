@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+    .scrollView{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: calc(100% - 180px);
+        background-color: white;
+        overflow-y: scroll;
+    }
+    .scrollView h3{
+        display: flex;
+        color: white;
+        margin: 0;
+        background-size: 100% 100%;
+    }
+    .scrollView div{
+        background-color: #314a56;
+        color: white;
+        border-bottom: 1px solid white;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreate=function (){
+
+    }
+    lifeCycle.onCreateView=function (){
+        return `
+         <h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${glitter.mmyInterFace.selectMake}/${glitter.mmyInterFace.selectModel}/${glitter.mmyInterFace.selectYear}
+</h3>
+<h3 style="font-weight:600;margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #ff9e00;color: #ffffff;width: 100%;">
+${glitter.getLan(24)}
+</h3>
+<div class="scrollView">
+<div style="height: 40%;flex-direction: column;">
+<img src="../img/icon_read_sensor.png" style="height:calc(100% - 50px);" onclick="switchToProgram(0)">
+<h3 style="color: white">${glitter.getLan(143)}</h3>
+</div>
+<div style="height: 30%;" onclick="switchToProgram(1)">
+<img src="../img/icon_key_in.png" style="margin-left:10px;height:calc(100% - 50px);">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.getLan(26)}</h3>
+</div>
+<div style="height: 30%;" onclick="switchToProgram(2)">
+<img src="../img/icon_scan.png" style="margin-left:10px;height:calc(100% - 50px);">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.getLan(19)}</h3>
+</div>
+</div>
+        `
+    }
+
+    function switchToProgram(a){
+        glitter.selectWay=a
+        if(glitter.selectFunction.select===glitter.selectFunction.enum.Program){
+            glitter.changePage('page/Page_Program_Detail.html','Page_Program_Detail',true,{})
+        }else if(glitter.selectFunction.select===glitter.selectFunction.enum.IdCopy){
+            glitter.changePage('page/Page_ID_Copy.html','Page_ID_Copy',true,{})
+        }else if(glitter.selectFunction.select===glitter.selectFunction.enum.IdCopy_OBD){
+            glitter.changePage('page/Page_ID_Copy.html','Page_ID_Copy',true,{})
+        }else if(glitter.selectFunction.select===glitter.selectFunction.enum.ObdRelearn){
+            glitter.changePage('page/Page_ID_Copy.html','Page_ID_Copy',true,{})
+        }
+
+    }
+</script>

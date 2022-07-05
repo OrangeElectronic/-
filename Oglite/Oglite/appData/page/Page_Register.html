@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+<style>
+    html {
+        width: 100%;
+        height: calc(100% - 60px);
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    h3 {
+        margin: 5px 30px 0;
+        color: black;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    h4 {
+        margin: 5px 30px 0;
+        color: black;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        width: 50%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/btn_right.png");
+        width: 50%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    input {
+        padding-left: 10px;
+        margin-left: 30px;
+        margin-right: 30px;
+        outline: none;
+        background: none;
+        border-style: solid;
+        border-color: grey;
+        border-width: 1px;
+        color: black;
+        width: calc(100% - 70px);
+        height: 40px;
+        margin-top: 5px;
+    }
+
+    .spinner {
+        background-color: white;
+        border-width: 1px;
+        border-color: #868e96;
+        border-style: solid;
+        height: 50px;
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 10px;
+        background-image: url("../img/dropdown.png");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 15px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+    }
+
+</style>
+</html>
+<script>
+    lifeCycle.onCreate = function () {
+
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+<div style="padding:0;width:100%;overflow-x:hidden;height:calc(100%);overflow-y:scroll;padding: 0;">
+<h3 style="margin-top: 20px;">${glitter.getLan(85)}</h3>
+<h4>${glitter.getLan(86)}</h4>
+<input  placeholder="${glitter.getLan(76)}" >
+<h3 style="margin-top: 20px;">${glitter.getLan(78)}</h3>
+<h4>${glitter.getLan(87)}</h4>
+<input  placeholder="${glitter.getLan(88)}">
+<h3 style="margin-top: 20px;">${glitter.getLan(89)}</h3>
+<input  placeholder="">
+<h3 style="margin-top: 20px;">${glitter.getLan(91)}</h3>
+<h4>${glitter.getLan(92)}</h4>
+<input  placeholder="">
+<h4>${glitter.getLan(93)}</h4>
+<input  placeholder="">
+<h4>${glitter.getLan(94)}</h4>
+<input  placeholder="">
+<h4>${glitter.getLan(95)}</h4>
+<input  placeholder="">
+<h4>${glitter.getLan(207)}</h4>
+  <div id="type" onclick="selectType()" class="spinner">${glitter.getLan(208)}</div>
+<h3 style="margin-top: 20px;">${glitter.getLan(96)}</h3>
+<h4>${glitter.getLan(66)}</h4>
+ <div id="area" onclick="selectArea()" class="spinner">Italia</div>
+  <div id="area2" onclick="selectArea2()" class="spinner">Abruzzo</div>
+<h4>${glitter.getLan(98)}</h4>
+<input   placeholder="">
+<h4>${glitter.getLan(99)}</h4>
+<input  placeholder="">
+<h4>${glitter.getLan(100)}</h4>
+<input  placeholder="">
+<h4>${glitter.getLan(101)}</h4>
+<input  placeholder="" >
+<div style="display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="register()" >
+        ${glitter.getLan(77)}
+        </div>
+         <div id="next" class="rightBottom" onclick="glitter.goBack()" >
+        ${glitter.getLan(5)}
+        </div>
+</div>
+</div>
+
+        `
+    }
+
+    var postMap = {
+        account: '',
+        password: '',
+        storeType: glitter.getLan(208),
+        company: '',
+        firstname: '',
+        lastname: '',
+        telphone: '',
+        area: 'EU',
+        state: 'Abruzzo',
+        city: '',
+        street: '',
+        areaNO: '',
+        country: '義大利',
+        erpcustno: '',
+        address:'',
+        countrySelect: '{"country":"義大利","state":"Abruzzo"}'
+    }
+    glitter.getPro("area",function (data){
+        if(postMap.area!==undefined){
+            postMap.area=data
+        }
+    })
+    function register() {
+        var reqeatPassword=false
+        // glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, `${glitter.getLan(488)}`)
+        $("input").each(function (index) {
+            if($(this).val()===''){
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(488))
+                return
+            }
+            if(index===2){
+                if($(this).val()!==postMap.password){
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(89))
+                    reqeatPassword=true
+                }
+            }
+            switch (index) {
+                case 0:
+                    postMap.account = $(this).val()
+                    break
+                case 1 :
+                    postMap.password = $(this).val()
+                    break
+                case 3 :
+                    postMap.lastname = $(this).val()
+                    break
+                case 4 :
+                    postMap.firstname = $(this).val()
+                    break
+                case 5 :
+                    postMap.company = $(this).val()
+                    break
+                case 6 :
+                    postMap.telphone = $(this).val()
+                    break
+                case 7:
+                    postMap.street = $(this).val()
+                    break
+                case 8:
+                    postMap.city=$(this).val()
+                    break
+                case 9:
+                    postMap.address=$(this).val()
+                    break
+                case 10:
+                    postMap.areaNO=$(this).val()
+                    break
+            }
+            if(index===10&&(!reqeatPassword)){
+                glitter.apiRequest.postWithDialog({
+                    request:'register',
+                    data:JSON.stringify(postMap)
+                },function (){
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(102),function (){
+                        setTimeout(function (){
+                            glitter.setPro("admin",postMap.account)
+                            glitter.setPro("password",postMap.password)
+                            glitter.setHome('page/Page_Home.html','Page_Home',{})
+                        },100)
+                    })
+                })
+            }
+        });
+
+    }
+
+    //選擇類型
+    function selectType() {
+        let tit = [glitter.getLan(208), glitter.getLan(209)]
+        glitter.openBottomSheet('dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#type').html(tit[index])
+                postMap.storeType=["輪胎行","經銷商"][index]
+                glitter.closeBottomSheet()
+            },
+            title: tit
+        }, "100px", true)
+    }
+
+    //選擇地區
+    function selectArea() {
+        let tit = ["Italia", "Deutschland", "United States", "台灣", "日本", `${glitter.getLan(514)}`]
+        glitter.openBottomSheet('dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#area').html(tit[index])
+                var control = JSON.parse(postMap.countrySelect)
+                control.country = ["義大利", "德國", "美國", "台灣", "日本", "其他"][index]
+                control.state=area2Map[tit[index]][0]
+                postMap.country=control.country
+                $('#area2').html(control.state)
+                postMap.countrySelect = JSON.stringify(control)
+                glitter.closeBottomSheet()
+            },
+            title: tit
+        }, "250px", true,false)
+    }
+
+    //選擇區域
+    var area2Map = {
+        "台灣": ["臺北市",
+            "新北市",
+            "基隆市",
+            "桃園市",
+            "新竹市",
+            "新竹縣",
+            "宜蘭縣",
+            "苗栗縣",
+            "臺中市",
+            "彰化縣",
+            "南投縣",
+            "雲林縣",
+            "嘉義市",
+            "嘉義縣",
+            "臺南市",
+            "高雄市",
+            "屏東縣",
+            "澎湖縣",
+            "花蓮縣",
+            "臺東縣",
+            "金門縣",
+            "連江縣"],
+        "Italia": ["Abruzzo",
+            "Valle d'Aosta",
+            "Puglia",
+            "Basilicata",
+            "Calabria",
+            "Campania",
+            "Emilia-Romagna",
+            "Friuli-Venezia Giulia",
+            "Lazio",
+            "Liguria",
+            "Lombardia",
+            "Marche",
+            "Molise",
+            "Piemonte",
+            "Sardegna",
+            "Sicilia",
+            "Trentino-Alto Adige",
+            "Toscana",
+            "Umbria",
+            "Veneto"],
+        "Deutschland": [
+            "Baden-Württemberg",
+            "Bayern",
+            "Berlin",
+            "Brandenburg",
+            "Bremen",
+            "Hamburg",
+            "Hessen",
+            "Mecklenburg-Vorpommern",
+            "Niedersachsen",
+            "Nordrhein-Westfalen",
+            "Rheinland-Pfalz",
+            "Saarland",
+            "Sachsen",
+            "Sachsen-Anhalt",
+            "Schleswig-Holstein",
+            "Thüringen"
+        ],
+        "United States": ["Washington, D.C.",
+            "Maine",
+            "New Hampshire",
+            "Massachusetts",
+            "Rhode Island",
+            "Connecticut",
+            "New Jersey",
+            "Delaware",
+            "Maryland",
+            "West Virginia",
+            "New York",
+            "Pennsylvania",
+            "Virginia",
+            "North Carolina",
+            "South Carolina",
+            "Georgia",
+            "Florida",
+            "Michigan",
+            "Ohio",
+            "Indiana",
+            "Kentucky",
+            "Tennessee",
+            "Mississippi",
+            "Alabama",
+            "Illinois",
+            "Minnesota",
+            "Iowa",
+            "Missouri",
+            "Arkansas",
+            "Louisiana",
+            "North Dakota",
+            "South Dakota",
+            "Nebraska",
+            "Kansas",
+            "Oklahoma",
+            "Texas",
+            "Montana",
+            "Wyoming",
+            "Colorado",
+            "Mexico",
+            "Idaho",
+            "Utah",
+            "Arizona",
+            "Washington",
+            "Oregon",
+            "Nevada",
+            "California"],
+        "日本": ["あいちけん",
+            "あきたけん",
+            "あおもりけん",
+            "ちばけん",
+            "えひめけん",
+            "ふくいけん",
+            "ふくおかけん",
+            "ふくしまけん",
+            "ぎふけん",
+            "ぐんまけん",
+            "ひろしまけん",
+            "ほっかいどう",
+            "ひょうごけん",
+            "いばらきけん",
+            "いしかわけん",
+            "いわてけん",
+            "かがわけん",
+            "かごしまけん",
+            "かながわけん",
+            "こうちけん",
+            "くまもとけん",
+            "きょうとふ",
+            "みえけん",
+            "みやぎけん",
+            "みやざきけん",
+            "ながのけん",
+            "ながさきけん",
+            "ならけん",
+            "にいがたけん",
+            "おおいたけん",
+            "おかやまけん",
+            "おきなわけん",
+            "おおさかふ",
+            "さがけん",
+            "さいたまけん",
+            "しがけん",
+            "しまねけん",
+            "しずおかけん",
+            "とちぎけん",
+            "とくしまけん",
+            "とうきょうと",
+            "とっとりけん",
+            "とやまけん",
+            "わかやまけん",
+            "やまがたけん",
+            "やまぐちけん",
+            "やまなしけん",]
+    }
+    area2Map[glitter.getLan(514)]=["NA"]
+
+    function selectArea2() {
+        let tit = area2Map[ $('#area').html()]
+        glitter.openBottomSheet('dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#area2').html(tit[index])
+                var control = JSON.parse(postMap.countrySelect)
+                control.state = tit[index]
+                postMap.countrySelect = JSON.stringify(control)
+                postMap.state= tit[index]
+                glitter.closeBottomSheet()
+            },
+            title: tit
+        }, "250px", true,false)
+    }
+</script>

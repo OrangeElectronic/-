@@ -1,0 +1,551 @@
+package com.qs.wiget;
+
+import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import android.app.Application;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.MediaPlayer;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.widget.Toast;
+import android.zyapi.CommonApi;
+
+import com.qs404demo.R;
+
+public class App extends Application {
+
+	private static int mComFd = -1;
+	static CommonApi mCommonApi;
+
+	static App instance = null;
+
+	public static boolean isCanSend = true;
+
+	private final int MAX_RECV_BUF_SIZE = 1024;
+	private boolean isOpen = false;
+	private MediaPlayer player;
+	private final static int SHOW_RECV_DATA = 1;
+	private byte[] recv;
+	private String strRead;
+	public static boolean isScanDomn = false;
+
+	public static StringBuffer sb1 = new StringBuffer();
+
+	static Handler handler1 = new Handler();
+	
+	byte[] serial_byte;
+
+	// SCAN按键监听
+	private ScanBroadcastReceiver scanBroadcastReceiver;
+
+	Handler h;
+
+	public App() {
+		super.onCreate();
+		instance = this;
+	}
+
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+		// 初始
+		init();
+
+		// 实例化MediaPlayer
+		player = MediaPlayer.create(getApplicationContext(), R.raw.beep);
+	}
+
+	public void init() {
+
+		mCommonApi = new CommonApi();
+		initGPIO();
+
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (mComFd > 0) {
+					open();
+					isOpen = true;
+					readData();
+				} else {
+					isOpen = false;
+				}
+			}
+		}, 2000);
+
+		// 利用Handler更新UI
+		h = new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				if (msg.what == 0x123) {
+					if (msg.obj != null) {
+						
+						String str = "" + msg.obj;
+						
+						if (!str.trim().contains("##56")) {
+							if (!str.trim().contains("##55")) {
+								if (!str.trim().equals("start")) {
+									if (!str.trim().contains("start-V404")) {
+
+										if (str.contains("uart4_")) {
+
+											String[] str1 = str.split("\\$");
+
+											if (str1.length > 1) {
+												
+												String str_uart4="";
+												
+												str_uart4=bytesToHexString(recv);
+												
+												String[] str2=str_uart4.split("24 ");
+												
+												str_uart4="";
+												
+												if (str2.length > 1) {
+													for (int i = 1; i < str2.length; i++) {
+														if(str_uart4.length()<=0){
+															str_uart4=str_uart4+str2[i];
+														}else{
+															str_uart4=str_uart4+"24 "+str2[i];
+														}
+												}
+												}
+												
+
+												Intent intentBroadcast = new Intent();
+												intentBroadcast
+														.setAction("com.qs.uart4code");
+												intentBroadcast.putExtra(
+														"code", str_uart4);
+												sendBroadcast(intentBroadcast);
+											}
+										} else if (str.contains("uart2_")) {
+											
+											String[] str1 = str.split("\\$");
+											
+											String str_uart2="";
+
+											if (str1.length > 1) {
+												
+												str_uart2=bytesToHexString(recv);
+												
+												String[] str2=str_uart2.split("24 ");
+												
+												str_uart2="";
+												
+												if (str2.length > 1) {
+													for (int i = 1; i < str2.length; i++) {
+														if(str_uart2.length()<=0){
+															str_uart2=str_uart2+str2[i];
+														}else{
+															str_uart2=str_uart2+"24 "+str2[i];
+														}
+												
+												}
+												}
+												
+												
+												Intent intentBroadcast = new Intent();
+												intentBroadcast
+														.setAction("com.qs.uart2code");
+												intentBroadcast.putExtra(
+														"code",str_uart2);
+												sendBroadcast(intentBroadcast);
+												
+											}
+
+										} else if (str.contains("scan_")) {
+											
+											String[] str1 = str.split("\\$");
+											
+											String str_scan="";
+											
+											if (str1.length > 1) {
+											
+											for (int i = 1; i < str1.length; i++) {
+												if(str_scan.length()<=0){
+													str_scan=str_scan+str1[i];
+												}else{
+													str_scan=str_scan+"$"+str1[i];
+												}
+											}
+
+												player.start();
+												
+												Intent intentBroadcast = new Intent();
+												intentBroadcast
+														.setAction("com.qs.scancode");
+												intentBroadcast.putExtra(
+														"code", str_scan);
+												sendBroadcast(intentBroadcast);
+											}
+											
+										}
+//										else{
+//											
+//											Intent intentBroadcast = new Intent();
+//											intentBroadcast
+//													.setAction("com.qs.scancode");
+//											intentBroadcast.putExtra(
+//													"code", str);
+//											sendBroadcast(intentBroadcast);
+//											
+//										}
+
+										sb1.setLength(0);
+
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		};
+
+		scanBroadcastReceiver = new ScanBroadcastReceiver();
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction("ismart.intent.scandown");
+		this.registerReceiver(scanBroadcastReceiver, intentFilter);
+
+	}
+
+	/**
+	 * 读数据线程
+	 */
+	private void readData() {
+		new Thread() {
+			public void run() {
+				while (isOpen) {
+					int ret = 0;
+					byte[] buf = new byte[MAX_RECV_BUF_SIZE + 1];
+					ret = mCommonApi.readComEx(mComFd, buf, MAX_RECV_BUF_SIZE,
+							0, 0);
+					if (ret <= 0) {
+						Log.d("", "read failed!!!! ret:" + ret);
+						try {
+							sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						continue;
+					} else {
+						// Log.e("", "1read success:");
+					}
+					recv = new byte[ret];
+					System.arraycopy(buf, 0, recv, 0, ret);
+
+					try {
+						strRead = new String(recv, "UTF-8");
+						
+						String ss=bytesToHexString(recv);
+						
+						Log.e("", "App接收到的数据："+ss);
+						
+						Log.e("", "扫描返回："+strRead);
+					
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					if (strRead != null) {
+						Message msg = handler.obtainMessage(SHOW_RECV_DATA);
+						msg.obj = strRead;
+						msg.sendToTarget();
+					}
+				}
+			}
+		}.start();
+	}
+
+	boolean iscanScan = false;
+	private Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case SHOW_RECV_DATA:
+				String barCodeStr1 = (String) msg.obj;
+//				Log.e("", "1read success:" + barCodeStr1);
+				if (barCodeStr1.trim() != "") {
+					if (isOpen) {
+//						if (!barCodeStr1.trim().contains("")) {
+							if (!barCodeStr1.trim().contains("##55")) {
+								if (!barCodeStr1.trim().equals("start")) {
+									if (barCodeStr1.trim().length() != 0) {
+
+										sb1.append(barCodeStr1.trim());
+
+										num = 1;
+										mHanlder.removeCallbacks(run_getData);
+										mHanlder.post(run_getData);
+								
+									}
+
+								}
+							}
+//						}
+					}
+				}
+				break;
+			}
+		};
+	};
+
+	int num = 1;
+	Handler mHanlder = new Handler();
+	Runnable run_getData = new Runnable() {
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			if (num > 1) {
+				num = 1;
+				mHanlder.removeCallbacks(run_getData);
+				Message m = new Message();
+				m.what = 0x123;
+//				Log.e("iiiiiii", "发送GET请求");
+				try {
+					m.obj = sb1.toString();
+					
+//					Log.e("返回信息：", "" + m.obj);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				h.sendMessage(m);
+			} else {
+				num++;
+				mHanlder.postDelayed(run_getData, 10);
+			}
+		}
+	};
+
+	// 进入App拉高55和56脚
+	public static void open() {
+
+		mCommonApi.setGpioDir(84, 1);
+		mCommonApi.setGpioOut(84, 1);
+
+	}
+
+	// 执行扫描，即拉低74、75脚后再拉高
+	public static void openScan() {
+
+		// 发送扫描指令
+		App.send(new byte[] { 0x1B, 0x23, 0x23, 0x35, 0x35, 0x44, 0x4E });
+	}
+
+	public static App getInstance() {
+		if (instance == null) {
+			instance = new App();
+		}
+		return instance;
+	}
+
+	// 其他地方引用mCommonApi变量
+	public static CommonApi getCommonApi() {
+		return mCommonApi;
+	}
+
+	public static void initGPIO() {
+		// TODO Auto-generated method stub
+
+		mComFd = mCommonApi.openCom("/dev/ttyMT1", 115200, 8, 'N', 1);
+
+		if (mComFd > 0) {
+			Toast.makeText(instance, "init success", 0).show();
+		}
+	}
+
+	static Handler mHandler = new Handler();
+	Runnable mRun = new Runnable() {
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			isCanSend = true;
+		}
+	};
+
+	public static String stringToAscii(String value)  
+	{  
+	    StringBuffer sbu = new StringBuffer();  
+	    char[] chars = value.toCharArray();   
+	    for (int i = 0; i < chars.length; i++) {  
+	        if(i != chars.length - 1)  
+	        {  
+	        	String hexStr = Integer.toHexString(chars[i]);
+	            sbu.append(hexStr).append(" ");  
+	        }  
+	        else {  
+	        	String hexStr = Integer.toHexString(chars[i]);
+	            sbu.append(hexStr+" ");  
+	        }  
+	    }  
+	    return sbu.toString();  
+	}  
+	
+	/**
+	 * hex String to byte array
+	 */
+	public static byte[] hexStringToBytes(String hexString) {
+		hexString = hexString.toLowerCase();
+		String[] hexStrings = hexString.split(" ");
+		byte[] bytes = new byte[hexStrings.length];
+		for (int i = 0; i < hexStrings.length; i++) {
+			char[] hexChars = hexStrings[i].toCharArray();
+			bytes[i] = (byte) (charToByte(hexChars[0]) << 4 | charToByte(hexChars[1]));
+		}
+		return bytes;
+	}
+	
+	private static byte charToByte(char c) {
+		return (byte) "0123456789abcdef".indexOf(c);
+	}
+	
+	public static String str_tobyte(String str){
+		
+		
+        StringBuffer s1 = new StringBuffer(str);
+        StringBuffer s2 = new StringBuffer();
+        int index;
+        for (index = 2; index < s1.length(); index += 3) {
+            s1.insert(index, ',');
+        }
+        String[] array = s1.toString().split(",");
+        for (String string : array) {
+        	s2.append(string+" ");
+        }
+        
+        return s2.toString();
+}
+	
+	public static String bytesToHexString(byte[] src){   
+	    StringBuilder stringBuilder = new StringBuilder("");   
+	    if (src == null || src.length <= 0) {   
+	        return null;   
+	    }   
+	    for (int i = 0; i < src.length; i++) {   
+	        int v = src[i] & 0xFF;   
+	        String hv = Integer.toHexString(v);   
+	        if (hv.length() < 2) {   
+	            stringBuilder.append(0);   
+	        }   
+	        stringBuilder.append(hv+" ");   
+	    }   
+	    return stringBuilder.toString();   
+	}
+	
+	public String byteToString(byte[] b, int size) {
+		byte high, low;
+		byte maskHigh = (byte) 0xf0;
+		byte maskLow = 0x0f;
+
+		StringBuffer buf = new StringBuffer();
+
+		for (int i = 0; i < size; i++) {
+			high = (byte) ((b[i] & maskHigh) >> 4);
+			low = (byte) (b[i] & maskLow);
+			buf.append(findHex(high));
+			buf.append(findHex(low));
+			buf.append(" ");
+		}
+		return buf.toString();
+	}
+
+	private char findHex(byte b) {
+		int t = new Byte(b).intValue();
+		t = t < 0 ? t + 16 : t;
+		if ((0 <= t) && (t <= 9)) {
+			return (char) (t + '0');
+		}
+		return (char) (t - 10 + 'A');
+	}
+
+	/**
+	 * 查看一个字符串是否可以转换为数字
+	 * 
+	 * @param str
+	 *            字符串
+	 * @return true 可以; false 不可以
+	 */
+	public static boolean isStr2Num(String str) {
+		Pattern pattern = Pattern.compile("^[0-9]*$");
+		Matcher matcher = pattern.matcher(str);
+		return matcher.matches();
+	}
+
+	/**
+	 * 发送数据
+	 */
+	public static void send(byte[] data) {
+		if (data == null)
+			return;
+		if (mComFd > 0) {
+			mCommonApi.writeCom(mComFd, data, data.length);
+		}
+
+	}
+
+	private static boolean isMessyCode(String strName) {
+		try {
+			Pattern p = Pattern.compile("\\s*|\t*|\r*|\n*");
+			Matcher m = p.matcher(strName);
+			String after = m.replaceAll("");
+			String temp = after.replaceAll("\\p{P}", "");
+			char[] ch = temp.trim().toCharArray();
+
+			int length = (ch != null) ? ch.length : 0;
+			for (int i = 0; i < length; i++) {
+				char c = ch[i];
+				if (!Character.isLetterOrDigit(c)) {
+					String str = "" + ch[i];
+					if (!str.matches("[\u4e00-\u9fa5]+")) {
+						return true;
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	public String deleteErr(String str_VarMboxRead) {
+
+		String b = str_VarMboxRead.replace("�", "");
+		b = b.replace("", "");
+
+		return b.trim();
+	}
+
+	public static void closeCommonApi() {
+
+		if (mComFd > 0) {
+
+			mCommonApi.setGpioMode(84, 0);
+			mCommonApi.setGpioDir(84, 0);
+			mCommonApi.setGpioOut(84, 0);
+			mCommonApi.closeCom(mComFd);
+		}
+
+	}
+
+	// SCAN按键的监听
+	class ScanBroadcastReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			openScan();
+		}
+	}
+
+}

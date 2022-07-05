@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: auto;
+    color: white;
+    font-size: 16px;
+  }
+
+  html {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flexItem {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .flexGray {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 100%;
+    background-color: #cdcbcb;
+    color: #2F4C63;
+    font-size: 14px;
+  }
+
+  .flexWhite {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: calc(100% - 50px);
+    color: #2F4C63;
+  }
+  .verticalFlex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: calc(100% - 50px);
+    height: 100%;
+    background-color: white;
+    color: #2F4C63;
+  }
+
+  input {
+    border: 1px solid lightgray;
+    color: black;
+  }
+
+  .bottomBar {
+    display: flex;
+    height: 50px;
+  }
+
+  #Content {
+    overflow-y: scroll;
+    height: calc(100vh - 170px);
+  }
+
+  .leftBottom {
+    background-image: url("../img/btn_letf.png");
+    flex: auto;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .rightBottom {
+    background-image: url("../img/botton_Press.png");
+    background-color: #FF4400;
+    width: 100%;
+    height: 60px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .blueHint {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    background-color: #EBF6FF;
+  }
+
+  .flexItem {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    display: flex;
+    background-color: #EBF6FF;
+  }
+
+  .blueHint h3 {
+    color: black;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid lightgray;
+    margin: 0;
+    height: 50px;
+  }
+
+  .Tposition {
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+  .spinner{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: calc(100% - 20px);
+    height: calc(100% - 10px);
+    border-radius: 10px;
+    padding-left: 10px;
+    background-image: url("../img/down.png");
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: right 10px center;
+    border: 1px solid lightgray;
+  }
+  input {
+    font-size: 16px;
+    color: black;
+    padding-left: 10px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .leftBottom {
+    background-image: url("../img/btn_letf.png");
+    flex: auto;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .rightBottom {
+    background-image: url("../img/right_line.png");
+    background-color: #FF4400;
+    width: 60%;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+</style>
+<body>
+
+</body>
+<script>
+  "use strict";
+  if(glitter.isOG){
+    let titleText = [
+      {title: glitter.language(312), value: ''},
+      {title: glitter.language(309), value: ''},
+      {title: glitter.language(310), value: ''},
+      {title: glitter.language(311), value: ''}
+    ]
+    var sameSize=false
+    let tireDepth = [
+      {
+        title: "LF"
+      }
+    ]
+    lifeCycle.onCreate = function () {
+      gBundle.carFile.map(function (data){
+        if(((data.Depth.length!==4 ) || (data.Depth.indexOf('.')!==2))){
+          data.Depth="00.0"
+        }
+      })
+      glitter.Tread_depth = function(value){
+        if(value.length === 16){
+          if(value.substring(0,4)==="0200"){
+            var tread_depth_value=parseInt(value.substring(11,14),16).toString() //胎紋深度
+            while(tread_depth_value.length<4){
+              tread_depth_value="0"+tread_depth_value
+            }
+            var integer=tread_depth_value.substring(0,2)
+            var Decimal=tread_depth_value.substring(2,3)
+            tread_depth_value=integer+"."+Decimal
+            var data= gBundle.carFile.filter(function (data){
+              var array= ['LF','RF','RR','LR']
+              return data.TireLocal===array[focusp]
+            })[0]
+            data.Depth=tread_depth_value
+            updateView()
+          }
+        }
+      }
+      updateView()
+      $('#isConnect').hide()
+      glitter.share.bleUtil.isConnect({
+        callback:function (result){
+          if(!result.result){
+            $('#isConnect').hide()
+          }else{
+            $('#isConnect').show()
+          }
+        }
+      })
+
+      glitter.share.bleCallBack.onDisconnect = function (){
+        $('#isConnect').hide()
+      }
+      glitter.share.bleCallBack.onConnectSuccess = function (){
+        $('#isConnect').show()
+      }
+      glitter.share.bleUtil.disConnect({})
+
+      glitter.keyEventListener=function (json){
+        console.log('keyEventListener-->'+json.mAction+'mKeyCode->'+json.mKeyCode )
+        if (json.mAction == 1 && json.mKeyCode >= 7 && json.mKeyCode <= 16) {
+          var res = String.fromCharCode(json.mKeyCode + 41);
+          $(document.activeElement).val($(document.activeElement).val()+res)
+          $(document.activeElement).trigger('input')
+        }
+      }
+    }
+    var focusp=0
+    function updateView() {
+      $('#Content').html('')
+      var array= ['LF','RF','RR','LR']
+      array.map(function (data2,pos){
+        var ptext= [glitter.language(312),glitter.language(309),glitter.language(310),glitter.language(311)][pos]
+        var data= gBundle.carFile.filter(function (data){
+          return data.TireLocal===data2
+        })[0]
+        $('#Content').append(`<div  class="flexItem" style="height: 80px;" onclick="
+    $('.verticalFlex').css('background-color','white') ;
+    focusp=${pos} ;
+    $('#flex${pos}').css('background-color','orange') ;
+    ">
+<div class="flexGray" >${ptext}</div>
+<div class="verticalFlex" id="flex${pos}" style="${(focusp===pos) ? `background-color: orange;`:``}">
+<div class="flexWhite" style="width: 100%;margin-top: 10px;">
+<input type="number" style="width: 30%;height: 40px;font-size: 16px;display: flex;align-items: center;justify-content: center;text-align: center;" value="${
+                data.Depth.substring(0,1)
+        }" oninput="
+var reg=/^[0-9]*$/
+if(!reg.test($(this).val())){
+      $(this).val($(this).val().substring(0,1))
+}
+if($(this).val().length>1){$(this).val($(this).val().substring(1,2))}else{$(this).val('0')}
+ var data= gBundle.carFile.filter(function (data){return data.TireLocal==='${data2}'})[0]
+      data.Depth=$(this).val()+data.Depth.substring(1,data.Depth.length)
+" >
+<span style="margin-left: 5px;margin-right: 5px;"></span>
+<input type="number" style="width:  30%;height: 40px;font-size: 16px;display: flex;align-items: center;justify-content: center;" value="${
+                data.Depth.substring(1,2)
+        }" oninput="
+var reg=/^[0-9]*$/
+if(!reg.test($(this).val())){
+      $(this).val($(this).val().substring(0,1))
+}
+if($(this).val().length>1){
+    $(this).val($(this).val().substring(1,2))
+}else{
+     $(this).val('0')
+}
+ var data= gBundle.carFile.filter(function (data){
+        return data.TireLocal==='${data2}'
+      })[0]
+      data.Depth=data.Depth.substring(0,1)+ $(this).val()+  data.Depth.substring(2,data.Depth.length)
+">
+<span style="margin-left: 5px;margin-right: 5px;font-size: 30px;font-weight: 600;margin-top: 20px;">.</span>
+
+<input type="number" style="width:  30%;height: 40px;font-size: 16px;display: flex;align-items: center;justify-content: center;" value="${
+                data.Depth.substring(3,4)
+        }"  oninput="
+var reg=/^[0-9]*$/
+if(!reg.test($(this).val())){
+      $(this).val($(this).val().substring(0,1))
+}
+if($(this).val().length>1){
+    $(this).val($(this).val().substring(1,2))
+}else{
+     $(this).val('0')
+}
+ var data= gBundle.carFile.filter(function (data){
+        return data.TireLocal==='${data2}'
+      })[0]
+      data.Depth=data.Depth.substring(0,3)+ $(this).val()
+">
+<span style="margin-left: 5px;margin-right: 5px;">mm</span>
+</div>
+<div class="flexWhite" style="width: 100%;margin-top: 10px;">
+</div>
+</div>
+</div>`)
+      })
+    }
+
+    lifeCycle.onCreateView = function () {
+      return `
+   <div style="background-color: #2F4C63;height: 60px;width: 100%;display: flex;align-items: center;">
+    <h3 class="title">${glitter.language(472)}</h3>
+    <img src="../img/icon_tire_depth.png" style="width: 40px;40px;position: absolute;right: 10px;margin-top: 10px;" id="isConnect">
+</div>
+<div id="Content"></div>
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick=" glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" >
+        ${glitter.language(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+         glitter.changePage('tireStorage/Page_Tire_Photo.html','Page_Tire_Photo',true,gBundle);" >
+        ${glitter.language(808)}
+        </div>
+</div>
+    `
+    }
+    window.addEventListener("resize", function (v) {
+      this.LastWindowHeight = this.CurWindowHeight;
+      this.CurWindowHeight = window.innerHeight;
+      if ((this.LastWindowHeight - this.CurWindowHeight) / this.LastWindowHeight > 0.25) {
+        if(glitter.isOG){
+          document.activeElement.scrollIntoView()
+        }
+        $('#Content').css('height','calc(100vh - 120px)')
+        $('#bottomBar').hide()
+      } else {
+        $('#Content').css('height','calc(100vh - 180px)')
+        $('#bottomBar').show()
+      }
+    });
+    lifeCycle.onResume=function (){
+      glitter.keyEventListener=function (json){
+        console.log('keyEventListener-->'+json.mAction+'mKeyCode->'+json.mKeyCode )
+        if (json.mAction == 1 && json.mKeyCode >= 7 && json.mKeyCode <= 16) {
+          var res = String.fromCharCode(json.mKeyCode + 41);
+          $(document.activeElement).val($(document.activeElement).val()+res)
+          $(document.activeElement).trigger('input')
+        }
+      }
+    }
+
+  }else{
+    "use strict";
+    let titleText = [
+      {title: glitter.getLan(312), value: ''},
+      {title: glitter.getLan(309), value: ''},
+      {title: glitter.getLan(310), value: ''},
+      {title: glitter.getLan(311), value: ''}
+    ]
+    var sameSize = false
+    let tireDepth = [
+      {
+        title: "LF"
+      }
+    ]
+    lifeCycle.onCreate = function () {
+      glitter.bleList=[]
+      canConnect=true
+      gBundle.carFile.map(function (data) {
+        if (((data.Depth.length !== 4) || (data.Depth.indexOf('.') !== 2))) {
+          data.Depth = "00.0"
+        }
+      })
+      glitter.Tread_depth = function (value) {
+        if (value.length === 16) {
+          if (value.substring(0, 4) === "0200") {
+            var tread_depth_value = parseInt(value.substring(11, 14), 16).toString() //胎紋深度
+            while (tread_depth_value.length < 4) {
+              tread_depth_value = "0" + tread_depth_value
+            }
+            var integer = tread_depth_value.substring(0, 2)
+            var Decimal = tread_depth_value.substring(2, 3)
+            tread_depth_value = integer + "." + Decimal
+            var data = gBundle.carFile.filter(function (data) {
+              var array = ['LF', 'RF', 'RR', 'LR']
+              return data.TireLocal === array[focusp]
+            })[0]
+            data.Depth = tread_depth_value
+            updateView()
+          }
+        }
+      }
+      updateView()
+      $('#isConnect').hide()
+      glitter.keyEventListener = function (json) {
+        console.log('keyEventListener-->' + json.mAction + 'mKeyCode->' + json.mKeyCode)
+        if (json.mAction == 1 && json.mKeyCode >= 7 && json.mKeyCode <= 16) {
+          var res = String.fromCharCode(json.mKeyCode + 41);
+          $(document.activeElement).val($(document.activeElement).val() + res)
+          $(document.activeElement).trigger('input')
+        }
+      }
+      connectTimer()
+    }
+    lifeCycle.onDestroy=function (){
+      canConnect=false
+      glitter.share.bleUtil.disConnect()
+      glitter.onUpdateBle=false
+      glitter.onProgram=true
+      glitter.print(function (){ setTimeout(function (){ glitter.onProgram=false},5000)})
+    }
+    lifeCycle.onPause=function (){
+      canConnect=false
+      glitter.share.bleUtil.disConnect()
+      glitter.onUpdateBle=false
+      glitter.onProgram=true
+      glitter.print(function (){ setTimeout(function (){ glitter.onProgram=false},5000)})
+    }
+    lifeCycle.onResume=function (){
+      glitter.bleList=[]
+      canConnect=true
+      connectTimer()
+    }
+
+    var canConnect=true
+    function connectTimer (){
+      if(!canConnect){return}
+      glitter.onUpdateBle=true
+      $('#isConnect').hide()
+      glitter.share.bleUtil.disConnect()
+      glitter.share.bleUtil.startScan()
+      var tool=glitter.bleList.filter(function (data) {
+        return data.name === 'Calipers' || (data.name.indexOf("B-")!==-1)
+      })
+      if(tool.length===1){
+        glitter.share.bleUtil.connect( {
+          data:{
+            name:tool[0].name,
+            address: tool[0].address,
+            timeOut: 10
+          },
+          callback:function (response){
+            if(response.result){
+              setTimeout(function (){
+                glitter.share.bleUtil.isConnect({
+                  callback: function (response) {
+                    if(response.result){
+                      glitter.share.bleUtil.writeHex({
+                        data: {
+                          data: "040000",
+                          rxChannel: "0000FF00-0000-1000-8000-00805F9B34FB",
+                          txChannel: "0000FF00-0000-1000-8000-00805F9B34FB"}})
+                    }
+                  }
+                })
+
+              },3000)
+              $('#isConnect').show()
+            }else{
+              setTimeout(function (){connectTimer()},200)
+            }
+          }
+        })
+      }else{
+        setTimeout(function (){connectTimer()},200)
+      }
+    }
+
+    var focusp = 0
+    function updateView() {
+      $('#Content').html('')
+      var array = ['LF', 'RF', 'RR', 'LR']
+      array.map(function (data2, pos) {
+        var ptext = [glitter.getLan(312), glitter.getLan(309), glitter.getLan(310), glitter.getLan(311)][pos]
+        var data = gBundle.carFile.filter(function (data) {
+          return data.TireLocal === data2
+        })[0]
+        $('#Content').append(`<div  class="flexItem" style="height: 80px;" onclick="
+    $('.verticalFlex').css('background-color','white') ;
+    focusp=${pos} ;
+    $('#flex${pos}').css('background-color','orange') ;
+    ">
+<div class="flexGray" >${ptext}</div>
+<div class="verticalFlex" id="flex${pos}" style="${(focusp === pos) ? `background-color: orange;` : ``}">
+<div class="flexWhite" style="width: 100%;margin-top: 10px;">
+<input type="number" style="width: 30%;height: 40px;font-size: 16px;display: flex;align-items: center;justify-content: center;text-align: center;" value="${
+                data.Depth.substring(0, 1)
+        }" oninput="
+var reg=/^[0-9]*$/
+if(!reg.test($(this).val())){
+      $(this).val($(this).val().substring(0,1))
+}
+if($(this).val().length>1){$(this).val($(this).val().substring(1,2))}else{$(this).val('0')}
+ var data= gBundle.carFile.filter(function (data){return data.TireLocal==='${data2}'})[0]
+      data.Depth=$(this).val()+data.Depth.substring(1,data.Depth.length)
+" >
+<span style="margin-left: 5px;margin-right: 5px;"></span>
+<input type="number" style="width:  30%;height: 40px;font-size: 16px;display: flex;align-items: center;justify-content: center;" value="${
+                data.Depth.substring(1, 2)
+        }" oninput="
+var reg=/^[0-9]*$/
+if(!reg.test($(this).val())){
+      $(this).val($(this).val().substring(0,1))
+}
+if($(this).val().length>1){
+    $(this).val($(this).val().substring(1,2))
+}else{
+     $(this).val('0')
+}
+ var data= gBundle.carFile.filter(function (data){
+        return data.TireLocal==='${data2}'
+      })[0]
+      data.Depth=data.Depth.substring(0,1)+ $(this).val()+  data.Depth.substring(2,data.Depth.length)
+">
+<span style="margin-left: 5px;margin-right: 5px;font-size: 30px;font-weight: 600;margin-top: 20px;">.</span>
+
+<input type="number" style="width:  30%;height: 40px;font-size: 16px;display: flex;align-items: center;justify-content: center;" value="${
+                data.Depth.substring(3, 4)
+        }"  oninput="
+var reg=/^[0-9]*$/
+if(!reg.test($(this).val())){
+      $(this).val($(this).val().substring(0,1))
+}
+if($(this).val().length>1){
+    $(this).val($(this).val().substring(1,2))
+}else{
+     $(this).val('0')
+}
+ var data= gBundle.carFile.filter(function (data){
+        return data.TireLocal==='${data2}'
+      })[0]
+      data.Depth=data.Depth.substring(0,3)+ $(this).val()
+">
+<span style="margin-left: 5px;margin-right: 5px;">mm</span>
+</div>
+<div class="flexWhite" style="width: 100%;margin-top: 10px;">
+</div>
+</div>
+</div>`)
+      })
+    }
+
+    lifeCycle.onCreateView = function () {
+      return `
+   <div style="background-color: #2F4C63;height: 60px;width: 100%;display: flex;align-items: center;">
+    <h3 class="title">${glitter.getLan(472)}</h3>
+    <img src="../img/icon_tire_depth.png" style="width: 40px;40px;position: absolute;right: 10px;margin-top: 10px;" id="isConnect">
+</div>
+<div id="Content"></div>
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick=" glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" >
+        ${glitter.getLan(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+         glitter.changePage('tireStorage/Page_Tire_Photo.html','Page_Tire_Photo',true,gBundle);" >
+        ${glitter.getLan(808)}
+        </div>
+</div>
+    `
+    }
+
+  }
+
+</script>
+</html>

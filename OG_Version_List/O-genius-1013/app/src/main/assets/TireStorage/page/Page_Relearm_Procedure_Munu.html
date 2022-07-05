@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+    .scrollView{
+        width: 100%;
+        height: calc(100% - 160px);
+        background-color: white;
+        overflow-y: scroll;
+    }
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        width: 40%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+    .flexit{
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        height: 50px;
+    }
+    .flexit h3{
+        color: black;
+        font-size: 16px;
+        font-weight: 600;
+        width: 150px;
+    }
+    .flexit h4{
+        color: black;
+        font-size: 13px;
+        font-weight: 400;
+        margin-left: 10px;
+    }
+    h3{
+        color: black;
+        font-size: 16px;
+        font-weight: 400;
+        word-break: break-all;
+    }
+    .big {
+        background-color: #FF4400;
+        width: 100%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+
+    var reltext=""
+    lifeCycle.onCreate=function (){
+        glitter.runJsInterFace("getMmyInterFace",{
+            make:gBundle.Make,
+            model:gBundle.Model,
+            year:gBundle.Year
+        },function (response){
+            reltext=response.data["reltext"]
+            $('body').html(`
+            <h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${gBundle.Make}/${gBundle.Model}/${gBundle.Year}
+</h3>
+<div class="scrollView">
+<h3 style="font-weight:600;margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #ff9e00;color: #ffffff;width: 100%;">
+${glitter.language(135)}
+</h3>
+<div class="flexit">
+<h3>OE Part#</h3>
+<h4>${response.data["OE Part Num"]}</h4>
+</div>
+<div class="flexit" style="background-color: #FFF0e4">
+<h3>Orange Sensor</h3>
+<h4>${response.data["Sensor"]}</h4>
+</div>
+<div class="flexit">
+<h3>Step.</h3>
+</div>
+<h3 style="margin-top: 0;margin-left: 20px;">
+${reltext.replace(/\n/g,"<br><br>")}
+</h3>
+</div>
+<div style="position:absolute;bottom:60px;width:100%;display: flex;">
+          <div id="cancel" class="big" onclick="glitter.goBack()" >
+        ${glitter.language(306)}
+        </div>
+</div>
+            `)
+        })
+    }
+    lifeCycle.onCreateView=function (){
+        return `
+
+        `
+    }
+
+
+</script>

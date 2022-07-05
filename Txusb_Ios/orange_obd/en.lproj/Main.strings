@@ -1,0 +1,174 @@
+
+/* Class = "UILabel"; text = "Log out"; ObjectID = "0fG-s2-Hs6"; */
+"0fG-s2-Hs6.text" = "Log out";
+
+/* Class = "UILabel"; text = "Method of vehicle data selection"; ObjectID = "1HW-bj-4KS"; */
+"1HW-bj-4KS.text" = "Method of vehicle data selection";
+
+/* Class = "UILabel"; text = "User's manual"; ObjectID = "1W4-DE-zl0"; */
+"1W4-DE-zl0.text" = "User's manual";
+
+/* Class = "UIButton"; normalTitle = "LR"; ObjectID = "3Fd-oj-t2i"; */
+"3Fd-oj-t2i.normalTitle" = "LR";
+
+/* Class = "UIButton"; normalTitle = "RF"; ObjectID = "4s2-1D-UAv"; */
+"4s2-1D-UAv.normalTitle" = "RF";
+
+/* Class = "UILabel"; text = "Connecting"; ObjectID = "8vz-7r-Ivt"; */
+"8vz-7r-Ivt.text" = "Connecting";
+
+/* Class = "UILabel"; text = "Select Model"; ObjectID = "9ni-GU-jsg"; */
+"9ni-GU-jsg.text" = "Select Model";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "A7q-GX-UlI"; */
+"A7q-GX-UlI.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Are you sure you want to log out?"; ObjectID = "AHz-LP-sy8"; */
+"AHz-LP-sy8.text" = "Are you sure you want to log out?";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Ah4-7d-oU0"; */
+"Ah4-7d-oU0.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "LF"; ObjectID = "AlP-cM-sgh"; */
+"AlP-cM-sgh.normalTitle" = "LF";
+
+/* Class = "UITextField"; placeholder = "LF ID Number"; ObjectID = "BK7-PM-v50"; */
+"BK7-PM-v50.placeholder" = "LF ID Number";
+
+/* Class = "UIButton"; normalTitle = "PROGRAM"; ObjectID = "Ebs-7T-JMT"; */
+"Ebs-7T-JMT.normalTitle" = "PROGRAM";
+
+/* Class = "UIButton"; normalTitle = "RR"; ObjectID = "EwI-4Z-TJu"; */
+"EwI-4Z-TJu.normalTitle" = "RR";
+
+/* Class = "UILabel"; text = "Vehicle Selection"; ObjectID = "FHU-OB-3gV"; */
+"FHU-OB-3gV.text" = "Vehicle Selection";
+
+/* Class = "UIButton"; normalTitle = "LF"; ObjectID = "G3h-gU-tam"; */
+"G3h-gU-tam.normalTitle" = "LF";
+
+/* Class = "UITextField"; placeholder = "LF ID Number"; ObjectID = "JJT-2O-JIT"; */
+"JJT-2O-JIT.placeholder" = "LF ID Number";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "JSZ-1m-ctq"; */
+"JSZ-1m-ctq.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "RR"; ObjectID = "JmE-bH-YBQ"; */
+"JmE-bH-YBQ.normalTitle" = "RR";
+
+/* Class = "UIButton"; normalTitle = "PROGRAM"; ObjectID = "KUS-qN-jdG"; */
+"KUS-qN-jdG.normalTitle" = "PROGRAM";
+
+/* Class = "UIButton"; normalTitle = "IDCOPY"; ObjectID = "MS2-dH-Fqj"; */
+"MS2-dH-Fqj.normalTitle" = "IDCOPY";
+
+/* Class = "UIButton"; normalTitle = "Unliked"; ObjectID = "ROC-rt-XUp"; */
+"ROC-rt-XUp.normalTitle" = "Unliked";
+
+/* Class = "UIButton"; normalTitle = "RF"; ObjectID = "TAi-lt-3mc"; */
+"TAi-lt-3mc.normalTitle" = "RF";
+
+/* Class = "UILabel"; text = "Select Year"; ObjectID = "V7k-na-Bad"; */
+"V7k-na-Bad.text" = "Select Year";
+
+/* Class = "UILabel"; text = "lease scan the QR Code on the catalog or poster."; ObjectID = "VBJ-KC-LAn"; */
+"VBJ-KC-LAn.text" = "lease scan the QR Code on the catalog or poster.";
+
+/* Class = "UILabel"; text = "Key in the original sensor ID number"; ObjectID = "WL6-5H-U52"; */
+"WL6-5H-U52.text" = "Key in the original sensor ID number";
+
+/* Class = "UILabel"; text = "BMW/1(F20,F21)/2014~2015"; ObjectID = "ZBt-pT-q6V"; */
+"ZBt-pT-q6V.text" = "BMW/1(F20,F21)/2014~2015";
+
+/* Class = "UITextField"; placeholder = "LF ID Number"; ObjectID = "ZpB-4l-6Cc"; */
+"ZpB-4l-6Cc.placeholder" = "LF ID Number";
+
+/* Class = "UIButton"; normalTitle = "LR"; ObjectID = "ZuX-Zd-NC7"; */
+"ZuX-Zd-NC7.normalTitle" = "LR";
+
+/* Class = "UILabel"; text = "Cloud information"; ObjectID = "asb-JS-SVb"; */
+"asb-JS-SVb.text" = "Cloud information";
+
+/* Class = "UIButton"; normalTitle = "Unliked"; ObjectID = "bPX-Kr-hGY"; */
+"bPX-Kr-hGY.normalTitle" = "Unliked";
+
+/* Class = "UIButton"; normalTitle = "Unliked"; ObjectID = "dDz-2p-T1w"; */
+"dDz-2p-T1w.normalTitle" = "Unliked";
+
+/* Class = "UIButton"; normalTitle = "PROGRAM"; ObjectID = "dk8-2S-qK7"; */
+"dk8-2S-qK7.normalTitle" = "PROGRAM";
+
+/* Class = "UITextField"; placeholder = "LF ID Number"; ObjectID = "eQG-72-68I"; */
+"eQG-72-68I.placeholder" = "LF ID Number";
+
+/* Class = "UIButton"; normalTitle = "NEXT"; ObjectID = "gCo-RY-6uH"; */
+"gCo-RY-6uH.normalTitle" = "NEXT";
+
+/* Class = "UILabel"; text = "Orange TPMS"; ObjectID = "i9b-kr-3p6"; */
+"i9b-kr-3p6.text" = "Orange TPMS";
+
+/* Class = "UILabel"; text = "Orange USB TPMS Application"; ObjectID = "jrP-Gt-5wT"; */
+"jrP-Gt-5wT.text" = "Orange USB TPMS Application";
+
+/* Class = "UIButton"; normalTitle = "Unliked"; ObjectID = "kkS-Na-vVP"; */
+"kkS-Na-vVP.normalTitle" = "Unliked";
+
+/* Class = "UIButton"; normalTitle = "RELEARN PROCEDURE"; ObjectID = "lOO-qL-yj7"; */
+"lOO-qL-yj7.normalTitle" = "RELEARN PROCEDURE";
+
+/* Class = "UIButton"; normalTitle = "ID COPY"; ObjectID = "lku-8q-Mek"; */
+"lku-8q-Mek.normalTitle" = "ID COPY";
+
+/* Class = "UIButton"; normalTitle = "IDCOPY"; ObjectID = "lr5-4K-V9g"; */
+"lr5-4K-V9g.normalTitle" = "IDCOPY";
+
+/* Class = "UILabel"; text = "Vehicle data selection"; ObjectID = "mtt-oQ-dfW"; */
+"mtt-oQ-dfW.text" = "Vehicle data selection";
+
+/* Class = "UIButton"; normalTitle = "Yes"; ObjectID = "oH1-FP-cqK"; */
+"oH1-FP-cqK.normalTitle" = "Yes";
+
+/* Class = "UILabel"; text = "IDCOPY"; ObjectID = "oU0-OJ-l3Y"; */
+"oU0-OJ-l3Y.text" = "IDCOPY";
+
+/* Class = "UILabel"; text = "Select Device"; ObjectID = "pHL-83-0ZK"; */
+"pHL-83-0ZK.text" = "Select Device";
+
+/* Class = "UILabel"; text = "Please remove the sensor."; ObjectID = "pVO-Sw-YwH"; */
+"pVO-Sw-YwH.text" = "Please remove the sensor.";
+
+/* Class = "UIButton"; normalTitle = "PROG.SENSOR"; ObjectID = "sEC-rW-iQT"; */
+"sEC-rW-iQT.normalTitle" = "PROG.SENSOR";
+
+/* Class = "UIButton"; normalTitle = "PROGRAM"; ObjectID = "sQW-z4-Skh"; */
+"sQW-z4-Skh.normalTitle" = "PROGRAM";
+
+/* Class = "UILabel"; text = "Program(USB PAD)"; ObjectID = "seZ-2q-gms"; */
+"seZ-2q-gms.text" = "Program(USB PAD)";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "ssl-sf-egB"; */
+"ssl-sf-egB.normalTitle" = "CANCEL";
+
+/* Class = "UILabel"; text = "Online shopping"; ObjectID = "svn-aj-6jM"; */
+"svn-aj-6jM.text" = "Online shopping";
+
+/* Class = "UIButton"; normalTitle = "User's manual menu"; ObjectID = "te7-N5-pwi"; */
+"te7-N5-pwi.normalTitle" = "User's manual menu";
+
+/* Class = "UILabel"; text = "Setting"; ObjectID = "u3c-eJ-Y9V"; */
+"u3c-eJ-Y9V.text" = "Setting";
+
+/* Class = "UILabel"; text = "BMW/1(F20,F21)/2014~2015"; ObjectID = "uab-xz-uyx"; */
+"uab-xz-uyx.text" = "BMW/1(F20,F21)/2014~2015";
+
+/* Class = "UILabel"; text = "Provide USB TPMS APP\nProgramming description"; ObjectID = "v1J-74-9GH"; */
+"v1J-74-9GH.text" = "Provide USB TPMS APP\nProgramming description";
+
+/* Class = "UILabel"; text = "Scan Code"; ObjectID = "wea-df-gz4"; */
+"wea-df-gz4.text" = "Scan Code";
+
+/* Class = "UILabel"; text = "Program"; ObjectID = "xrA-7V-cIu"; */
+"xrA-7V-cIu.text" = "Program";
+
+/* Class = "UIButton"; normalTitle = "IDCOPY"; ObjectID = "y5T-UI-21V"; */
+"y5T-UI-21V.normalTitle" = "IDCOPY";

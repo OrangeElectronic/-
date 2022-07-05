@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white"
+        android:orientation="vertical">
+
+    <RelativeLayout
+            android:id="@+id/rt"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/check_text_color">
+
+        <TextView
+                android:id="@+id/mmytext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="MERCEDES Benz / A Calss(176) /  2012-2018"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/re"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rt"
+            android:layout_marginBottom="60dp" />
+
+    <TextView
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="@mipmap/btn_rectangle"
+            android:clickable="true"
+            android:enabled="true"
+            android:gravity="center"
+            android:text="@string/MENU"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+</RelativeLayout>

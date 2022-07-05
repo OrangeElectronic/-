@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    body{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;flex-direction: column;align-items: center;justify-content: center;
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreate = function () {}
+    lifeCycle.onCreateView = function () {
+        return `
+         <div style="border-radius:10px;background-color: #E64E00;display: flex;flex-direction: column;align-items: center;justify-content: center;">
+        <img src="../img/img_insert_tool.png" style="width: 200px;height: auto;">
+        <h3 style="color: white;font-size: 13px;">${glitter.getLan(445)}</h3>
+</div>
+`
+    }
+</script>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp" android:background="@drawable/corner"
+            android:layout_marginStart="40dp" android:layout_marginEnd="40dp" android:layout_centerInParent="true">
+
+        <TextView
+                android:text="@string/app_bluetooth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/tit"
+                android:gravity="center"
+                android:textColor="@android:color/background_light" android:textSize="24sp"
+                android:layout_centerInParent="true"
+                android:layout_above="@id/re" android:layout_margin="5dp"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp" app:srcCompat="@android:color/darker_gray"
+                android:layout_above="@id/re"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" android:layout_alignParentBottom="true" android:id="@+id/re">
+            <TextView
+                    android:text="@string/app_blue_bud_close"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/no" android:layout_weight="1"
+                    android:gravity="center" android:textColor="@android:color/background_light"
+                    android:onClick="onclick" android:textSize="24sp"/>
+            <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent" app:srcCompat="@android:color/darker_gray"
+                    android:id="@+id/imageView14"/>
+            <TextView
+                    android:text="@string/app_blue_bud_open"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/yes" android:layout_weight="1"
+                    android:gravity="center" android:onClick="onclick"
+                    android:textColor="@android:color/background_light" android:textSize="24sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../glitterBundle/bootstrap2.css" rel="stylesheet">
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        background-color: #2F4C63;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        background-color: #2F4C63;
+    }
+
+    .fullBottom {
+z-index: 2;
+        background-image: url("../img/btn_rectangle.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+</style>
+<body>
+<script>
+    // var make=glitter.mmyInterFace.selectMake.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+    // var model=glitter.mmyInterFace.selectModel.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+    // var year=glitter.mmyInterFace.selectYear.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+
+    lifeCycle.onCreate=function (){
+
+    }
+    lifeCycle.onCreateView=function (){
+        return `
+<div class="w-100  d-flex flex-column align-items-center justify-content-center position-relative" style="padding-bottom: 50px;">
+<span style="color: white;" class="m-2">
+${glitter.getLan(798)}
+</span>
+<img src="../img/osomrelearm.png" class="w-100 mt-3">
+
+</div>
+<div  class="fullBottom position-absolute bottom-0 w-100" style="margin-bottom: 60px;" onclick="${event(function (){
+            scanQrcode()
+        })}" >
+       ${glitter.getLan(145)}
+        </div>
+`
+    }
+    function scanQrcode() {
+        glitter.openQrScanner(function (data) {
+            try{
+                data=JSON.parse(data.data)
+                glitter.mmyInterFace.selectMake = data.Make
+                glitter.mmyInterFace.selectModel = data.Model
+                glitter.mmyInterFace.selectYear = data.Year
+                setTimeout(function () {
+                    glitter.selectFunction.switchToPage()
+                },100)
+            }catch (e){
+                try {
+                    var mmy_number = data.data.split("*")[0]
+                    let sql = (((glitter.selectFunction.select === glitter.selectFunction.enum.IdCopy_OBD) || (glitter.selectFunction.select === glitter.selectFunction.enum.ObdRelearn)) ? ("select * from `Summary table` where `MMY number` = " + "'" + mmy_number + "' and  `OBD2` not in('NA') ") : ("select * from `Summary table` where `MMY number` = " + "'" + mmy_number + "'"))
+                    glitter.dataBase.query("mmy", sql
+                        , function (result) {
+                            if (result.length >0) {
+                                glitter.mmyInterFace.selectMMY = result[0]
+                                glitter.mmyInterFace.selectMake = result[0].Make
+                                glitter.mmyInterFace.selectModel = result[0].Model
+                                glitter.mmyInterFace.selectYear = result[0].Year
+                                glitter.selectFunction.switchToPage()
+                            } else{
+                                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(229))
+                            }
+                        }, function () {
+
+                        })
+                }catch (e){
+                    glitter.openDiaLog('dialog/Dia_Error.html', 'Dia_Error', false, true, glitter.getLan(229))
+                }
+
+            }
+        })
+    }
+</script>
+</body>
+</html>

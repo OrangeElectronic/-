@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../glitterBundle/ControlInstance.js"></script>
+    <style>
+
+        html {
+
+            width: 100%;
+            height: 100%;
+        }
+body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+        .seekbar {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .seekbar-progress {
+            /*height: 10px;*/
+            height: 2px;
+            width: 85%;
+            /*width: 90%;*/
+            background: gray;
+            border-radius: 6px;
+        }
+
+        .seekbar-progress [role="progressbar"] {
+            height: 100%;
+            position: relative;
+            background: orange;
+            border-radius: 5px;
+
+        }
+
+        .seekbar-progress [role="progressbar"]:after {
+            content: " ";
+            display: block;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background-image: url("../image/portrait_img_002.png");
+            background-size: 30px 30px;
+            background-repeat: no-repeat;
+            background-position: left center;
+
+        }
+
+        .seekbar input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            background: transparent;
+            outline: 0;
+            border: 0;
+            overflow:hidden;
+        }
+
+        .seekbar input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            display: block;
+            width: 48px;
+            height: 48px;
+            background-color: transparent;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<!--width: 60%;-->
+<div class="seekbar">
+    <input id="seekbar_input" type="range" min="0" max="1500" value="60"  step="6" />
+    <div class="seekbar-progress">
+        <div id="seekbar_role" role="progressbar" aria-valuemin="0" aria-valuemax="1500" aria-valuenow="60" style="width: 60%;"></div>
+    </div>
+</div>
+
+<script>
+    lifeCycle.onCreate=function (){
+        var tpmsModel=gBundle.tpmsModel
+        var linst=gBundle.type
+        // var max=gBundle.max-gBundle.min
+        // var min=0
+        var max=gBundle.max
+        var min=gBundle.min
+        var step=gBundle.step
+        $('#seekbar_input').attr('max',`${max}`)
+        $('#seekbar_input').attr('min',`${min}`)
+        $('#seekbar_input').attr('step',`${step}`)
+        // $('#seekbar_role').attr('aria-valuemax',`${max}`)
+        // $('#seekbar_role').attr('aria-valuemin',`${min}`)
+
+        function progressbarUI(value){
+            progressbar.style.width = ((value-min)/((max-min)/100)) + '%';
+            progressbar.setAttribute('aria-valuenow', value);
+        }
+        addObserver({obj:tpmsModel,key:linst},function (){
+            // $('#seekbar_input').attr('max',`${max}`)
+            if(linst==="value"){
+                // if(tpmsModel.value2>tpmsModel.value){
+                //     tpmsModel.value2=tpmsModel.value
+                // }
+                if(tpmsModel.value2>tpmsModel.value-36){
+                    tpmsModel.value2=tpmsModel.value-36
+                }
+            }
+            if(linst==="value2"){
+                // if(tpmsModel.value<tpmsModel.value2){
+                //     tpmsModel.value=tpmsModel.value2
+                // }
+                if(tpmsModel.value<tpmsModel.value2+36){
+                    tpmsModel.value=tpmsModel.value2+36
+                }
+            }
+            if(tpmsModel[linst]>max){tpmsModel[linst]=max}
+            if(tpmsModel[linst]<min){tpmsModel[linst]=min}
+            //progressbar.style.width = tpmsModel[linst]/(max/100) + '%';
+            progressbarUI(tpmsModel[linst])
+
+            //glitter.seekbarCallback(linst)
+            //console.log(tpmsModel[linst])
+        })
+       
+        function qs(s) { return document.querySelector(s) }
+
+        var handle = qs('.seekbar input[type="range"]');
+        var progressbar = qs('.seekbar div[role="progressbar"]');
+
+        handle.addEventListener('input', function(){
+            //progressbar.style.width = this.value + '%';
+            //progressbar.style.width = this.value/(max/100) + '%';
+            progressbarUI(this.value)
+            tpmsModel[linst]=parseInt(this.value,10);
+        });
+        //progressbar.style.width = tpmsModel[linst] + '%';
+        //progressbar.style.width = tpmsModel[linst]/(max/100) + '%';
+        progressbarUI(tpmsModel[linst])
+    }
+
+</script>
+</body>
+</html>

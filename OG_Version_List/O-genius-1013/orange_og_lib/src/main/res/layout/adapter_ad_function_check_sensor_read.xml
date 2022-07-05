@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/view28"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/Sensor_Data"
+        android:background="@color/gray" />
+
+    <LinearLayout
+            android:id="@+id/Sensor_Data"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+        <View
+                android:id="@+id/view6"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/WH_text"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/qr_code_background_color"
+                android:gravity="center"
+                android:text="WH"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view8"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/Vehice_ID_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:text="ID"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view9"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/Psi_text"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_psi"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view11"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/C_text"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_c"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view23"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/BAT_text"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_bat"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view27"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/Volt_text"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_voltage"
+                android:textColor="@color/Black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+        <View
+                android:id="@+id/view24"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray"
+                android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/two_sensor_value"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/ID_text"
+            android:layout_width="108dp"
+            android:layout_height="match_parent"
+            android:gravity="center|end"
+            android:text="@string/app_id"
+            android:textColor="@color/check_text_color"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/ID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="22dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/check_text_color"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/two_sensor_value"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="22dp"
+        android:background="@color/check_text_color"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Car_Front_6_Small" customModule="Zhengxin" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bl9-Iz-Al9">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_trailer6_front" translatesAutoresizingMaskIntoConstraints="NO" id="8iI-s2-Smb">
+                            <rect key="frame" x="135" y="303.5" width="144" height="289"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="289" id="ThN-ti-5rj"/>
+                                <constraint firstAttribute="width" constant="144" id="r0m-nm-Cvz"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="6nj-BM-E5o">
+                            <rect key="frame" x="227" y="375" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="9Cg-ES-fr7"/>
+                                <constraint firstAttribute="width" constant="40" id="Amp-gi-Nqi"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="X9q-bR-D1j">
+                            <rect key="frame" x="164" y="478" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="MGR-D6-jtx"/>
+                                <constraint firstAttribute="width" constant="40" id="g3V-tW-1dP"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="2Mh-KH-ZIj">
+                            <rect key="frame" x="210" y="478" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="UbV-bD-W7g"/>
+                                <constraint firstAttribute="height" constant="40" id="aAn-6P-IBA"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="rCw-CU-RUK">
+                            <rect key="frame" x="147" y="478" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="4IH-M4-1aF"/>
+                                <constraint firstAttribute="width" constant="40" id="A1p-uo-dhz"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="s8w-Mz-Vjf">
+                            <rect key="frame" x="227" y="478" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="YgI-Z8-sSZ"/>
+                                <constraint firstAttribute="height" constant="40" id="q4G-jm-psI"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="rdn-E0-fjL">
+                            <rect key="frame" x="147" y="375" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="4aL-nV-Zro"/>
+                                <constraint firstAttribute="width" constant="40" id="J1c-BY-dRx"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="b0g-YC-hYt"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="X9q-bR-D1j" firstAttribute="centerY" secondItem="bl9-Iz-Al9" secondAttribute="centerY" constant="50" id="4Jv-BT-PwM"/>
+                        <constraint firstItem="rdn-E0-fjL" firstAttribute="centerX" secondItem="bl9-Iz-Al9" secondAttribute="centerX" constant="-40" id="7gK-je-jNx"/>
+                        <constraint firstItem="rdn-E0-fjL" firstAttribute="centerY" secondItem="bl9-Iz-Al9" secondAttribute="centerY" constant="-53" id="9bN-5S-Zba"/>
+                        <constraint firstItem="2Mh-KH-ZIj" firstAttribute="centerX" secondItem="bl9-Iz-Al9" secondAttribute="centerX" constant="23" id="BTf-xQ-gd1"/>
+                        <constraint firstItem="6nj-BM-E5o" firstAttribute="centerX" secondItem="bl9-Iz-Al9" secondAttribute="centerX" constant="40" id="Bvj-VG-fmp"/>
+                        <constraint firstItem="s8w-Mz-Vjf" firstAttribute="centerY" secondItem="bl9-Iz-Al9" secondAttribute="centerY" constant="50" id="G1h-gK-mRn"/>
+                        <constraint firstItem="2Mh-KH-ZIj" firstAttribute="centerY" secondItem="bl9-Iz-Al9" secondAttribute="centerY" constant="50" id="LmX-Jr-S9B"/>
+                        <constraint firstItem="X9q-bR-D1j" firstAttribute="centerX" secondItem="bl9-Iz-Al9" secondAttribute="centerX" constant="-23" id="MZL-ti-tEj"/>
+                        <constraint firstItem="s8w-Mz-Vjf" firstAttribute="centerX" secondItem="bl9-Iz-Al9" secondAttribute="centerX" constant="40" id="WOf-Rt-5pb"/>
+                        <constraint firstItem="8iI-s2-Smb" firstAttribute="centerX" secondItem="bl9-Iz-Al9" secondAttribute="centerX" id="f02-aE-OG5"/>
+                        <constraint firstItem="rCw-CU-RUK" firstAttribute="centerY" secondItem="bl9-Iz-Al9" secondAttribute="centerY" constant="50" id="oEs-O4-fs1"/>
+                        <constraint firstItem="rCw-CU-RUK" firstAttribute="centerX" secondItem="bl9-Iz-Al9" secondAttribute="centerX" constant="-40" id="pEo-Bl-PSO"/>
+                        <constraint firstItem="6nj-BM-E5o" firstAttribute="centerY" secondItem="bl9-Iz-Al9" secondAttribute="centerY" constant="-53" id="wbM-Fu-Was"/>
+                        <constraint firstItem="8iI-s2-Smb" firstAttribute="centerY" secondItem="bl9-Iz-Al9" secondAttribute="centerY" id="xw7-Fr-KIo"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="bl9-Iz-Al9" secondAttribute="trailing" id="7UV-O9-Qm2"/>
+                <constraint firstItem="bl9-Iz-Al9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="b3J-Mj-Hqv"/>
+                <constraint firstAttribute="bottom" secondItem="bl9-Iz-Al9" secondAttribute="bottom" id="jx2-Er-mx7"/>
+                <constraint firstItem="bl9-Iz-Al9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tQl-Rj-Cai"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="112"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_wheel_normal" width="800" height="800"/>
+        <image name="img_trailer6_front" width="800" height="1600"/>
+    </resources>
+</document>

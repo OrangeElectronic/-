@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+    }
+
+    body {
+        overflow-y: hidden;
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .inview {
+        width: 100%;
+        height: calc(100% - 60px);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        /*overflow-y: scroll;*/
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+
+    .tdItem {
+        width: 40px;
+        height: 40px;
+        background-color: #527585;
+        border-radius: 10px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .tdItem select {
+        width: 40px;
+        height: 40px;
+        background-color: #003D6C;
+        color: white;
+        border-radius: 10px;
+
+    }
+
+    .listView td {
+        border-color: #111111;
+        border-width: 1px;
+        text-align: center;
+        border-style: solid;
+    }
+
+    .listView tr {
+        height: 50px;
+    }
+
+    table {
+
+        border-collapse: collapse;
+        color: white;
+    }
+
+    .leftBt {
+        background-image: url("../image/btn_left_n.png");
+        width: 50%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 16px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rightBt {
+        background-image: url("../image/btn_right_n.png");
+        width: 50%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 16px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rxTit {
+        background-color: #A2A2A2;
+        color: white;
+    }
+
+    .rxTr {
+        color: white;
+    }
+
+    .itTit {
+        background-color: white;
+        color: gray;
+    }
+
+    .itTd {
+        color: gray;
+    }
+
+    .tdSelect {
+        color: gray;
+        background-image: url("../image/grag.png");
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+
+    }
+
+    .rxTit input {
+        background-color: #A2A2A2;
+        color: white;
+    }
+
+    .undefined {
+        background-color: white;
+    }
+
+    .true {
+        background-color: green;
+        color: white;
+    }
+
+    .true input {
+        color: white;
+    }
+
+    .false input {
+        color: white;
+    }
+
+    .undefined input {
+        color: gray;
+    }
+
+    .false {
+        background-color: red;
+        color: white;
+    }
+
+    .wheel {
+        width: 40px;
+        height: 40px;
+        margin-left: 12px;
+    }
+
+    .wheel2 {
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+    }
+
+    .select {
+        background-image: url("../image/icon_tire.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 60px;
+        height: 60px;
+        color: white;
+        text-align: center;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btable td {
+        border-width: 1px;
+        border-color: #6AC6D7;
+        border-style: solid;
+        margin: 0;
+        padding: 0;
+    }
+
+    .btable {
+        border-spacing: 0;
+    }
+
+    input {
+        /*margin-left: 10px;*/
+        padding-left: 5px;
+        height: 100%;
+        background-color: transparent;
+        color: white;
+        font-size: 16px;
+        width: calc(95% - 5px);
+        /*width:90%;*/
+        outline: none;
+        border-style: none;
+    }
+
+    .close_input{
+
+    }
+
+    .noselect {
+        -moz-user-select: auto;
+        -webkit-user-select: auto;
+        -ms-user-select: auto;
+        user-select: auto;
+    }
+
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<script src="../carView.js"></script>
+<body id="bodyClick">
+
+</body>
+</html>
+<script>
+    /*
+    * 車輛定義
+    * */
+    var carDefine = glitter.carDefine
+    var carType = glitter.selectCarType
+    var  data={};
+    data.word = []
+    var needWriteID = {
+        F_6: ['','','','','',''],
+        F_8_224: ['','','','','','','',''],
+        F_8_242: ['','','','','','','',''],
+        F_10_244: ['','','','','','','','','',''],
+        F_10_2224: ['','','','','','','','','',''],
+        F_12:['','','','','','','','','','','',''],
+        F_14:['','','','','','','','','','','','','',''],
+
+        R_4:['','','',''],
+        R_6_222:['','','','','',''],
+        R_8_44:['','','','','','','',''],
+        R_8_2222:['','','','','','','',''],
+        R_12:['','','','','','','','','','','',''],
+        R_16:['','','','','','','','','','','','','','','','']
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+<div class="inview" style="width: 100%;">
+<div class='topCar' style="margin-left:5%;margin-top:1%;justify-content: center;width: 100%;">
+<h3 style="color: black;font-size: 30px;margin-top: 0;margin-bottom: 0;">` + carDefine[carType].title.top + `</h3>
+<h3 style="color: #FF5F00;font-size: 20px;margin-top: 5px;margin-bottom: 0;">` + carDefine[carType].title.bottom + `</h3>
+</div>
+
+<div style="height: 300px;width: 100%;margin-top: -50px;position:relative;display: flex;align-items: center;justify-content: center;">
+` + getLeft(carType) + `
+<div style="width:144px;height: 100%;display: flex;align-items: center;justify-content: center;" class="CarPlace">
+` + getCarView() + `
+</div>
+` + getRight(carType) + `
+</div>
+
+<table style="position:relative;background-color: #406D91;height: 50px;width: 90%;z-index: 1;" class="listView" >
+<tr>
+<td style="width: 50px;font-size: 20px">輪位</td>
+<td style="font-size: 20px">感測器ID號碼</td>
+</tr>
+</table>
+
+<div id="idData" style="overflow-x:hidden;overflow-y:scroll;width: 90%;height: calc(100% - 300px);" >
+<table style="background-color: #406D91;position:relative;width: 100%;overflow-y: scroll;overflow-x:hidden;margin: 0px;" class="listView">
+` + getListView() + `
+</table>
+</div>
+
+</div>
+
+        `
+
+    }
+    // <div style="height: 60px;width: 100%;display: flex;background-color: #003D6C;">
+    //     <div id="leftBt" className="leftBt" onClick="glitter.goBack()">重選設定模式</div>
+    //     <div id="rightBt" className="rightBt" onClick="writeSensorId()">儲存資料</div>
+    // </div>
+
+    //<!--height: calc(100% - 520px);-->
+
+    // `<div id="IDText" style="background-color: white;height: 30px;width: 90%;display: flex;flex-direction: row;">
+    //     `+getKeyboardView(data.word,true)+`
+    //     </div>
+    // <div style="background-color: white;height: 48px;width: 90%;display: flex;flex-direction: row;">
+    //     <H1 id="btn1" style="background-color: #003D6C;height: 48px;width: 25%;">1</H1>
+    //     <H1 id="btn2" style="background-color: #003D6C;height: 48px;width: 25%;">2</H1>
+    //     <H1 id="btn3" style="background-color: #003D6C;height: 48px;width: 25%;">3</H1>
+    //     <H1 id="btn_delete" style="background-color: #003D6C;height: 48px;width: 25%;"><-</H1>
+    // </div>`
+
+    lifeCycle.onCreate = function () {
+
+        // $(('#i1')).css('background-color','red')
+        // $(('#i1')).css('color','white')
+        if (glitter.deviceType !== glitter.deviceTypeEnum.Web) {
+            readSensorId()
+        }
+        //glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, "設定失敗")
+        setInput()
+        //ID_Input()
+
+        // document.getElementById('bodyClick').onclick = function (e){
+        //     glitter.closeDiaLog("Dia_Keyboard")
+        // }
+    }
+
+    function touchChange(button){
+        document.getElementById(button+"Bt").addEventListener('touchstart', function (event) {
+            console.log('touchstart' + ':' + this.id)
+            $("#"+button+"Bt").css('background-image', "url('../image/btn_"+button+"_p.png')")
+
+        }, false);
+        document.getElementById(button+"Bt").addEventListener('touchend', function (event) {
+            console.log('touchend' + ':' + this.id)
+            $("#"+button+"Bt").css('background-image',"url('../image/btn_"+button+"_n.png')")
+
+        }, false);
+        document.getElementById(button+"Bt").addEventListener('touchmove', function (event) {
+            //console.log('touchmove')
+
+            if(!(this.offsetTop <= event.touches[0].clientY && this.offsetTop+this.offsetHeight >= event.touches[0].clientY &&
+                this.offsetLeft <= event.touches[0].clientX && this.offsetLeft+this.offsetWidth >= event.touches[0].clientX)){
+                console.log('notouch:true')
+                $("#"+button+"Bt").css('background-image',"url('../image/btn_"+button+"_n.png')")
+            }
+
+        },false);
+    }
+
+    /*
+** Returns the caret (cursor) position of the specified text field (oField).
+** Return value range is 0-oField.value.length.
+*/
+    function doGetCaretPosition (oField) {
+
+        // Initialize
+        var iCaretPos = 0;
+
+        // IE Support
+        if (document.selection) {
+
+            // Set focus on the element
+            oField.focus();
+
+            // To get cursor position, get empty selection range
+            var oSel = document.selection.createRange();
+
+            // Move selection start to 0 position
+            oSel.moveStart('character', -oField.value.length);
+
+            // The caret position is selection length
+            iCaretPos = oSel.text.length;
+        }
+
+        // Firefox support
+        else if (oField.selectionStart || oField.selectionStart === '0'){
+            iCaretPos = oField.selectionDirection==='backward' ? oField.selectionStart : oField.selectionEnd;
+        }
+
+
+        // Return results
+        return iCaretPos;
+    }
+
+    function hideKeyboard(element) {
+        element.attr('readonly', 'readonly'); // Force keyboard to hide on input field.
+        element.attr('disabled', 'true'); // Force keyboard to hide on textarea field.
+        setTimeout(function() {
+            element.blur();  //actually close the keyboard
+            // Remove readonly attribute after keyboard is hidden.
+            element.removeAttr('readonly');
+            element.removeAttr('disabled');
+        }, 100);
+    }
+
+    function hideKeyBoard() {
+        var inputs = this.filter("input").attr('readonly', 'readonly'); // Force keyboard to hide on input field.
+        var textareas = this.filter("text").attr('disabled', 'true'); // Force keyboard to hide on textarea field.
+        setTimeout(function() {
+            inputs.blur().removeAttr('readonly');  //actually close the keyboard and remove attributes
+            textareas.blur().removeAttr('disabled');
+        }, 100);
+        return this;
+    };
+
+    (function ($) {
+        $.fn.hideKeyboard = function() {
+            var inputs = this.filter("input").attr('readonly', 'readonly'); // Force keyboard to hide on input field.
+            var textareas = this.filter("textarea").attr('disabled', 'true'); // Force keyboard to hide on textarea field.
+            setTimeout(function() {
+                inputs.blur().removeAttr('readonly');  //actually close the keyboard and remove attributes
+                textareas.blur().removeAttr('disabled');
+            }, 100);
+            return this;
+        };
+    }( jQuery ));
+
+
+    class keyBoard_id {
+        constructor() {
+            this.idText = function (data) {
+
+            }
+        }
+    }
+
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+    //glitter.keyBoard_id = new keyBoard_id()
+    var touchNum=1
+    var nowID=''
+    var clock = Clock()
+    function KeyID_Input(id){
+        // if(nowID==='' || nowID!==id){
+        //     clock = Clock()
+        //     nowID=id
+        //     touchNum=1
+        //
+        // }
+        // if (clock.stop() === 2) {
+        //     clock = Clock()
+        //     touchNum=1
+        // }
+        //
+        // // var timer = setInterval(function () {
+        // //     if (clock.stop() > 2) {
+        // //
+        // //         clearInterval(timer)
+        // //     }
+        // // })
+        //
+        // if(touchNum===1){
+        //     touchNum=1
+        //     clock = Clock()
+        // }
+
+        for(var i=1;i<=carDefine[carType].carCount;i++){
+            $('#n'+i).css("background-image", "url(../image/icon_tire.png)")
+            $('#i'+i).css("border-style","none")
+            $('#i'+i).css("z-index","1")
+            $('#td'+i).css("z-index","1")
+        }
+        var num="n"+id.replace("i","")
+        $('#'+num).css("background-image", "url(../image/icon_tire_number_select.png)")
+        // $('#'+id).css("border-style","solid")
+        // $('#'+id).css("border-width","3px")
+        // $('#'+id).css("border-color","#F39800")
+        // $('#'+id).css("z-index","5")
+        // $('#td'+id.replace("i","")).css("z-index","5")
+        // $('#bodyClick').css("z-index","1")
+        Wposition=id.replace("i","")
+
+        glitter.openDiaLog('dialog/Dia_Keyboard.html', 'Dia_Keyboard', false, true, {
+            callback: function (data) {
+                // if(idVerify(data)){
+                //     $('#' + id).val(data)
+                // }
+            },
+            data: $('#' + id).val(),
+            writeC:function (data) {
+                if(idVerify(id,data)){
+                    $('#' + id).val(data)
+                    writeIdOne()
+                }
+            }
+        })
+
+        // if(nowID===id){
+        //     if (clock.stop() < 2) {
+        //         touchNum++
+        //     }
+        // }
+
+    }
+
+    var Text_Num=0
+    function ID_Input() {
+        var ID_Text = document.getElementById("IDText").innerText.replaceAll("\n", "").trim()
+        // console.log("ID_Text:"+ID_Text.replaceAll("\n",""))
+        console.log("ID_Text:" + ID_Text.length)
+
+        //Cursor點擊觸發與顯示
+        for (var i = 0; i <= data.word.length; i++) {
+            document.getElementById("c" + i).onclick = function () {
+                for (var i = 0; i <= data.word.length; i++) {
+                    $('#c' + i).attr("src", "")
+                }
+                Text_Num = parseInt((this.id).replace("c", ""))
+
+                console.log(this.id + ":" + Text_Num)
+                $('#' + this.id).attr("src", "../image/cursor_gif.gif")
+            }
+        }
+        document.getElementById("btn1").onclick = function () {
+            if (data.word.length < 6 && Text_Num < 6) {
+                data.word = data.word.concat("")
+                console.log("data.word1:" + data.word.length + "," + Text_Num)
+                for (var i = 1; i < (data.word.length - (Text_Num)); i++) {
+                    console.log("data.word2:" + (data.word.length - Text_Num))
+                    data.word[data.word.length - i] = data.word[data.word.length - i - 1]
+                }
+                data.word[Text_Num] = "1"
+                var html = getKeyboardView(data.word, true)
+                $('#IDText').html(html)
+                Text_Num++
+                $('#c0').attr("src", "")
+                $('#c' + Text_Num).attr("src", "../image/cursor_gif.gif")
+                //     //清空全部Cursor顯示
+                // for (var i = 0; i <= ID_Text.length; i++) {
+                //     $('#c' + i).attr("src", "")
+                // }
+                //
+                //     //console.log("bt1:"+Text_Num)
+                //     //已有的字串遞增位置
+                //     for(var i=0;i<ID_Text.length-Text_Num;i++){
+                //         if(i<ID_Text.length-Text_Num){
+                //             //console.log("change:"+(ID_Text.length-i+1)+","+(ID_Text.length-i))
+                //             document.getElementById('text' + (ID_Text.length-i+1)).innerText = document.getElementById('text' + (ID_Text.length-i)).innerText
+                //         }
+                //     }
+                //
+                //     //新增的字串，與顯示的Cursor
+                //     Text_Num++
+                //
+                //     $('#c' + Text_Num).attr("src", "../image/cursor_gif.gif")
+                //     //$('#text' + Text_Num).innerText = "1"
+                //
+                //     if(Text_Num<=6){
+                //         document.getElementById('text' + Text_Num).innerText = "1"
+                //     }
+
+                glitter.openDiaLog('dialog/Dia_Keyboard.html', 'Dia_Keyboard', false, false, "鍵盤")
+                //ID_Text=document.getElementById("IDText").innerText.replaceAll("\n","")
+                ID_Input()
+            }
+
+        }
+
+        document.getElementById('btn2').onclick = function () {
+
+            if (data.word.length < 6 && Text_Num < 6) {
+                data.word = data.word.concat("")
+                console.log("data.word1:" + data.word.length + "," + Text_Num)
+                for (var i = 1; i < (data.word.length - (Text_Num)); i++) {
+                    console.log("data.word2:" + (data.word.length - Text_Num))
+                    data.word[data.word.length - i] = data.word[data.word.length - i - 1]
+                }
+                data.word[Text_Num] = "2"
+                var html = getKeyboardView(data.word, true)
+                $('#IDText').html(html)
+                Text_Num++
+                $('#c0').attr("src", "")
+                $('#c' + Text_Num).attr("src", "../image/cursor_gif.gif")
+
+                ID_Input()
+            }
+        }
+
+        document.getElementById('btn3').onclick = function () {
+
+            if (data.word.length < 6 && Text_Num < 6) {
+                data.word = data.word.concat("")
+                console.log("data.word1:" + data.word.length + "," + Text_Num)
+                for (var i = 1; i < (data.word.length - (Text_Num)); i++) {
+                    console.log("data.word2:" + (data.word.length - Text_Num))
+                    data.word[data.word.length - i] = data.word[data.word.length - i - 1]
+                }
+                data.word[Text_Num] = "3"
+                var html = getKeyboardView(data.word, true)
+                $('#IDText').html(html)
+                Text_Num++
+                $('#c0').attr("src", "")
+                $('#c' + Text_Num).attr("src", "../image/cursor_gif.gif")
+
+                ID_Input()
+            }
+        }
+
+        document.getElementById('btn_delete').onclick = function () {
+            if (ID_Text.length > 0 && Text_Num > 0) {
+
+                console.log("data.word1:" + data.word.length + "," + Text_Num)
+                for (var i = Text_Num; i < (data.word.length); i++) {
+                    console.log("data.word2:"+data.word[i-1]+","+data.word[i])
+                    data.word[i-1] = data.word[i]
+                }
+                data.word.splice(data.word.length - 1, data.word.length);
+                var html = getKeyboardView(data.word, true)
+                $('#IDText').html(html)
+                Text_Num--
+                $('#c0').attr("src", "")
+                $('#c' + Text_Num).attr("src", "../image/cursor_gif.gif")
+
+                // //清空全部Cursor顯示
+                // for (var i = 0; i <= ID_Text.length; i++) {
+                //     $('#c' + i).attr("src", "")
+                // }
+                //
+                // //console.log("bt1:"+Text_Num)
+                // //已有的字串遞減位置
+                // if(Text_Num>1) {
+                //     for (var i = Text_Num; i < ID_Text.length; i++) {
+                //
+                //         //if(i>=Text_Num && i<ID_Text.length){
+                //         //console.log("change:"+(ID_Text.length-i+1)+","+(ID_Text.length-i))
+                //         document.getElementById('text' + (i-1)).innerText = document.getElementById('text' + (i)).innerText
+                //
+                //     }
+                // }
+                //
+                // //新增的字串，與顯示的Cursor
+                // if(Text_Num>0){
+                //     document.getElementById('text' + Text_Num).innerText = ""
+                // }
+                // Text_Num--
+                // $('#c' + Text_Num).attr("src", "../image/cursor_gif.gif")
+                // //$('#text' + Text_Num).innerText = "1"
+                //
+                //
+                // //ID_Text=document.getElementById("IDText").innerText.replaceAll("\n","")
+
+                ID_Input()
+            }
+        }
+    }
+
+    function setInput(){
+
+        // $("input").onchange = function() {
+        //         //console.log(this.value + "has been selected");
+        //         console.log("selectionStart:"+this.onselectionchange);
+        //         //console.log("selectionEnd:"+this.selectionEnd);
+        //     };
+
+        // document.getElementById('i1').addEventListener('keyup', function (event){
+        //     console.log('Caret at: '+ this.target.selectionStart)
+        // })
+
+        // $("input").on("keyup", function (event) {
+        //     console.log('Caret at: '+this.e.target.selectionStart)
+        //     this.select.createRange().moveStart('character', -oField.value.length);
+        // })
+
+        // $("input").on("touch", function (event) {
+        //     console.log("selectionStart:"+this.selectionStart);
+        //     console.log("selectionEnd:"+this.selectionEnd);
+        // })
+
+        //var field = document.createElement('input');
+        //var field = document.getElementById('i1');
+        // var field = $("input")
+        // hideKeyboard(field)
+         //$('#i1').hideKeyboard();
+        //$('input').hideKeyboard()
+
+        // field.setAttribute('type', 'text');
+        // document.body.appendChild(field);
+        //
+        // setTimeout(function() {
+        //     field.focus();
+        //     // setTimeout(function() {
+        //     //     field.setAttribute('style', 'display:none;');
+        //     // }, 50);
+        // }, 50);
+
+        //*
+        // document.getElementById("i1").addEventListener('touchstart', function (event) {
+        //     console.log("Position:"+doGetCaretPosition(this))
+        //     //$("#i1").focus();
+        //     //$("#i1").blur();
+        //
+        // }, false);
+        // document.getElementById("i1").addEventListener('touchend', function (event) {
+        //     console.log("Position:"+doGetCaretPosition(this))
+        //     //$("#i1").focus();
+        //     //$("#i1").blur();
+        //
+        // }, false);
+        // document.getElementById("i1").addEventListener('touchmove', function (event) {
+        //     console.log("Position:"+doGetCaretPosition(this))
+        //     //$("#i1").focus();
+        //     //$("#i1").blur();
+        //
+        // }, false);
+        //
+        // $("#i1").val("111111")
+
+        //$("#i1").setSelectionRange(2, 2);
+
+        // $("#i2").val("11111111111111")
+        // var field = document.getElementById("i1")
+        // field.setAttribute('type', 'text');
+        // document.body.appendChild(field);
+        //
+        // setTimeout(function() {
+        //     field.focus();
+        //     setTimeout(function() {
+        //         field.setAttribute('style', 'display:none;');
+        //     }, 50);
+        // }, 50);
+
+        // $('#i1').focus(function () {
+        //     console.log("Position:"+doGetCaretPosition(this))
+        //     //$('#i1').blur();
+        //     //  $('#MyTB2').focus();
+        //
+        // });
+
+        // $('#i1').change(function () {
+        //     console.log("selectionStart:"+this.selectionStart);
+        //     console.log("selectionEnd:"+this.selectionEnd);
+        //         console.log("Position:"+doGetCaretPosition(this))
+        //         //$('#i1').blur();
+        //         //  $('#MyTB2').focus();
+        //
+        //     });
+
+        //
+        // $('#i1').keyup(function () {
+        //     console.log("Position:"+doGetCaretPosition(this))
+        //                 //$('#i1').blur();
+        //                 //  $('#MyTB2').focus();
+        //
+        //         });
+
+        // $(document).ready(function () {
+        //     $('#i1').keyup(function () {
+        //
+        //             $('#i1').blur();
+        //             //  $('#MyTB2').focus();
+        //
+        //     });
+        // });
+
+        //document.activeElement.blur();
+        //$("input").blur();
+
+        //*
+        // $('#i1').attr('readonly', 'readonly'); // Force keyboard to hide on input field.
+        // $('#i1').attr('disabled', 'true');
+        // //$('#i1').focus()
+        // //setTimeout(document.getElementById('i1').setSelectionRange(0, 6),200);
+        // if(document.getElementById('i1').setSelectionRange) {
+        //     setTimeout(document.getElementById('i1').setSelectionRange(2, 4),200);
+        // }
+
+        // var el=document.getElementById("i1")
+        // if (typeof el.selectionStart == "number") {
+        //     el.selectionStart = el.selectionEnd = el.value.length;
+        // } else if (typeof el.createTextRange != "undefined") {
+        //     el.focus();
+        //     var range = el.createTextRange();
+        //     range.collapse(false);
+        //     range.select();
+        // }
+
+        // var input = $('#i1').attr('readonly', 'readonly'); // Force keyboard to hide on input field.
+        // var text = $('#i1').attr('disabled', 'true');
+        // setTimeout(function() {
+        //     input.blur().removeAttr('readonly');  //actually close the keyboard and remove attributes
+        //     text.blur().removeAttr('disabled');
+        // }, 100);
+
+        // $("input").ontouchmove =function (){
+        //     console.log("Position:"+doGetCaretPosition(this))
+        // }
+
+
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取車型中...")
+
+        $("input").on("input", function (event) {
+            //if(this.value)
+            // console.log("selectionStart:"+this.selectionStart);
+            // console.log("selectionEnd:"+this.selectionEnd);
+
+            //console.log("selectstart"+this.onchange)
+            if(this.value.length>6){
+                this.value = this.value.substring(0,6).toUpperCase()
+                return
+            }
+            this.value = this.value.replace(/[^a-fA-F0-9]/g, '').toUpperCase();
+
+            // console.log("selectionStart:"+this.selectionStart);
+            // console.log("selectionEnd:"+this.selectionEnd);
+
+            // var inpObj = document.getElementById(this.id);
+            // if (inpObj.setSelectionRange) {
+            //     inpObj.setSelectionRange(0, 3);
+            // } else {
+            //     console.log('不兼容此方法');
+            // }
+        });
+
+        // $("input").change = function() {
+        //     //console.log(this.value + "has been selected");
+        //     console.log("selectionStart:"+this.selectionStart);
+        //     console.log("selectionEnd:"+this.selectionEnd);
+        // };
+
+        // $("input").on("change", function (event) {
+        //     // console.log("selectionStart:"+this.selectionStart);
+        //     // console.log("selectionEnd:"+this.selectionEnd);
+        //     console.log(this.value + " was selected");
+        // });
+
+        // if(document.getElementById('i0').addEventListener){
+        //     document.getElementById('i0').addEventListener("change", changeHandler, false);
+        // }else{
+        // document.getElementById('i0').addEventListener("change",  function() {
+        //     alert("CHANGED");
+        //     //You can alert the value of the selected option, using this:
+        //     alert(this.value + " was selected");
+        // }, false);
+
+        // $("input").onchange = function() {
+        //         alert("CHANGED");
+        //         //You can alert the value of the selected option, using this:
+        //         alert(this.value + " was selected");
+        //     }
+        //}
+
+        // touchChange("left")
+        // touchChange("right")
+        NumScroll()
+    }
+
+    function getKeyboardView(data,bool) {
+        if(bool){
+            var html = `<img id="c0" style="display: flex;justify-content: center;align-items: center;height:30px;width: 2px" src="../image/cursor_gif.gif">`
+        }else{
+            var html =``
+        }
+
+        for(var i=1;i<=data.length;i++){
+            html += `
+<div id="text`+i+`" style="display: flex;justify-content: center;align-items: center;height:30px;font-size: 30px">`+data[i-1]+`</div>
+<img id="c`+i+`" style="display: flex;justify-content: center;align-items: center;height:30px;width: 2px" src="">
+`
+        }
+        return html
+    }
+
+    function getListView() {
+        var html = ''
+        for (var a = 0; a < glitter.carDefine[carType].carCount; a++) {
+            html += (`
+<tr style="height: 50px;width: 100%">
+<td style="width: 50px;">` + (a + 1) + `</td>
+<td id='td` + (a + 1) + `' style="position:relative;z-index:1;height: 50px;background-color: white;align-items: center;">
+<input id='i` + (a + 1) + `' readonly="readonly" type="text"  style="position:relative;color:gray;font-size: 20px;" placeholder="感測器ID號碼">
+</td>
+</tr>
+         `)
+        }
+        return html
+    }
+    //onclick="KeyID_Input('${'i' + (a + 1)}')"
+    // <!--<td style="width: 40px;background-color:#CED8DF;border-left: none">-->
+    // <!--<img style="width: 40px;height: 40px;" src="../image/btn_sacn.png" >-->
+    // <!--</td>-->
+
+    function getCarView() {
+        switch (carType) {
+            case "F_6":
+                return `
+          <img src="../image/img-6%20wheels.png" style="width: 112px;height: 224px;">
+        `
+            case "F_8_224":
+                return `
+          <img src="../image/img-8%20wheels(224).png" style="width: 112px;height: 224px;">
+        `
+            case "F_8_242":
+                return `
+          <img src="../image/img-8%20wheels(242).png" style="width: 112px;height: 224px;">
+        `
+            case "F_10_244":
+                return `
+          <img src="../image/img_10_wheels_244.png" style="width: 112px;height: 224px;">
+        `
+            case "F_10_2224":
+                return `
+         <img src="../image/img-10%20wheels(2224).png" style="width: 112px;height: 224px;">
+        `
+            case "F_12":
+                return `
+         <img src="../image/img-14%20wheels.png" style="width: 112px;height: 224px;">
+        `
+            case "F_14":
+                return `
+         <img src="../image/img-12%20wheels.png" style="width: 112px;height: 224px;">
+        `
+            case "R_4":
+                return`
+         <img src="../image/img-4-wheels.png" style="width: 112px;height: 224px;">
+        `
+            case "R_6_222":
+                return`
+         <img src="../image/img-6-wheels(222).png" style="width: 112px;height: 224px;">
+        `
+            case "R_8_44":
+                return`
+         <img src="../image/img-8-wheels(44).png" style="width: 112px;height: 224px;">
+        `
+            case "R_8_2222":
+                return`
+         <img src="../image/img-8-wheels(2222).png" style="width: 112px;height: 224px;">
+        `
+            case "R_12":
+                return`
+         <img src="../image/img-12-wheels.png" style="width: 112px;height: 224px;">
+        `
+            case "R_16":
+                return`
+         <img src="../image/img-16-wheels.png" style="width: 112px;height: 224px;">
+        `
+        }
+    }
+
+    /*
+    * 判斷前後車
+    * */
+    var cart = '00'
+    if (carType.indexOf("F") !== -1) {
+        cart = '01'
+    } else {
+        cart = '02'
+    }
+
+    /*
+    * 讀取所有sensorID
+    * */
+    function readSensorId() {
+        // if(glitter.readSensorID !== undefined){
+        //     if(glitter.readSensorID.length===carDefine[carType].carCount){
+        //         for(var i=1;i<=glitter.readSensorID.length;i++) {
+        //             $(('#i' + i)).val(glitter.readSensorID[i-1])
+        //         }
+        //         return
+        //     }
+        // }
+
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+        readLen = 1
+
+        readCommand()
+        //setTimeout(readAllCommand,3000)
+    }
+
+    function readAllCommand(){
+
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+        glitter.command.readAllSensorID(cart,carDefine[carType].carCount,function (data) {
+        //     var data=['01A11111','02A22222','03A33333','04A44444','05A55555','06A66666','07A77777',
+        //               '08A88888','09A99999','0AAAAAAA','0BABBBBB','0CACCCCC','0DADDDDD','0EAEEEEE']
+            console.log("ble-" + data)
+            //glitter.closeDiaLog()
+            // var carPosition=0
+            // for(var pos=0;pos < data.length;pos++){
+            //     if(data[pos]!==carDefine[carType].carIndex[pos+1]){
+            //
+            //     }
+            // }
+
+            if (data.length === 0) {
+                glitter.closeDiaLog()
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '讀取失敗', function () {
+                    setTimeout(function () {
+                        //glitter.goBack()
+                        glitter.readSensorID = []
+                    }, 200)
+                })
+
+                // if(reRead<3){
+                //     reRead++
+                //     glitter.showToast("第"+reRead+"次")
+                //     setTimeout(readAllCommand,500)
+                // }else{
+                //     glitter.closeDiaLog()
+                //     glitter.openDiaLog('dialog/Dia_Info_Bt.html', 'Dia_Info_Bt', false, false, {
+                //         title: '讀取失敗，是否重新讀取?',
+                //         cancel: function () {
+                //             glitter.closeDiaLog()
+                //             glitter.goBack()
+                //             glitter.readSensorID=[]
+                //         },
+                //         ok: function () {
+                //             glitter.closeDiaLog()
+                //             glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                //             //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+                //             readAllCommand()
+                //         }
+                //     })
+                //     reRead=0
+                // }
+                return
+            } else {
+                for(var oPos=0;oPos<carDefine[carType].carCount;oPos++){
+                    for(var nPos=0;nPos<data.length;nPos++){
+                        var Pos=data[nPos].substring(0,2)
+                        var id=data[nPos].substring(2,8)
+                        if(Pos===carDefine[carType].carIndex[oPos+1]){
+                            reRead=0
+                            glitter.readSensorID=glitter.readSensorID.concat(id)
+                            $('#i' + (oPos+1)).val(id)
+                            $(('#i' + (oPos+1))).css('background-color','white')
+                            $(('#i' + (oPos+1))).css('color','black')
+                        }
+                    }
+                }
+                glitter.closeDiaLog()
+                //glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '讀取完畢!!')
+            }
+        })
+
+    }
+
+    var readLen = 1
+    var reRead=0
+    function readCommand() {
+        if (readLen > carDefine[carType].carCount) {
+            glitter.closeDiaLog()
+            //glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '讀取完畢!!')
+            return
+        }
+        var sposition = readLen
+        //readLen += 1
+        glitter.command.readSensorID(cart, carDefine[carType].carIndex[("" + sposition)], function (data) {
+            if (data === 'false') {
+                if(reRead<3){
+                    reRead++
+                    glitter.showToast("第"+reRead+"次")
+                    setTimeout(readCommand,500)
+                }else{
+                    glitter.closeDiaLog()
+                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '讀取失敗')
+                    // glitter.openDiaLog('dialog/Dia_Info_Bt.html', 'Dia_Info_Bt', false, false, {
+                    //     title: '讀取失敗，是否重新讀取?',
+                    //     cancel: function () {
+                    //         glitter.closeDiaLog()
+                    //         glitter.goBack()
+                    //         glitter.readSensorID=[]
+                    //     },
+                    //     ok: function () {
+                    //         glitter.closeDiaLog()
+                    //         glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                    //         //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+                    //         readCommand()
+                    //     }
+                    // })
+                    reRead=0
+                    $(('#i' + sposition)).css('background-color','red')
+                    $(('#i' + sposition)).css('color','white')
+                }
+
+            } else {
+                readLen += 1
+                reRead=0
+                glitter.readSensorID=glitter.readSensorID.concat(data)
+                $(('#i' + sposition)).val(data)
+                $(('#i' + sposition)).css('background-color','white')
+                $(('#i' + sposition)).css('color','black')
+                setTimeout(readCommand,30)
+
+            }
+        })
+    }
+
+    /*****/
+    /*
+    * 寫入單顆sensorID
+    * */
+    function idVerify(name,id) {
+        // if(id === ""){
+        //     glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '感測器ID不能為空!')
+        //     return false
+        // }
+        var repeatID=0
+        // for(var i=0;i<glitter.readSensorID.length;i++){
+        //     if(glitter.readSensorID[i]===id){
+        //         repeatID++
+        //         console.log("repeatID:"+glitter.readSensorID[i]+","+repeatID)
+        //     }
+        // }
+        for(var i=0;i<carDefine[carType].carCount;i++){
+            if($('#i'+(i+1)).val()===id && name!==("i"+(i+1))){
+                repeatID++
+                console.log("repeatID:"+$('#i'+(i+1)).val()+","+repeatID)
+            }
+        }
+
+        if(repeatID>0 && id!=="FFFFFF"){
+            glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, 'ID碼重複')
+            return false
+        }
+        if(id.length !== 6 || id === ""){
+            glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, 'ID碼需為6碼')
+            return false
+        }
+        return true
+    }
+
+    //寫入的位置
+    var Wposition=""
+    function writeIdOne() {
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+        glitter.command.writeSensorID(cart,  $(('#i' + Wposition)).val(),carDefine[carType].carIndex[("" + Wposition)], function (data) {
+            if (data) {
+                reWrite=0
+                $(('#i' + Wposition)).css('background-color','green')
+                $(('#i' + Wposition)).css('color','white')
+                glitter.readSensorID[parseInt(Wposition)-1]=$(('#i' + Wposition)).val()
+                glitter.closeDiaLog()
+                glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true, '設定成功')
+                //writeCommand()
+            } else {
+
+                if(reWrite<3){
+                    reWrite++
+                    glitter.showToast("第"+reWrite+"次")
+                    setTimeout(writeIdOne,1000)
+                }else{
+
+                    glitter.closeDiaLog()
+                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '設定失敗')
+                    // glitter.openDiaLog('dialog/Dia_Info_Bt.html', 'Dia_Info_Bt', false, false, {
+                    //     title: '設定失敗，是否重新設定?',
+                    //     cancel: function () {
+                    //         glitter.closeDiaLog()
+                    //         glitter.goBack()
+                    //     },
+                    //     ok: function () {
+                    //         glitter.closeDiaLog()
+                    //         glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                    //         //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "寫入中...")
+                    //         writeIdOne()
+                    //     }
+                    // })
+                    reWrite=0
+                    $(('#i' + Wposition)).css('background-color','red')
+                    $(('#i' + Wposition)).css('color','white')
+                }
+            }
+        })
+    }
+
+    /*****/
+    /*
+    * 寫入所有sensorID
+    * */
+    function writeSensorId() {
+        var datalist=[]
+        //console.log("datalist:"+$("#i"+(datanum)).val())
+        for(var i=1;i<=carDefine[carType].carCount;i++){
+            console.log("輪位"+i+":"+$(('#i' + i)).val())
+            $(('#i' + i)).css('background-color','white')
+            $(('#i' + i)).css('color','black')
+
+            if($(('#i' + i)).val().trim() === ""){
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '感測器ID不能為空!')
+                datalist=[]
+                return
+            }
+            if(datalist.indexOf($(('#i' + i)).val())!==-1){
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '有感測器ID重複!')
+                datalist=[]
+                return
+            }
+            if($(('#i' + i)).val().trim().length !== 6){
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '感測器ID需為6碼!')
+                datalist=[]
+                return
+            }
+            datalist = datalist.concat($(('#i' + i)).val())
+        }
+        datalist=[]
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "寫入中...")
+        writeLen = 1
+        writeCommand()
+    }
+
+    var writeLen = 1
+    var reWrite=0
+    function writeCommand() {
+        if (writeLen > carDefine[carType].carCount) {
+            glitter.closeDiaLog()
+            glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true, '設定成功')
+            return
+        }
+        var sposition = writeLen
+        //writeLen += 1
+        glitter.command.writeSensorID(cart,  $(('#i' + sposition)).val(),carDefine[carType].carIndex[("" + sposition)], function (data) {
+            if (data) {
+                writeLen += 1
+                reWrite=0
+                $(('#i' + sposition)).css('background-color','green')
+                $(('#i' + sposition)).css('color','white')
+                setTimeout(writeCommand,1000)
+                //writeCommand()
+            } else {
+
+                if(reWrite<3){
+                    reWrite++
+                    glitter.showToast("第"+reWrite+"次")
+                    setTimeout(writeCommand,1000)
+                }else{
+
+                    glitter.closeDiaLog()
+                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '設定失敗')
+                    // glitter.openDiaLog('dialog/Dia_Info_Bt.html', 'Dia_Info_Bt', false, false, {
+                    //     title: '設定失敗，是否重新設定?',
+                    //     cancel: function () {
+                    //         glitter.closeDiaLog()
+                    //         glitter.goBack()
+                    //     },
+                    //     ok: function () {
+                    //         glitter.closeDiaLog()
+                    //         glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                    //         //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "寫入中...")
+                    //         writeCommand()
+                    //     }
+                    // })
+                    reWrite=0
+                    $(('#i' + sposition)).css('background-color','red')
+                    $(('#i' + sposition)).css('color','white')
+                }
+            }
+        })
+    }
+
+    function NumScroll(){
+        for(var i=0;i<carDefine[carType].carCount;i++){
+            document.getElementById("n"+(i+1)).onclick = function (){
+                console.log(this.id)
+
+                // var elmnt = document.getElementById("i"+(this.id).replace("n",""));
+                // alert()
+                //$('.listView').scrollTop($(`#i${(this.id).replace("n","")}`).offset().top)
+
+                //*
+                // var topmove = $(`#i${(this.id).replace("n","")}`).offset().top
+                // var topmove2 = $(`#i${(this.id).replace("n","")}`).offset().top
+                // //$('.listView').scrollTop(topmove)
+                // console.log(topmove)
+                // // if(topmove)
+                // // if(48+i*53+(10) < topmove){
+                // //     topmove = $(`#i${(this.id).replace("n","")}`).offset().top
+                // // }
+                // $('.listView').scrollTop(topmove2)
+
+                // var topmove2 = $(`#i${(this.id).replace("n","")}`).offset().top
+                // $('.listView').scrollTop(topmove2)
+                // console.log(topmove2)
+                // $('.inview').scrollTop($(`#i${(this.id).replace("n","")}`).scrollTop)
+                // if(48+i*53 !== topmove){
+                //     $('.listView').scrollTop($(`#i${(this.id).replace("n","")}`).offset().top)
+                // }
+                //console.log($(`#i${(this.id).replace("n","")}`).offset().top)
+                // elmnt.scrollIntoView();
+                //document.getElementById(`i${(this.id).replace("n","")}`).scrollIntoView()
+                //return
+
+                // $('#idData').scrollTop(0)
+                //var scrollLength=$(`#i${carDefine[carType].carCount}`).offset().top
+                // var scrollLength=50*carDefine[carType].carCount
+                // console.log(scrollLength)
+                // $('#idData').scrollTop(scrollLength)
+
+                var id=(this.id).replace("n","")
+                setTimeout(function (){
+                    // //var scrolly=$(`#i${id}`).offset().top
+                    // var scrolly=(parseInt(id)-1)*50
+                    // console.log(scrolly)
+                    // $('#idData').scrollTop(scrolly)
+
+                    KeyID_Input('i'+id)
+                },200)
+
+                // $('#idData').animate({ //animate是jquery一種動態的處理方法
+                //     scrollTop: $(`#i${(this.id).replace("n","")}`).offset().top  //這裏就是去操作捲軸，到目標定義的top值
+                // }, 1000);
+            }
+        }
+    }
+</script>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: auto;
+        color: white;
+        font-size: 16px;
+    }
+
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .flexGray {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        width: 120px;
+        height: 100%;
+        background-color: #cdcbcb;
+        color: #2F4C63;
+        font-size: 14px;
+    }
+
+    .flexWhite {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-right: 10px;
+        padding-left: 10px;
+        width: calc(100% - 120px);
+        height: 100%;
+        background-color: white;
+        color: #2F4C63;
+    }
+
+    input {
+        border: 1px solid lightgray;
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+        color: #6a6a6a;
+    }
+
+    .bottomBar {
+        display: flex;
+        height: 50px;
+    }
+
+    #Content {
+        overflow-y: scroll;
+        padding-bottom: 50px;
+        height: calc(100vh - 180px);
+    }
+
+
+    .blueHint {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .blueHint h3 {
+        color: black;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid lightgray;
+        margin: 0;
+        height: 50px;
+    }
+
+    .Tposition {
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+    }
+
+    .spinner {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% - 20px);
+        height: calc(100% - 10px);
+        border-radius: 10px;
+        padding-left: 10px;
+        background-image: url("../img/down.png");
+        background-repeat: no-repeat;
+        background-size: 15px 15px;
+        background-position: right 10px center;
+        border: 1px solid lightgray;
+    }
+
+    .bottomBar {
+        display: flex;
+        height: 50px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 60px;
+        width: 40%;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/botton_Press.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .flex {
+        display: flex;
+        width: 100%;
+        height: 70px;
+    }
+
+    .minItem {
+        width: 50px;
+        color: black;
+        border: 1px solid whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .maxItem {
+        width: calc((100% - 50px) / 3);
+        border: 1px solid whitesmoke;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        word-break: break-word;
+        font-size: 12px;
+    }
+
+    input {
+        width: calc(100% - 20px);
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: calc(100% - 20px);
+        min-width: 40px;
+        border: 1px solid whitesmoke;
+        font-size: 14px;
+        color: black;
+    }
+</style>
+<body>
+<script>
+    "use strict";
+    lifeCycle.onCreate = function () {
+        updateView()
+
+    }
+
+    function updateView() {
+        $('#Content').html('')
+        $('#Content').append(`<div class="flex" style="height: 50px;">
+<div class="minItem" style="background-color: lightgray;"></div>
+<div class="maxItem" style="background-color: lightgray;">${glitter.language(556)}</div>
+<div class="maxItem" style="background-color: lightgray;">${glitter.language(559)}</div>
+<div class="maxItem" style="background-color: lightgray;">${glitter.language(485)}</div>
+</div>
+`)
+        var carPosition = ["LF", "RF", "RR", "LR"]
+        carPosition.map(function (data, position) {
+            let carData = gBundle.carFile.filter(function (data) {
+                return data.TireLocal === carPosition[position]
+            })
+            if (carData.length === 0) {
+                carData = JSON.parse(`{"Lplate":"","TireLocal":"${carPosition[position]}","TireBrand":"","TireModel":"","Depth":"","Dot":"","SN":"","Size":"","Size1":"","Size2":"","Path":""}`)
+                gBundle.carFile = gBundle.carFile.concat(carData)
+            } else {
+                carData = carData[0]
+            }
+            var text = carData.TireBrand
+            glitter.share.publicData.brand.filter(function (data) {
+                return data.id == carData.TireBrand
+            }).map(function (data) {
+                text = data.name
+            })
+            var ptext= [glitter.language(312),glitter.language(309),glitter.language(310),glitter.language(311)][position]
+            $('#Content').append(`<div id="L${position}" class="flex" style="">
+<div class="minItem" style="background-color: lightgray;">${ptext}</div>
+<div class="maxItem" style="">
+<input class="TireBrand" value="${text}" id="TireBrand${position}" readonly>
+</div>
+<div class="maxItem" style="">
+<input class="TireModel" value="${carData.TireModel}" placeholder="${glitter.language(557)}" id="Dia_Set_TireModel${position}" readonly>
+</div>
+<div class="maxItem" style="">
+<input class="TireSize"  id="TireSize${position}" value="${carData.Size}/${carData.Size1}/${carData.Size2}" readonly>
+</div>
+</div>`)
+            $(`#Dia_Set_TireModel${position}`).click(function () {
+                glitter.openDiaLog('dialog/Dia_Set_TireModel.html', 'Dia_Set_TireModel', false, false, {
+                    data: carData,
+                    position: carPosition[position],
+                    callback: function (allSame, frontSame,rearSame, value) {
+                        if (allSame) {
+                            gBundle.carFile.map(function (data) {
+                                data.TireModel = value
+                            })
+                        } else if (frontSame) {
+                            gBundle.carFile.map(function (data) {
+                                if ([ carPosition[0], carPosition[1]].indexOf(data.TireLocal) !== -1) {
+                                    data.TireModel = value
+                                }
+                            })
+                        } else if(rearSame){
+                            gBundle.carFile.map(function (data) {
+                                if ([ carPosition[2], carPosition[3]].indexOf(data.TireLocal) !== -1) {
+                                    data.TireModel = value
+                                }
+                            })
+                        }else{
+                            gBundle.carFile.map(function (data) {
+                                if (data.TireLocal === carPosition[position]) {
+                                    data.TireModel = value
+                                }
+                            })
+                        }
+                        updateView()
+                    }
+                }, function () {
+
+                })
+            })
+            $(`#TireBrand${position}`).click(function () {
+                glitter.openDiaLog('dialog/Dia_Set_Brand.html', 'Dia_Set_Brand', false, false, {
+                    data: carData,
+                    position: carPosition[position],
+                    callback: function (allSame, frontSame,rearSame, value) {
+                        if (allSame) {
+                            gBundle.carFile.map(function (data) {
+                                data.TireBrand = value
+                            })
+                        } else if (frontSame) {
+                            gBundle.carFile.map(function (data) {
+                                if ([carPosition[0], carPosition[1]].indexOf(data.TireLocal) !== -1) {
+                                    data.TireBrand = value
+                                }
+                            })
+                        } else if(rearSame){
+                            gBundle.carFile.map(function (data) {
+                                if ([ carPosition[2], carPosition[3]].indexOf(data.TireLocal) !== -1) {
+                                    data.TireBrand = value
+                                }
+                            })
+                        }else{
+                            gBundle.carFile.map(function (data) {
+                                if (data.TireLocal === carPosition[position]) {
+                                    data.TireBrand = value
+                                }
+                            })
+                        }
+                        updateView()
+                    }
+                }, function () {
+
+                })
+            })
+            $(`#TireSize${position}`).click(function () {
+                glitter.openDiaLog('dialog/Dia_Set_Size.html', 'Dia_Set_Size', false, false, {
+                    data: carData,
+                    position: carPosition[position],
+                    callback: function (allSame, frontSame,rearSame, value) {
+                        if (allSame) {
+                            gBundle.carFile.map(function (data) {
+                                data.Size = value.Size
+                                data.Size1 = value.Size1
+                                data.Size2 = value.Size2
+                            })
+                        } else if (frontSame) {
+                            gBundle.carFile.map(function (data) {
+                                if ([ carPosition[0], carPosition[1]].indexOf(data.TireLocal) !== -1) {
+                                    data.Size = value.Size
+                                    data.Size1 = value.Size1
+                                    data.Size2 = value.Size2
+                                }
+                            })
+                        } else if(rearSame){
+                            gBundle.carFile.map(function (data) {
+                                if ([ carPosition[2], carPosition[3]].indexOf(data.TireLocal) !== -1) {
+                                    data.Size = value.Size
+                                    data.Size1 = value.Size1
+                                    data.Size2 = value.Size2
+                                }
+                            })
+                        }else{
+                            gBundle.carFile.map(function (data) {
+                                if (data.TireLocal === carPosition[position]) {
+                                    data.Size = value.Size
+                                    data.Size1 = value.Size1
+                                    data.Size2 = value.Size2
+                                }
+                            })
+                        }
+                        updateView()
+                    }
+                }, function () {
+
+                })
+            })
+        })
+
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+       <div style="background-color: #2F4C63;height: 60px;width: 100%;display: flex;align-items: center;">
+    <h3 class="title">${glitter.language(552)}</h3>
+</div>
+<div id="Content"></div>
+        <div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick=" glitter.changePage('page/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" >
+        ${glitter.language(9)}
+        </div>
+         <div id="next" class="rightBottom" onmousedown="glitter.changePage('page/Page_Tire_Depth.html','Page_Tire_Depth',true,gBundle);" >
+        ${glitter.language(145)}
+        </div>
+</div>
+    `
+    }
+    window.addEventListener("resize", function (v) {
+        this.LastWindowHeight = this.CurWindowHeight;
+        this.CurWindowHeight = window.innerHeight;
+        if ((this.LastWindowHeight - this.CurWindowHeight) / this.LastWindowHeight > 0.25) {
+            if(glitter.isOG){
+                document.activeElement.scrollIntoView()
+            }
+
+        } else {
+        }
+    });
+    lifeCycle.onResume = function () {
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

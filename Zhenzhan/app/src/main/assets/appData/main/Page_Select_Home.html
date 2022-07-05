@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-repeat: no-repeat;
+    }
+    html{
+        width: 100%;
+        height: 100%;
+    }
+    #viewclass{
+        height: calc(100% - 60px);
+        overflow-y: scroll;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+
+    //dialog/Dia_Info.html
+    //device.address==="60:C0:BF:0D:B0:CC"
+    test1=["C","AAAAAA","B","AAAAAA"]
+    console.log("A:"+test1.indexOf("AAAAAA"))
+    console.log("B:"+test1.indexOf("B"))
+
+    var carDefine = glitter.carDefine
+    var carType = glitter.selectCarType
+    let data = {};
+    data.background=["#0075C1","#003D6C","#304A56","#304A56"]
+    data.cbackground=["#E64E00","#E64E00","#E64E00","#E64E00"]
+    data.image=["../image/btn_front.png","../image/btn_rear.png","../image/btn_APP_setting.png","../image/btn_vehicle_management.png"]
+    // "../image/btn_vehicle_management.png"
+    data.cimage=["../image/img_number_rear.png","../image/img_number_front.png","../image/btn_setting_p.png","../image/btn_vehicle_management.png"]
+    // "../image/btn_vehicle_management.png" "胎紋深度檢測"
+    data.text=["拖車設定","板車設定","APP資訊","胎紋深度檢測"]
+
+    lifeCycle.onCreateView=function (){
+        return `<div id="viewclass"></div>`
+    }
+    lifeCycle.onCreate=function(){
+        // glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '連線失敗')
+        // glitter.openDiaLog('dialog/Dia_Info_Problem_Bt.html', 'Dia_Info_Problem_Bt', false, true, '車型錯誤')
+        //glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '檢查是否安裝電阻接收器')
+        //glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, "拖車無此車型")
+        //glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, "板車無此車型")
+
+        glitter.getPro("carType",function (result){
+            console.log("carTypeTEST:"+result)
+            glitter.selectCarType=result
+        })
+
+        let adapter=new GlAdapter(document.getElementById('viewclass'),
+            function (){return data.text.length},
+            function (position) {
+                //id=' + position + '
+                let html = `<div  style="margin-top:20px;display: flex;justify-content: center;height:200px;flex-direction: column;align-items: center;">
+<img id=test${position} style="width:150px;height:150px;border-radius: 20px;background-color:${data.background[position]}" src=${data.image[position]}>
+<div style="margin-top:10px;height:30px;display: flex;justify-content: center;font-size: 18px">${data.text[position]}</div></div>`
+
+                return html
+            } )
+        adapter.notifyDataSetChange()
+        for(let i=0;i<data.text.length;i++){
+            let obj =  document.getElementById("test"+i.toString())
+            //$(document).ready(function() {
+            //if(obj != null){
+            obj.onclick = function () {
+                if(obj.id === "test0"){
+                    glitter.CarType = "F"
+                    //glitter.changePage('main/Page_Select_CarSetting.html',"Page_Select_CarSetting",true,{});
+                    BleConnect(true)
+                    //console.log("拖車設定"+"F")
+                }
+                if(obj.id === "test1"){
+                    glitter.CarType = "R"
+                    //glitter.changePage('main/Page_Select_CarSetting.html',"Page_Select_CarSetting",true,{});
+                    BleConnect(true)
+                    //console.log("板車設定"+"R")
+                }
+                if(obj.id === "test2"){
+                    //glitter.changePage('main/Page_Select_Setting.html',"Page_Select_Setting",true,{});
+                    glitter.changePage('main/Page_Select_Setting.html',"Page_Select_Setting",true,{});
+                }
+                if(obj.id === "test3"){
+                    glitter.CarType = "Tread_depth"
+                    BleConnect(false)
+                }
+                //glitter.CarType = "R"
+            }
+            obj.addEventListener('touchstart', function (event) {
+                console.log('touchstart'+':'+ this.id)
+
+                //if (this.innerHTML.indexOf('image') != -1) {
+                //     $(this).html('<img id=' + "test"+i + ' width="40%" height="40%"  style="background-color:' + data.cbackground[i] + '" src=' + data.cimage[i] + '>')
+                //}
+                $('#'+"test"+i).css('background-color',data.cbackground[i])
+                $('#'+"test"+i).attr('src',data.cimage[i])
+                // 如果這個元素的位置內只有一個手指的話
+                if (event.targetTouches.length == 1) {
+                    var touch = event.targetTouches[0];
+
+                    // 把元素放在手指所在的位置
+                    obj.style.left = touch.pageX + 'px';
+                    obj.style.top = touch.pageY + 'px';
+                    //console.log(obj.style.left + "," + obj.style.top)
+                }
+            }, false);
+            obj.addEventListener('touchend', function (event) {
+
+                console.log('touchend'+':'+this.id)
+                $('#'+"test"+i).css('background-color',data.background[i])
+                $('#'+"test"+i).attr('src',data.image[i])
+                //if (this.innerHTML.indexOf('image') != -1) {
+                //adapter.notifyDataSetChange()
+                //}
+
+            }, false);
+            obj.addEventListener('touchcancel', function (event) {
+                console.log('touchcancel')
+            },false);
+            obj.addEventListener('touchmove', function (event) {
+                //console.log('touchmove')
+                // console.log('touchHeight:'+this.offsetHeight)
+                // console.log('touchWidth:'+this.offsetWidth)
+                // console.log('touchTop:'+this.offsetTop)
+                // console.log('touchLeft:'+this.offsetLeft)
+                // console.log('touchX:'+event.touches[0].clientX)
+                // console.log('touchY:'+event.touches[0].clientY)
+
+                if(!(this.offsetTop <= event.touches[0].clientY && this.offsetTop+this.offsetHeight >= event.touches[0].clientY &&
+                    this.offsetLeft <= event.touches[0].clientX && this.offsetLeft+this.offsetWidth >= event.touches[0].clientX)){
+                    console.log('notouch:true')
+                    $('#'+"test"+i).css('background-color',data.background[i])
+                    $('#'+"test"+i).attr('src',data.image[i])
+                }
+
+            },false);
+        }
+
+    }
+
+    function BleConnect(wheels){
+        //***
+        //glitter.deviceTypeEnum.Web = glitter.deviceTypeEnum.Android
+        if(glitter.deviceType===glitter.deviceTypeEnum.Web){
+            console.log("inweb")
+            //glitter.changePage('main/Page_Select_Wheels.html', "Page_Select_Wheels", true, {});
+            // glitter.selectCarType="F_14"
+            // carType="F_14"
+            glitter.selectCarType="F_6"
+            //carType="F_14"
+            //glitter.openDiaLog('dialog/Dia_Scan_Ble_Sample.html','Dia_Scan_Ble_Sample',false,true,function(){})
+            glitter.changePage('main/Page_Select_Function.html', "Page_Select_Function", true, {});
+            return
+        }
+        glitter.openDiaLog('dialog/Dia_Scan_Ble.html','Dia_Scan_Ble',false,true,function(){
+            glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+            //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取車型中...")
+            //setTimeout(runExclusive,3000)
+            if(wheels){
+                setTimeout(readCarRow,1000)
+            }else{
+                glitter.changePage('main/Page_Function_Tread_depth.html', "Page_Function_Tread_depth", true, {});
+                glitter.closeDiaLogWithTag('Dia_Loading_notext')
+            }
+
+            //setTimeout(readCarRow,3000)
+            //glitter.changePage('main/Page_Select_Wheels.html', "Page_Select_Wheels", true, {});
+            //glitter.changePage('main/Page_Select_Function.html', "Page_Select_Function", true, {});
+
+        })
+    }
+
+    // var run=0
+    // function runExclusive(){
+    //     var cart = '00'
+    //     if(glitter.CarType === "F"){
+    //         cart = 'B1'
+    //     }
+    //     if(glitter.CarType === "R"){
+    //         cart = 'B2'
+    //     }
+    //     glitter.command.exclusive(cart,function (data) {
+    //         run++
+    //         if(run===2){
+    //             setTimeout(readCarRow,1000)
+    //             run=0
+    //         }else{
+    //             if(data){
+    //                 setTimeout(runExclusive,500)
+    //             }else{
+    //                 run=0
+    //             }
+    //         }
+    //     })
+    // }
+
+    var reRead=0
+    function readCarRow(){
+        /*
+                * 判斷前後車
+                * */
+        var cart = '00'
+        if (glitter.CarType === "F") {
+            cart = '01'
+            data.car_type=["F_6","F_8_224","F_8_242","F_10_244","F_10_2224","F_12","F_14"]
+
+        } else {
+            cart = '02'
+            data.car_type=["R_4","R_6_222","R_8_44","R_8_2222","R_12","R_16"]
+        }
+        glitter.command.readRowWheels(
+            cart,
+            function (result) {
+
+                console.log("carRow:"+result)
+                if(result==="false"){
+                    if(reRead<3){
+                        reRead++
+                        glitter.showToast("第"+reRead+"次")
+                        setTimeout(readCarRow,1000)
+                        return;
+                    }
+                    glitter.closeDiaLog()
+                    reRead=0
+                    //glitter.closeDiaLog()
+                    console.log("藍芽disConnect_home")
+                    glitter.share.bleUtil.disConnect()
+                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, "讀取車型失敗")
+                    return
+                }
+                glitter.closeDiaLog()
+                var carRow_1=result.substring(0,2)
+                var carRow_2=result.substring(2,4)
+                var carRow_3=result.substring(4,6)
+                var carRow_4=result.substring(6,8)
+                //console.log("carRow:"+data.car_type[0])
+                var mCarRow=""
+                for(var i=0;i<data.car_type.length;i++){
+                    var CarType_name=data.car_type[i]
+                    //console.log("carRow:"+glitter.carDefine[CarType_name].carRow[1]+","+glitter.carDefine[CarType_name].carRow[2]+","+glitter.carDefine[CarType_name].carRow[3]+","+glitter.carDefine[CarType_name].carRow[4])
+                    if(glitter.carDefine[CarType_name].carRow[1]===carRow_1 && glitter.carDefine[CarType_name].carRow[2]===carRow_2 &&
+                        glitter.carDefine[CarType_name].carRow[3]===carRow_3 && glitter.carDefine[CarType_name].carRow[4]===carRow_4){
+                        mCarRow=CarType_name
+                    }
+                }
+
+                if(mCarRow===""){
+                    if (glitter.CarType === "F") {
+                        //glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, "拖車無此車型!")
+                        glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, "拖車無此車型")
+                    }else{
+                        //glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, "板車無此車型!")
+                        glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, "板車無此車型")
+                    }
+                }else{
+                    glitter.selectCarType=mCarRow
+                    glitter.setPro("carType",mCarRow)
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, mCarRow)
+                    glitter.changePage('main/Page_Select_Function.html', "Page_Select_Function", true, {});
+                }
+
+                // glitter.closeDiaLog()
+                // if(result){
+                //     //glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '寫入成功')
+                //     glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, writeAllRx)
+                //     writeAllRx=[]
+                // }else{
+                //     glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '輪軸寫入失敗')
+                // }
+
+            })
+    }
+
+
+</script>

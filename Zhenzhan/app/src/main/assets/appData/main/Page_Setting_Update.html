@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+    }
+    .inview {
+        width: 100%;
+        height: calc(100% - 120px);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreate=function(){
+        touchButton("updateButton")
+    }
+
+    lifeCycle.onCreateView=function (){
+        return `
+<div class="inview" style="width: 100%;">
+<div style="height: 50%;width: 50%;display: flex;margin-top: 0;justify-content: center;">
+    <img style="height: 100%;width: 100%;" src="../image/app_img_logo.png">
+</div>
+<div style="height: auto;width: 100%;display: flex;margin-top: -10%;justify-content: center;font-size: 30px;color: #E64E00">ORANGE TPMS</div>
+<div style="height: auto;width: 100%;display: flex;margin-top: 10px;justify-content: center;font-size: 14px">開發者：Orange e;ectronic Co., Ltd.</div>
+<div style="height: auto;width: 100%;display: flex;margin-top: 10px;justify-content: center;font-size: 14px">目前版本 Orange 1.0.1</div>
+<div style="height: 1px;width: 100%;margin-top: 20px;background-color: #A2A2A2"></div>
+<div id="updateButton" style="height: 64px;width: 100%;display: flex;margin-top: 0px;justify-content: left;align-items: center;padding-left: 10%;font-size: 20px">軟體版本檢查</div>
+<div style="height: 1px;width: 100%;background-color: #A2A2A2"></div>
+</div>
+        `
+    }
+
+    function touchButton(button){
+        let obj = document.getElementById(button)
+
+        obj.addEventListener('touchstart', function (event) {
+            console.log('touchstart' + ':' + this.id)
+            $('#' + button).css('background-color', "#E64E00")
+            $('#' + button).css('color', "white")
+        }, false);
+        obj.addEventListener('touchend', function (event) {
+            console.log('touchend' + ':' + this.id)
+            $('#' + button).css('background-color', "white")
+            $('#' + button).css('color', "black")
+
+        }, false);
+        obj.addEventListener('touchmove', function (event) {
+            //console.log('touchmove')
+
+            if(!(this.offsetTop <= event.touches[0].clientY && this.offsetTop+this.offsetHeight >= event.touches[0].clientY &&
+                this.offsetLeft <= event.touches[0].clientX && this.offsetLeft+this.offsetWidth >= event.touches[0].clientX)){
+                console.log('notouch:true')
+                $('#' + button).css('background-color', "white")
+                $('#' + button).css('color', "black")
+            }
+
+        },false);
+    }
+</script>

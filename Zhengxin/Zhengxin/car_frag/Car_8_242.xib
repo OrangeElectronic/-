@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Car_8_242" customModule="Zhengxin" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nVQ-af-yfO">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_8wheels242" translatesAutoresizingMaskIntoConstraints="NO" id="Wb7-zY-WoQ">
+                            <rect key="frame" x="107" y="248" width="200" height="400"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="400" id="Bhf-uS-QCc"/>
+                                <constraint firstAttribute="width" constant="200" id="gY1-in-94G"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="B6P-6g-GP0">
+                            <rect key="frame" x="129.5" y="335.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="Ww8-S1-j2B"/>
+                                <constraint firstAttribute="width" constant="55" id="udX-ot-Da3"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="0eV-P6-iD3">
+                            <rect key="frame" x="229.5" y="450.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="KzU-JL-5fM"/>
+                                <constraint firstAttribute="width" constant="55" id="w9O-v4-5aE"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="G6c-cf-KzI">
+                            <rect key="frame" x="229.5" y="520.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="bJB-J2-Nge"/>
+                                <constraint firstAttribute="height" constant="55" id="bS9-uA-EOZ"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="lTm-UY-xAz">
+                            <rect key="frame" x="129.5" y="520.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="cUF-Vt-yRe"/>
+                                <constraint firstAttribute="width" constant="55" id="lEH-Xb-QD3"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="8G8-2B-4XL">
+                            <rect key="frame" x="204.5" y="450.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="LYs-2p-OnN"/>
+                                <constraint firstAttribute="height" constant="55" id="YBv-UH-BGy"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="4Dw-Ka-eGh">
+                            <rect key="frame" x="154.5" y="450.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="aQ3-P6-7Xo"/>
+                                <constraint firstAttribute="width" constant="55" id="w4Q-g3-doI"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="a0d-d4-skS">
+                            <rect key="frame" x="129.5" y="450.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="cOf-yI-JJW"/>
+                                <constraint firstAttribute="height" constant="55" id="sWg-z2-BFO"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wheel_normal" translatesAutoresizingMaskIntoConstraints="NO" id="uGd-a1-Y4o">
+                            <rect key="frame" x="229.5" y="335.5" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="ETF-LH-t9W"/>
+                                <constraint firstAttribute="width" constant="55" id="hwv-tn-3hh"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="KZ8-wS-wXM"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="4Dw-Ka-eGh" firstAttribute="centerY" secondItem="nVQ-af-yfO" secondAttribute="centerY" constant="30" id="Bu4-YI-Gch"/>
+                        <constraint firstItem="8G8-2B-4XL" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" constant="25" id="ByQ-WQ-3GA"/>
+                        <constraint firstItem="0eV-P6-iD3" firstAttribute="centerY" secondItem="nVQ-af-yfO" secondAttribute="centerY" constant="30" id="CEP-Tk-0qv"/>
+                        <constraint firstItem="B6P-6g-GP0" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" constant="-50" id="FTL-AI-2zg"/>
+                        <constraint firstItem="lTm-UY-xAz" firstAttribute="centerY" secondItem="nVQ-af-yfO" secondAttribute="centerY" constant="100" id="Fbl-pG-ia7"/>
+                        <constraint firstItem="a0d-d4-skS" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" constant="-50" id="Gsl-I1-svZ"/>
+                        <constraint firstItem="G6c-cf-KzI" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" constant="50" id="GxI-EJ-Hiv"/>
+                        <constraint firstItem="0eV-P6-iD3" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" constant="50" id="Hh0-Im-ia0"/>
+                        <constraint firstItem="G6c-cf-KzI" firstAttribute="centerY" secondItem="nVQ-af-yfO" secondAttribute="centerY" constant="100" id="Jll-zq-1Zh"/>
+                        <constraint firstItem="a0d-d4-skS" firstAttribute="centerY" secondItem="nVQ-af-yfO" secondAttribute="centerY" constant="30" id="Kf4-kB-g4m"/>
+                        <constraint firstItem="Wb7-zY-WoQ" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" id="MU9-Qd-DHY"/>
+                        <constraint firstItem="Wb7-zY-WoQ" firstAttribute="centerY" secondItem="nVQ-af-yfO" secondAttribute="centerY" id="TGs-ln-TXy"/>
+                        <constraint firstItem="4Dw-Ka-eGh" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" constant="-25" id="Tic-xD-tPF"/>
+                        <constraint firstItem="uGd-a1-Y4o" firstAttribute="top" secondItem="B6P-6g-GP0" secondAttribute="top" id="ZfX-TJ-6Ti"/>
+                        <constraint firstItem="B6P-6g-GP0" firstAttribute="centerY" secondItem="nVQ-af-yfO" secondAttribute="centerY" constant="-85" id="dEb-yI-BKL"/>
+                        <constraint firstItem="8G8-2B-4XL" firstAttribute="centerY" secondItem="nVQ-af-yfO" secondAttribute="centerY" constant="30" id="gGm-tQ-pla"/>
+                        <constraint firstItem="uGd-a1-Y4o" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" constant="50" id="jpt-Fo-G3F"/>
+                        <constraint firstItem="lTm-UY-xAz" firstAttribute="centerX" secondItem="nVQ-af-yfO" secondAttribute="centerX" constant="-50" id="yX8-oU-bbF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="nVQ-af-yfO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0E9-ZH-okN"/>
+                <constraint firstAttribute="bottom" secondItem="nVQ-af-yfO" secondAttribute="bottom" id="WKN-DJ-HWP"/>
+                <constraint firstItem="nVQ-af-yfO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oub-aP-WeM"/>
+                <constraint firstItem="nVQ-af-yfO" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="yUM-ex-FO3"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="110"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_wheel_normal" width="800" height="800"/>
+        <image name="img_8wheels242" width="800" height="1600"/>
+    </resources>
+</document>

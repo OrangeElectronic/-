@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html{
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/start_ble.png');*/
+        background-repeat: no-repeat;
+        /*background-attachment: fixed;*/
+        background-color: white;
+        /*background-size: 100% 100%;*/
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+    }
+    .viewCenter{
+        align-items: center;
+        justify-content: center;
+    }
+    .carID{
+        align-items: center;border-style: solid;border-color: white;border-width:1px;color: white;font-size: 23px;padding-left: 10px;
+    }
+    .contrast{
+        -webkit-filter:contrast(2);
+    }
+    .single-item2 div{
+        height: 100%;
+    }
+    .title_style{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-size: 20px;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../jslib/touch.js"></script>
+<script type="text/javascript" src="../until/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../until/slick.css"/>
+<link rel="stylesheet" type="text/css" href="../until/slick-theme.css"/>
+<body>
+
+</body>
+</html>
+<script>
+    //輪胎配置 輪胎對調 輸入ID 洩壓/觸發學碼 RX設定 TPMS設定 其他設定
+    //{image:'other_setting_n.png',text:glitter.getLanguage("44")}
+    var button_data = [{image:'tire_setting_n.png',text:glitter.getLanguage("39")},{image:'change_tire_n.png',text:glitter.getLanguage("40")},
+                       {image:'relearn_id_n.png',text:glitter.getLanguage("43")},{image:'tire_relearn_n.png',text:glitter.getLanguage("122")},
+                       {image:'rx_setting_n.png',text:glitter.getLanguage("102")},{image:'setting_tpms_n.png',text:glitter.getLanguage("41")},]
+    switch (glitter.app){
+        case "HT471A":
+            button_data = [{image:'tire_setting_n.png',text:glitter.getLanguage("39")},{image:'relearn_id_n.png',text:glitter.getLanguage("43")},
+                {image:'tire_relearn_n.png',text:glitter.getLanguage("122")},{image:'rx_setting_n.png',text:glitter.getLanguage("102")},
+                {image:'setting_tpms_n.png',text:glitter.getLanguage("41")}]
+            break
+        default:
+            button_data = [{image:'tire_setting_n.png',text:glitter.getLanguage("39")},{image:'change_tire_n.png',text:glitter.getLanguage("40")},
+                {image:'relearn_id_n.png',text:glitter.getLanguage("43")},{image:'tire_relearn_n.png',text:glitter.getLanguage("122")},
+                {image:'setting_tpms_n.png',text:glitter.getLanguage("41")}]
+            break
+    }
+
+    var page_Enable=[false,false]
+
+    //**changeScreen
+    var slickPage=0
+    if(glitter.app==="HT471A"){
+        slickPage=1
+    }
+    // var slickPage=1
+    // if(glitter.app==="HT471A"){
+    //     slickPage=2
+    // }
+    glitter.enter_ID=0
+    glitter.key_In_ID=1
+    glitter.trigger_ID=2
+    glitter.change_ID=3
+
+    //紀錄現在畫面方向，直向:false，橫向:true
+    var changeScreen=false
+    if(glitter.screenPage==="PORTRAIT" || glitter.screenPage===undefined){
+        changeScreen=false
+    }else{
+        changeScreen=true
+    }
+    // // Removing the func from list
+    // glitter.callbacks.remove(glitter.titleButton);
+    // // Function added to list
+    // glitter.callbacks.add(glitter.titleButton);
+
+    lifeCycle.onCreateView=function (){
+        console.log("slickPage_onCreateView:"+changeScreen)
+        return`
+        <div id="carPage" class="single-item2" style="width:100%;height: calc(100% - 50px)">
+
+        </div>
+        `
+    }
+    //改變選擇的標頭，以及紀錄開啟的頁面
+    function changeTitle(position){
+        // if(changeScreen){
+        //     return ``
+        // }
+        console.log("slickPage_changeTitle:"+changeScreen)
+
+        page_Enable=[false,false]
+        //紀錄頁面順序
+        var page_position=[0,0]
+        //預設首頁面
+        switch (glitter.app){
+            case "HT471A":
+                page_Enable[1]=true
+                break
+            default:
+                page_Enable[0]=true
+                break
+        }
+
+        //頁數計算
+        var page_Count=0
+        //預設頁數
+        switch (glitter.app){
+            default:
+                page_Count=1
+                break
+        }
+
+        //有開啟頁面的判斷
+        //1.前車頁面
+        if(glitter.tireShow.carID[1]!==""){
+            page_Enable[0]=true
+        }
+        //2.後車頁面
+        if(glitter.tireShow.carID[2]!==""){
+            page_Enable[1]=true
+
+            switch (glitter.app){
+                case "HT471A":
+                    break
+                default:
+                    page_Count++
+                    page_position[1]=page_Count-1
+                    break
+            }
+        }
+
+        var buttonClick = function (i) {
+            return`${
+                event(function() {
+                    glitter.titleButton(page_position[i],'setting')
+                    //glitter.callbacks.fire(page_position[i],'setting');
+                })
+            }`
+        }
+
+        //width: 50%;
+        return `
+            ${page_Enable[0] ? `<div class="title_style" onclick="${buttonClick(0)}"
+                 style="flex: 1;height:100%;background:${page_position[0]===position ? `#FF910B` : `coral`};color:white">${glitter.getLanguage("26")}</div>`:``}
+            ${page_Enable[1] ? `<div class="title_style" onclick="${buttonClick(1)}"
+                 style="flex: 1;height:100%;background:${page_position[1]===position ? `#FF910B` : `coral`};color:white">${glitter.getLanguage("27")}</div>`:``}
+            `
+    }
+
+    // if(glitter.share.titleButtonCallback.length>=2){
+    //     console.log("titleButtonCallback:range max")
+    //     glitter.share.titleButtonCallback.splice(1,1)
+    // }
+
+    function selectView(number,bottom){
+        //class="viewCenter"
+        return`
+        <div id="carIDTitle" style="width:100%;height:50px;display: flex;background-color: gray;font-size: 25px;color: white;align-items: center;">
+                <div style="width: 10px;"></div>
+                <div style="width: 50px;display: flex;align-items: center;">${number===1 ? glitter.getLanguage("26") : glitter.getLanguage("27")}</div>
+                <div style="width: 20px;"></div>
+                <img style="width: 50px;height:50px;" src="../image/${number===1 ? 'img_front.png' : 'rear_white.png'}">
+                <div id="settingCarID${number}" class="carID" style="display:flex;width: 120px;height:40px;margin-left:10px;" onclick="enterCarID(${number})"
+                    ontouchstart="${event(function (e) {$(e).css("background-color", "#BEBEBE")})}"
+                    ontouchend="${event(function (e) {$(e).css("background-color", "transparent")})}">
+                    ${glitter.tireShow === undefined ? '' : glitter.tireShow.carID[number]}</div>
+                <div class="viewCenter" style="display:flex;color: white;padding-left:10px;font-size: 14px;">${glitter.tireShow === undefined ? '' : glitter.tireShow.connectRSSI}</div>
+        </div>
+        <div id="settingButton${number}" class="viewCenter" style="width: 100%;height:auto;overflow-y: scroll;${bottom ? `margin-bottom: 5px;`:``}"></div>
+        `
+    }
+
+    function createPage(){
+        changeTitle()
+
+        //.single-item2設定與建立slick
+        var allView=``
+        var viewID=""
+        for(var i=0;i<2;i++){
+            if(i===0 && page_Enable[0]){
+                //viewID = "tireShowPage1"
+                allView += selectView(1,true)
+            }if(i===1 &&page_Enable[1]){
+                //viewID = "tireShowPage2"
+                allView += selectView(2,true)
+            }
+        }
+
+        $('#carPage').html(`
+                <div id="${viewID}" style="height: 100%;width:100%;overflow-y: scroll;">
+                ` + (allView) + `
+                    <div style="width:100%;height:1px;background-color:gray;"></div>
+                    <div style="width: 100%;height: 50px;display: flex;align-items: center;font-size: 20px;"
+                         onclick="${event(function (e) { glitter.changePage('page/Page_Setting_Other.html', "Page_Setting_Other", true, {})})}"
+                         ontouchstart="${event(function (e) {$(e).css("background-color", "#BEBEBE")})}"
+                         ontouchend="${event(function (e) {$(e).css("background-color", "transparent")})}">
+                        <div style="width: 10px;"></div>
+                        ${glitter.getLanguage("44")}
+                    </div>
+                    <div style="width:100%;height:1px;background-color:gray;"></div>
+                </div>`
+        );
+    }
+
+    function touchMove(e){
+        //console.log("touchMove:"+e.id)
+        document.getElementById(e.id).addEventListener('touchmove',function (event){
+            if(!(this.offsetTop <= event.touches[0].clientY && this.offsetTop+this.offsetHeight >= event.touches[0].clientY &&
+                this.offsetLeft <= event.touches[0].clientX && this.offsetLeft+this.offsetWidth >= event.touches[0].clientX)){
+                $(this).removeClass('contrast')
+            }
+        },false)
+    }
+    function settingButtonView(){
+
+        function button(image,text,car){
+
+            var imageHTML = `
+<img style="height: 80px;width: auto;" src="../image/${image}">
+<div style="font-size: 16px;text-align:center; ">${text}</div>`
+
+            var touchEvent=`ontouchstart="${event(function (e){ $(e).addClass('contrast') })}"
+                            ontouchend="${event(function (e){ $(e).removeClass('contrast') })}"
+                            ontouchmove="${event(function (e){touchMove(e)})}"`
+
+            var html = `
+<div id="${image.replace(".png","")}" class="viewCenter" style="display:flex;flex-direction: column;width: 50%;height: 100%;"
+     ${image==='' || text==='' ? '' : `onclick="changeFunction('${text}','${car}')" ${touchEvent}`}>
+     ${image==="" || text==="" ? `` : imageHTML}
+</div>`
+            return html
+        }
+        //var allView = ``
+        // //因相除範圍會有問題，所以運算後轉成整數
+        // for(var i=0;i<parseInt((button_data.length/2).toString());i++){
+        //     allView += button(button_data[i*2].image,button_data[i*2].text,button_data[i*2+1].image,button_data[i*2+1].text)
+        // }
+        // //如果數量為奇數，需再額外產生
+        // if(button_data.length%2!==0){
+        //     allView += button(button_data[button_data.length-1].image,button_data[button_data.length-1].text,"","")
+        // }
+
+        console.log("slickPage_ButtonView:"+changeScreen)
+
+        function allView(car){
+            var allView = ``
+
+            var lineCount=3
+            if(changeScreen){
+                lineCount=6
+            }
+            //剩餘位置數
+            var last_Count=button_data.length%lineCount
+            var have_Count=button_data.length-last_Count
+            for(var i=0;i<have_Count/lineCount;i++){
+                var view=``
+                for(var j=0;j<lineCount;j++){
+                    view+=button(button_data[i*lineCount+j].image,button_data[i*lineCount+j].text,car)
+                }
+                allView+=`
+<div style="height: auto;width: 100%;display: flex;margin-top: 5px;">
+${view}
+</div>`
+            }
+            var last_View=``
+            if(last_Count!==0){
+                for (var i=0;i<lineCount;i++){
+                    if(i>last_Count-1){
+                        last_View+=button("","",car)
+                    }else{
+                        last_View+=button(button_data[have_Count+i].image,button_data[have_Count+i].text,car)
+                    }
+                }
+                allView+=`
+<div style="height: auto;width: 100%;display: flex;margin-top: 5px;">
+${last_View}
+</div>`
+                return allView
+            }
+        }
+
+        $('#settingButton1').html(allView(1))
+        $('#settingButton2').html(allView(2))
+    }
+
+    function enterCarID(number){
+        //|| glitter.tireShow.carID===""
+        function keyboard(){
+            if(glitter.tireShow===undefined){
+                return
+            }
+
+            glitter.openDiaLog('dialog/Dia_Keyboard_Proportional.html', 'Dia_Keyboard_Proportional', true, true, {
+                callback: function (data) {
+                    // if(idVerify(data)){
+                    //     $('#' + id).val(data)
+                    // }
+                    console.log("writeCarID:"+data)
+                },
+                wordMax:4,
+                keyTextSize:30,
+                data: glitter.tireShow.carID[number].replace(/ /g, ''),
+                writeC:function (data) {
+                    if(data.replace(/\n/g,"").length === 4){
+                        glitter.closeDiaLogWithTag('Dia_Keyboard_Proportional')
+                        glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+                        //console.log("writeCarID:"+data.replace(/\n/g,""))
+                        writeCarID(number,data.replace(/\n/g,""))
+                    }
+                }
+            })
+        }
+
+        glitter.runJsInterFace("Glitter_BLE_IsConnect", {}, function (response) {
+            if (response.result) {
+                keyboard()
+            }else{
+                glitter.showToast(glitter.getLanguage("111"))
+            }
+        })
+
+    }
+
+    function writeCarID(car,carID){
+        var ascii_CarID = "";
+        for(var i=0;i<carID.length;i++){
+            //charCodeAt將字串轉為ascii的十進位
+            ascii_CarID +=  carID.substring(i,i+1).charCodeAt().toString(16)
+        }
+        console.log("ascii_CarID:"+ascii_CarID)
+
+        if(car===1){
+            car="01"
+        }else if(car===2){
+            car="02"
+        }
+        glitter.command.writeCarID(
+            car,ascii_CarID,
+            function (result) {
+
+                if(result===false){
+                    //**
+                    glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+
+                    //readAllCommand()
+                    //return
+                }else{
+                    glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                    glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+                    //var code = result.charCodeAt();
+                    glitter.tireShow.carID[parseInt(car)] = carID
+                    $('#settingCarID'+parseInt(car)).text(carID)
+                }
+
+                glitter.updateMemmory({mode_data:"設定-板車ID"+car,result_data:(result!=="false" ? "success":"fail")})
+                //return
+
+            })
+    }
+
+    function changeFunction(page,car){
+        //console.log("changePage:"+page)
+
+        function changePageControl(){
+            switch (glitter.app){
+                case "HT471A":
+                    if(page === button_data[0].text){
+                        glitter.changePage('page/Page_Setting_TirePositionSet.html', "Page_Setting_TirePositionSet", true, {})
+                    }else if(page === button_data[1].text){
+                        glitter.enter_ID=glitter.key_In_ID
+                        glitter.changePage('page/Page_Setting_Enter_ID.html', "Page_Setting_Enter_ID", true, {})
+                    }else if(page === button_data[2].text){
+                        glitter.enter_ID=glitter.trigger_ID
+                        glitter.changePage('page/Page_Setting_Enter_ID.html', "Page_Setting_Enter_ID", true, {})
+                    }else if(page === button_data[3].text){
+                        glitter.changePage('page/Page_Setting_RxSet.html', "Page_Setting_RxSet", true, {})
+                    }else if(page === button_data[4].text){
+                        glitter.changePage('page/Page_Setting_TPMS.html', "Page_Setting_TPMS", true, {})
+                    }
+                    break
+                default:
+                    if(page === button_data[0].text){
+                        glitter.changePage('page/Page_Setting_TirePositionSet.html', "Page_Setting_TirePositionSet", true, {})
+                    }else if(page === button_data[1].text){
+                        glitter.enter_ID=glitter.change_ID
+                        glitter.changePage('page/Page_Setting_Enter_ID.html', "Page_Setting_Enter_ID", true, {})
+                    }else if(page === button_data[2].text){
+                        glitter.enter_ID=glitter.key_In_ID
+                        glitter.changePage('page/Page_Setting_Enter_ID.html', "Page_Setting_Enter_ID", true, {})
+                    }else if(page === button_data[3].text){
+                        glitter.enter_ID=glitter.trigger_ID
+                        glitter.changePage('page/Page_Setting_Enter_ID.html', "Page_Setting_Enter_ID", true, {})
+                    }else if(page === button_data[4].text){
+                        glitter.changePage('page/Page_Setting_TPMS.html', "Page_Setting_TPMS", true, {})
+                    }
+                    break
+            }
+        }
+
+        //console.log("glitter.carType:"+car)
+        //判斷前後車
+        switch (glitter.app){
+           case "HT471A":
+               glitter.carType = 2
+                break
+           default:
+               glitter.carType = parseInt(car)
+                break
+        }
+
+        if (glitter.demo) {
+            if (page === button_data[0].text) {
+                glitter.changePage('page/Page_Setting_TirePositionSet.html', "Page_Setting_TirePositionSet", true, {})
+            } else if (page === button_data[1].text) {
+                glitter.enter_ID = glitter.change_ID
+                glitter.changePage('page/Page_Setting_Enter_ID.html', "Page_Setting_Enter_ID", true, {})
+            } else if (page === button_data[2].text) {
+                glitter.enter_ID = glitter.key_In_ID
+                glitter.changePage('page/Page_Setting_Enter_ID.html', "Page_Setting_Enter_ID", true, {})
+            } else if (page === button_data[3].text) {
+                glitter.enter_ID = glitter.trigger_ID
+                glitter.changePage('page/Page_Setting_Enter_ID.html', "Page_Setting_Enter_ID", true, {})
+            } else if (page === button_data[4].text) {
+                glitter.changePage('page/Page_Setting_RxSet.html', "Page_Setting_RxSet", true, {})
+            } else if (page === button_data[5].text) {
+                glitter.changePage('page/Page_Setting_TPMS.html', "Page_Setting_TPMS", true, {})
+            }
+            return
+        }
+
+        glitter.runJsInterFace("Glitter_BLE_IsConnect", {}, function (response) {
+            if (response.result) {
+                changePageControl()
+            } else {
+                glitter.showToast(glitter.getLanguage("111"))
+            }
+        })
+
+    }
+    function touchButton(){
+        for(var i=0;i<button_data.length;i++){
+            touchChange(button_data[i].image.replace(".png",""))
+        }
+    }
+
+    lifeCycle.onCreate=function (){
+        //Call back when the onCreateView function is executed
+        // var carID="AB12"
+        // var ascii_CarID = "";
+        // for(var i=0;i<carID.length;i++){
+        //     //charCodeAt將字串轉為ascii的十進位
+        //     ascii_CarID +=  carID.substring(i,i+1).charCodeAt()
+        // }
+        // console.log("ascii_CarID:"+ascii_CarID)
+
+        //glitter.select_position = 0
+
+        createPage()
+        settingButtonView()
+
+        //**changeScreen
+        //glitter.titleButton(0,"setting")
+        //glitter.callbacks.fire(0,'setting');
+
+        //console.log("titleButtonSetting:1")
+        //glitter.homeTitleChange(0,"setting")
+        //console.log("titleButtonSetting:2")
+        //touchButton()
+
+    }
+
+    glitter.share.orientationPageCallback.push( {callback:function (screen) {
+            console.log("setTire_orientationPage:"+screen)
+            if(screen==="PORTRAIT"){
+                changeScreen=false
+            }else{
+                changeScreen=true
+            }
+            console.log("slickPage0:"+changeScreen)
+
+            $('body').html(lifeCycle.onCreateView())
+            console.log("slickPage1:"+changeScreen)
+
+            createPage()
+            console.log("slickPage2:"+changeScreen)
+
+            settingButtonView()
+        },tag:"Page_Setting_Car"})
+
+</script>

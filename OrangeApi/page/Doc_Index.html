@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+    <link href="../glitterBundle/bootstrap2.css" rel="stylesheet">
+    <link href="../fontawesome-free-5.15.4-web/css/all.min.css" rel="stylesheet">
+    <link href="Doc_Index.css" rel="stylesheet">
+</head>
+<style>
+    html {
+        width: calc(100%);
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        background-color: #2B333F;
+    }
+
+    body {
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+        color: lightgray;
+    }
+    .folderClose{
+        min-height: 30px;
+    }
+</style>
+<body >
+<script>
+    var defaultFrag = (glitter.getUrlParameter('frag')) ? (glitter.getUrlParameter('frag')) : '../frag/Frag_HSNTSN.html'
+    var item = glitter.share.naviGation
+    lifeCycle.onCreate = function () {
+    item.map(function (data) {
+            $('#itemList').append(`<div class="folderClose ${(data.items.filter(function (dd) {
+                return dd.link === defaultFrag
+            }).length > 0) ? 'folderOpen' : 'folderOpen'}"  >
+<div class="folder" onclick="$(this).parent().toggleClass('folderOpen');$(this).children('i').toggleClass('open');"><i class="fas fa-folder-open close ${(data.items.filter(function (dd) {
+                return dd.link === defaultFrag
+            }).length > 0) ? 'open' : ''}"></i>${data.title}</div>
+${glitter.print(function () {
+                var html = ''
+                data.items.map(function (data) {
+                    html += `<div class="item ${(data.link === defaultFrag) ? 'doOpen' : ''}" onclick="
+${event(function (e) {
+                        if(data.link.indexOf('github')!==-1){
+                            glitter.openNewTab('https://github.com/sam38124')
+                            return
+                        }
+
+                        $('.doOpen').removeClass('doOpen');$(e).addClass('doOpen');
+                        glitter.changeFrag(document.getElementById('frag'),data.link,'doc',{})
+                        glitter.setUrlParameter('frag',data.link)
+                        if(closeNavigation){
+                            $('.navBar').toggle();
+                        }
+                    })}
+
+"><i class="fas fa-file-alt doIcon" ></i>${data.title}</div>`
+                })
+                return html
+            })}
+</div>`)
+        })
+    glitter.changeFrag(document.getElementById('frag'), (defaultFrag) ? defaultFrag : '../frag/Frag_HSNTSN.html', 'Frag_HSNTSN', {})
+    }
+    var closeNavigation=false
+    lifeCycle.onCreateView = function () {
+        return `
+<div style="height: 60px;background-image:linear-gradient(45deg, #233659 325px, #4361c2 10%);display: flex;align-items: center;width: 100%;">
+<img src="../img/orange.png" style="height: 40px;width: auto;margin-left: 20px;border-radius: 10%;background-color: white;padding: 5px;">
+<h3 style="color:  white;font-size: 18px;margin-left: 10px;margin-top: 0;margin-bottom: 0;letter-spacing: 1px;">Orange Api Docs 1.2</h3>
+<div style="flex: auto;"></div>
+<i class="fas fa-bars d-flex d-sm-none" style="color: white;font-size: 20px;height: 100%;display: flex;align-items: center;justify-content: center;margin-right: 15px;" onclick="$('.navBar').toggle();closeNavigation=true;"></i>
+</div>
+<div class="h-100 d-flex">
+<div class="navBar col-0  col-lg-2">
+<div id="itemList" style="width: 100%;height: calc(100% - 40px);overflow-y: scroll;">
+</div>
+</div>
+<div id="frag" class="h-100 " style="flex: auto;"></div>
+</div>
+
+    `
+    }
+</script>
+</body>
+</html>

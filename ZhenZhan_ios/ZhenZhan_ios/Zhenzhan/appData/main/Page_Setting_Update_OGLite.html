@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    html{
+        height: 100%;
+        width: 100%;
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        overflow-x: hidden;
+    }
+    .inview {
+        width: 96%;
+        height: calc(100% - 120px);
+        display: flex;
+
+        align-items: center;
+        flex-direction: column;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .selectBack{
+        width: 60px;
+        height: 30px;
+        border-radius: 100px;
+        border-style: solid;
+        border-color: black;
+        background-color: #314A56;
+        border-width: 1px;
+    }
+    .selectCircle{
+        width: 30px;
+        height: 30px;
+        border-radius: 100px;
+        border-style: solid;
+        border-color: black;
+        background-color: white;
+        border-width: 1px;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    //data=[{1:["Device name","O-Genius Lite"],2:["MCU version","1.0"],3:["Software version","2020042801"],4:["Database version","2020042801"]}]
+    var data ={}
+    var open=true
+    data.device=["Check for updates","Automatic Update"]
+    data.version=["12321321312132443434","O-GeniusLite1111111111116","1.0","2020042801","2020042801"]
+    lifeCycle.onCreate=function(){
+        //touchButton("updateButton")
+        $('.selectBack').click(function () {
+            console.log("Opne:true")
+            if(open){
+                setTimeout(reduceCircle,500)
+                //$('.selectCircle').css("margin-left","auto")
+                open=false
+            }else{
+                setTimeout(moveCircle,500);
+                //$('.selectCircle').css("margin-left","0px")
+                open=true
+            }
+
+        })
+    }
+
+    function reduceCircle(){
+        $('.selectBack').css("background-color","#6B7B85")
+        $('.selectCircle').css("margin-left","-1px")
+    }
+
+    function moveCircle(){
+        $('.selectBack').css("background-color","#314A56")
+        $('.selectCircle').css("margin-left","auto")
+        $('.selectCircle').css("margin-right","-1px")
+    }
+
+    lifeCycle.onCreateView=function (){
+        //console.log("version:"+data.)
+        var version=``
+        var button=`<div class="selectBack" style="position: relative;z-index: 1;">
+    <div id="scrollCircle" class="selectCircle" style="margin-top:-1px;margin-left: auto;margin-right: -1px;z-index: 2"></div>
+    </div>`
+        for(var i=0;i<data.device.length;i++){
+            version +=`<div id="updateButton" style="height: 64px;width: 100%;display: flex;margin-top: 0px;justify-content: left;align-items: center;flex-direction:row;font-size: 20px">
+<div style="height: auto;width:70%;white-space:pre-line;overflow:hidden;word-break:break-all;margin-left:5%;margin-right:5%;">`+data.device[i]+`</div>
+<div style="height: auto;width:30%;display:flex;justify-content:center;align-items:center;margin-left:5%;margin-right:5%;">
+    `+(i==1 ? button : '')+`
+</div>
+</div>
+<div style="height: 1px;width: 100%;background-color: #A2A2A2"></div>`
+        }
+
+        // <div style="width: 3%"></div>
+        return `
+<div class="inview">
+<div style="height: 30%;width: 100%;display:flex;flex-direction: row;margin-top: 0;">
+    <div style="height: 100%;width: 70%;background-image: url(../image/img_logo.png);background-repeat: no-repeat;background-size: 100% 100%;"></div>
+    <div style="height: 100%;width: 30%;display:flex;align-items: center;font-size: 20px">OG Lite 1.01<br>32MB</div>
+</div>
+<div style="height: 1px;width: 100%;background-color: #A2A2A2"></div>
+`+version+`
+</div>
+        `
+    }
+
+    function touchButton(button){
+        let obj = document.getElementById(button)
+
+        obj.addEventListener('touchstart', function (event) {
+            console.log('touchstart' + ':' + this.id)
+            $('#' + button).css('background-color', "#E64E00")
+            $('#' + button).css('color', "white")
+        }, false);
+        obj.addEventListener('touchend', function (event) {
+            console.log('touchend' + ':' + this.id)
+            $('#' + button).css('background-color', "white")
+            $('#' + button).css('color', "black")
+
+        }, false);
+        obj.addEventListener('touchmove', function (event) {
+            //console.log('touchmove')
+
+            if(!(this.offsetTop <= event.touches[0].clientY && this.offsetTop+this.offsetHeight >= event.touches[0].clientY &&
+                this.offsetLeft <= event.touches[0].clientX && this.offsetLeft+this.offsetWidth >= event.touches[0].clientX)){
+                console.log('notouch:true')
+                $('#' + button).css('background-color', "white")
+                $('#' + button).css('color', "black")
+            }
+
+        },false);
+    }
+</script>

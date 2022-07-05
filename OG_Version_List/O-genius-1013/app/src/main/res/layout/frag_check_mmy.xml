@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/setup2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/solid"
+            android:gravity="center"
+            android:text="@string/Next"
+            android:textColor="@android:color/white" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+
+            <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="jz.475"
+                    android:textColor="@color/Black"
+                    android:textSize="17sp" />
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/Select_CAR_Make"
+                        android:textColor="@color/color_black"
+                        android:textSize="17sp" />
+
+                <Spinner
+                        android:id="@+id/make"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/textView24"
+                        android:layout_gravity="center_vertical"
+                        android:background="@mipmap/img_dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/Select_CAR_Model"
+                        android:textColor="@color/color_black"
+                        android:textSize="17sp" />
+
+                <Spinner
+                        android:id="@+id/model"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/textView25"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:background="@mipmap/img_dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/Select_Year"
+                        android:textColor="@color/color_black"
+                        android:textSize="17sp" />
+
+                <Spinner
+                        android:id="@+id/year"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/textView28"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:background="@mipmap/img_dropdown" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

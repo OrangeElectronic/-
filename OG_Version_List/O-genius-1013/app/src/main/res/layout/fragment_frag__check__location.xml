@@ -1,0 +1,352 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.orange.tpms.ue.kt_frag.Frag_Check_Location"
+                android:background="@android:color/white">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/color_FF314A56"
+            android:gravity="center" android:id="@+id/tit">
+
+        <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/color_white"
+                android:text=""
+                android:textSize="20sp" android:gravity="center"/>
+
+    </RelativeLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp" android:layout_alignParentBottom="true" android:id="@+id/bt">
+        <Button
+                android:id="@+id/bt_menue"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/app_menue"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_scan_tips"
+                android:textColor="@color/color_white"
+                android:background="@color/buttoncolor"
+                app:layout_widthPercent="35%w"
+                android:layout_weight="1" android:layout_marginEnd="0.5dp" android:textSize="17sp"/>
+        <Button
+                android:id="@+id/bt_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/app_sensor_info_read"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_scan_tips"
+                android:textColor="@color/color_white"
+                android:background="@color/buttoncolor"
+                app:layout_widthPercent="35%w" android:layout_weight="1" android:layout_marginStart="0.5dp"
+                android:textSize="17sp"/>
+    </LinearLayout>
+    <com.de.rocket.ue.layout.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" android:id="@+id/li"
+            android:layout_above="@id/bt" android:padding="10dp">
+
+        <com.de.rocket.ue.layout.PercentRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="10%h"
+                app:layout_widthPercent="90%w">
+
+            <TextView
+                    android:id="@+id/tv_fr_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_black"
+                    android:gravity="center"
+                    android:text="LF"
+                    app:layout_widthPercent="20%w" android:textSize="20sp"/>
+
+            <TextView
+                    android:id="@+id/tv_fr_id"
+                    android:layout_toEndOf="@+id/tv_fr_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_black"
+                    android:gravity="center"
+                    tools:text="@string/app_name"
+                    app:layout_widthPercent="60%w"
+                    app:layout_textSizePercent="50%h" android:textSize="20sp"/>
+
+            <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/iv_fr_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/iv_check_status_selecter"
+                    app:layout_widthPercent="100%h"/>
+
+            <!--上边框-->
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/color_black"/>
+            <!--左边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--左一边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_toEndOf="@+id/tv_fr_left"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--右边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--右一边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_toStartOf="@+id/iv_fr_status"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+        </com.de.rocket.ue.layout.PercentRelativeLayout>
+
+        <com.de.rocket.ue.layout.PercentRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="10%h"
+                app:layout_widthPercent="90%w">
+
+            <TextView
+                    android:id="@+id/tv_rr_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_black"
+                    android:gravity="center"
+                    android:text="RF"
+                    app:layout_widthPercent="20%w" android:textSize="20sp"/>
+
+            <TextView
+                    android:id="@+id/tv_rr_id"
+                    android:layout_toEndOf="@+id/tv_rr_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_black"
+                    android:gravity="center"
+                    tools:text="@string/app_name"
+                    app:layout_widthPercent="60%w"
+                    app:layout_textSizePercent="50%h" android:textSize="20sp"/>
+
+            <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/iv_rr_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    
+                    android:src="@drawable/iv_check_status_selecter"
+                    app:layout_widthPercent="100%h"/>
+
+            <!--上边框-->
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/color_black"/>
+            <!--左边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--左一边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_toEndOf="@+id/tv_rr_left"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--右边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--右一边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_toStartOf="@+id/iv_rr_status"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+        </com.de.rocket.ue.layout.PercentRelativeLayout>
+
+        <com.de.rocket.ue.layout.PercentRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="10%h"
+                app:layout_widthPercent="90%w">
+
+            <TextView
+                    android:id="@+id/tv_rl_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_black"
+                    android:gravity="center"
+                    android:text="RR"
+                    app:layout_widthPercent="20%w" android:textSize="20sp"/>
+
+            <TextView
+                    android:id="@+id/tv_rl_id"
+                    android:layout_toEndOf="@+id/tv_rl_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_black"
+                    android:gravity="center"
+                    tools:text="@string/app_name"
+                    app:layout_widthPercent="60%w"
+                    app:layout_textSizePercent="50%h" android:textSize="20sp"/>
+
+            <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/iv_rl_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    
+                    android:src="@drawable/iv_check_status_selecter"
+                    app:layout_widthPercent="100%h"/>
+
+            <!--上边框-->
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/color_black"/>
+            <!--左边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--左一边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_toEndOf="@+id/tv_rl_left"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--右边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--右一边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_toStartOf="@+id/iv_rl_status"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+        </com.de.rocket.ue.layout.PercentRelativeLayout>
+
+        <com.de.rocket.ue.layout.PercentRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="10%h"
+                app:layout_widthPercent="90%w">
+
+            <TextView
+                    android:id="@+id/tv_fl_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_black"
+                    android:gravity="center"
+                    android:text="LR"
+                    app:layout_widthPercent="20%w" android:textSize="20sp"/>
+
+            <TextView
+                    android:id="@+id/tv_fl_id"
+                    android:layout_toEndOf="@+id/tv_fl_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_black"
+                    android:gravity="center"
+                    tools:text="@string/app_name"
+                    app:layout_widthPercent="60%w"
+                    app:layout_textSizePercent="50%h" android:textSize="20sp"/>
+
+            <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/iv_fl_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    
+                    android:src="@drawable/iv_check_status_selecter"
+                    app:layout_widthPercent="100%h"/>
+
+            <!--上边框-->
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/color_black"/>
+            <!--左边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--左一边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_toEndOf="@+id/tv_fl_left"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--右边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+            <!--右一边框-->
+            <View
+                    android:layout_width="0.5dp"
+                    android:layout_toStartOf="@+id/iv_fl_status"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_black"/>
+
+        </com.de.rocket.ue.layout.PercentRelativeLayout>
+
+        <View
+                android:layout_width="wrap_content"
+                app:layout_widthPercent="90%w"
+                android:layout_height="0.5dp"
+                android:background="@color/color_black"/>
+
+    </com.de.rocket.ue.layout.PercentLinearLayout>
+    <com.orange.tpms.widget.CarWidget
+            android:id="@+id/cw_car"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tit" android:layout_above="@id/li"/>
+
+</RelativeLayout>

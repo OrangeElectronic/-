@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<meta name="viewport" content="width=device-width">
+<head>
+    <meta charset="UTF-8">
+    <meta content="user-scalable=yes"  name="viewport" />
+    <title>Title</title>
+
+</head>
+<style>
+    html{
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/start_ble.png');*/
+        background-repeat: no-repeat;
+        /*background-attachment: fixed;*/
+        background-color: black;
+        /*background-size: 100% 100%;*/
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+    }
+    .hintPlace {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        margin-left: 40px;
+        margin-right: 40px;
+        height: 100vh;
+    }
+    .single-item div{
+        height: 100%;
+    }
+    .title_style{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-size: 20px;
+    }
+    .text_Center{
+        display:flex;
+        /*justify-content:center;*/
+        align-items:center;
+    }
+    .tireSensor{
+        background-image: url(../image/portrait_btn_001_n.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    .odd_tireSensor{
+        /*background-image: url(../image/portrait_btn_001_n.png);*/
+        background-image: url(../image/portrait_btn_018_h.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    .unit{
+        display: flex;
+        width: calc(100% - 15px);
+        height: 25%;
+        padding-left: 15px;
+        color: white;
+        font-size: 16px;
+        align-items:center;
+        /*flex-direction: column;*/
+    }
+    .unit_Value{
+        display: flex;
+        width: 25px;
+        height: 25px;
+        color: white;
+        font-size: 20px;
+    }
+    .rawData_textSize{
+        font-size: 18px;
+    }
+    .noselect {
+        -moz-user-select: auto;
+        -webkit-user-select: auto;
+        -ms-user-select: auto;
+        user-select: auto;
+    }
+</style>
+
+<script src="../glitterBundle/extension.js"></script>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<!--<script type="text/javascript" src="../until/jquery-3.6.0.min.js"></script>-->
+<script type="text/javascript" src="../until/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../until/slick.css"/>
+<link rel="stylesheet" type="text/css" href="../until/slick-theme.css"/>
+<body>
+</body>
+</html>
+<script>
+
+    var RawData = {titleText:"Raw Data",titleBackground:'coral',titleColor:'white'}
+    //var backgroundColor = ["orange","white"]
+    //執行後車的判斷
+    var truckRear_Enable=false
+    //前車 後車 工程模式
+    var page_Enable=[false,false,false]
+    //紀錄現在滑動Page位置
+    var slickPage=0
+    //紀錄現在畫面方向，直向:false，橫向:true
+    var changeScreen=false
+    if(glitter.screenPage==="PORTRAIT" || glitter.screenPage===undefined){
+        changeScreen=false
+    }else{
+        changeScreen=true
+    }
+    var audio = new Audio('../raw/translate_tts_tw_2.mp3');
+    // // Removing the func from list
+    // glitter.callbacks.remove(glitter.titleButton);
+    // // Function added to list
+    // glitter.callbacks.add(glitter.titleButton);
+
+    // autoplay
+    lifeCycle.onCreateView = function () {
+        return `
+          <div id="title" style="width:100%;${changeScreen ? ``:`height:60px`};display: flex;">
+               `+changeTitle(0)+`
+          </div>
+          <audio id="myAudio" src="../raw/translate_tts_tw_2.mp3" controls="controls" autoplay="autoplay" loop="true" hidden="true" muted="true">
+<!--&lt;!&ndash;            <source src="horse.ogg" type="audio/ogg">&ndash;&gt;-->
+<!--            <source src="../raw/translate_tts_tw_2.mp3" type="audio/mpeg">-->
+          </audio>
+<!--          <button id="playSoundButton" style="display: none;width: 0px;height: 0px;" onclick="playSound()"></button>-->
+          <div class="single-item" style="width:100%;height: calc(100% - ${changeScreen ? `60px`:`110px`})"></div>
+          `
+    }
+
+    //改變選擇的標頭，以及紀錄開啟的頁面
+    function changeTitle(position){
+        if(changeScreen){
+            return ``
+        }
+
+        //var page_Enable=[true,false,false]
+        page_Enable=[false,false,false]
+        //紀錄頁面順序
+        var page_position=[0,0,0]
+        //預設首頁面
+        switch (glitter.app){
+            case "HT471A":
+                page_Enable[1]=true
+                break
+            default:
+                page_Enable[0]=true
+                break
+        }
+
+        // var page_Count=page_Enable.filter(function (value, index, arrSelf) {
+        //    value===true
+        // }).length
+        //頁數計算
+        var page_Count=0
+        //預設頁數
+        switch (glitter.app){
+            default:
+                page_Count=1
+                break
+        }
+
+        //有開啟頁面的判斷
+        //1.前車頁面
+        if(glitter.tireShow.carID[1]!==""){
+            page_Enable[0]=true
+            // page_Count++
+            // page_position[0]=page_Count-1
+        }
+        //2.後車頁面
+        if(glitter.tireShow.carID[2]!==""){
+            page_Enable[1]=true
+            switch (glitter.app) {
+                case "HT471A":
+                    break
+                default:
+                    page_Count++
+                    page_position[1] = page_Count - 1
+                    break
+            }
+        }
+        //3.工程模式頁面
+        if(glitter.setSystem.engineer==="true"){
+            page_Enable[2]=true
+            page_Count++
+            page_position[2]=page_Count-1
+        }
+        //console.log("changeTitle:"+JSON.stringify(page_position)+" , "+position)
+
+        //width: 50%;
+
+        var buttonClick = function (i) {
+            return`${
+                event(function() {
+                    //glitter.callbacks.fire(page_position[i],'home');
+                    glitter.titleButton(page_position[i],'home')
+                })
+            }`
+        }
+
+        return `
+            ${page_Enable[0] ? `<div class="title_style" onclick="${buttonClick(0)}" style="flex: 1;height:100%;background:${page_position[0]===position ? `#FF910B` : `coral`};color:white">${glitter.getLanguage(glitter.tireShow.titleText[0])}</div>` :``}
+            ${page_Enable[1] ? `<div class="title_style" onclick="${buttonClick(1)}" style="flex: 1;height:100%;background:${page_position[1]===position ? `#FF910B` : `coral`};color:white">${glitter.getLanguage(glitter.tireShow.titleText[1])}</div>`:``}
+            ${page_Enable[2] ? `<div class="title_style" onclick="${buttonClick(2)}" style="flex: 1;height:100%;background:${page_position[2]===position ? `#FF910B` : `coral`};color:white">${RawData.titleText}</div>`:``}
+            `
+    }
+    //標題按鈕做切換頁面
+    // glitter.share.titleButtonCallback.push
+    glitter.share.titleButtonCallback[0] = ({click_callback:function (position) {
+        //glitter.titleButton = function(position){
+            console.log("titleButton:"+position)
+            $('.single-item').slick('slickGoTo',position)
+        //**changeScreen
+        //slickPage = position
+        //}
+    },pageTag:"home"})
+
+    // <iframe style="height: 50%;width:50%;" src=`+hint[i]+`></iframe>
+    lifeCycle.onCreate = function () {
+        //在開啟此頁面時，先創建輪胎狀態
+        glitter.home_init(function () {
+            glitter.share.home.updatePage(glitter.updateData.CREATE_PAGE)
+
+            // testTireShow()
+            // tireStatus[1].pre = 1500
+            // tireStatus[1].tem = 100
+
+            glitter.startHomeCommand()
+
+            //testTireShow("01")
+        })
+    }
+
+    function createPage(){
+        //需建立頁面的頁數
+        var slickCount=page_Enable.filter(function (value, index, arrSelf) {
+               value===true
+            }).length
+
+        //.single-item設定與建立slick
+        for(var i=0;i<3;i++){
+            var allView=``
+            var viewID=""
+
+            //if(i===0 && glitter.tireShow.carID[1]!==""){
+            if(i===0){
+                switch (glitter.app){
+                    case "HT471A":
+                        break
+                    default:
+                        viewID = "tireShowPage1"
+                        allView = tireShowView("01")
+                        break
+                }
+
+            }
+            // if(i===1 && glitter.tireShow.carID[2]!==""){
+            if(i===1){
+                //console.log("createPage:tireShowPage2")
+                switch (glitter.app){
+                    case "HT471A":
+                        viewID = "tireShowPage2"
+                        allView = tireShowView("02")
+                        break
+                    default:
+                        if(glitter.tireShow.carID[2]!==""){
+                            viewID = "tireShowPage2"
+                            allView = tireShowView("02")
+                        }
+                        break
+                }
+            }if(i===2 && glitter.setSystem.engineer==="true"){
+                viewID = "rawDataPage"
+                allView = rawDataView()
+            }
+
+            //<!--                     <iframe style="height: 100%;width:100%;pointer-events: none;" src=`+hint[i]+`></iframe>-->
+            // (changeScreen ? 'display:flex;' :'overflow-y: scroll;')
+            if(viewID!==""){
+                $('.single-item').append(`
+                <div id="${viewID}" style="height: 100%;width:100%;`+(i!==2 ? (changeScreen ? 'display:flex;' :'') : `background:gray`)+`">
+                `+(allView)+`
+                </div>`
+                );
+            }
+        }
+
+        //**changeScreen
+        //glitter.homeTitleChange(0)
+        //glitter.homeTitleChange(slickPage,"home")
+
+        $('.single-item').slick({
+            infinite: false});
+        $('.slick-arrow').hide()
+        $('.single-item').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+            //console.log("beforeChange:"+currentSlide+","+nextSlide)
+            console.log("beforeChange_Home:"+nextSlide)
+            slickPage=nextSlide
+            //glitter.select_position=nextSlide
+            $('#title').html(changeTitle(nextSlide))
+            if(changeScreen){
+                glitter.homeTitleChange(nextSlide,"home")
+                //glitter.titleBarData.update()
+                //glitter.homeTitleClick(nextSlide)
+            }
+        });
+        //$('#title').html(changeTitle(0))
+    }
+
+    function testTireShow(car) {
+        var carPosition=parseInt(car,16)
+        var tireStatus=glitter.tireStatus[carPosition]
+        // tireStatus[1].pre = 1000
+        // tireStatus[1].tem = 1000
+        // tireStatus[1].open = true
+        // tireStatus[2].pre = "FE"
+        // tireStatus[2].tem = "FE"
+        // tireStatus[2].open = true
+        // tireStatus[3].open = true
+        // tireStatus[4].open = true
+        tireStatus[5].pre = 1500
+        tireStatus[5].tem = 60
+        // tireStatus[5].open = true
+        // tireStatus[6].open = true
+        // tireStatus[7].open = true
+        // tireStatus[8].open = true
+    }
+
+    //判斷點擊主畫面與是否警報的開關
+    var open_Alarm = false
+    //儲存警報值，能判斷是否警報值有改變
+    var alarmData = [[],[],[]]
+    //點擊主畫面的警報開關
+    function closeSound(){
+        open_Alarm = false
+        glitter.playSound("false")
+
+        //classChange()
+
+        //testTireShow("01")
+    }
+    //car 01前車 02後車，tire_position 輪胎位置(未填此處，代表顯示全部輪胎)
+    function tireShowView(car,tire_position){
+        var carPosition=parseInt(car,16)
+        //判斷是否開啟警報聲音
+        var playSound_Alarm = false
+        //判斷顯示異常、警報值的紅白框
+        var Alarm_Class = false
+
+        //car_Position表示前後車，胎壓pre、胎溫tem、電池bat、聲音alarm_position為過濾與顯示，還有輪胎tire是否開啟
+        function tireSensor(car_Position,pre,tem,bat,tire,alarm_position){
+            // if(car==="01" && alarm_position>1){
+            //     tireposition = alarm_position+2
+            // }
+            var tireID="car"+car_Position+"tire"+alarm_position
+            var tireStatus=glitter.tireStatus[car_Position]
+            var alarmClass='tireSensor'
+            var pre_Alarm='landscape_icon_002_n.png'
+            var pre_Color='white'
+            var tem_Alarm='landscape_icon_003_n.png'
+            var tem_Color='white'
+            var bat_Alarm=false
+            var tireSensor_View = ``
+            var high_Pre=glitter.tpmsValue.high_pressure[car_Position]
+            var low_Pre=glitter.tpmsValue.low_pressure[car_Position]
+            var high_Tem=glitter.tpmsValue.high_temperature[car_Position]
+
+            //轉16進位(判斷FF異常，以及FE預設)
+            //glitter.app===HT471A
+            switch (glitter.app){
+
+            }
+            var preHex=pre.toString(16).toUpperCase()
+            if(glitter.app==="HT430"){
+                preHex=(pre/6).toString(16).toUpperCase()
+            }
+            var temHex=(tem+50).toString(16).toUpperCase()
+
+            //胎壓、胎溫、電池警報值判斷
+            if(pre > high_Pre || pre < low_Pre){
+                alarmClass = 'odd_tireSensor'
+                pre_Alarm = 'landscape_icon_002_h.png'
+                pre_Color = 'red'
+                //$('#playSoundButton').click()
+                //playSound()
+            }
+            if(tem > high_Tem){
+                alarmClass = 'odd_tireSensor'
+                tem_Alarm = 'landscape_icon_003_h.png'
+                tem_Color = 'red'
+                //$('#playSoundButton').click()
+                //playSound()
+            }
+            if(bat <= 26){
+                //alarmClass = 'odd_tireSensor'
+                bat_Alarm=true
+            }
+            //console.log("tireSensor:"+bat)
+
+            //FE預設值判斷
+            //console.log("tireShowView:"+preHex+","+temHex)
+            //glitter.app===HT471A
+            var init = preHex === "FEFE" && temHex==="FE"
+            if(glitter.app==="HT430"){
+                init = preHex === "FE" && temHex==="FE"
+            }
+            if(init){
+                alarmClass = 'tireSensor'
+                pre=''
+                tem=''
+                //pre='&nbsp'
+                //tem='&nbsp'
+                pre_Color = 'white'
+                tem_Color = 'white'
+                pre_Alarm='landscape_icon_002_n.png'
+                tem_Alarm='landscape_icon_003_n.png'
+                bat_Alarm=false
+            }
+
+            //FF異常值判斷
+            //glitter.app===HT471A
+            var odd_FF = preHex === "FFFF" && temHex==="FF"
+            if(glitter.app==="HT430"){
+                odd_FF = preHex === "FF" && temHex==="FF"
+            }
+            var odd_tire=false
+            if(odd_FF){
+                //*異常改為紅框
+                alarmClass = 'odd_tireSensor'
+                odd_tire=true
+            }
+            Alarm_Class = alarmClass==='odd_tireSensor'
+
+            //警報值聲音判斷(以文字顏色紅色，不能有預設、異常值)
+            if(pre_Color==="red" && !init && !odd_tire){
+                tireStatus[alarm_position].alarm = true
+                //開啟的輪胎才能叫
+                if(tire) {
+                    playSound_Alarm = true
+                }
+            }
+            else if(tem_Color==="red" && !init && !odd_tire){
+                tireStatus[alarm_position].alarm = true
+                //開啟的輪胎才能叫
+                if(tire) {
+                    playSound_Alarm = true
+                }
+            }else{
+                tireStatus[alarm_position].alarm = false
+            }
+
+            //胎溫、胎壓顯示狀況
+            if(tire){
+                //<div class="unit" style="flex-direction: row;"> height:100%;width: 25%;
+                if(changeScreen){
+                    //pre胎壓、tem胎溫、電池
+                    function tpmsView(unit){
+                        return `
+<div style="width: 50px;height: auto;display: flex;justify-content: center;">
+       ${bat_Alarm && unit==="tem" ? `<img style="width: 20px;height: 20px;" src="../image/landscape_icon_004.png">` : ``}
+</div>
+<div style="width: calc(100% - 105px);height:auto;text-align: right;
+       color: ${unit==="pre" ? pre_Color : tem_Color};font-size: 25px;">
+       ${unit==="pre" ?
+           `${glitter.pre_Unit(pre, glitter.tpmsValue.pressure_Unit[car_Position])}`:
+           `${glitter.tem_Unit(tem, glitter.tpmsValue.temperature_Unit[car_Position])}`
+        }
+</div>
+<div style="padding-left:5px;width: 30px;height:auto;
+        color: ${unit==="pre" ? pre_Color : tem_Color};font-size: 18px;">
+        ${unit==="pre" ?
+           `${glitter.tpmsValue.pressure_Unit[car_Position]}`:
+           `${glitter.tpmsValue.temperature_Unit[car_Position]}`
+        }
+</div>
+<div style="width: 50px;height: auto;">
+      ${unit==="pre" ?
+           `<img style="margin-left:5px;width: 20px;height: 20px;" src="../image/${pre_Alarm}">`:
+           `<img style="margin-left:5px;width: 25px;height: 15px;" src="../image/${tem_Alarm}">`
+       }
+</div>`
+                    }
+
+                    //胎壓、胎溫、電池的顯示
+                    var view=`
+<div style="height: 50%;width: 100%;display: flex;align-items: center;">
+     ${tpmsView("pre")}
+</div>
+<div style="height: 50%;width: 100%;display: flex;align-items: center;">
+     ${tpmsView("tem")}
+</div>`
+                    //建立id：tireID、外框的class:alarmClass、關閉聲音的按鈕：closeSound
+                    tireSensor_View=`
+<div id="${tireID}" class="${alarmClass}" style="width: 100%;height: 25%;" onclick="closeSound()">
+    ${view}
+</div>`
+                    //單顆顯示(排除外框)
+                    if(tire_position!==undefined){
+                        tireSensor_View=view
+                    }
+
+                }else{
+                    //pre胎壓、tem胎溫、電池
+                    function tpmsView(unit){
+                        return `
+<div class="unit" style="height: 25%;">
+    ${unit==="pre" ?
+      `<img style="width: 20px;height: 20px;" src="../image/${pre_Alarm}">`:
+      `<img style="width: 25px;height: 15px;" src="../image/${tem_Alarm}">`
+    }
+     <div style="height:auto;padding-left: 10px;color:${unit==="pre" ? pre_Color : tem_Color}">
+          ${unit==="pre" ?
+            glitter.tpmsValue.pressure_Unit[car_Position] :
+            glitter.tpmsValue.temperature_Unit[car_Position]
+           }
+     </div>
+</div>
+<div class="unit" style="height: 25%;font-size: 30px;color:${unit==="pre" ? pre_Color : tem_Color}">
+     ${unit==="pre" ?
+       glitter.pre_Unit(pre, glitter.tpmsValue.pressure_Unit[car_Position]) :
+       `<div style="height:auto;font-size: 30px;color:${tem_Color}">
+             ${glitter.tem_Unit(tem, glitter.tpmsValue.temperature_Unit[car_Position])}
+        </div>
+        <div style="flex: auto;"></div>
+        ${bat_Alarm ? `
+             <img style="width: 20px;height: 20px;" src="../image/landscape_icon_004.png">
+             <div style="width: 5px;"></div>` : ``
+         }
+       `
+      }
+</div>`
+                    }
+
+                    //胎壓、胎溫、電池的顯示
+                    var view=`
+<div style="width: 100%;height:95%;">
+     ${tpmsView("pre")}
+     ${tpmsView("tem")}
+</div>`
+
+                    //建立id：tireID、外框的class:alarmClass、關閉聲音的按鈕：closeSound
+                    tireSensor_View =`
+<div id="${tireID}" class="${alarmClass}" style="width: 25%;height:100%;display: flex;justify-content:center;align-items: center;" onclick="closeSound()">
+   ${view}
+</div>`
+
+                    //單顆顯示(排除外框)
+                    if(tire_position!==undefined){
+                        tireSensor_View=view
+                    }
+                }
+
+                //異常的狀況
+                if(odd_tire){
+                    //align="center"
+                    if(changeScreen){
+                        //異常的顯示
+                        var view=`
+<div class="title_style" style="width: 100%;height:100%;">
+     <img style="width:30px;height:30px;" src="../image/portrait_icon_001.png">
+</div>`
+
+                        //建立id：tireID、外框的class:alarmClass、關閉聲音的按鈕：closeSound
+                        tireSensor_View=`
+<div id="${tireID}" class="odd_tireSensor" style="width: 100%;height: 25%;" onclick="closeSound()">
+    ${view}
+</div>`
+
+                        //單顆顯示(排除外框)
+                        if(tire_position!==undefined){
+                            tireSensor_View=view
+                        }
+                    }else{
+                        //異常的顯示
+                        var view=`
+<div class="title_style" style="width: 100%;height:100%;">
+     <img style="width:30px;height:30px;" src="../image/portrait_icon_001.png">
+</div>`
+
+                        //建立id：tireID、外框的class:alarmClass、關閉聲音的按鈕：closeSound
+                        tireSensor_View = `
+                        <div id="${tireID}" class="odd_tireSensor" style="width: 25%;height:100%;" onclick="closeSound()">
+                            ${view}
+                        </div>`
+
+                        //單顆顯示(排除外框)
+                        if(tire_position!==undefined){
+                            tireSensor_View=view
+                        }
+                    }
+
+                }
+            }else{
+                //未有輪胎的顯示
+                if(changeScreen){
+                    tireSensor_View=`<div style="width: 100%;height: 25%;"></div>`
+                }else{
+                    tireSensor_View=`<div style="width: 25%;height:100%;"></div>`
+                }
+            }
+            return tireSensor_View
+        }
+
+        var tireStatus=glitter.tireStatus[carPosition]
+
+        //一顆感測器狀況的胎壓、胎溫顯示
+        if(tire_position!==undefined){
+            console.log("tireShowPage:"+tire_position +","+ 'car'+carPosition+'tire'+tire_position)
+            var position = tire_position
+            var tireHTML = tireSensor(carPosition,tireStatus[position].pre, tireStatus[position].tem, tireStatus[position].bat, tireStatus[position].open,position)
+
+            if(Alarm_Class){
+                $('#car'+carPosition+'tire'+tire_position).removeClass()
+                $('#car'+carPosition+'tire'+tire_position).css("background-image","url(../image/portrait_btn_018_h.png)")
+                $('#car'+carPosition+'tire'+tire_position).addClass('odd_tireSensor')
+            }else{
+                $('#car'+carPosition+'tire'+tire_position).removeClass()
+                $('#car'+carPosition+'tire'+tire_position).css("background-image","url(../image/portrait_btn_001_n.png)")
+                $('#car'+carPosition+'tire'+tire_position).addClass('tireSensor')
+            }
+
+            $('#car'+carPosition+'tire'+tire_position).html(tireHTML)
+            //$('#car'+carPosition+'tire'+tire_position).css("background-image","url(../image/portrait_btn_018_h.png)")
+        }
+
+        //全部感測器狀況的胎壓、胎溫顯示，還有playSound_Alarm聲音的判斷
+        //height: 135px;
+        var allView = ``
+        for (var row = 0; row < (tireStatus.length-1)/4; row++) {
+            var sensorView=``
+            for(var column=1;column<=4;column++){
+                var position=4*row+column
+                if(changeScreen){
+                    position=4*row+(4+1-column)
+                }else{
+                    position=4*row+column
+                }
+                sensorView+=tireSensor(carPosition,tireStatus[position].pre, tireStatus[position].tem, tireStatus[position].bat, tireStatus[position].open,position)
+
+                //補聲音的playSound_Alarm判斷
+                switch(carPosition){
+                    case 1:
+                        var status=glitter.tireStatus[2]
+                        tireSensor(2,status[position].pre, status[position].tem, status[position].bat, status[position].open,position)
+                        break
+                    case 2:
+                        var status=glitter.tireStatus[1]
+                        tireSensor(1,status[position].pre, status[position].tem, status[position].bat, status[position].open,position)
+                        break
+                }
+            }
+            if(changeScreen){
+                allView+=`
+<div style="width: 25%;height: 100%;">
+    ${sensorView}
+</div>`
+            }else{
+                allView+=`
+<div style="width: 100%;height: 25%;display: flex;">
+    ${sensorView}
+</div>`
+            }
+        }
+        if(tire_position===undefined){
+            console.log("tireShowPage:true")
+            $('#tireShowPage'+carPosition).html(allView)
+        }
+
+        //現在警報值的紀錄儲存，還有警報值的聲音開啟判斷
+        function alarmRecord(car){
+
+            var status=glitter.tireStatus[car]
+            var alarm=alarmData[car]
+            var bool = false
+            //console.log("alarmRecord:"+JSON.stringify(alarm)+", tireStatus:"+JSON.stringify(status.length))
+
+            //未紀錄則會新增資料
+            if(alarm.length===0){
+                for (var i = 0; i < status.length; i++) {
+                    alarmData[car] = alarmData[car].concat(status[i].alarm)
+                }
+            }
+            //現在警報true與上一筆紀錄不同，則開啟警報狀況
+            for (var i = 0; i < status.length; i++) {
+                if(status[i].alarm && status[i].alarm !== alarm[i]){
+                    //glitter.tpmsValue.playSound_Alarm = true
+                    open_Alarm = true
+                    bool = true
+                    break
+                }
+            }
+            //更新資料
+            for (var i = 0; i < status.length; i++) {
+                alarmData[car][i] = status[i].alarm
+            }
+            return bool
+        }
+        alarmRecord(1)
+        alarmRecord(2)
+
+        //console.log("alarmRecord1:"+car1_alarm+","+car2_alarm)
+        console.log("alarmRecord:"+playSound_Alarm+","+open_Alarm+","+glitter.tpmsValue.playSound_Alarm)
+        //聲音警報判斷，playSound_Alarm表示輪胎有警報，open_Alarm主畫面的警報開關，glitter.tpmsValue.playSound_Alarm設定的警報開關
+        if(playSound_Alarm && open_Alarm && glitter.tpmsValue.playSound_Alarm){
+            glitter.playSound("true")
+        }else{
+            glitter.playSound("false")
+        }
+
+        return allView
+    }
+
+    //警報輪胎閃爍顯示
+    setInterval(classChange, 1*1000)
+    var classBool = false
+    function classChange(){
+    // .tireSensor{
+    //         background-image: url(../image/portrait_btn_001_n.png);
+    //         background-size: 100% 100%;
+    //         background-repeat: no-repeat;
+    //     }
+    // .odd_tireSensor{
+    //         background-image: url(../image/portrait_btn_018_h.png);
+    //         background-size: 100% 100%;
+    //         background-repeat: no-repeat;
+    //     }
+
+        //console.log("classChange:"+classBool)
+        var square = document.getElementsByClassName("odd_tireSensor");
+        //document.getElementById("").innerText
+        if(classBool){
+            $('.odd_tireSensor').css("background-image","url(../image/portrait_btn_018_h.png)")
+            //document.getElementsByClassName("odd_tireSensor").style.backgroundImage = "url('../image/portrait_btn_018_h.png')";
+            //$('.odd_tireSensor').css({"background-image": "url(../image/portrait_btn_018_h.png)"})
+            //square[0].style.backgroundImage = "url(../image/portrait_btn_018_h.png)";
+            classBool = false
+        }else{
+            $('.odd_tireSensor').css("background-image","url(../image/portrait_btn_001_n.png)")
+            //document.getElementsByClassName("odd_tireSensor").style.backgroundImage = "url('../image/portrait_btn_001_n.png')"
+            //$('.odd_tireSensor').css({"background-image": "url(../image/portrait_btn_001_n.png)"})
+            //square[0].style.backgroundImage = "url(../image/portrait_btn_001_n.png)";
+            classBool = true
+        }
+        //$('.odd_tireSensor').css()
+
+        // tireShowView("01")
+        // tireShowView("02")
+    }
+
+    function rawDataView(){
+        function logView_height(){
+            switch (glitter.app){
+                case "HT471A":
+                    return "220px"
+                    break
+                default:
+                    return "110px"
+                    break
+            }
+        }
+        var logdata_View =
+            `<div id="log_data" class="noselect rawData_textSize" style="width:100%;height:calc(100% - ${(changeScreen ? `0px`:logView_height())}) ;overflow-y: scroll;word-break: break-all;"></div>`
+        var line = `<div style="width:100%;height: 1px;bottom:3px;background: black"></div>`
+        var errorCode_View =
+            `<div class="text_Center rawData_textSize" style="width:100%;height: 30px;display: flex;">
+                  Error1：<div id="error1" class="text_Center" style="height:100%;">Error Code</div>
+             </div>
+             <div class="text_Center rawData_textSize" style="width:100%;height: 30px;display: flex;">
+                  Error2：<div id="error2" class="text_Center" style="height:100%;">Error Code</div>
+             </div>`
+        // var setting_rssi =
+        //     `<div style="width:100%;height: 50px;display: flex">
+        //              <BUTTON style="height: 100%;flex: auto;">Read RSSI</BUTTON>
+        //              <div class="text_Center" style="height: 100%;padding-right: 5px;padding-left: 5px;">RSSI：-60 dp</div>
+        //              <BUTTON style="height: 100%;flex: auto;">Write RSSI</BUTTON>
+        //          </div>`
+        var setting_rssi =
+            `<div style="width:100%;height: 50px;display: flex">
+                     <BUTTON class="rawData_textSize" style="height: 100%;width:50%;" onclick="readRSSI()">Read RSSI</BUTTON>
+                     <div id="setting_RSSI" class="text_Center rawData_textSize" style="height: 100%;width:50%;padding-right: 5px;padding-left: 5px;">RSSI：</div>
+                     <BUTTON class="rawData_textSize" style="height: 100%;width:50%;" onclick="keyInRSSI()">Write RSSI</BUTTON>
+                 </div>`
+        var ble_rssi =
+            `<div id="ble_RSSI" class="text_Center rawData_textSize" style="width:100%;height: 50px;">
+                     Bluetooth RSSI：
+                 </div>`
+        //Send
+        var buttonView =
+            `<div style="width:100%;height: 50px;display: flex">
+                     <input id="keyInTx" type="text" class="rawData_textSize" style="width:calc(100% - 80px);height: 100%;background:transparent;border-style:solid;border-bottom-color: black;" onclick="keyInTx()" readonly>
+                     <BUTTON id="send_bt" class="rawData_textSize" style="width: 80px;height: 100%;" onclick="sendTx()">${glitter.getLanguage("31")}</BUTTON>
+                 </div>`
+        function all_View(){
+            switch (glitter.app){
+                case "HT471A":
+                    return logdata_View + line + errorCode_View + setting_rssi + ble_rssi + buttonView
+                    break
+                default:
+                    return logdata_View + line + ble_rssi + buttonView
+                    break
+            }
+        }
+        var allView = (changeScreen ? logdata_View : all_View())
+        //$('#rawDataPage').html(allView)
+        return allView
+    }
+
+    function keyInTx(){
+        glitter.openDiaLog('dialog/Dia_Keyboard_Proportional.html', 'Dia_Keyboard_Proportional', true, true, {
+            callback: function (data) {
+                // if(idVerify(data)){
+                //     $('#' + id).val(data)
+                // }
+                console.log("writeCarID:"+data)
+            },
+            wordMax:20,
+            keyTextSize:18,
+            data: $('#keyInTx').val(),
+            writeC:function (data) {
+                glitter.closeDiaLogWithTag('Dia_Keyboard_Proportional')
+                $('#keyInTx').val(data.replace(/\n/g,""))
+            }
+        })
+    }
+    function sendTx(){
+        console.log("sendTx:true")
+        //glitter.share.home.commadMessage("RX:"+"53B5020A12125EFEED0A")
+        //glitter.share.home.commadMessage("RX:"+"53B7020AFFFFFFFFED0A")
+        //return
+        button_OTA()
+
+        if($('#keyInTx').val().length!==0 && $('#keyInTx').val().length===20){
+            glitter.command.send("test",$('#keyInTx').val())
+            //glitter.share.home.commadMessage($('#keyInTx').val())
+        }
+    }
+    function button_OTA() {
+
+        glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress_ble', false, false,{name:"更新中"})
+        glitter.runJsInterFace("getDownloadFile", {start_DFU:"true"}, function (response) {
+            if(response.result==="true"){
+                glitter.ble_DFU = true
+                glitter.closeDiaLogWithTag("Dia_Info_Progress_ble")
+                glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress_ble', false, false,{name:"連線中"})
+                glitter.command.send("OTA","01")
+            }else{
+                glitter.closeDiaLogWithTag("Dia_Info_Progress_ble")
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+            }
+        })
+        //glitter.runJsInterFace("DFU", {start_DFU:"true"}, function (response) {
+        //})
+    }
+
+
+    var command_data_save=``
+    var error_code=[]
+    glitter.share.home={
+        //RX解析與工程模式Command
+        commadMessage: function (data) {
+            // if(glitter.deviceType === glitter.deviceTypeEnum.Web){
+            //     return
+            // }
+
+            //var timeInMs = new Date();
+            var timeInMs =new Date().format("yyyy-MM-dd hh:mm:ss");
+            //log顯示
+            var command_data = `<div style="width: calc(100% - 20px);height:auto;word-break: break-all;color:black;font-size:16px;">${data+" ,"+timeInMs}</div>`
+
+            // glitter.uploadData.command_logdata += data +" ,"+timeInMs+"\n"
+            // glitter.setPro("command_logdata",glitter.uploadData.command_logdata)
+            glitter.save_Logdata(data +" ,"+timeInMs+"\n")
+
+            //資料過濾
+            if(data.indexOf("RX:")!==-1){
+                var rx20=data.replace("RX:","")
+                //HT430
+                if(rx20.length===18 && glitter.app==="HT430"){
+                    var message=""
+                    if((rx20.substring(2,4)===("B5") || rx20.substring(2,4)===("B7")) && rx20.substring(16,18)===("0A")){
+                        //var sensor=rx20.replace("53B502","")
+                        var sensor=rx20.substring(4,18)
+                        glitter.share.home.updateUI(sensor.substring(0,2),glitter.updateData.TIRE_STATUS,[sensor.substring(2,16)])
+                    }
+                    if(message!==""){
+                        command_data += `<div style="width: calc(100% - 20px);height:auto;word-break: break-all;color:black;font-size:16px;">${message+" ,"+timeInMs}</div>`
+                        glitter.save_Logdata(message +" ,"+timeInMs+"\n")
+                    }
+                }
+                //HT450 HT471A
+                if(rx20.length===20){
+                    var upload=false
+                    var upload_Name=""
+                    var message=""
+                    if((rx20.substring(2,4)===("B5") || rx20.substring(2,4)===("B7")) && rx20.substring(18,20)===("0A")){
+                        //var sensor=rx20.replace("53B502","")
+                        var sensor=rx20.substring(4,20)
+                        glitter.share.home.updateUI(sensor.substring(0,2),glitter.updateData.TIRE_STATUS,[sensor.substring(2,16)])
+                    }
+                    else if(rx20.substring(2,4)===("BF") && rx20.substring(18,20)===("0A")){
+                        var rssi = 255 - parseInt(rx20.substring(4,6),16)
+                        upload_Name = "藍芽RSSI數值"
+                        message = ("藍芽RSSI數值:-" + rssi + " db");
+                        upload = false;
+                    }
+                    else if(rx20.substring(2,4)===("BD") && rx20.substring(18,20)===("0A")){
+                        upload_Name = "車輛資訊"
+                        var rx8=rx20.substring(8, 16)
+                        var carid = ""
+                        for(var i=0;i<rx8.length/2;i++){
+                            //fromCharCode為ascii的十進位轉換
+                            carid += String.fromCharCode(parseInt(rx8.substring(i*2,i*2+2),16))
+                        }
+                        message = ("輪數:" + rx20.substring(4,6) + ",Rx數:" + rx20.substring(6,8) + ",板車ID:"+carid);
+                        upload = true;
+                    }
+                    else if(rx20.substring(2,4)===("BE") && rx20.substring(18,20)===("0A")){
+                        upload_Name = "輪軸"
+                        message = ("輪軸:" + rx20.substring(6,14));
+                        upload = true;
+                    }else if(rx20.substring(2,4)===("E3") && rx20.substring(18,20)===("0A")){
+                        upload_Name = "接收率"
+                        //CharSequence row1,row2,row3,row4;
+                        var row1,row2,row3,row4;
+                        row1 = rx20.substring(6,8);
+                        row2 = rx20.substring(8,10);
+                        row3 = rx20.substring(10,12);
+                        row4 = rx20.substring(12,14);
+
+                        message = ("車軸:" + rx20.substring(4,6) +
+                            ",第1輪:"+parseInt(row1,16)+"%"+
+                            ",第2輪:"+parseInt(row2,16)+"%"+
+                            ",第3輪:"+parseInt(row3,16)+"%"+
+                            ",第4輪:"+parseInt(row4,16)+"%");
+                        upload = true;
+                    } else if(rx20.substring(2,4)===("EC") && rx20.substring(18,20)===("0A")){
+                        upload_Name = "錯誤狀況"
+
+                        var C_Bytes = rx20.substring(4,16)
+
+                        var C_Bytes1=parseInt(C_Bytes.substring(0,2),16),C_Bytes2=parseInt(C_Bytes.substring(2,4),16),
+                            C_Bytes3=parseInt(C_Bytes.substring(4,6),16),C_3;
+                        var c1 = C_Bytes1 >= parseInt("C0",16) && C_Bytes1 <= parseInt("CF",16);
+                        var c2 = C_Bytes2 >= parseInt("C0",16) && C_Bytes2 <= parseInt("CF",16);
+                        var c3 = C_Bytes3 >= parseInt("C0",16) && C_Bytes3 <= parseInt("CF",16);
+                        C_3 = C_Bytes1 === C_Bytes2 && C_Bytes1 === C_Bytes3;
+                        var error_code_C0,error_code_EC;
+                        error_code_C0 = c1 && c2 && c3 && C_3;
+                        error_code_EC = C_Bytes.substring(8,10)==="EC";
+                        if(error_code_C0){
+                            message = "ERROR_CODE:"+C_Bytes.substring(0,2)+" "+C_Bytes.substring(6,12);
+                        }else if(error_code_EC){
+                            //message = "ERROR_CODE："+CmdData.substring(12,14)+" "+CmdData.substring(10,16);
+                            message = "ERROR_CODE:"+"EC"+" "+C_Bytes;
+                        }else{
+                            message = "STATE_CODE:"+C_Bytes;
+                        }
+                        //message = "STATE_CODE："+CmdData.substring(4,16);
+                        //如果Command_Memory沒有包含此ERROR_CODE，才上傳
+                        if(error_code_C0 || error_code_EC){
+                            if(error_code.length===0){
+                                error_code = error_code.concat(message.replace("ERROR_CODE:","")+" ,"+timeInMs)
+                                $('#error1').text(error_code[0])
+                            }else if(error_code.length===1) {
+                                error_code = error_code.concat(message.replace("ERROR_CODE:","")+" ,"+timeInMs)
+                                $('#error1').text(error_code[1])
+                                $('#error2').text(error_code[0])
+                            }else if(error_code.length === 2){
+                                error_code[0] = error_code[1]
+                                error_code[1] = message.replace("ERROR_CODE:","")+" ,"+timeInMs
+                                $('#error1').text(error_code[1])
+                                $('#error2').text(error_code[0])
+                            }
+                            upload = true;
+                        }
+                    }
+                    if(message!==""){
+                        command_data += `<div style="width: calc(100% - 20px);height:auto;word-break: break-all;color:black;font-size:16px;">${message+" ,"+timeInMs}</div>`
+                        glitter.updateMemmory({mode_data: "狀態-" + upload_Name, result_data:message+",\n"+rx20})
+                        glitter.save_Logdata(message +" ,"+timeInMs+"\n")
+                    }
+                }
+            }
+
+            if(data!=="engineerSystem"){
+                command_data_save+=command_data
+            }
+            if(glitter.setSystem.engineer!=="true"){
+                return
+            }
+
+            //傳engineerSystem會將未開啟工程模式時的log顯示出來
+            //(只有在一開始開啟時做一次，之後則由else直接輸出新的資訊)
+            if(data==="engineerSystem"){
+                $('#log_data').append(command_data_save)
+            }else{
+                $('#log_data').append(command_data)
+            }
+
+            setTimeout(function() {
+                var elem = document.getElementById('log_data');
+                elem.scrollTop = elem.scrollHeight;
+            }, 100);
+        },
+        //Command訊息顯示與紀錄
+        updateUI:function (car,type,result){
+            var carPosition=parseInt(car,16)
+            var tireStatus=glitter.tireStatus[carPosition]
+
+            if(type === glitter.updateData.FIRMWARE2){
+                if(carPosition===1){
+                    glitter.setSystem.firmware1 = result
+                }else if(carPosition===2){
+                    glitter.setSystem.firmware2 = result
+                }
+            }else if(type === glitter.updateData.CAR_ID){
+                var carid = ""
+                if(result!=="FFFFFFFF"){
+                    for(var i=0;i<result.length/2;i++){
+                        //fromCharCode為ascii的十進位轉換
+                        carid += String.fromCharCode(parseInt(result.substring(i*2,i*2+2),16))
+                    }
+                }else if(result==="FFFFFFFF"){
+                    carid=" "
+                }
+                //var code = result.charCodeAt();
+                glitter.tireShow.carID[carPosition] = carid
+                glitter.share.home.updatePage(glitter.updateData.CREATE_PAGE)
+            }else if(type === glitter.updateData.TIRE_ROW){
+                var carRow = ""
+                glitter.uploadData.wheel[carPosition] = result
+                for(var i=0;i<(tireStatus.length-1)/4;i++){
+                    switch (glitter.app){
+                        case "HT471A":
+                            if(result.substring(i*2+1,i*2+2)=== "4"){
+                                carRow += "1111"
+                                tireStatus[i*4+1].open = true
+                                tireStatus[i*4+2].open = true
+                                tireStatus[i*4+3].open = true
+                                tireStatus[i*4+4].open = true
+                            }else if(result.substring(i*2+1,i*2+2)==="2"){
+                                carRow += "1001"
+                                tireStatus[i*4+1].open = true
+                                tireStatus[i*4+2].open = false
+                                tireStatus[i*4+3].open = false
+                                tireStatus[i*4+4].open = true
+                            }else{
+                                carRow += "0000"
+                                tireStatus[i*4+1].open = false
+                                tireStatus[i*4+2].open = false
+                                tireStatus[i*4+3].open = false
+                                tireStatus[i*4+4].open = false
+                            }
+                            break
+
+                        default:
+                            var carRow = parseInt(result.substring(i*2,i*2+1),16).toString(2)
+                            if(carRow.length < 4){
+                                for(var length=carRow.length;length<4;length++){
+                                    carRow = "0"+carRow
+                                }
+                            }
+                            tireStatus[i*4+1].open = carRow.substring(0,1)==="1"
+                            tireStatus[i*4+2].open = carRow.substring(1,2)==="1"
+                            tireStatus[i*4+3].open = carRow.substring(2,3)==="1"
+                            tireStatus[i*4+4].open = carRow.substring(3,4)==="1"
+                            break
+                    }
+                }
+
+                tireShowView(car)
+            }else if(type === glitter.updateData.SENSOR_ID) {
+                for (var i = 0; i < result.length; i++) {
+                    var Pos = result[i].substring(0, 2)
+                    switch (glitter.app){
+                        case "HT471A":
+                            break
+                        default:
+                            if(car==="01" && parseInt(Pos,16)>1){
+                                Pos = (parseInt(Pos,16)+2).toString(16)
+                            }
+                            if(car==="02"){
+                                Pos = (parseInt(Pos,16)-14).toString(16)
+                            }
+                            break
+                    }
+                    var id = result[i].substring(2, 8)
+
+                    tireStatus[parseInt(Pos, 16)].id = id
+                }
+            }
+            else if(type === glitter.updateData.TPMS){
+                glitter.tpmsValue.high_temperature[carPosition] = result[0]
+                glitter.tpmsValue.high_pressure[carPosition] = result[1]
+                glitter.tpmsValue.low_pressure[carPosition] = result[2]
+                console.log("TPMS:"+JSON.stringify(glitter.tpmsValue))
+                glitter.uploadData.unit = glitter.tpmsValue
+                tireShowView(car)
+            }else if(type === glitter.updateData.TIRE_STATUS){
+                //因為HT471A只有後車，所以大部分並未轉換
+                for(var i=0;i<result.length;i++){
+                    //console.log("TIRE_STATUS:"+result[i])
+                    //位置前後車轉換
+                    //glitter.app==="HT471A"
+                    var Pos=result[i].substring(0,2)
+                    switch (glitter.app) {
+                        case "HT471A":
+                            break
+                        default:
+                            if(car==="01" && parseInt(Pos,16)>1){
+                                Pos = (parseInt(Pos,16)+2).toString(16)
+                            }
+                            if(car==="02"){
+                                Pos = (parseInt(Pos,16)-14).toString(16)
+                            }
+                            break
+                    }
+                    //防止超過輪位
+                    if(parseInt(Pos,16) > 16){
+                        console.log("TIRE_STATUS:No Tire range")
+                        return
+                    }
+
+                    //擷取要的胎壓胎溫字段
+                    //glitter.app==="HT471A"
+                    var tem=result[i].substring(2,4)
+                    var pre=result[i].substring(4,8)
+                    var bat=""
+                    switch (glitter.app) {
+                        case "HT471A":
+                            break
+                        default:
+                            pre=result[i].substring(6,8)+result[i].substring(4,6)
+                            //bat電池為二進制的bit2，在字串的第2個位置
+                            var batValue = parseInt(result[i].substring(9,10)).toString(2)
+                            for(var x=batValue.length;x<4;x++){
+                                batValue = "0"+batValue
+                            }
+                            bat=(batValue.substring(1,2)==="1" ? "0" : "4")
+                            if(glitter.app==="HT430"){
+                                pre=result[i].substring(4,6)
+                                //bat=result[i].substring(6,8)
+                                bat=result[i].substring(7,8)
+                            }
+                            break
+                    }
+
+                    //胎壓胎溫的轉換與儲存
+                    //glitter.app==="HT471A"
+                    tireStatus[parseInt(Pos,16)].tem = parseInt(tem,16)+(-50)
+                    tireStatus[parseInt(Pos,16)].pre = parseInt(pre,16)
+                    //tireStatus[parseInt(Pos,16)].bat = parseInt(bat,16)+22
+                    if(glitter.app==="HT430"){
+                        tireStatus[parseInt(Pos,16)].pre =parseInt(pre,16)*6
+                        tireStatus[parseInt(Pos,16)].bat =parseInt(bat,16)+22
+                    }
+                    //console.log("ble--TIRE_STATUS:"+tireStatus[parseInt(Pos,16)].bat)
+                    tireShowView(car,parseInt(Pos,16))
+                }
+            }else if(type === glitter.updateData.CONNECT_RSSI){
+                var rssi = 255 - parseInt(result,16)
+                glitter.tireShow.connectRSSI = "RSSI：-"+rssi+"db"
+            }else if(type === glitter.updateData.RSSI_POWER){
+                var rssi = 255 - parseInt(result,16)
+                $('#setting_RSSI').text("RSSI：-"+rssi+"db")
+            }
+        },
+        //頁面與標頭處理，如前後車或工程模式轉換
+        updatePage : function (type){
+            $('body').html(lifeCycle.onCreateView())
+            //頁面更新
+            createPage()
+            //更新Title
+            $('#title').html(changeTitle(0))
+            if(changeScreen){
+                glitter.homeTitleChange(0,"home")
+            }
+            glitter.share.home.commadMessage("engineerSystem")
+        }
+
+    }
+    glitter.share.orientationPageCallback.push( {callback:function (screen) {
+        //console.log("orientationPage:"+sreen)
+        if(screen==="PORTRAIT"){
+            changeScreen=false
+        }else{
+            changeScreen=true
+        }
+        //console.log("slickPage0:"+slickPage)
+        $('body').html(lifeCycle.onCreateView())
+
+        //console.log("slickPage1:"+slickPage)
+        createPage()
+
+        //**changeScreen
+        //$('#title').html(changeTitle(0))
+        //$('#title').html(changeTitle(slickPage))
+
+        //**changeScreen
+        glitter.titleButton(slickPage,"home")
+        //glitter.callbacks.fire(slickPage,'home');
+
+        if(glitter.setSystem.engineer==="true"){
+            glitter.share.home.commadMessage("engineerSystem")
+        }
+
+    },tag:"Page_Home_Sreen"})
+    //更換語言
+    glitter.changeLanguage = function () {
+        $('#title').html(changeTitle(0))
+        //**
+        glitter.titleButton(0,"home")
+        //glitter.callbacks.fire(0,'home');
+        //createPage()
+        //傳送
+        $('#send_bt').text(glitter.getLanguage("31"))
+    }
+
+    glitter.bleRssi = function (rssi) {
+        $('#ble_RSSI').text("Bluetooth RSSI："+rssi+" db")
+    }
+    // function sendMessage(data){
+    //     //var timeInMs = new Date();
+    //     var timeInMs =new Date().format("yyyy-MM-dd hh:mm:ss");
+    //     var command_data = `<div style="width: calc(100% - 20px);height:auto;word-break: break-all;color:black;font-size:16px;">${data+" ,"+timeInMs}</div>`
+    //
+    //     $('#log_data').append(command_data)
+    //
+    //     setTimeout(function() {
+    //         var elem = document.getElementById('log_data');
+    //         elem.scrollTop = elem.scrollHeight;
+    //     }, 100);
+    // }
+
+    // glitter.updateData = {CREATE_PAGE:"CREATE_PAGE",CAR_ID:"CAR_ID",TIRE_ROW:"TIRE_ROW",SENSOR_ID:"SENSOR_ID",TIRE_STATUS:"TIRE_STATUS",
+    //                       CONNECT_RSSI:"CONNECT_RSSI",RSSI_POWER:"RSSI_POWER",TPMS:"TPMS_VALUE"}
+
+    function readRSSI(writerRSSI){
+        glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, true)
+
+        glitter.command.readRSSI(
+            "02",
+            function (result) {
+
+                if(result==="false"){
+                    //**
+                    glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                    //glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+                    glitter.showToast("Command Fail")
+                    //return
+                }else{
+                    //glitter.closeDiaLog()
+                    glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+
+                    if(writerRSSI!==undefined){
+                        if(writerRSSI!==result){
+                            //glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+                            glitter.showToast("Command Fail")
+                            //return;
+                        }
+                    }
+                    if(writerRSSI===undefined || writerRSSI===result){
+                        glitter.share.home.updateUI("02",glitter.updateData.RSSI_POWER,result)
+                        glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+                    }
+
+                }
+
+                glitter.updateMemmory({mode_data:"讀取-藍芽RSSI強度",result_data:(result!=="false" ? "success":"fail")})
+                //return
+
+            })
+    }
+
+    function keyInRSSI(){
+        glitter.openDiaLog('dialog/Dia_Number_Keyboard_Proportional.html', 'Dia_Number_Keyboard_Proportional', true, true, {
+            callback: function (data) {
+
+            },
+            data: "",
+            writeC:function (data) {
+                if(data.replace(/\n/g,"")!==""){
+                    glitter.closeDiaLogWithTag('Dia_Number_Keyboard_Proportional')
+                    writeRSSI(data.replace(/\n/g,""))
+                }
+            }
+        })
+    }
+    function writeRSSI(rssi){
+        var rssiString = (255 - rssi).toString(16).toUpperCase()
+
+        glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, true)
+
+        glitter.command.writeRSSI(
+            "02",rssiString,
+            function (result) {
+
+                if(result===false){
+                    //**
+                    glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                    //glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+                    glitter.showToast("Command Fail")
+                    //readAllCommand()
+
+                    //return
+                }
+
+                glitter.updateMemmory({mode_data:"設定-藍芽RSSI強度",result_data:(result!=="false" ? "success":"fail")})
+
+                if(result!==false){
+                    readRSSI(rssiString)
+                }
+                // glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                // glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+
+                //return
+
+            })
+    }
+
+    // $('.single-item').slick({
+    //     infinite: false,
+    //     prevArrow:"<img id='prev' style='height: 30px;width: 30px;left:3px;z-index: 1;' class='a-left control-c prev slick-prev' src='previous.png'>",
+    //     nextArrow:"<img id='next' style='height: 30px;width: 30px;right:3px;' class='a-right control-c next slick-next' src='next.png'>"
+    // })
+
+    // $('.single-item').append(`
+    //             <div class="hintPlace" style="height: 100%;width:100%;">
+    //                  <iframe style="height: 100%;width:100%;" src="../page/Page_Show_Truck.html"></iframe>
+    //             </div>`
+    // );
+
+    // $('.single-item').slick({
+    //     infinite: false,
+    //     prevArrow:"<img id='prev' style='height: 30px;width: 30px;left:3px;z-index: 1;' class='a-left control-c prev slick-prev' src='previous.png'>",
+    //     nextArrow:"<img id='next' style='height: 30px;width: 30px;right:3px;' class='a-right control-c next slick-next' src='next.png'>"
+    // }).on('init', function(event, slick){
+    //     // let's do this after we init the banner slider
+    //     //console.log('slider was initialized');
+    // }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+    //     // then let's do this before changing slides
+    //     console.log('slider before change:'+nextSlide.toString());
+    //     changePager(nextSlide)
+    //     //change
+    // }).on('afterChange', function(event, slick, currentSlide, nextSlide){
+    //     // finally let's do this after changing slides
+    //     //console.log('slider after change');
+    // });
+</script>

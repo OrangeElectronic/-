@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    /*body{*/
+    /*    background-image: url('image/img_trailer10_front.png');*/
+    /*    background-repeat: no-repeat;*/
+    /*    background-attachment: fixed;*/
+    /*    background-size: 50% 50%;*/
+    /*    margin: 50px;*/
+    /*    backgroun-position:center;*/
+    /*}*/
+    html{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        overflow-y: hidden;
+        height: 100%;
+        width: 100%;
+        /*height: 100vh;*/
+        /*width: 100vw;*/
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+    }
+    #N1{
+        background-image: url('../image/icon_tire.png');
+        width: 64px;
+        height:64px;
+        margin-top:-100px;
+        margin-left: 150px;
+        /*height:50%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 39%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N2{
+        width: 64px;
+        height:64px;
+        margin-top:-100px;
+        margin-left:-150px;
+        /*height:6%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 61.5%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N3{
+        width: 64px;
+        height:64px;
+        margin-top:30px;
+        margin-left:280px;
+        /*height:50%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 39%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N4{
+        width: 64px;
+        height:64px;
+        margin-top:30px;
+        margin-left:150px;
+        /*height:6%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 61.5%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N5{
+        width: 64px;
+        height:64px;
+        margin-top:30px;
+        margin-left: -150px;
+        /*height:50%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 39%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N6{
+        width: 64px;
+        height:64px;
+        margin-top:30px;
+        margin-left:-280px;
+        /*height:6%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 61.5%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N7{
+        width: 64px;
+        height:64px;
+        margin-top:120px;
+        margin-left: 280px;
+        /*height:50%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 39%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N8{
+        width: 64px;
+        height:64px;
+        margin-top:120px;
+        margin-left:150px;
+        /*height:6%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 61.5%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N9{
+        width: 64px;
+        height:64px;
+        margin-top:120px;
+        margin-left: -150px;
+        /*height:50%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 39%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N10{
+        width: 64px;
+        height:64px;
+        margin-top:120px;
+        margin-left:-280px;
+        /*height:6%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 61.5%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+
+    #T1{
+        width: 33px;
+        height:37px;
+        margin-left:66px;
+        margin-top: -106px;
+        /*display: flex;*/
+        /*justify-content: center;*/
+        /*align-items: center;*/
+        /*transform: translateX(-50%);*/
+        /*align-content: center;*/
+        /*left: 173px;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+
+    }
+    #T2{
+        width: 33px;
+        height:37px;
+        margin-left:-66px;
+        margin-top: -106px;
+        /*display: flex;*/
+        /*justify-content: center;*/
+        /*align-items: center;*/
+        /*transform: translateX(-50%);*/
+
+        /*left: 114px;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #T3{
+        width: 33px;
+        height:37px;
+        margin-left:66px;
+        margin-top: 34px;
+        /*transform: translateX(-50%);*/
+        /*left: 64%;*/
+        /*margin-top: 193.5px;*/
+        position: absolute;
+    }
+    #T4{
+        width: 33px;
+        height:37px;
+        margin-left:38px;
+        margin-top: 34px;
+        /*transform: translateX(-50%);*/
+        /*left: 58.5%;*/
+        /*margin-top: 193.5px;*/
+        position: absolute;
+    }
+    #T5{
+        width: 33px;
+        height:37px;
+        margin-left:-37px;
+        margin-top: 34px;
+        /*transform: translateX(-50%);*/
+        /*left: 64%;*/
+        /*margin-top: 234.5px;*/
+        position: absolute;
+    }
+    #T6{
+        width: 33px;
+        height:37px;
+        margin-left:-66px;
+        margin-top: 34px;
+        /*transform: translateX(-50%);*/
+        /*left: 58.5%;*/
+        /*margin-top: 234.5px;*/
+        position: absolute;
+    }
+    #T7{
+        width: 33px;
+        height:37px;
+        margin-left:66px;
+        margin-top: 118px;
+        /*transform: translateX(-50%);*/
+        /*left: 36%;*/
+        /*margin-top: 234.5px;*/
+        position: absolute;
+    }
+    #T8{
+        width: 33px;
+        height:37px;
+        margin-left:38px;
+        margin-top: 118px;
+        /*transform: translateX(-50%);*/
+        /*left: 41.5%;*/
+        /*margin-top: 234.5px;*/
+        position: absolute;
+    }
+    #T9{
+        width: 33px;
+        height:37px;
+        margin-left:-37px;
+        margin-top: 118px;
+        /*transform: translateX(-50%);*/
+        /*left: 36%;*/
+        /*margin-top: 193.5px;*/
+        position: absolute;
+    }
+    #T10{
+        width: 33px;
+        height:37px;
+        margin-left:-66px;
+        margin-top: 118px;
+        /*transform: translateX(-50%);*/
+        /*left: 41.5%;*/
+        /*margin-top: 193.5px;*/
+        position: absolute;
+    }
+    #Car img {
+        width: auto;
+        height: 100%;
+        /*height: 30%;*/
+        /*transform: translateX(100%);*/
+        /*left: 110px;*/
+        /*margin-top: 50px;*/
+        /*border: #48af4a;*/
+        /*border-width: 1px;*/
+        /*border-style: solid;*/
+
+    }
+    #Car{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 224px;
+    }
+    #Car_Page{
+        /*height: 500px;*/
+        width: 100%;
+        /*transform: translateX(-50%);*/
+        /*left: 50%;*/
+        /*margin-top: 20px;*/
+        position: relative;
+    }
+    /*#down_page img {*/
+    /*    width: 40%;*/
+    /*    height: 40%;*/
+    /*    transform: translateX(-50%);*/
+    /*    left: 50%;*/
+    /*    margin-top: 50px;*/
+    /*    position: absolute;*/
+    /*}*/
+    .Tire{
+        background-image: url('../image/icon_wheel_normal.png');
+        background-size: 100% 100%;
+    }
+ .Num{
+     background-image: url('../image/icon_tire.png');
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 17px;
+     color: white;
+     font-weight: 600;
+ }
+ /*table tableclass tr td{*/
+ /*    border-color: #111111;*/
+ /*    border-width: 1px;*/
+ /*    border-style: solid;*/
+ /*    border-spacing: 0;*/
+ /*}*/
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<body>
+<div style="height: calc(100% - 60px);overflow-y: scroll;">
+    <div id="Car_Page" style="width:100%;flex-direction:column;display: flex;">
+        <div style="margin-top:3%;margin-left:3%;font-size: 24px;position:absolute">10輪</div>
+        <!-- 这里是后面的图片层 -->
+        <div id="Car">
+            <img src="../image/img_10_wheels_244.png">
+            <div id="T1" class="Tire">
+                <!--            <img style="height: 100%; width: auto" src="../image/icon_wheel_normal.png">-->
+            </div>
+            <div id="T2" class="Tire"></div>
+            <div id="T3" class="Tire"></div>
+            <div id="T4" class="Tire"></div>
+            <div id="T5" class="Tire"></div>
+            <div id="T6" class="Tire"></div>
+            <div id="T7" class="Tire"></div>
+            <div id="T8" class="Tire"></div>
+            <div id="T9" class="Tire"></div>
+            <div id="T10" class="Tire"></div>
+
+            <div id="N1" class="Num">A
+                <!--            <img style="height: 100%; width: 100%" src="../image/icon_tire.png">-->
+            </div>
+            <div id="N2" class="Num">B</div>
+            <div id="N3" class="Num">C</div>
+            <div id="N4" class="Num">D</div>
+            <div id="N5" class="Num">E</div>
+            <div id="N6" class="Num">F</div>
+            <div id="N7" class="Num">G</div>
+            <div id="N8" class="Num">H</div>
+            <div id="N9" class="Num">I</div>
+            <div id="N10" class="Num">J</div>
+        </div>
+
+    </div>
+
+    <div  style="flex-direction:column;margin-bottom:1%;margin-top:1%;display: flex;justify-content: center;align-items:center;width:100%;">
+        <table style="width:90%;border-spacing: 1px;border-color: #A4AFB5;background-color: black;">
+            <tr style="border-color:#A4AFB5;border-style:solid;background-color:black;width:100%;">
+            <td style="margin-right:10px;color:white;border-color:black;background-color:#527585;width:14.9%;text-align: center">輪位</td>
+            <td style="margin:0;color:white;border-color:black;background-color:#527585;width:85.1%;height:48px;text-align: center;padding: 0;">Sensor ID 號碼</td>
+            </tr>
+        </table>
+        <table id="tableclass" style="margin-top:-1px;width:90%;border-spacing: 1px;border-color: #A4AFB5;background-color: black;"></table>
+    </div>
+</div>
+
+<!--    <table style="margin-top:3%;border-width:1px;border-color:black;display: flex;justify-content: center;align-items:center; height:48px;width:100%"  >-->
+<!--        <tr><td style="background-color:#527585;width:10%">輪位</td>-->
+<!--            <td style="background-color:#527585;width:80%">Sensor ID 號碼</td>-->
+<!--            <td style="background-color:#CED8DF;width:10%">QR</td></tr>-->
+<!--    </table>-->
+<!--    background-image:url('../image/button.png')-->
+<div id="enter" style="background-repeat: no-repeat;background-size: 100% 100%;background-image:url('../image/button.png');height:60px;width:100%;margin:0px;padding: 0px;display: flex;justify-content: center;align-items: center;text-align: center;font-size: 24px;color:white;">確認</div>
+
+<!--border='1;cellpadding="10"-->
+
+
+
+<!--<div style="display: flex;width:100%;height: 50px">-->
+<!--<div style="width:20%;border-width:1px;border-left:solid;border-color:#FFAC55;padding:5px;"></div>-->
+<!--<div style="width:80%;border-width:1px;border-left:solid;border-color:#FFAC55;padding:5px;"></div>-->
+<!--</div>-->
+</body>
+</html>
+<script>
+    let data={}
+    //data.wheel_num=['','']
+    data.wheel_num=['A','B','C','D','E','F','G','H','I','J']
+    data.wheel_id=['','','','','','','','','','']
+    data.keyup=['A','B','C','D','E','F','1','2','3','4','5','6','7','8','9','0']
+    for(let i=0;i<10;i++) {
+        let tire = document.getElementById("T" + (i+1).toString())
+        // let num = document.getElementById(.toString())
+        //$(document).ready(function() {
+        //if(obj != null){
+        $("#"+"N" + (i+1)).click(function (){
+            for(let j=0;j<10;j++){
+                //$('#T'+(j+1)+" img").attr('src',"../image/icon_wheel_normal.png")
+                $('#T'+(j+1)).css('background-image',"url('../image/icon_wheel_normal.png')")
+                //$('#N'+(i+1)).css('background-image',"../image/icon_tire.png")
+                $('#N'+(j+1)).css('background-image',"url('../image/icon_tire.png')")
+            }
+
+            //$('#T'+(i+1)+" img").attr('src',"../image/icon_tire_select.png")
+            $('#T'+(i+1)).css('background-image',"url('../image/icon_tire_select.png')")
+            //$('#N'+(i+1)).css('background-image',"../image/icon_tire_number_select.png")
+            $('#N'+(i+1)).css('background-image',"url('../image/icon_tire_number_select.png')")
+        })
+        // tire.onclick = function () {
+        //
+        // }
+        // num.onclick = function () {
+        //     $('#'+"T"+(i+1)).attr('src',"../image/icon_tire_select.png")
+        //     $('#'+"N"+(i+1)).attr('src',"../image/icon_tire_number_select.png")
+        //     //glitter.changePage('main/Page_Select_Function.html', "Page_Select_Function", true, {});
+        // }
+    }
+
+    let Adapter=new GlAdapter(document.getElementById('tableclass'),
+        function (){return data.wheel_id.length},
+        function (position) {
+            //id=' + position + '
+            //<img id=' + "test"+position + ' height="30%" width="100%" >
+            //'<table style="margin-top:3%;border-width:1px;border-color:black;display: flex;justify-content: center;align-items:center; height:48px;width:100%" >' +
+            let html=''
+
+            // if(position==0){
+            //     html=
+            //         '<tr style="border-color:#A4AFB5;border-style:solid;background-color:black;width:100%;">' +
+            //         '<td style="color:white;border-color:black;background-color:#527585;width:15%;text-align: center">輪位</td>' +
+            //         '<td style="margin:0;color:white;border-color:black;background-color:#527585;width:85%;height:48px;text-align: center;padding: 0;">Sensor ID 號碼</td>'+
+            //         '</tr>'
+            // }else{
+                html =
+                    // '<div style="margin-top:-1px;display: flex;flex-direction:row;width:90%;justify-content: center;align-items:center;">'+
+                    // '<div style="border-width:1px;border-style:solid;background-color:#527585;border-color:black;width:15%;height:48px;text-align: center;">輪位</div>'+
+                    // '<div style="margin-left:-1px;border-width:1px;border-style:solid;background-color:#527585;border-color:black;width:70%;height:48px;text-align: center;">Sensor ID 號碼</div>'+
+                    // '<div style="margin-left:-1px;border-width:1px;border-style:solid;background-color:#CED8DF;border-color:black;width:15%;height:48px;text-align: center;">QR</div>'
+                    // +'</div>'
+                    '<tr style="border-color:#A4AFB5;border-style:solid;background-color:black;width:100%;">' +
+                    '<td style="color:white;border-color:black;background-color:#527585;width:15%;text-align: center">'+data.wheel_num[position]+'</td>' +
+                    '<td style="margin:0;color:white;border-color:black;background-color:#527585;width:70%;height:48px;text-align: center;padding: 0;">' +
+                    '<input id='+"text"+position+' onkeyup="keyup_Function('+position+')" style="margin:0px;background-color:white;width:100%;height:100%;border-style: none;border-width: 0;padding: 0;" type="text" id="fname" name="fname" maxlength="6"></td>'+
+                    '<td style="color:white;border-color:black;background-color:#CED8DF;width:15%;text-align: center">QR</td>' +
+                    '</tr>'
+            //}
+
+            return html
+        } )
+    Adapter.notifyDataSetChange()
+
+    document.getElementById("enter").onclick = function (){
+        for(let i=0;i<data.wheel_num.length;i++){
+            let x = document.getElementById("text"+i.toString());
+            console.log("第"+(i+1)+"輪:"+x.value)
+        }
+
+    }
+
+    function keyup_Function(i){
+         let x = document.getElementById("text"+i.toString());
+        x.value = x.value.replace(/[^a-fA-F0-9]/g, '').toUpperCase();
+         //x.value = x.value.toUpperCase()
+        if(x.value.length>=6){
+            console.log("大於6 size")
+            x.value = x.value.substring(0,6)
+            return false
+            //x.value.innerText = x.value.innerText.substring(0,6)
+        }
+        // document.getElementById("demo").innerHTML = x;
+
+        // if(data.keyup.indexOf(x.value)===-1){
+        //     console.log("字元無在範圍內")
+        //     x.value = x.value.replace(,"")
+        //     return false
+        // }
+        // let time=0
+        // for(let i=0;i<data.keyup.length;i++) {
+        //     if(x.value===data.keyup[i]){
+        //         console.log("字元有在範圍內")
+        //         time++
+        //         break
+        //     }
+        // }
+        // if(time===0){
+        //     x.value = x.value.substring(0,x.value.length-1)
+        //     return false
+        // }
+
+    }
+
+</script>

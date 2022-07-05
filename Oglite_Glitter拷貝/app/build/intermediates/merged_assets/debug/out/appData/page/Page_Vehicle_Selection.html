@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .big {
+        margin-top: 10px;
+        border-bottom: 1px black solid;
+        height: 210px;
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .small {
+        margin-top: 0px;
+        border-bottom: 1px black solid;
+        height: 110px;
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .smallText {
+        color: #314a56;
+        font-size: 16px;
+        flex: auto;
+        margin-left: 10px;
+    }
+
+    .bigBottom {
+        position: absolute;
+        background-image: url("../img/btn_rectangle.png");
+        width: 100%;
+        height: 50px;
+        bottom: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreate = function () {
+        // glitter.mmyInterFace.queryMake(function (result){
+        //     alert(JSON.stringify(result))
+        // },function (){
+        //     alert("error")
+        // })
+    }
+
+    lifeCycle.onCreateView = function () {
+
+        return `
+    <h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${glitter.getLan(119)}
+</h3>
+<div style="height: calc(100% - 160px);overflow-y: scroll;" id="itemList">
+<div class="big" onclick="${event(function (){
+    glitter.share.mmySelectType='Manual'
+            glitter.changePage('page/Page_Select_Make.html','Page_Select_Make',true,{})
+        })}">
+<img src="../img/btn_icon_my_favourite_n.png" style="height: 170px;width: 170px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">${glitter.getLan(121)}</h3>
+</div>
+${
+            (glitter.publicBeans.language === "de") ? `<div class="small" onclick="
+${event(function (){
+                glitter.share.mmySelectType='HSN/TSN'
+                glitter.changePage('page/Page_Hsn_Tsn.html','Page_Hsn_Tsn',true,{});
+            })}
+">
+<img src="../img/hsn_n.png" style="height: 100px;width: 100px;">
+<h3 class="smallText">HSN/TSN</h3>
+</div>` : ``
+        }
+
+<div class="small" onclick="${event(function (){
+            glitter.share.mmySelectType='qrcode'
+            glitter.changePage('page/Page_ScanOsom_Hint.html','Page_ScanOsom_Hint',true,{});
+        })}">
+<img src="../img/osomscan.png" style="height: 100px;width: 100px;">
+<h3 class="smallText">${glitter.getLan(120)}</h3>
+</div>
+<div class="small" onclick="
+${event(function (){
+            glitter.share.mmySelectType='favorite'
+            glitter.changePage('page/Page_Select_Favorite.html','Page_Select_Favorite',true,{})
+        })}
+">
+<img src="../img/btn_favourite_n.png" style="height: 100px;width: 100px;">
+<h3 class="smallText">${glitter.getLan(34)}</h3>
+</div>
+</div>
+ <div id="bigBottom" class="bigBottom" onclick="glitter.goMenu()" >${glitter.getLan(9)}</div>
+    `
+    }
+
+
+</script>

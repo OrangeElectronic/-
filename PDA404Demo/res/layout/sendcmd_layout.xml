@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:gravity="center_horizontal"
+    >
+    
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="控制命令"
+        android:textSize="23sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
+    
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+         >
+    <Button 
+        android:id="@+id/open_5v"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="打开5V使能电压"
+        android:layout_marginTop="10dp"
+        />
+    
+      <Button 
+        android:id="@+id/close_5v"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="关闭5V使能电压"
+        android:layout_marginTop="10dp"
+        />
+      
+      </LinearLayout>
+      
+        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+         >
+          <Button 
+        android:id="@+id/open_9v"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="打开9V使能电压"
+        android:layout_marginTop="10dp"
+        />
+    
+      <Button 
+        android:id="@+id/close_9v"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="关闭9V使能电压"
+        android:layout_marginTop="10dp"
+        />
+      </LinearLayout>
+      
+            <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+         >
+          <Button 
+        android:id="@+id/open_BP5"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="打开BP5电压"
+        android:layout_marginTop="10dp"
+        />
+    
+      <Button 
+        android:id="@+id/close_BP5"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="关闭BP5电压"
+        android:layout_marginTop="10dp"
+        />
+      </LinearLayout>
+      
+            <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+         >
+             <Button 
+        android:id="@+id/open_gpio1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="打开gpio1电压"
+        android:layout_marginTop="10dp"
+        />
+    
+      <Button 
+        android:id="@+id/close_gpio1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="关闭gpio1电压"
+        android:layout_marginTop="10dp"
+        />
+      </LinearLayout>
+          <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+         >
+               <Button 
+        android:id="@+id/open_gpio2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="打开gpio2电压"
+        android:layout_marginTop="10dp"
+        />
+    
+      <Button 
+        android:id="@+id/close_gpio2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="关闭gpio2电压"
+        android:layout_marginTop="10dp"
+        />
+      </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:gravity="center_horizontal">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+            <Button
+                    android:id="@+id/bt_select_tr"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/bt_long_selecter"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/array_language_trach"
+                    android:textColor="@color/color_white" />
+
+            <Button
+                    android:id="@+id/bt_select_sk"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/bt_long_selecter"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="Slovakia"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white" />
+
+            <Button
+                    android:id="@+id/bt_select_ita"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/bt_long_selecter"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/array_language_italian"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white" />
+
+            <Button
+                    android:id="@+id/bt_select_en"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/bt_long_selecter"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/array_language_english"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white" />
+
+            <Button
+                    android:id="@+id/bt_select_cn"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/bt_long_selecter"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/array_language_simch"
+                    android:textColor="@color/color_white" />
+
+            <Button
+                    android:id="@+id/bt_select_da"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/bt_long_selecter"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="Denmark"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white" />
+
+            <Button
+                    android:id="@+id/bt_select_deu"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/bt_long_selecter"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/array_language_german"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

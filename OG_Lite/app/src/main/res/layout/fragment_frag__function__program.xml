@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Frag.Frag_Function_Program">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/read_MMY_Title2"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:background="@color/title_black"
+                android:gravity="center"
+                android:text="hello_blank_fragment"
+                android:textColor="@color/white"
+                android:textSize="21sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ShowReadView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view26"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="23dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <View
+                android:id="@+id/view26"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/Sensor_Data"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="23dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/Sensor_Data"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/view25"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="23dp">
+
+                <View
+                    android:id="@+id/view19"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:id="@+id/WH_text"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/qr_code_background_color"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/view20"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:id="@+id/Vehice_ID_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:background="@color/qr_code_background_color"
+                    android:gravity="center"
+                    android:text="ID"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/view21"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:id="@+id/check_text"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:background="@color/qr_code_background_color"
+                    android:gravity="center"
+                    android:text="@string/app_psi"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/view22"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:id="@+id/check_text3"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:background="@color/qr_code_background_color"
+                    android:gravity="center"
+                    android:text="@string/app_temp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/view31"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:id="@+id/check_text2"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:background="@color/qr_code_background_color"
+                    android:gravity="center"
+                    android:text="@string/app_bat_clear"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/view33"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:background="@color/gray" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view25"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/Car_and_init"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="23dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/Car_and_init"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/read_MMY_Title2"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/show_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:gravity="center_vertical"
+                    android:text="@string/Keep_other_sensors_7_cm_away"
+                    android:textColor="@color/text_black"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/Car_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="false"
+                    android:layout_weight="0.5"
+                    android:background="@mipmap/img_program_trigger_read" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@mipmap/btn_letf"
+            android:gravity="center"
+            android:text="@string/MENU"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/sending_data2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@mipmap/btn_right"
+            android:gravity="center"
+            android:text="@string/Read"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/sending_data4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@mipmap/btn_right"
+            android:gravity="center"
+            android:text="@string/Relearn_Procedure"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:visibility="gone" />
+    </LinearLayout>
+</RelativeLayout>

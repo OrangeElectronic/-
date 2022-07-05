@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/prl_wifi_name"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@mipmap/iv_logo" />
+
+    <RelativeLayout
+            android:id="@+id/prl_wifi_name"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp">
+
+        <ImageView
+                android:id="@+id/iv_wifi"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/wifi" />
+
+        <Spinner
+                android:id="@+id/sp_wifi_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/iv_wifi"
+                android:focusable="true" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/iv_wifi"
+                android:background="@color/color_grey" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_below="@+id/prl_wifi_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp">
+
+        <ImageView
+                android:id="@+id/iv_password"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/lock" />
+
+        <EditText
+                android:id="@+id/et_wifi_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/iv_password"
+                android:gravity="start|center_vertical"
+                android:hint="@string/Password"
+                android:inputType="text"
+                android:paddingStart="25dp"
+                android:singleLine="true"
+                android:textColor="@color/color_black"
+                android:textColorHint="@color/color_grey" />
+
+    </RelativeLayout>
+
+    <!--loading-->
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/bt_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/buttoncolor"
+                android:gravity="center"
+                android:text="@string/app_cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        <Button
+                android:id="@+id/bt_select"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/buttoncolor"
+                android:gravity="center"
+                android:text="@string/app_connection"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

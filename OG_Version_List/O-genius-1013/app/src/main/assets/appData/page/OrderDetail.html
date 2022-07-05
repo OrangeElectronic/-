@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        overflow-y: hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    table {
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-top: 10px;
+        width: calc(100vw - 10px);
+        border: none;
+    }
+
+    .No {
+        width: 60px;
+        color: #314B57;
+        text-align: center;
+        background-color: #BFD1DD;
+    }
+
+    .SensorID {
+        color: #314B57;
+        text-align: center;
+        padding: 0;
+        max-width: calc((100vw - 120px)/2);
+        width: calc((100vw - 120px)/2);
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        word-break: break-word;
+    }
+
+    td {
+        margin: 0;
+        padding: 0;
+        border-color: gray;
+        height: 60px;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .title {
+        width: 100%;
+        height: 40px;
+        font-size: 20px;
+        color: #314B57;
+        text-align: center;
+        line-height: 40px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .btn_class {
+        background-color: #314B57;
+        padding: 0;
+        height: 50px;
+        position: fixed;
+        bottom: 0px;
+        margin-bottom: 60px;
+        width: 100%;
+        display: flex;
+    }
+
+    .btItem {
+        background-color: #314B57;
+        padding: 0;
+        width: 50%;
+        height: 50px;
+        display: inline-block;
+    }
+
+    .btItem h3 {
+        padding: 0;
+        color: white;
+        font-size: 17px;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        margin-top: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btItem img {
+        width: 100%;
+        height: 50px;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .SensorID input {
+        width: calc(100%);
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 18px;
+        border-style: none;
+    }
+
+    .countHint {
+        background-color: #FF9B00;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        border-radius: 25px;
+        float: right;
+        margin-right: 10px;
+        right: 0;
+        margin-top: -55px;
+        border-style: solid;
+        border-color: white;
+        border-width: 2px;
+        z-index: 2;
+    }
+
+    .countText {
+        color: white;
+        width: 100%;
+        line-height: 50px;
+        margin-top: 0px;
+        text-align: center;
+    }
+    h3{
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../jsLib/EventLinstener.js"></script>
+<body>
+<div style="height: 60px;font-size: 14px;margin-top: 0;display: inline-block;width: 100vw;background-color: #314B57;">
+    <h3 id="titleText"
+        style="line-height: 60px;width: 100%;text-align: center;color: white;height: 60px;margin-top: 0;font-size: 18px;">
+        Order</h3>
+</div>
+<div class="countHint">
+    <h3 class="countText" id="countText">200</h3>
+</div>
+<div id="scrolview"
+     style="overflow-y: scroll;width: 100vw;height: calc(100vh - 170px);margin-top:0px;margin-bottom:60px;position: fixed;z-index: 1;">
+    <h3 class="title" id="tt">
+        SP201(M)
+    </h3>
+    <table id="listData" cellspacing="0" cellpadding="0" style="position: relative;z-index: 3;"></table>
+</div>
+<div class="btn_class" id="btn_class">
+    <div class="btItem" onclick="goNext()">
+        <h3 id="menuText">Skip</h3>
+    </div>
+
+    <div class="btItem" onclick="Scan()">
+        <h3 id="nextBt">Scan</h3>
+        <script> $('#nextBt').html()</script>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var pageIndex = 0
+    var sensorData = []
+    var jsonString = gBundle
+    console.log('json==' + jsonString)
+    var json = undefined
+    var data = undefined
+    var focus = undefined
+    var length = 0
+    updateUI()
+    lifeCycle.onCreate=function (){}
+    function updateUI() {
+        document.getElementById('listData').innerHTML = ''
+        $('#listData').append(`
+<tr>
+                <td class="No">No.</td>
+                <td class="SensorID" style="background-color: #BFD1DD;">Sensor ID</td>
+                <td class="No">No.</td>
+                <td class="SensorID" style="background-color: #BFD1DD;">Sensor ID</td>
+            </tr>`)
+        json = JSON.parse(jsonString)
+        if (json[pageIndex].SensorID === '') {
+            sensorData = []
+        } else {
+            console.log('datainit' + json[pageIndex].SensorID)
+        }
+        var sensorJson = []
+        try {
+            sensorJson = JSON.parse(json[pageIndex].SensorID)
+        } catch (e) {
+
+        }
+        data = json[pageIndex]
+        focus = 1
+        document.getElementById('countText').innerHTML = data.modqty
+        document.getElementById('titleText').innerHTML = data.OrderNo
+        document.getElementById('tt').innerHTML = data.ino
+        length = parseInt(data.modqty, 10)
+        for (var i = 0; i < length; i++) {
+            if (i % 2 === 0) {
+                $('#listData').append('<tr id="tr' + (i / 2) + '"></tr>')
+            }
+            var id = parseInt(i / 2, 10)
+            var data = ''
+            if (i < json[pageIndex].SensorID.length) {
+                data = sensorJson[i]
+            }
+            $('#tr' + id).append(' <td class="No">' + (i + 1) + '</td>\n' +
+                '            <td class="SensorID" id="in' + (i + 1) + '" style="height: 100%;">' + data + '</td>')
+            document.getElementById('in' + (i + 1)).addEventListener('click', onClick)
+
+            function onClick() {
+                console.log('click' + this.id)
+                updateFocus((this.id + '').replace('in', ''))
+            }
+            $('#in' + (i + 1)).html(sensorData[i])
+        }
+    }
+
+
+    function Scan() {
+        if (sensorData.length === length) {
+            uploadData();
+            return;
+        }
+        rootActivity().publicBeans.scanBack = function (id) {
+            if(id.length===1){
+                insertSensor(id[0].SensorId,true)
+                return
+            }
+            glitter.openDiaLog('dialog/DataLoading.html', 'DataLoading', false, false, '{}')
+            setTimeout(function (){
+                if(id.length<=length){
+                    for(var a=0;a<id.length;a++){
+                        insertSensor(id[a].SensorId,false,(id.length-1)!==a)
+                    }
+                    rootActivity().ogInterFace.playBeet()
+                }
+                glitter.closeDiaLogWithTag('DataLoading')
+            },2000)
+        }
+        rootActivity().publicBeans.scanSensor()
+    }
+
+    //插入Sensor
+    function insertSensor(id,check,wupdateFocus) {
+        if (sensorData.indexOf(id) !== -1) {
+            return
+        }
+        if(check){  rootActivity().ogInterFace.playBeet()}
+        $('#in' + focus).html(id)
+
+        if(!wupdateFocus){
+            getTd()
+            for(var a=0;a<length;a++){
+                if($('#in' +(a+1)).html()===''){
+                    var tempFocus=(a+1)
+                    if (tempFocus >= 1 && tempFocus <= length) {
+                        updateFocus(tempFocus)
+                    }
+                    return;
+                }
+            }
+        }else{
+            focus++
+        }
+
+    }
+
+    function uploadData() {
+        glitter.openDiaLog('dialog/DataLoading.html', 'DataLoading', false, false, '{}')
+        var request = {}
+        json[pageIndex].SensorID = JSON.stringify(sensorData)
+        request.request = 'UploadShip'
+        json[pageIndex].modqty = 0
+        json[pageIndex].ship = 'Y'
+        request.data = JSON.stringify(json[pageIndex])
+        request.us=(glitter.account==='orangeus')
+        $.ajax({
+            type: 'POST',
+            url: rootActivity().publicBeans.apiRoot + '/ShipScan',
+            data: JSON.stringify(request),
+            success: function (data) {
+                glitter.closeDiaLogWithTag('DataLoading')
+                var map = {}
+                map.text = rootActivity().ogInterFace.getLan("jz.487")
+                goNext()
+                console.log('success' + data)
+            },
+            error: function (data) {
+                glitter.closeDiaLogWithTag('DataLoading')
+                var map = {}
+                map.text = rootActivity().ogInterFace.getLan("jz.210")
+                glitter.openDiaLog('dialog/HintText.html', 'HintText', false, true, map)
+                console.log('error' + data)
+            }
+        })
+    }
+
+    function goNext(){
+        if (pageIndex + 1 < json.length) {
+            pageIndex++
+            updateUI()
+        } else {
+            setTimeout(function (){glitter.goBack()},200)
+        }
+    }
+
+    glitter.keyEventListener = function (json) {
+        // alert(JSON.stringify(json))
+        if (json.mAction === 1 && json.mKeyCode >= 7 && json.mKeyCode <= 16) {
+            var res = String.fromCharCode(json.mKeyCode + 41);
+            $('#in' + focus).html($('#in' + focus).html() + res)
+            getTd()
+            return
+        } else if (json.mAction === 1 && json.mKeyCode >= 29 && json.mKeyCode <= 34) {
+            var res = String.fromCharCode(json.mKeyCode + 36);
+            $('#in' + focus).html($('#in' + focus).html() + res)
+            getTd()
+            return
+        } else if (json.mAction === 1 && json.mKeyCode == 67) {
+            var stmp = $('#in' + focus).html()
+            stmp = stmp.substring(0, stmp.length - 1)
+            $('#in' + focus).html(stmp)
+            getTd()
+            return;
+        }
+        if (json.mAction === 1) {
+            var tempFocus = focus
+            switch (json.mKeyCode) {
+                //上按鈕
+                case 19: {
+                    tempFocus = tempFocus - 2
+                    console.log('json_inAction:按上')
+                    break
+                }
+                //下按鈕
+                case 20: {
+                    console.log('json_inAction:按下')
+                    tempFocus = tempFocus + 2
+                    break
+                }
+                //左按鈕
+                case 21: {
+                    console.log('json_inAction:按左')
+                    tempFocus = tempFocus - 1
+                    break
+                }
+                //又按鈕
+                case 22: {
+                    console.log('json_inAction:按右')
+                    tempFocus = tempFocus + 1
+                    break
+                }
+                //Scan按鈕
+                case 280: {
+                    Scan()
+                    break
+                }
+            }
+            if (tempFocus >= 1 && tempFocus <= length) {
+                updateFocus(tempFocus)
+            }
+        }
+        console.log(JSON.stringify(json))
+    }
+
+    $('#in' + focus).css('background-color', 'green')
+    $('#in' + focus).css('color', 'white')
+
+    function updateFocus(tempFocus) {
+        console.log("updateFocus" + tempFocus)
+        console.log('#in' + focus)
+        $('#in' + focus).css('background-color', 'white')
+        $('#in' + focus).css('color', 'black')
+        $('#in' + tempFocus).css('background-color', 'green')
+        $('#in' + tempFocus).css('color', 'white')
+        document.getElementById('in' + tempFocus).scrollIntoView();
+        focus = tempFocus
+        document.getElementById('in' + tempFocus).focus()
+    }
+
+    //取得table中td的值
+    function getTd() {
+        var table = document.getElementById('listData');
+        var it = []
+        sensorData = []
+        for (var t = 0; t < table.rows.length; t++) {
+            for (var a = 0; a < table.rows[t].cells.length; a++) {
+                if ((a % 2 === 1) && t > 0) {
+                    if (table.rows[t].cells[a].innerHTML !== '') {
+                        sensorData = sensorData.concat(table.rows[t].cells[a].innerHTML)
+                    }
+                    console.log('innerText' + table.rows[t].cells[a].innerHTML)
+                }
+            }
+        }
+        document.getElementById('countText').innerHTML= ''+(length-sensorData.length)
+        if (sensorData.length === length) {
+            document.getElementById('nextBt').innerHTML = rootActivity().ogInterFace.getLan("jz.145")
+        } else {
+            document.getElementById('nextBt').innerHTML = rootActivity().ogInterFace.getLan("jz.35")
+        }
+    }
+
+</script>

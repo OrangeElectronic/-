@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        /*background: #48af4a;*/
+        /*background-size: 50% 50%;*/
+    }
+    .RX_text{
+        top:10%;
+        height: 10px;
+        margin-left: 20px;
+        padding-top: 5px;
+    }
+
+.RX_data1{
+    height: 100px;
+    margin: 20px;
+    position: relative;
+    text-align: center;
+    background : white;
+    line-height: 100px;
+    cursor: pointer;
+    border: 1px solid black;
+}
+    .RX_data2{
+        height: 100px;
+        margin: 20px;
+        position: relative;
+        text-align: center;
+        background : white;
+        line-height: 100px;
+        cursor: pointer;
+        border: 1px solid black;
+    }
+    /*#Rx_Data1{*/
+    /*    width: 100px;*/
+    /*    height: 100px;*/
+    /*    position: absolute;*/
+    /*    transform: translate(50%,50%);*/
+    /*    text-align: center;*/
+    /*    background : white;*/
+    /*}*/
+    /*#Rx_Data2{*/
+    /*    width: 100px;*/
+    /*    height: 100px;*/
+    /*    position: absolute;*/
+    /*    transform: translate(50%,50%);*/
+    /*    text-align: center;*/
+    /*    background : white;*/
+    /*}*/
+    .verticalclass{
+        width: 80%;
+        background-color: #ffa500;
+        height: 150px;
+        display: inline-block;
+        position: relative;
+        /*transform: translateY(50%);*/
+        left: 9%;
+        top:35%;
+    }
+.itemclass{
+    width: 100%;
+    /*background: #48af4a;*/
+    display: flex;
+    position: relative;
+}
+.RX_data1:hover{
+    background-color : black;
+    color:white;
+}
+    .RX_data2:hover{
+        background-color : black;
+        color:white;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<!--<body onclick="closeChange();">-->
+<!--style="background-color:DodgerBlue;"-->
+<body>
+<div class="verticalclass">
+    <div class="RX_text"  id="RX_text"></div>
+<div class="itemclass">
+    <div class="RX_data1"  id="RX_data1" style="width: 50%;"></div>
+    <div class="RX_data2"  id="RX_data2" style="width: 50%;"></div>
+</div>
+</div>
+</body>
+</html>
+<script>
+    $("#RX_text").html('Rx')
+    $("#RX_data1").html(gBundle.left)
+    $("#RX_data2").html(gBundle.right)
+    $("#RX_data1").click(function () {
+        closeChange(this.innerHTML,'left')
+    })
+    $("#RX_data2").click(function () {
+        closeChange(this.innerHTML,'right')
+    })
+
+    // var Rx1 = document.getElementById('Rx_Data1');
+    // var Rx2 = document.getElementById('Rx_Data2');
+    function closeChange(data,turn){
+        gBundle.fun(data,turn)
+        getGlitter().closeDiaLog()
+    }
+    // console.log(rootActivity())
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+    <script src="../jslib/lottie.js"></script>
+</head>
+<style>
+  html{
+    width: 100%;
+    height: 100%;
+  }
+  body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){}
+
+  lifeCycle.onCreateView=function (){
+    return `<div style="position: relative;width: calc(100% - 100px);background-color:#FF6E40;border-radius: 10px;display: flex;align-items: center;justify-content: center;flex-direction: column;">
+<h3 style="color: white;width: 100%;display: flex;align-items: center;justify-content: center;">${glitter.getLan(404)}</h3>
+<img src="../img/magna.png"  style="width: 100%;">
+<div style="height: 50px;"></div>
+<lottie-player src="../lottieFile/loading2.json"  background="transparent"  speed="1"  style="position:relative;width: 200px; height: 200px;z-index: 1;transform: translateY(-50%);top: 50%;"  loop  autoplay></lottie-player>
+<div style="height: 1px;background-color: white;width: 100%;margin-top: -170px;"></div>
+<h3 style="color: white;width: 100%;height: 30px;display: flex;align-items: center;justify-content: center;z-index: 3;position: relative;" onclick="
+glitter.command.cancel=true;
+glitter.command.send('0A0E00030000F5');
+glitter.closeDiaLog()
+">${glitter.getLan(141)}</h3>
+</div>
+
+`
+  }
+</script>
+</body>
+</html>

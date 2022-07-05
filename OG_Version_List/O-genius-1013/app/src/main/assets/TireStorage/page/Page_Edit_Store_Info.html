@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+    <script src="../glitterBundle/extension.js"></script>
+</head>
+<style>
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: auto;
+        color: white;
+        font-size: 16px;
+    }
+
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .flexGray {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        width: 120px;
+        height: 100%;
+        background-color: #cdcbcb;
+        color: #2F4C63;
+    }
+
+    .flexWhite {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        width: calc(100% - 120px);
+        height: 100%;
+        background-color: white;
+        color: #2F4C63;
+    }
+
+    input {
+        border: 1px solid grey;
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+    }
+
+    .bottomBar {
+        display: flex;
+        height: 50px;
+    }
+
+    #Content {
+        overflow-y: scroll;
+        height: calc(100vh - 170px);
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .blueHint {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .blueHint h3 {
+        color: black;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid lightgray;
+        margin: 0;
+        height: 50px;
+    }
+
+    .Tposition {
+        width: 50px;
+        height: 100%;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        border: 1px solid lightgray;
+    }
+    .spinner{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% - 20px);
+        height: calc(100% - 10px);
+       border-radius: 10px;
+        padding-left: 10px;
+        background-image: url("../img/down.png");
+        background-repeat: no-repeat;
+        background-size: 15px 15px;
+        background-position: right 10px center;
+        border: 1px solid grey;
+    }
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .flexGray {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        width: 120px;
+        height: 100%;
+        background-color: #cdcbcb;
+        color: #2F4C63;
+        font-size: 14px;
+    }
+
+    .flexWhite {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-right: 10px;
+        padding-left: 10px;
+        width: calc(100% - 120px);
+        height: 100%;
+        background-color: white;
+        color: #2F4C63;
+    }
+
+    input {
+        border: 1px solid lightgray;
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+        color: #6a6a6a;
+    }
+
+    .bottomBar {
+        display: flex;
+        height: 50px;
+    }
+
+    #Content {
+        overflow-y: scroll;
+        padding-bottom: 50px;
+        height: calc(100vh - 180px);
+    }
+
+
+
+    .blueHint {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .blueHint h3 {
+        color: black;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid lightgray;
+        margin: 0;
+        height: 50px;
+    }
+
+    .Tposition {
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+    }
+    .spinner{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% - 20px);
+        height: calc(100% - 10px);
+        border-radius: 10px;
+        padding-left: 10px;
+        background-image: url("../img/down.png");
+        background-repeat: no-repeat;
+        background-size: 15px 15px;
+        background-position: right 10px center;
+        border: 1px solid lightgray;
+    }
+    input {
+        font-size: 16px;
+        color: #6a6a6a;
+        padding-left: 10px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/botton_Press.png");
+        background-color: #FF4400;
+        width: 100%;
+        height: 60px;
+        position: absolute;
+        bottom: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+</style>
+<body>
+
+</body>
+<script>
+    "use strict";
+    let titleText = [
+        //車牌
+        {title: glitter.language(467), value: '',type:'Lplate'},
+        //預約類型
+        {title: glitter.language(537), value: '0',type:'tirtype'},
+        //數量
+        {title: glitter.language(481), value: '4',type:'Qty'},
+        //櫃位
+        {title: glitter.language(479), value: '',type:'Storage'},
+        //車輛擁有者
+        {title: glitter.language(547), value: '',type:'Fname'},
+        //電話號碼
+        {title: glitter.language(357), value: '',type:'Phone'},
+        //E-mail
+        {title: 'E-mail', value: '',type:'Email'}
+    ]
+    function toNext(){
+        var canNext=true
+        titleText.map(function (data){
+            gBundle[data.type]=data.value
+            if(((data.type==='Qty')||(data.type==='Lplate'))&&(data.value==='')){
+                canNext=false
+            }
+        })
+        if(!canNext){return}
+        var date=new Date().format("yyyy-MM-dd hh:mm:ss")
+        gBundle.RDate=date.substring(0,10)
+        gBundle.RTime=date.substring(11,16)
+        glitter.changePage('page/Page_Tire_Information.html','Page_Tire_Information',true,gBundle);
+    }
+    let tireDepth = [
+        {
+            title: "LF"
+        }
+    ]
+
+    lifeCycle.onCreate = function () {
+        gBundle=JSON.parse(`{"Lplate":"","Storage":"","tirtype":"0","Qty":"0","Fname":"","Phone":"","Email":"","Address":"dd","Account":"","Distributor":"","item":"0","RDate":"","RTime":"","Remark":"","Status":"","CreateId":"","CreateDate":"","ModifyId":"","ModifyDate":"","Hsn":"","Tsn":"","Make":"","Model":"","Year":"","VIN":"","Miles":"","lastDate":"","carFile":[],"triepress":[]}`)
+        gBundle.tirtype="0"
+        gBundle.account=glitter.share.account
+        gBundle.addForms=true
+        updateView()
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                    $(document.activeElement).trigger('input')
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                        $(document.activeElement).trigger('input')
+                    }
+                }
+            }
+        }
+    }
+
+    function updateView() {
+        $('#Content').html('')
+        titleText.map(function (data,position) {
+            if(position===1){
+                $('#Content').append(`<div class="flexItem" onclick="glitter.openDiaLog('dialog/Dia_Select_Season.html','Dia_Select_Season',false,false,{
+    callback:function (data){
+        gBundle.tirtype=(''+data)
+        titleText[${position}].value=gBundle.tirtype
+        updateView()
+    }
+},function (){})">
+<div class="flexGray">${data.title}</div>
+<div class="flexWhite">
+<div class="Tposition" style="background-color: white;">
+<div class="spinner">${[glitter.language(549),glitter.language(550),glitter.language(551)][parseInt(gBundle.tirtype,10)]}</div>
+</div>
+</div>
+</div>`)
+            }else if(position===100){
+            }else{
+                $('#Content').append(`<div class="flexItem">
+<div class="flexGray">${data.title}</div>
+<div class="flexWhite"><input type="${((position===2)||(position===5)) ? "number":"text"}" oninput="titleText[${position}].value=$(this).val()" value="${titleText[position].value}"></div>
+</div>`)
+            }
+        })
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+   <div style="background-color: #2F4C63;height: 60px;width: 100%;display: flex;align-items: center;">
+    <h3 class="title">${glitter.language(543)}</h3>
+</div>
+<div id="Content"></div>
+ <div id="next" class="rightBottom" onmousedown="toNext()" >
+        ${glitter.language(145)}
+        </div>
+    `
+    }
+    window.addEventListener("resize", function (v) {
+        this.LastWindowHeight = this.CurWindowHeight;
+        this.CurWindowHeight = window.innerHeight;
+        if ((this.LastWindowHeight - this.CurWindowHeight) /this.LastWindowHeight > 0.25){
+            document.activeElement.scrollIntoView()
+            $('#next').hide()
+        }else{
+            $('#next').show()
+        }
+    });
+    lifeCycle.onResume=function (){
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                    $(document.activeElement).trigger('input')
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                        $(document.activeElement).trigger('input')
+                    }
+                }
+            }
+        }
+    }
+</script>
+</html>

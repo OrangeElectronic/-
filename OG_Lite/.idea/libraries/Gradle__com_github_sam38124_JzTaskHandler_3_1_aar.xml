@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.sam38124:JzTaskHandler:3.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b1bed96dedb1a0b016200f50e2ed3d1f/jetified-JzTaskHandler-3.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b1bed96dedb1a0b016200f50e2ed3d1f/jetified-JzTaskHandler-3.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b1bed96dedb1a0b016200f50e2ed3d1f/jetified-JzTaskHandler-3.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.sam38124/JzTaskHandler/3.1/f7bf2fb2b10c9e5df741cdf99bf2e5c3bbd13f79/JzTaskHandler-3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

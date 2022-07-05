@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+    }
+
+    body {
+        height: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flexbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreate = function () {
+        var html = `
+    <div  style="display:flex;align-items: center;height: 60px;background-color: #002F51">
+        <img src="../img/btn_back.png" style="width: 50px;height: 50px;" onclick="glitter.goBack()">
+        <h3 style="color: white;flex: auto;margin-right: 60px;text-align: center;">${glitter.getLan(71)}</h3></div>
+        <div style="height: calc(100vh - 100px);margin-left:10px;margin-right:10px;overflow-y: scroll;overflow-x:hidden;white-space: pre-wrap;line-height:20px;color: white;font-size: 16px;word-break:break-word;display: inline-block; ">
+${glitter.getLan(72)}
+</div>
+        <div class="sig" style="height: 50px;margin: 10px;display: flex;">
+<div onclick="glitter.closeApp()" style="color: white;height: 50px;width: calc(50% - 10px);text-align: center;line-height: 50px;border-width: 1px;border-color:#92C0DF;border-style: solid;border-top-left-radius: 25px;border-bottom-left-radius: 25px;">
+${glitter.getLan(2)}
+</div>
+<div  style="margin-left:10px;color: white;height: 50px;flex:auto;text-align: center;line-height: 50px;border-width: 1px;border-color:#92C0DF;border-style: solid;border-bottom-right-radius: 25px;border-top-right-radius: 25px;background: :#92C0DF;" onclick="glitter.goBack()">
+${glitter.getLan(1)}
+</div>
+</div>
+`
+        $('body').append(html)
+    }
+</script>

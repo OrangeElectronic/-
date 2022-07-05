@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 60px);
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .wrapper h3 {
+        color: white;
+        background-color: #40606F;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        min-height: 60px;
+        margin: 0;
+        border-bottom: 1px solid white;
+    }
+
+    .tireCancel {
+        background-image: url("../img/icon_tire_cancel.png");
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tireSelect {
+        background-image: url("../img/yellow_tire.png");
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .tireOk {
+        background-image: url("../img/icon_tire_ok.png");
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mindiv {
+        width: 40px;
+        height: 40px;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .maxdiv {
+        width: 40px;
+        height: 40px;
+        flex: auto;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .item {
+        display: flex;
+        height: 40px;
+        min-height: 40px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        width: 40%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+
+    var wheelArray = [glitter.language(312), glitter.language(309), glitter.language(310), glitter.language(311)]
+    var selectPosition = {position: 0}
+    var itemData = {}
+    lifeCycle.onCreate = function () {
+        glitter.addObserver(selectPosition, "position", function (result) {notifyList()})
+        glitter.readRxReceive=function (){readSensor()}
+        glitter.keyEventListener = function (json) {
+            if (json.mAction == 0) {
+                if (json.mKeyCode == 20 && ((selectPosition.position + 1) < wheelArray.length)) {
+                    selectPosition.position = selectPosition.position + 1
+                } else if (json.mKeyCode == 19 && ((selectPosition.position - 1) >= 0)) {
+                    selectPosition.position = selectPosition.position - 1
+
+                } else if (json.mKeyCode == 280) {
+                    glitter.runJsInterFace("scanSensor", {}, function (data) {
+                        if(data.data!==undefined){
+                            if(selectPosition.position!==-1){
+                                itemData[`${selectPosition.position}`] = {
+                                    id: data.data,
+                                    bat: "",
+                                    kpa: "",
+                                    c: "",
+                                    vol: ""
+                                }
+                                notifyList(true)
+                            }
+                        }
+                        glitter.runJsInterFace("playBeet",{},function (){})
+                    })
+                }else if(json.mKeyCode == 131){
+                    readSensor()
+                }
+            }
+        }
+    }
+
+    function notifyList(toNext) {
+        var html = `<div class="item" style="background-color: #d7d8d9">
+<div class="mindiv"></div>
+<div class="maxdiv">ID</div>
+<div class="mindiv">${glitter.publicBeans.pressure}</div>
+<div class="mindiv">${glitter.publicBeans.tem}</div>
+<div class="mindiv" style="background-image: url('../img/icon_sensor_battery.png');background-size: 40px 40px;background-repeat: no-repeat;background-position: center;"></div>
+</div>`
+        var toggle=true
+        var lastSelectPosition=selectPosition.position
+        for(var b=0;b<wheelArray.length;b++){
+            if(toggle&&toNext && itemData["" + b] === undefined){
+                toggle=false
+                selectPosition.position=b
+                break
+            }
+        }
+        if((lastSelectPosition===selectPosition.position)&&toNext){
+            selectPosition.position=-1
+        }
+        for (var a = 0; a < wheelArray.length; a++) {
+            $("#w" + a).removeClass("tireSelect")
+            $("#w" + a).removeClass("tireOk")
+            if (itemData["" + a] === undefined) {
+                html += `
+      <div onclick="selectPosition.position=${a}" id="focus${a}" class="item" style="background-color: ${(selectPosition.position === a) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position === a) ? 'white' : 'black'};">
+<div class="mindiv" style="background-color:#d7d8d9;color: black; ">${wheelArray[a]}</div>
+<div class="maxdiv"></div>
+<div class="mindiv"></div>
+<div class="mindiv"></div>
+<div class="mindiv"></div>
+</div>
+      `
+            } else {
+                $("#w" + a).toggleClass("tireOk")
+                html += `
+      <div onclick="selectPosition.position=${a}" id="focus${a}" class="item" style="background-color: ${(selectPosition.position === a) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position === a) ? 'white' : 'black'};">
+<div class="mindiv" style="background-color:#d7d8d9;color: black; ">${wheelArray[a]}</div>
+<div class="maxdiv">${itemData["" + a].id}</div>
+<div class="mindiv">${itemData["" + a].kpa}</div>
+<div class="mindiv">${itemData["" + a].c}</div>
+<div class="mindiv">${itemData["" + a].bat}</div>
+</div>
+      `
+            }
+        }
+        $("#w" + selectPosition.position).toggleClass("tireSelect")
+        $('#itemList').html(html)
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${gBundle.Make}/${gBundle.Model}/${gBundle.Year}
+</h3>
+<div style="    height: 150px;width: 100%;display: flex;align-items: center">
+<div class="car" style="position:relative;height: 100%;width: 200px;">
+<div class="tireCancel" id="w0" style="position:absolute;margin-left: 15px;top: 26px;" onclick="selectPosition.position=0;">${wheelArray[0]}</div>
+<div class="tireCancel" id="w1" style="position:absolute;right: 15px;top: 26px;" onclick="selectPosition.position=1;">${wheelArray[1]}</div>
+<div class="tireCancel" id="w2" style="position:absolute;right: 15px;bottom: 22px;" onclick="selectPosition.position=2;">${wheelArray[2]}</div>
+<div class="tireCancel" id="w3" style="position:absolute;margin-left: 15px;bottom: 22px;" onclick="selectPosition.position=3;">${wheelArray[3]}</div>
+<img src="../img/img_car_four_tire.png" style="width: 80px;height: 100px;position: absolute;transform: translate(-50%,-50%);
+left: calc(50%);top: 50%;">
+</div>
+<h4 class="hint" style="font-size:16px;font-weight:400;flex: auto;width: calc(100% - 200px);">${glitter.language(235)}</h4>
+</div>
+<div id="itemList" style="width: 100%;height:calc(100% - 330px);overflow-y:scroll;display: flex;flex-direction: column;">
+</div>
+<div style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" >
+        ${glitter.language(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="readSensor()" >
+        ${glitter.language(231)}
+        </div>
+</div>
+    `
+    }
+    var toggle=true
+    function readSensor() {
+        if(isFinish()){
+            gBundle.triepress=itemData
+            glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)
+            return;
+        }
+        if(!toggle){return}
+        toggle=false
+        glitter.openDiaLog('tireStorage/dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.language(231), function () {})
+        glitter.runJsInterFace("readSensor",{
+            make:gBundle.Make,
+            model:gBundle.Model,
+            year:gBundle.Year
+        },function (response){
+            setTimeout(function (){
+                glitter.runJsInterFace("playBeet",{},function (){})
+                glitter.closeDiaLogWithTag('Dia_Loading_Cancel')
+                toggle=true
+            },1000)
+            if(response.result){
+                Object.keys(itemData).map(function (data){
+                    if(itemData[data]){
+                        if(itemData[data].id===response.data.id){
+                            itemData[data]=undefined
+                        }
+                    }
+                })
+                itemData[`${selectPosition.position}`] = response.data
+                notifyList(true)
+                if(isFinish()){
+                    $('#next').html(glitter.language(145))
+                }
+            }else{
+                glitter.openDiaLog('tireStorage/dialog/Dia_Error.html', 'Dia_Error', false, true, glitter.language(300), function () {})
+            }
+        })
+
+    }
+    function isFinish(){
+        var finish=true
+        for (var a = 0; a < wheelArray.length; a++) {
+            if((!itemData[""+a])||(itemData[""+a].id===undefined)||(itemData[""+a].id==='')){
+                finish=false
+            }
+        }
+
+        return finish
+    }
+</script>

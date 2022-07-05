@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+    <script src="../glitterBundle/GlAdapter.js"></script>
+    <link href="../glitterBundle/fontStyle/notesanstc.css" rel="stylesheet">
+</head>
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+        font-family: 'Noto Sans TC', sans-serif;
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../img/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+    }
+    #viewclass{
+        height: calc(100% - 64px);
+        width: 100%;
+        /*display: flex;*/
+        flex-direction: column;
+        /*align-content: center;*/
+        /*margin-bottom: 5%;*/
+        overflow-y: scroll;
+    }
+
+</style>
+<body>
+
+</body>
+</html>
+<script>
+  lifeCycle.onCreate=function(){
+      let data = {};
+      data.image=["btn_favourite_n.png","btn_area_and_language.png","btn_unit.png","btn_auto_off.png","btn_-38.png","btn_device_information.png","btn_updata.png","btn_-35.png","btn_privacy_policy.png","btn_set_password.png","btn_log_out.png"]
+      data.text=[glitter.getLan(34),glitter.getLan(52),glitter.getLan(328),glitter.getLan(248),glitter.getLan(151),glitter.getLan(246),glitter.getLan(153),glitter.getLan(62),glitter.getLan(63),glitter.getLan(80),glitter.getLan(111)]
+      if(glitter.publicBeans.account.toLowerCase()==='orangerd'){
+          data.image.push('btn_updata.png')
+          data.text.push('Fw燒錄測試')
+      }
+      let Adapter=new GlAdapter(document.getElementById('viewclass'),
+          function (){return data.text.length},
+          function (position) {
+              let html = `<div id=`+"test"+position +`  style="height:120px;width:95%;background-color:white;color:black;display: flex;flex-direction: row;justify-content: left;align-items: center;padding-left: 5%">
+<img style="width: 100px;height: 100px;margin-right: 10px" src="../img/`+data.image[position]+`">
+<div style="flex-direction: column;">
+<div style="font-size:28px;">`+ data.text[position] +`</div>
+`+((position===0) ? `<div style="font-size:14px;"> - Add or delet vehicles</div>`:``)+`
+</div>
+</div>
+                  <div style="height:auto;width:100%;display: flex;flex-direction: column;justify-content: center;align-items: center">
+                  ${(position===0 || position===9) ? `
+                        <div style="height:1px;width:100%;background-color:black;"></div>
+                        <div style="height:1px;width:100%;margin-top:5px;background-color:black;"></div>`:`
+                        <div style="height:1px;${(position===10) ?`width:100%`:`width:95%`};background-color:black;"></div>`}
+                  </div>`
+              return html
+          } )
+      Adapter.notifyDataSetChange()
+
+      for(let i=0;i<data.text.length;i++) {
+          let obj = document.getElementById("test" + i.toString())
+          //$(document).ready(function() {
+          //if(obj != null){
+          obj.onclick = function () {
+              if(i===0){
+                  glitter.changePage('page/Page_Setting_MyFavorite.html',"Page_Setting_MyFavorite",true,{});
+              }else if(i===1){
+                  glitter.changePage('page/Page_Set_Area.html',"Page_Set_Area",true,{toHome:true});
+              }else if(i===2){
+                  glitter.changePage('page/Page_Setting_Units.html',"Page_Setting_Units",true,{});
+              }else if(i===3){
+                  glitter.changePage('page/Page_Setting_Auto_off.html',"Page_Setting_Auto_off",true,{});
+              }else if(i===4){
+                  glitter.openDiaLog('dialog/Dia_OGLite_Bt.html', 'Dia_OGLite_Bt', false, false, {
+                          title: glitter.getLan(390)+" ?",
+                          cancel: function () {
+                              glitter.publicBeans.playSound=true
+                              glitter.closeDiaLog()
+                          },
+                          ok: function () {
+                              glitter.publicBeans.playSound=false
+                              glitter.closeDiaLog()
+                          }
+                      })
+              } else if(i===5){
+                  glitter.changePage('page/Page_Setting_Device_Version.html',"Page_Setting_Device_Version",true,{});
+              }else if(i===6){
+                  glitter.changePage('page/Page_Setting_Update_OGLite.html',"Page_Setting_Update_OGLite",true,{});
+              }else if(i===7){
+                  glitter.openDiaLog('dialog/Dia_OGLite_Bt.html', 'Dia_OGLite_Bt', false, false, {
+                      title: glitter.getLan(62)+' ?',
+                      cancel: function () {
+                          glitter.closeDiaLog()
+                      },
+                      ok: function () {
+                          glitter.publicBeans.account=''
+                          glitter.publicBeans.localVersion=''
+                          glitter.closeApp()
+                      }
+                  })
+              }else if(i===8){
+                  glitter.changePage('page/Page_Setting_Privacy_OGLite.html',"Page_Setting_Privacy_OGLite",true,{});
+              }else if(i===9){
+                  glitter.changePage('page/Page_Reset_Password.html',"Page_Reset_Password",true,{});
+              }else if(i===10){
+                  glitter.openDiaLog('dialog/Dia_OGLite_Bt.html', 'Dia_OGLite_Bt', false, false, {
+                      title: glitter.getLan(111)+' ?',
+                      cancel: function () {
+                          glitter.closeDiaLog()
+                      },
+                      ok: function () {
+                          glitter.publicBeans.account=''
+                          glitter.setHome('page/Page_Sign_IN.html',"Page_Sign_IN",{});
+                          glitter.closeDiaLog()
+                      }
+                  })
+              }else if(i===11){
+                  glitter.openDiaLog('dialog/Dia_Loading_Progress.html', 'Dia_Loading_Progress', false, false, glitter.getLan(265))
+                  glitter.apiRequest.getWebResources((glitter.publicBeans.beta) ? `${glitter.fileModelInterFace.domain}/Orange%20Cloud/Beta/Drive/OG_lite/Firmware/${glitter.publicBeans.onlineVersion.mcuVerion}` :
+                      `${glitter.fileModelInterFace.domain}/Orange%20Cloud/Drive/OG_lite/Firmware/${glitter.publicBeans.onlineVersion.mcuVerion}`, function (data) {
+                      glitter.command.updateFW(data, function (result) {
+                          glitter.closeDiaLog()
+                      })
+                  }, function () {
+                      alert(false)
+                      glitter.closeDiaLog()
+                  })
+              }
+
+              // if(glitter.deviceType===glitter.deviceTypeEnum.Web){
+              //     glitter.changePage('page/Page_Select_Wheels.html', "Page_Select_Wheels", true, {});
+              //     return
+              // }
+              // glitter.openDiaLog('dialog/Dia_Scan_Ble.html','Dia_Scan_Ble',false,true,function(){
+              //     glitter.changePage('page/Page_Select_Wheels.html', "Page_Select_Wheels", true, {});
+              //     glitter.closeDiaLog()
+              // })
+          }
+          obj.addEventListener('touchstart', function (event) {
+              console.log('touchstart' + ':' + this.id)
+              $('#' + "test" + i).css('background-color', "#E64E00")
+              $('#' + "test" + i).css('color', "white")
+          }, false);
+          obj.addEventListener('touchend', function (event) {
+              console.log('touchend' + ':' + this.id)
+              $('#' + "test" + i).css('background-color', "white")
+              $('#' + "test" + i).css('color', "black")
+
+          }, false);
+          obj.addEventListener('touchmove', function (event) {
+              //console.log('touchmove')
+
+              if(!(this.offsetTop <= event.touches[0].clientY && this.offsetTop+this.offsetHeight >= event.touches[0].clientY &&
+                  this.offsetLeft <= event.touches[0].clientX && this.offsetLeft+this.offsetWidth >= event.touches[0].clientX)){
+                  console.log('notouch:true')
+                  $('#' + "test" + i).css('background-color', "white")
+                  $('#' + "test" + i).css('color', "black")
+              }
+
+          },false);
+      }
+  }
+  lifeCycle.onCreateView=function (){
+
+        return ('<div id="viewclass"></div>')
+  }
+</script>

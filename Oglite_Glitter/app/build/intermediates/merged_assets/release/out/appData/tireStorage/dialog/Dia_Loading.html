@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        width: 100vw;
+        height: 100vh;
+        margin:0;
+        display: flex;
+        padding: 0;
+    }
+    html{
+        margin: 0;
+        padding: 0;
+    }
+    .relative{
+        position:relative;transform:translate(-50%,-50%);top:50%;left:50%;width: calc(200px);height: 100px;
+        background-color: #EC671A;
+        border-radius: 10px;
+
+    }
+</style>
+<script src="../../glitterBundle/ControlInstance.js"></script>
+<script src="../../jslib/lottie.js"></script>
+<body>
+<div class="relative" id="relative">
+    <div data-animation-path="../lottie/loading.json" class="lottie"    style="position:absolute;width: 150px; height: 300px;margin-top:0px;transform: translate(-50%,-50%);left: 50%;top: 50%;" ></div>
+</div>
+</body>
+</html>
+<script>
+    // var svgContainer = document.getElementById('relative');
+    // lottie.loadAnimation({
+    //     container: svgContainer, // the dom element that will contain the animation
+    //     renderer: 'svg',
+    //     loop: true,
+    //     autoplay: true,
+    //     path: '../lottie/loading.json' // the path to the animation json
+    // });
+
+</script>

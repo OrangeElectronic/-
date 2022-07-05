@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/textView35"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:alpha="0.8"
+            android:background="@drawable/corner"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:padding="15dp"
+            android:text="jz.487"
+            android:textColor="@color/white"
+            android:textSize="21sp" />
+</RelativeLayout>

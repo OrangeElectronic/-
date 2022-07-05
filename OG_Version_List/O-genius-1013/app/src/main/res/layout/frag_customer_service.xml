@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/bg_ff0000_r8">
+
+                <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="O-Genius \n864666040163498"
+                        android:textColor="@color/buttoncolor"
+                        android:textSize="20sp" />
+
+                <ImageView
+                        android:id="@+id/imageView32"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView34"
+                        android:layout_margin="10dp"
+                        app:srcCompat="@android:color/background_dark" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imageView32"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/infomation_software_version"
+                                android:textColor="@color/buttoncolor"
+                                android:textSize="16sp" />
+
+                        <TextView
+                                android:id="@+id/apkversion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="121"
+                                android:textColor="@color/Black"
+                                android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/infomation_mcu_version"
+                                android:textColor="@color/buttoncolor"
+                                android:textSize="16sp" />
+
+                        <TextView
+                                android:id="@+id/mcuversion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="121"
+                                android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/app_database_version"
+                                android:textColor="@color/buttoncolor"
+                                android:textSize="16sp" />
+
+                        <TextView
+                                android:id="@+id/dbversion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="121"
+                                android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/textView34"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            app:srcCompat="@android:color/background_dark" />
+
+                    <TextView
+                            android:id="@+id/updatedate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Updated a month ago"
+                            android:textColor="@color/buttoncolor"
+                            android:textSize="20sp" />
+
+                    <TextView
+                            android:id="@+id/updateim"
+                            android:layout_width="240dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_32414e_r8"
+                            android:gravity="center"
+                            android:text="Update immediately"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="144dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/bg_ff0000_r8">
+
+                <ImageView
+                        android:id="@+id/imageView34"
+                        android:layout_width="114dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@mipmap/app_icon_customer_service" />
+
+                <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/imageView34"
+                        android:gravity="center"
+                        android:text="@string/Online_customer_service"
+                        android:textColor="@color/Black"
+                        android:textSize="18sp" />
+
+                <Button
+                        android:id="@+id/gochat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView41"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_toEndOf="@id/imageView34"
+                        android:background="@drawable/corner_sensor_way"
+                        android:text="jz.455"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

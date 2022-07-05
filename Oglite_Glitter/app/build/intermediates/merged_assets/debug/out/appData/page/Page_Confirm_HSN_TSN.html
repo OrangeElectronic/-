@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+  <script src="../glitterBundle/extension.js"></script>
+</head>
+<style>
+  html {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .leftBottom {
+    background-image: url("../img/btn_letf.png");
+    flex: auto;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .rightBottom {
+    background-image: url("../img/right_line.png");
+    background-color: #FF4400;
+    width: 60%;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  h3{
+    font-size: 15px;
+  }
+</style>
+<body>
+<script>
+    var make=glitter.mmyInterFace.selectMake.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+    var model=glitter.mmyInterFace.selectModel.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+    var year=glitter.mmyInterFace.selectYear.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+
+    lifeCycle.onCreate=function (){}
+
+  lifeCycle.onCreateView=function (){
+    return `
+<div style="height: 60px;background-color: #1f333e;display: flex;align-content: center;justify-content: center;flex-direction: column;text-align: center;color: white;">
+${make}/${model}/${year}
+</div>
+    <div style="width: 100%;height:calc(100% - 60px);overflow-x: hidden;overflow-y: scroll;text-align: center;">
+<div style="height: 100px;display: flex;width: 100%;justify-content: space-around;margin-top: 15px;overflow-y: scroll;align-items: center;text-align: center;">
+<img src="../img/${glitter.mmyInterFace.selectMMY.Make_Img}.png" style="width: 100px;height: 100px;">
+</div>
+<div style="width: calc(100% - 20px);margin-left: 10px;margin-top: 20px;border: 1px solid #2F4C63;display: flex;flex-direction: column;">
+<div style="width: 100%;display: flex;border: 1px solid #2F4C63;">
+<div style="display: flex; background-color: #2F4C63;width: 40%;height: 50px;color: white;align-items: center;justify-content: center;">
+${glitter.getLan(482)}
+</div>
+<h3 style="width: 60%;display: flex;flex-direction: column;justify-content: center;margin: 0;text-align: left;padding-left: 10px;">
+${glitter.mmyInterFace.selectMMY.Make}
+</h3>
+</div>
+<div style="width: 100%;display: flex;border: 1px solid #2F4C63;">
+<div style="display: flex; background-color: #2F4C63;width: 40%;height: 50px;color: white;align-items: center;justify-content: center;">
+${glitter.getLan(483)}
+</div>
+<h3 style="width: 60%;display: flex;flex-direction: column;justify-content: center;margin: 0;text-align: left;padding-left: 10px;">
+${glitter.mmyInterFace.selectMMY.Model}
+</h3>
+</div>
+<div style="width: 100%;display: flex;border: 1px solid #2F4C63;">
+<div style="display: flex; background-color: #2F4C63;width: 40%;height: 50px;color: white;align-items: center;justify-content: center;">
+${glitter.getLan(484)}
+</div>
+<h3 style="width: 60%;display: flex;flex-direction: column;justify-content: center;margin: 0;text-align: left;padding-left: 10px;">
+${glitter.mmyInterFace.selectMMY.Year}
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="
+          insertResult(0)
+          glitter.changePage('page/Page_Select_Make.html','Page_Select_Make',true,{})" >
+        ${glitter.getLan(659)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+           insertResult(1)
+         glitter.selectFunction.switchToPage()">
+        ${glitter.getLan(113)}
+        </div>
+</div>
+    `
+  }
+  function insertResult(caser){
+    var sql=`
+    insert into \`orange_userdata\`.\`hsn_tsn_confirm\` (make,model,year,hsn,tsn,confirm)
+    values ('${glitter.mmyInterFace.selectMMY.Make}','${glitter.mmyInterFace.selectMMY.Model}','${glitter.mmyInterFace.selectMMY.Year}','
+    ${glitter.mmyInterFace.hsn}','${glitter.mmyInterFace.tsn}',${caser})
+    `
+    let date = (new Date()).format("yyyy-MM-dd hh:mm:ss").replace(".0", "")
+    glitter.serialUtil.storeObject({
+    sql: btoa(glitter.stringToUnicode(sql))
+    }, date, 'insertSql', function () {}, function () {})
+  }
+</script>
+</body>
+</html>

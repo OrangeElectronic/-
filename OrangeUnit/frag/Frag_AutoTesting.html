@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+  <script src="../glitterBundle/extension.js"></script>
+  <link href="../glitterBundle/bootstrap2.css" rel="stylesheet">
+  <link href="../fontawesome-free-5.15.4-web/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/xcode.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <link href="../css/article.css" rel="stylesheet">
+
+</head>
+<style>
+  .caselist img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    position: relative;
+  }
+  body{
+    display: flex;
+    flex-direction: column;
+  }
+
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){
+    hljs.highlightAll();
+
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+<input id="serial" class="my-2" placeholder="請輸入序號">
+<input id="mail" class="my-2" placeholder="請輸入mail">
+<input id="start" class="my-2" placeholder="開始時間" value="${new Date().format('yyyy-MM-dd hh:mm:ss')}">
+<input id="end" class="my-2" placeholder="結束時間" value="${new Date().format('yyyy-MM-dd hh:mm:ss')}">
+<h3 class="my-2" class="" style="width: 100px;height: 50px;background-color: #2F4C63;color: white;cursor: pointer;" onclick="${event(function (){
+      $('#hint').html('寄信中..')
+      glitter.postRequest('PublicLogic','sendAutoSES',{
+        serial:$('#serial').val(),
+        mail:$('#mail').val(),
+        start:$('#start').val(),
+        end:$('#end').val()
+      },function (response) {
+        if(response&&response.result){
+          $('#hint').html('已寄信')
+        }else{
+          $('#hint').html('寄信失敗')
+        }
+      },50*1000)
+    })}">
+<span style="color: white;margin: auto;" >發送</span>
+</h3>
+<div id="hint"></div>
+    `
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+<style>
+    html {
+        width: 100%;
+        height: calc(100% - 60px);
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    h3 {
+        margin: 5px 30px 0;
+        color: black;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    h4 {
+        margin: 5px 20px 0;
+        color: black;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        width: 50%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/btn_right.png");
+        width: 50%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    input[type=checkbox] {
+        width: 25px !important;;
+        height: 25px !important;
+        margin-right: 10px !important;
+        padding-left: 10px !important;
+        min-width: 0 !important;
+        flex: none;
+    }
+
+    input {
+        padding-left: 10px;
+        margin-right: 30px;
+        box-sizing: border-box;
+        outline: none;
+        background: none;
+        border-style: solid;
+        border-color: grey;
+        border-width: 1px;
+        color: black;
+        flex: auto;
+        height: 40px;
+        margin-top: 5px;
+    }
+
+    .spinner {
+        background-image: url("../img/down.png");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 15px 15px;
+    }
+
+    .flexItem {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        width: calc(100% - 100px);
+        max-width: calc(100% - 100px);
+        margin-top: 10px;
+    }
+
+    .flexItem2 {
+        display: flex;
+        align-items: center;
+    }
+
+    .flexItem h4 {
+        min-width: 60px;
+    }
+</style>
+</html>
+<script>
+    "use strict";
+    lifeCycle.onCreate = function () {
+        setTimeout(function (){glitter.setTitleText(glitter.getLan(6));},100)
+        getCountry()
+        getChainStore()
+        getSensorWhere()
+        $('input[type=checkbox]').change(function () {
+            var that = this
+            $('input[type=checkbox]:checked').each(function (data) {
+                if(that.id!=='agree'){
+                    if (that !== this) {
+                        $('#chainType').val('')
+                        $(this).get(0).checked = false
+                    }
+                }
+            })
+        })
+        $('.inpucom').hide()
+        window.addEventListener("resize", function (v) {
+            this.LastWindowHeight = this.CurWindowHeight;
+            this.CurWindowHeight = window.innerHeight;
+            if ((this.LastWindowHeight - this.CurWindowHeight) / this.LastWindowHeight > 0.25) {
+                if(glitter.isOG){
+                    document.activeElement.scrollIntoView()
+                }
+            }
+        });
+    }
+    var countryData = []
+    function getCountry() {
+        glitter.postRequest('PublicLogic', 'getCountry', {}, function (data) {
+            if (data === undefined) {
+                getCountry()
+                return
+            }
+            countryData = data.data
+        })
+    }
+
+    var chainData=[]
+    function getChainStore(){
+        glitter.postRequest('PublicLogic','getChainStore',{
+            place:selectCountry
+        },function (data){
+            if(data === undefined){
+                getChainStore()
+                return
+            }
+            chainData=data.data
+        })
+    }
+
+    var sensorWhere=[]
+    function getSensorWhere(){
+        glitter.postRequest('PublicLogic','getSensorWhere',{},function (data){
+            if(data === undefined){
+                getSensorWhere()
+                return
+            }
+            sensorWhere=data.data
+        })
+    }
+
+
+    lifeCycle.onCreateView = function () {
+        return `
+<div style="padding:0;width:100%;overflow-x:hidden;height:calc(100%);overflow-y:scroll;padding: 0;">
+<h3 style="margin-top: 10px;font-size: 25px;">${glitter.getLan(91)}</h3>
+<div class="flexItem">
+<h4>${glitter.getLan(356)}</h4>
+<input name="company">
+</div>
+<div class="flexItem">
+<h4 style="max-width: 100px;word-break: break-all;overflow: hidden;">${glitter.getLan(580)}</h4>
+<input name="Vat">
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(76)}</h4>
+<input name="e-mail" onchange="$('input[name=account]').val($(this).val())">
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(357)}</h4>
+<input type="tel" name="telphone" onchange="$('input[name=password]').val($(this).val())">
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(601)}</h4>
+<input name="area" id="cArea" onclick="$('#country').val(glitter.getLan(440));$('#state').val(glitter.getLan(440));selectCArea();" class="spinner" value="${glitter.getLan(440)}" readonly>
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(359)}</h4>
+<input name="country" id="area" onclick="$('#state').val(glitter.getLan(440));selectArea()" class="spinner" value="${glitter.getLan(440)}" readonly>
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(602)}</h4>
+<input name="state" id="area2" onclick="selectArea2()" class="spinner" value="${glitter.getLan(440)}" readonly>
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(100)}</h4>
+<input   name="address" placeholder="">
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(363)}</h4>
+<input   name="areaNO" placeholder="">
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(98)}</h4>
+<input   name="city" placeholder="">
+</div>
+<h4 style="margin-top: 15px!important;height: 30px;top: 0;">${glitter.getLan(207)}</h4>
+<div style="display: flex;width: 100%;">
+<div style="flex: auto;"></div>
+<div style="margin-right: 15px;flex-direction: column;">
+<div  class="flexItem2">
+<input  type="checkbox" onchange="
+$('.inpucom').hide()
+if($(this).get(0).checked){
+     dataMap.storeType='Retailer'
+}
+">
+<h4 style="color: black;margin-left: 0px;">${glitter.getLan(604)}</h4>
+</div>
+<div class="flexItem2">
+<input  type="checkbox" style="width: 30px; height: 30px;" onchange="
+$('.inpucom').hide()
+if($(this).get(0).checked){dataMap.storeType= 'Chain';
+$('#chainType').show()
+}">
+<h4 style="color: black;margin-left: 0px;">${glitter.getLan(605)}</h4>
+</div>
+
+<div class="flexItem2" id="chainTypeView">
+<div style="width: 50px;" ></div>
+<input  id="chainType" class="inpucom"   value=""  style="width: calc(100% - 10px);" >
+</div>
+<div class="flexItem2">
+<input type="checkbox" style="width: 30px; height: 30px;" onchange="
+$('.inpucom').hide()
+if($(this).get(0).checked){
+    dataMap.storeType='Repairer'
+}
+">
+<h4 style="color: black;margin-left: 0px;">${glitter.getLan(584)}</h4>
+</div>
+<div class="flexItem2">
+<input type="checkbox" style="width: 30px; height: 30px;" onchange="
+$('.inpucom').hide()
+if($(this).get(0).checked){dataMap.storeType='Other';
+$('#other').show()
+}
+">
+<h4 style="color: black;margin-left: 0;width: auto;min-width: 0;word-break: keep-all;">${glitter.getLan(514)}</h4>
+<input   id="other" value="" style="width: calc(100% - 10px);" onchange="
+dataMap.storetypeOther=$(this).val()
+" class="inpucom">
+</div>
+</div>
+</div>
+
+
+<div style="width: 100%;background-color: whitesmoke;height: 1px;margin-top: 20px;"></div>
+<h3 style="margin-top: 10px;font-size: 25px;">${glitter.getLan(85)}</h3>
+<div class="flexItem">
+<h4>${glitter.getLan(593)}</h4>
+<input name="firstname">
+</div>
+<div class="flexItem">
+<h4>${glitter.getLan(86)}</h4>
+<input  placeholder="e-mail" name="account" readonly>
+</div>
+<div class="flexItem">
+<h4 >${glitter.getLan(78)}</h4>
+<input  placeholder="${glitter.getLan(588)}" name="password">
+</div>
+<div style="width: 100%;background-color: whitesmoke;height: 1px;margin-top: 20px;"></div>
+<h3 style="margin-top: 10px;font-size: 25px;">${glitter.getLan(607)}</h3>
+<div style="display: flex;">
+<input  id="agree" type="checkbox" onchange="
+if($(this).get(0).checked){
+    dataMap.osomAgree=1
+}
+" style="margin-left: 25px;">
+<div style="display: flex;flex-direction: column;margin-left: -20px;" >
+<h4>${glitter.getLan(608)}</h4>
+<h4>${glitter.getLan(610)}</h4>
+<h4>${glitter.getLan(609)}</h4>
+</div>
+</div>
+<div style="display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="glitter.closeApp()" >
+        ${glitter.getLan(141)}
+        </div>
+         <div id="next" class="rightBottom" onclick="register()" >
+        ${glitter.getLan(344)}
+        </div>
+</div>
+</div>
+        `
+    }
+
+    var dataMap = {osomAgree:0}
+    function register() {
+        var canNext = true
+        $("input").each(function (index) {
+            console.log("--"+$(this).attr('type'))
+            if(($(this).attr('name')!==undefined)){
+                dataMap[$(this).attr('name')] = $(this).val()
+                if (($(this).val() === '') || ($(this).val() === undefined) || ($(this).val() === glitter.getLan(440))) {
+                    if($(this).attr('name')!=="sensorOtherWhere"){
+                        canNext = false
+                    }else{
+                        dataMap[$(this).attr('name')]=""
+                    }
+                }
+                if($(this).attr('name')==="area"){
+                    let tit = [glitter.getLan(595), glitter.getLan(596), glitter.getLan(597), glitter.getLan(598), glitter.getLan(599), glitter.getLan(600)].indexOf( $(this).val())
+                    var data2=["EU","US","SA","AS","AF","OC"][tit]
+                    dataMap[$(this).attr('name')] = data2
+                }
+                if($(this).attr('name')==="country"){
+                    var a=['Italy','Germany',"United States of America", "Taiwan",glitter.getLan(514)][ ["Italia", "Deutschland", "United States", "台灣", `${glitter.getLan(514)}`].indexOf($(this).val())]
+                    dataMap[$(this).attr('name')] = a
+                }
+            }
+        });
+        if (!canNext) {
+            glitter.openDiaLog('tireStorage/dialog/Dia_Info.html', 'info', false, true, glitter.getLan(488))
+            return
+        }
+        var map2=JSON.parse(JSON.stringify(dataMap));
+        if(dataMap.storeType===glitter.getLan(440)){
+            glitter.openDiaLog('tireStorage/dialog/Dia_Info.html', 'info', false, true, glitter.getLan(488))
+            return}
+        glitter.openDiaLog('tireStorage/dialog/Dia_Loading.html', 'Dia_Loading', false, false, glitter.getLan(575))
+        glitter.postRequest('PublicLogic', 'register', {
+            data: map2,
+            sn:glitter.publicBeans.sn,
+            DeviceType:'O-Genius_Lite'}, function (response) {
+            glitter.closeDiaLogWithTag('Dia_Loading')
+            if(!response){
+                glitter.openDiaLog('tireStorage/dialog/Dia_Info.html', 'info', false, true, glitter.getLan(706), function () {})
+            }else  if (response.result) {
+                glitter.runJsInterFace("register",{account:map2.account,password:map2.password},function (response) {
+                glitter.closeApp()
+                })
+            } else {
+                glitter.openDiaLog('tireStorage/dialog/Dia_Info.html', 'info', false, true, glitter.getLan(706), function () {})
+            }
+        })
+    }
+
+    //選擇地區
+    var selectCountry = ""
+    function selectArea() {
+        let tit = ["Italia", "Deutschland", "United States", "台灣", `${glitter.getLan(514)}`]
+        glitter.openBottomSheet('tireStorage/dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#area').val((tit[index]))
+                selectCountry = ["IT", "DE", "US", "TW", "NA"][index]
+                glitter.closeBottomSheet()
+                if (selectCountry === 'NA') {
+                    $('#area2').val(glitter.getLan(514))
+                }
+                var chainAccept=["DE","US"]
+                if(chainAccept.indexOf(selectCountry) !== -1){
+                    $('#chainTypeView').html(`<div class="flexItem2" id="chainTypeView">
+<div style="width: 50px;" ></div>
+<input  id="chainType"  class="spinner" onclick="selectChainType()" value="${glitter.getLan(440)}" style="width: calc(100% - 10px);"  readonly>
+</div>`)
+                }else{
+                    $('#chainTypeView').html(`<div class="flexItem2" id="chainTypeView">
+<div style="width: 50px;" ></div>
+<input  id="chainType"   value=""  style="width: calc(100% - 10px);" oninput="dataMap.storetypeOther=$(this).val()">
+</div>`)
+                }
+                getChainStore()
+
+            },
+            title: tit
+        }, "250px", true, false)
+    }
+
+
+    function selectArea2() {
+        if (selectCountry === "NA") {
+            return
+        }
+        let tit = []
+        countryData.map(function (data) {
+            if (data.type === selectCountry) {
+                tit.push(data.name)
+            }
+        })
+        glitter.openBottomSheet('tireStorage/dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#area2').val(tit[index])
+                glitter.closeBottomSheet()
+            },
+            title: tit
+        }, "250px", true, false)
+    }
+
+    function selectChainType(){
+        let tit = []
+        chainData.map(function (data) {
+         tit.push(data.name)
+        })
+        glitter.openBottomSheet('tireStorage/dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#chainType').val(tit[index])
+                dataMap.storetypeOther=tit[index]
+                glitter.closeBottomSheet()
+            },
+            title: tit
+        }, "250px", true, false)
+    }
+
+    function selectCArea() {
+        let tit = [glitter.getLan(595), glitter.getLan(596), glitter.getLan(597), glitter.getLan(598), glitter.getLan(599), glitter.getLan(600)]
+        glitter.openBottomSheet('tireStorage/dialog/Dia_Post_List.html', 'Dia_Post_List', {
+            click: function (index) {
+                $('#cArea').val(tit[index])
+                glitter.closeBottomSheet()
+            },
+            title: tit
+        }, "250px", true, false)
+    }
+
+
+</script>

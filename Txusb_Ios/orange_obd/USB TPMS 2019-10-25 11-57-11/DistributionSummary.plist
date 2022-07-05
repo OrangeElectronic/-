@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>USB TPMS</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>x86_64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>FBE9FE29573F42878954CFA2E24091BE9E7102A0</string>
+				<key>dateExpires</key>
+				<string>2024/9/5</string>
+				<key>type</key>
+				<string>Developer ID Application</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>x86_64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>FBE9FE29573F42878954CFA2E24091BE9E7102A0</string>
+						<key>dateExpires</key>
+						<string>2024/9/5</string>
+						<key>type</key>
+						<string>Developer ID Application</string>
+					</dict>
+					<key>name</key>
+					<string>Lottie.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>HEQGGF6N89</string>
+						<key>name</key>
+						<string>Orange electronic</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>x86_64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>FBE9FE29573F42878954CFA2E24091BE9E7102A0</string>
+						<key>dateExpires</key>
+						<string>2024/9/5</string>
+						<key>type</key>
+						<string>Developer ID Application</string>
+					</dict>
+					<key>name</key>
+					<string>ORSSerial.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>HEQGGF6N89</string>
+						<key>name</key>
+						<string>Orange electronic</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>x86_64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>FBE9FE29573F42878954CFA2E24091BE9E7102A0</string>
+						<key>dateExpires</key>
+						<string>2024/9/5</string>
+						<key>type</key>
+						<string>Developer ID Application</string>
+					</dict>
+					<key>name</key>
+					<string>ORSSerialPort Tests.xctest</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>HEQGGF6N89</string>
+						<key>name</key>
+						<string>Orange electronic</string>
+					</dict>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>com.apple.application-identifier</key>
+				<string>HEQGGF6N89.orange.macos.usbtpms</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>HEQGGF6N89</string>
+			</dict>
+			<key>name</key>
+			<string>USB TPMS.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>4fb01405-28fa-4a4e-9f2e-827f8165f569</string>
+				<key>name</key>
+				<string>Jianzhi</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>HEQGGF6N89</string>
+				<key>name</key>
+				<string>Orange electronic</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

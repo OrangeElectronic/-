@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter拷貝/blelibrary/src/main/jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter拷貝/blelibrary/src/debug/jniLibs"/></dataSet></merger>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ue.activity.KtActivity" android:background="@android:color/white">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/frage"
+            android:layout_below="@id/toolbar">
+
+    </FrameLayout>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp" android:background="@color/color_orange" android:id="@+id/toolbar">
+
+        <ImageView
+                android:id="@+id/customer"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:visibility="visible"
+                app:srcCompat="@mipmap/white_icon_server"/>
+
+        <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="TPMS"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+        <ImageView
+                android:layout_width="60dp"
+                android:layout_height="match_parent" app:srcCompat="@mipmap/back" android:id="@+id/back"
+                android:padding="10dp" android:visibility="gone"/>
+
+        <ImageView
+                android:id="@+id/logout"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:padding="5dp"
+                android:visibility="gone"
+                app:srcCompat="@mipmap/white_icon_server"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+    body{
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+    .wrapper {
+        overflow-x: hidden;
+        flex-direction: column;
+        height: calc(100% - 180px);
+        width: 100vw;
+        overflow-y: scroll;
+    }
+    .wrapper h3{
+        color: white;
+        background-color: #40606F;
+        font-size: 20px;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding-left: 10px;
+        min-height: 60px;
+        margin: 0;
+        border-bottom: 1px solid white;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+
+</html>
+<script>
+
+
+    lifeCycle.onCreate=function (){
+    }
+
+    var searchTimeout=undefined
+    lifeCycle.onCreateView=function (){
+    return `
+    <h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${glitter.getLan(788)}
+</h3>
+<div id="itemList" class="wrapper">
+${glitter.print(function () {
+       var html=''
+        var dataArray=JSON.parse(glitter.mmyInterFace.selectMMY["Read Tire Num"])
+        dataArray.map(function (data){
+            html+=`<h3
+onclick="${event(function (){
+                glitter.mmyInterFace.selectMMY["Wheel_Count"]=`${data.index}`
+                glitter.mmyInterFace.selectMMY["OBD1"]=data.value
+                glitter.changePage('page/Page_Select_Trigger_Way.html','Page_Select_Trigger_Way',true,{})
+            })}">${
+                glitter.print(function (){
+                    switch(`${data.index}`){
+                        case "4":{
+                            return glitter.getLan(789)
+                        }
+                        case "5":{
+                            return glitter.getLan(790)
+                        }
+                        default:{
+                            return data
+                        }
+                    }
+                })
+            }</h3>`
+        })
+        return html
+    })}
+</div>
+    `
+    }
+
+</script>

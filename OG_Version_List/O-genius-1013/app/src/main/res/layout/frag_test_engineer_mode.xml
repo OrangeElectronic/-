@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/rfidtext2" android:layout_below="@id/rfidtext"
+            android:text="12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 34"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/rfidtext" android:layout_below="@id/li"
+            android:text="E2 00 47 48 E1 A2 DB 0A 41 03 12 34"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/li2">
+        <Button
+                android:text="Open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/button14" android:layout_weight="1"/>
+        <Button
+                android:text="read_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/read_area" android:layout_weight="1"/>
+        <Button
+                android:text="write_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/write_area" android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:weightSum="1" android:id="@+id/li"
+            android:layout_below="@id/li2">
+        <Button
+                android:id="@+id/button10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get Rfid" android:layout_weight="1"/>
+        <Button
+                android:text="check_exist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/button13" android:layout_weight="1"/>
+        <Button
+                android:text="Write Rfid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/button12" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_below="@id/rfidtext2">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:textSize="20sp"
+                    android:textColor="@color/color_FF101010" android:layout_margin="10dp"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

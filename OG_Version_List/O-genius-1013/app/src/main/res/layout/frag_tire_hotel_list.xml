@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white"
+        android:orientation="vertical">
+
+    <RelativeLayout
+            android:id="@+id/re"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/check_text_color">
+
+        <TextView
+                android:id="@+id/backto"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/color_white"
+                android:textSize="30sp" />
+
+        <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="2020/09/26"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        <TextView
+                android:id="@+id/nextto"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/color_white"
+                android:textSize="30sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/re2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@id/re">
+
+        <TextView
+                android:id="@+id/textView55"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="jz.513"
+                android:textColor="@color/check_text_color"
+                android:textSize="20sp" />
+
+        <ImageView
+                android:id="@+id/totopm"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                fresco:srcCompat="@mipmap/topmlogo" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/re2" />
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/re"
+            android:layout_centerHorizontal="true"
+            android:elevation="20dp"
+            android:padding="10dp"
+            android:visibility="visible"
+            fresco:lottie_autoPlay="true"
+            fresco:lottie_fileName="loadingbar.json"
+            fresco:lottie_loop="true" />
+</RelativeLayout>

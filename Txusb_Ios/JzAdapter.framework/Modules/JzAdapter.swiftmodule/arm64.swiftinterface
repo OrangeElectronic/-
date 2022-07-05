@@ -1,0 +1,49 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target arm64-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name JzAdapter
+import Foundation
+@_exported import JzAdapter
+import Swift
+import UIKit
+@objc public class LinearAdapter : ObjectiveC.NSObject, UIKit.UITableViewDataSource, UIKit.UITableViewDelegate, UIKit.UIScrollViewDelegate {
+  @objc public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @objc public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  public init(tb: UIKit.UITableView, count: @escaping () -> Swift.Int, nib: [Swift.String], getcell: @escaping (UIKit.UITableView, Foundation.IndexPath, Swift.Int) -> UIKit.UITableViewCell, _ select: @escaping (Swift.Int) -> Swift.Void)
+  public func notifyDataSetChange()
+  @objc public func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public class HorizontalAdapter : ObjectiveC.NSObject, UIKit.UITableViewDataSource, UIKit.UITableViewDelegate, UIKit.UIScrollViewDelegate {
+  @objc public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @objc public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  public init(tb: UIKit.UITableView, width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat, count: @escaping () -> Swift.Int, nib: Swift.String, getcell: @escaping (UIKit.UICollectionView, Foundation.IndexPath, Swift.Int) -> UIKit.UICollectionViewCell, scrollback: @escaping () -> Swift.Void)
+  public func notifyDataSetChange()
+  public func getVisible() -> [UIKit.UICollectionViewCell]
+  public func scrollTo(_ a: Foundation.IndexPath)
+  public func scrollAble(_ a: Swift.Bool)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers public class CoverCell : UIKit.UITableViewCell, UIKit.UICollectionViewDelegate, UIKit.UICollectionViewDataSource, UIKit.UIScrollViewDelegate {
+  public func setUP(_ count: Swift.Int, _ nib: Swift.String, _ getcell: @escaping (UIKit.UICollectionView, Foundation.IndexPath, Swift.Int) -> UIKit.UICollectionViewCell, _ height: CoreGraphics.CGFloat, _ tb: UIKit.UITableView)
+  @objc public func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @objc public func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @objc override dynamic public func awakeFromNib()
+  @objc override dynamic public func setSelected(_ selected: Swift.Bool, animated: Swift.Bool)
+  @objc public func scrollViewDidEndDragging(_ scrollView: UIKit.UIScrollView, willDecelerate decelerate: Swift.Bool)
+  @objc public func scrollViewDidEndDecelerating(_ scrollView: UIKit.UIScrollView)
+  public func sctoolTo(_ indexpath: Foundation.IndexPath)
+  @objc deinit
+  @available(iOS 3.0, *)
+  @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+@objc public class GridAdapter : ObjectiveC.NSObject, UIKit.UITableViewDataSource, UIKit.UITableViewDelegate, UIKit.UIScrollViewDelegate {
+  @objc public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @objc public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  public init(tb: UIKit.UITableView, width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat, count: @escaping () -> Swift.Int, spilt: Swift.Int, nib: Swift.String, getcell: @escaping (UIKit.UICollectionView, Foundation.IndexPath, Swift.Int) -> UIKit.UICollectionViewCell)
+  public func notifyDataSetChange()
+  @objc deinit
+  @objc override dynamic public init()
+}

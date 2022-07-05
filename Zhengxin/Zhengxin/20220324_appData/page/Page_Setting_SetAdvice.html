@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+    }
+
+    input {
+        font-size: 16px;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    * 單位設定
+    * */
+    var pUnit = ["kPa", "psi", "bar"]
+    var tUnit = ["C", "F"]
+
+    var userinfo = rootActivity().userInfoMation
+
+    lifeCycle.onCreate = function () {
+
+    }
+
+    lifeCycle.onCreateView = function () {
+
+        return (glitter.getTitleBar(glitter.getLan(744))) +
+            `
+<div style="display: flex;overflow-y: scroll;height: calc(100% - 120px);flex-direction: column;">
+        <h3 style="color: white;font-size: 16px;margin-left: 15px;">${glitter.getLan(747)}</h3>
+        <div style="display: flex;align-items: center;">
+         <h3 style="color: white;font-size: 16px;margin-left: 15px;min-width: 100px;">${glitter.getLan(747)}</h3>
+         <input id="maxPre" style="width: 122px;height: 40px;margin-left: 20px;" value="` + parseInt(glitter.preToSetting(userinfo.maxPre),10) + `" type="number">
+         <h3 style="color: white;font-size: 16px;margin-left: 15px;">`+pUnit[userinfo.punit]+`</h3>
+</div>
+<h3 style="color: #FF9B00;text-align: center;width: 100%;">${glitter.getLan(748)}</h3>
+    <div style="width: 100%;height: 1px;background-color: #6AC6D7;margin-top: 10px;"></div>
+        <h3 style="color: white;font-size: 16px;margin-left: 15px;">${glitter.getLan(749)}</h3>
+        <div style="display: flex;align-items: center;">
+         <h3 style="color: white;font-size: 16px;margin-left: 15px;min-width: 100px;">${glitter.getLan(750)}</h3>
+         <input id="ratio" style="width: 122px;height: 40px;margin-left: 20px;" value="` + userinfo.preAdviceRatio + `" type="number">
+         <h3 style="color: white;font-size: 16px;margin-left: 15px;">%</h3>
+</div>
+<div style="width: 100%;height: 1px;background-color: #6AC6D7;margin-top: 10px;"></div>
+        <h3 style="color: white;font-size: 16px;margin-left: 15px;">${glitter.getLan(751)}</h3>
+        <div style="display: flex;align-items: center;">
+         <h3 style="color: white;font-size: 16px;margin-left: 15px;min-width: 100px;">${glitter.getLan(752)}</h3>
+         <input id="temAdvice" style="width: 122px;height: 40px;margin-left: 20px;" value="` + parseInt(glitter.temToSetting(userinfo.temAdvice)) + `" type="number">
+         <h3 style="color: white;font-size: 16px;margin-left: 15px;">`+tUnit[userinfo.tunit] +`</h3>
+</div>
+</div>
+<div style="flex: auto;"></div>
+<div class="sig" style="height: 50px;margin: 10px;width:calc(100% - 20px);display: flex;">
+<div onclick="toDefault()" style="display:flex;align-items:center;justify-content:center;color: white;height: 50px;width: calc(50% - 10px);text-align: center;border-width: 1px;border-color:#92C0DF;border-style: solid;border-top-left-radius: 25px;border-bottom-left-radius: 25px;">
+${glitter.getLan(62)}
+</div>
+<div id="scanBt" style="display:flex;align-items:center;justify-content:center;background-color:#6AC6D7;margin-left:10px;color: white;height: 50px;flex:auto;text-align: center;border-width: 1px;border-color:#92C0DF;border-style: solid;border-bottom-right-radius: 25px;border-top-right-radius: 25px;" onclick="store()">
+${glitter.getLan(192)}
+</div>
+</div>
+        `
+    }
+
+    function toDefault() {
+        userinfo.preAdviceRatio = 25
+        userinfo.maxPre = 896
+        userinfo.minPre = 672
+        userinfo.temAdvice=80
+        userinfo.genalPre=896
+        $('body').html( lifeCycle.onCreateView())
+
+    }
+
+    function store() {
+        userinfo.preAdviceRatio = parseInt($('#ratio').val(),10)
+        userinfo.temAdvice=parseInt(glitter.temToC(parseInt($('#temAdvice').val(),10)))
+        userinfo.maxPre = parseInt(glitter.preToKpa(parseInt($('#maxPre').val(),10)),10)
+        userinfo.minPre = parseInt(((100 - userinfo.preAdviceRatio)/100) * userinfo.maxPre)
+        userinfo.genalPre=userinfo.maxPre
+        rootActivity().userInfoMation = userinfo
+        rootActivity().updateUserInfoMation()
+    }
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+</body>
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
+    body{
+        width: 100%;
+        height: 100%;
+    }
+
+    tr {
+        width: 100%;
+        display: flex;
+    }
+
+    .wrapper {
+        width: 100%;
+        height: calc(100vh - 130px);
+        overflow-y: scroll;
+    }
+
+    td {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        padding-top: 10px;
+    }
+
+    .select{
+        border-radius: 20px;
+        padding: 5px;
+        background-color: #E95008;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+</html>
+<script>
+    "use strict";
+    var make= undefined;
+    lifeCycle.onCreate = function () {
+        setKeyEvent()
+        var sql="select distinct `Make`,`Make_img` from `Summary table` where `Make` IS NOT NULL and `Make_img` not in('NA')  replacer  order by `Make` asc".replace("replacer",filterItem())
+        glitter.share.getMMY(sql,function (result){
+            make=result.data
+            var list = ''
+            for (var a = 0; a < (make.length / 2); a++) {
+                list += '<tr>'
+                for(var i=0;i<2;i++){
+                    try {
+                        list += `<td> <img onmousedown="
+gBundle.Make='${make[a*2+i].Make}'
+glitter.changePage('tireStorage/Page_Select_Model.html','Page_Select_Model',true,gBundle);" src="../img/`+make[a*2+i].Make_Img+`.png" style="width: calc(50vw - 20px);height: calc(50vw - 20px);" id="`+(a*2+i)+`"></td>`
+                    }catch (e){}
+                }
+                list += '</tr>'
+            }
+            for(var b=0;b<make.length%2;b++){
+                list += '<tr>'
+                for(var i=0;i<b;i++){
+                    try {
+                        list += `<td> <img onmousedown="
+gBundle.Make='${make[make.length-(i+1)].Make}'
+glitter.changePage('tireStorage/Page_Select_Model.html','Page_Select_Model',true,gBundle);"   src="../img/`+make[make.length-(i+1)].Make_Img+`.png" style="width: calc(50vw - 20px);height: calc(50vw - 20px);" id="`+(make.length-(i+1))+`"></td>`
+                    }catch (e){}
+                }
+                list += '</tr>'
+            }
+            $('#itemList').append(list)
+            updateSelect()
+        })
+
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${glitter.language(21)}
+</h3>
+<div id="itemList" class="wrapper"></div>
+        `
+    }
+    function filterItem (){
+        return ""
+    }
+    function updateSelect(){
+        $('.select').removeClass('select')
+        $('#'+focus).addClass('select')
+    }
+    lifeCycle.onResume=function (){
+        setKeyEvent()
+    }
+    var focus=0
+    function setKeyEvent(){
+        if(glitter.share.isOgenius){
+            glitter.keyEventListener=function (json){
+                if(json.mAction==0){
+                    if(json.mKeyCode==20){
+                       if(document.getElementById(`${focus+2}`)){
+                           focus=focus+2
+                           document.getElementById(`${focus}`).scrollIntoView()
+                           updateSelect()
+                       }
+                    }else if(json.mKeyCode==19){
+                        if(document.getElementById(`${focus-2}`)){
+                            focus=focus-2
+                            document.getElementById(`${focus}`).scrollIntoView()
+                            updateSelect()
+                        }
+                    }else if(json.mKeyCode==66){
+                        gBundle.Make=make[focus].Make
+                        glitter.changePage('tireStorage/Page_Select_Model.html','Page_Select_Model',true,gBundle);
+                    }else if(json.mKeyCode==22){
+                        if(document.getElementById(`${focus+1}`)){
+                            focus=focus+1
+                            document.getElementById(`${focus}`).scrollIntoView()
+                            updateSelect()
+                        }
+                    }else if(json.mKeyCode==21){
+                        if(document.getElementById(`${focus-1}`)){
+                            focus=focus-1
+                            document.getElementById(`${focus}`).scrollIntoView()
+                            updateSelect()
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+</script>

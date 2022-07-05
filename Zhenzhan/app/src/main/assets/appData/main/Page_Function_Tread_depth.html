@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-repeat: no-repeat;
+    }
+    html{
+        width: 100%;
+        height: 100%;
+    }
+    #viewclass{
+        height: calc(100% - 60px);
+        overflow-y: scroll;
+    }
+    .text_Style{
+        height: 60px;
+        margin-top: 10px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+    }
+    .input_Style{
+        width: 30%;
+        height: 60px;
+        margin-top: 10px;
+        margin-left: 10px;
+        border-style: solid;
+        border-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+    }
+    .button_Style{
+        width: 30%;
+        height: 60px;
+        margin-top: 10px;
+        margin-left: 10px;
+        background-color: #6AC6D7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+
+<script>
+
+    lifeCycle.onCreateView=function (){
+        return `<div id="viewclass">
+<div style="display: flex;flex-direction: row;">
+    <div class="text_Style">工具傳輸的數值：</div>
+</div>
+<div style="display: flex;flex-direction: row;">
+    <div id="text_Test" class="input_Style"></div>
+</div>
+<div style="display: flex;flex-direction: row;">
+    <div id="button_Test" class="button_Style">啟動</div>
+    <div id="clear_button" class="button_Style">清除</div>
+</div>
+<div style="display: flex;flex-direction: row;margin-top: 20px">
+    <div class="text_Style">上限值：</div>
+    <input id="up_text" class="text_Style" style="width:30%;padding-left:5px;border-color: black;border-width: 1px">
+    <div id="up_button" class="button_Style">確認</div>
+</div>
+<div style="display: flex;flex-direction: row;">
+    <div class="text_Style">下限值：</div>
+    <input id="down_text" class="text_Style" style="width:30%;padding-left:5px;border-color: black;border-width: 1px">
+    <div id="down_button" class="button_Style">確認</div>
+</div>
+</div>`
+    }
+
+    var touch=false
+    lifeCycle.onCreate=function(){
+        $('#text_Test').text("0.00")
+        $('#up_text').val("1.00")
+        $('#down_text').val("0.00")
+        // Key_input("up_text",5)
+        // Key_input("down_text",5)
+        setInput()
+
+        glitter.Tread_depth = function(data){
+            if(touch){
+                touch=false
+                return
+            }
+
+            if(data.length === 16){
+                if(data.substring(0,4)==="0200"){
+                    var tread_depth_value=parseInt(data.substring(11,14),16).toString() //胎紋深度
+                    var pn = data.substring(15,16) //0代表正，1代表負
+
+                    //不夠三位數補零
+                    var length = tread_depth_value.length
+                    if(length<3){
+                        for(var i=length;i<3;i++){
+                            tread_depth_value="0"+tread_depth_value
+                        }
+                    }
+
+                    //代入小數點
+                    //console.log(tread_depth_value.length)
+                    if(tread_depth_value.length>3){
+                        var integer=tread_depth_value.substring(0,2)
+                        var Decimal=tread_depth_value.substring(2,4)
+                        tread_depth_value=integer+"."+Decimal
+                    }else{
+                        var integer=tread_depth_value.substring(0,1)
+                        var Decimal=tread_depth_value.substring(1,3)
+                        tread_depth_value=integer+"."+Decimal
+                    }
+
+                    //正負判斷
+                    if(pn==="0"){
+                        $('#text_Test').text(tread_depth_value)
+                    }else{
+                        $('#text_Test').text("-"+tread_depth_value)
+                    }
+
+                }
+            }
+        }
+
+        $('#button_Test').click(function () {
+            touch=true
+            console.log("button_Test:true")
+            glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+            glitter.command.Tread_depth_Open(function (data) {
+                if(data==="true"){
+                    glitter.closeDiaLogWithTag('Dia_Loading_notext')
+                }else{
+                    glitter.closeDiaLogWithTag('Dia_Loading_notext')
+                }
+                //$('#text_Test').text(data)
+            })
+        })
+    }
+
+    function Key_input(cssID,lenght){
+
+        $("#"+cssID).click(function () {
+            var idName=this.id
+            console.log("idName:"+idName)
+
+            glitter.openDiaLog('dialog/Dia_Number_Keyboard.html', 'Dia_Number_Keyboard', false, true, {
+                callback: function (data) {
+                    // if(idVerify(data)){
+                    $('#' + idName).text(data)
+                    //glitter.closeDiaLog()
+                    // }
+                },
+                data: $('#' + idName).text(),
+                writeC:function (data) {
+                    //if(idVerify(data)){
+                    $('#' + idName).text(data)
+                    glitter.closeDiaLog()
+                    //}
+                },
+                wordLenght:lenght,
+                decimal:true
+            })
+            //return false
+        })
+    }
+
+    function setInput(){
+        $("input").on("input", function (event) {
+            //if(this.value)
+            // console.log("selectionStart:"+this.selectionStart);
+            // console.log("selectionEnd:"+this.selectionEnd);
+
+            //console.log("selectstart"+this.onchange)
+            if (parseFloat(this.value.toString()) > 100) {
+                this.value = this.value.substring(0,2)
+                return
+            }
+            else if(this.value.toString().indexOf(".")!==-1 &&
+                    (this.value.toString().length === 4 && this.value.toString().substring(1,2)===".") ||
+                    (this.value.toString().length === 5 && this.value.toString().substring(2,3)===".")){
+
+                return
+            }
+            this.value = this.value.replace(/[^0-9.]/g, '');
+        })
+    }
+
+</script>

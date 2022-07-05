@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="viewfinder_border">#ffafed44</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <!--自带颜色-->
+    <color name="colorPrimary">#E95008</color>
+    <color name="colorPrimaryDark">#BF360C</color>
+    <color name="colorAccent">#FF6E40</color>
+    <!--常用颜色-->
+    <color name="color_unite_bg">#40606F</color><!--统一的风格颜色-->
+    <color name="color_title_bg">@color/color_orange</color><!--统一的标题栏颜色-->
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_orange">#EC671A</color>
+    <color name="color_black">#000000</color>
+    <color name="color_grey">#777777</color>
+    <color name="gray">#DCDCDD</color>
+    <color name="color_red">#ff0000</color>
+    <color name="color_bg">@color/color_white</color>
+    <color name="color_loading_bg">#EA5404</color>
+    <color name="green">#117110</color>
+    <color name="color_FF000000">#FF000000</color>
+    <color name="color_61000000">#61000000</color>
+    <color name="color_1A000000">#1A000000</color>
+    <color name="color_FF398EFF">#FF398EFF</color>
+    <color name="color_4DCCCCCE">#4DCCCCCE</color>
+    <color name="color_FF101010">#101010</color>
+    <color name="color_FF314A56">#FF314A56</color>
+    <color name="color_FF0076FF">#FF0076FF</color>
+    <color name="color_LIGHT">#3F99AA</color>
+
+</resources>

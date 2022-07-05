@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        margin: 0;
+        padding: 0;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    tr {
+        width: 100%;
+        display: flex;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33%;
+    }
+
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreateView = function () {
+        return glitter.getTitleBar('新增車輛') + `
+        <div style="width: 100%;height: 60px;line-height: 60px;text-align: center;background-color: white;
+     color: #002F51;">
+     選擇品牌
+</div>
+<table>
+</table>
+     `
+    }
+    var makeIt=undefined
+    lifeCycle.onCreate = function () {
+       glitter.getMake(function (make) {
+           makeIt=make
+           var list = ''
+           for (var a = 0; a < (make.length / 3); a++) {
+               list += '<tr>'
+               for(var i=0;i<3;i++){
+                   list += `<td> <img src="../img/`+make[a+i].Make_Img+`.png" style="width: 112px;height: 112px;" id="`+(a+i)+`"></td>`
+               }
+               list += '</tr>'
+           }
+           for(var b=0;b<make.length%3;b++){
+               list += '<tr>'
+              for(var i=0;i<b;i++){
+                  list += `<td> <img src="../img/`+make[make.length-(i+1)].Make_Img+`.png" style="width: 112px;height: 112px;" id="`+(make.length-(i+1))+`"></td>`
+              }
+               list += '</tr>'
+           }
+           $('table').append(list)
+           $('img').click(function () {
+               var id = $(this).attr('id');
+               glitter.selectMake=makeIt[parseInt(id,10)].Make
+               glitter.setCar.make=glitter.selectMake
+               glitter.changePage('page/Page_Select_Model.html','Page_Select_Model',true,'')
+           })
+        })
+    }
+</script>

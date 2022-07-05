@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+  html {
+    width: 100%;
+    height: 100%;
+  }
+  body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+  }
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function () {
+
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+    <div style="width: calc(100% - 30px);background-color: #2F4C63;display: flex;flex-direction: column;align-items: center;justify-content: center;border-radius: 10px;padding-bottom: 10px;">
+    <h3 style="color: white;font-size: 24px;">${glitter.getLan(564)}</h3>
+    <h3 style="color: white;font-weight: 400;margin: 10px 0;">${gBundle.Make}/${gBundle.Model}/${gBundle.Year}</h3>
+    <div style="height:40px;width: calc(100% - 20px);color:white;border-radius: 10px;border: 1px solid white;font-weight: 400;display: flex;align-items: center;justify-content: center;margin-top: 10px;"
+    onclick="
+    glitter.closeDiaLog()"
+    >${glitter.getLan(113)}</div>
+     <div style="height:40px;width: calc(100% - 20px);color:white;border-radius: 10px;border: 1px solid white;font-weight: 400;display: flex;align-items: center;justify-content: center;margin-top: 10px;" onclick="
+     glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, gBundle,function (){ glitter.removePage('Page_Excute_Selection')})
+    glitter.closeDiaLog()
+     ">${glitter.getLan(437)}</div>
+      <div style="height:40px;width: calc(100% - 20px);color:white;border-radius: 10px;border: 1px solid white;font-weight: 400;display: flex;align-items: center;justify-content: center;margin-top: 10px;"
+      onclick="glitter.changePage('page/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)
+       glitter.closeDiaLog()">${glitter.getLan(561)}</div>
+</div>
+    `
+  }
+</script>
+</body>
+</html>

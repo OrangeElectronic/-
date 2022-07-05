@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .inview {
+        width: 100%;
+        height: calc(100% - 120px);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+
+    .tdItem {
+        width: 40px;
+        height: 40px;
+        background-color: #527585;
+        border-radius: 10px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .tdItemC {
+        width: 40px;
+        height: 40px;
+        background-color: #F39800;
+        border-radius: 10px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .tdItem select {
+        width: 40px;
+        height: 40px;
+        background-color: #003D6C;
+        color: white;
+        border-radius: 10px;
+
+    }
+
+    .tdItemC select {
+        width: 40px;
+        height: 40px;
+        background-color: #F39800;
+        color: white;
+        border-radius: 10px;
+
+    }
+
+    .listView td {
+        /*height: 40px;*/
+        border-color: #111111;
+        border-width: 1px;
+        text-align: center;
+        border-style: solid;
+    }
+
+    .listView tr {
+        height: 50px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 90%;
+        color: white;
+    }
+
+    .enterBt {
+        background-image: url("../image/btn_botton.png");
+        width: 100%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .leftBt {
+        background-image: url("../image/btn_left_n.png");
+        width: 50%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 16px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rightBt {
+        background-image: url("../image/btn_right_n.png");
+        width: 50%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 16px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rxTit {
+        background-color: #A2A2A2;
+        color: white;
+    }
+
+    .rxTr {
+        color: white;
+    }
+
+    .itTit {
+
+        background-color: white;
+        color: gray;
+    }
+
+    .itTd {
+        color: gray;
+    }
+
+    .tdSelect {
+        color: gray;
+        background-image: url("../image/grag.png");
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+
+    }
+
+    .rxTit input {
+        height: 40px;
+        background-color: #A2A2A2;
+        color: white;
+    }
+    .undefined{
+        background-color: white;
+    }
+    .true{
+        background-color: green;
+        color: white;
+    }
+    .true input{
+        color: white;
+    }
+    .false input{
+        color: white;
+    }
+    .undefined input{
+        color: gray;
+    }
+    .false{
+        background-color: red;
+        color: white;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    * 車輛定義
+    * */
+    var carDefine = glitter.carDefine
+    var carType = glitter.selectCarType
+
+    lifeCycle.onCreateView = function () {
+        return `
+<div class="inview">
+<div class='topCar' style="margin-left:5%;margin-top:1%;justify-content: center;width: 100%;">
+<h3 style="color: black;font-size: 30px;margin-top: 0;margin-bottom: 0;">` + carDefine[carType].title.top + `</h3>
+<h3 style="color: #FF5F00;font-size: 20px;margin-top: 5px;margin-bottom: 0;">` + carDefine[carType].title.bottom + `</h3>
+</div>
+<div style="position:relative;justify-content: center;align-items: center;top:1%;margin-top:30px;height: 250px;width: 100%;">
+` + getCarView() + `
+</div>
+
+<table style="background-color: #406D91;height: 60px;width: 90%;position:relative;" class="listView" >
+<tr>
+<td style="width: 100px;height: 100%;font-size: 18px;">接收器位置</td>
+<td style="height: 100%;font-size: 18px;">接收器序號</td>
+</tr>
+</table>
+
+<table id="idData" style="width:90%;margin-top:-1px;display:flex; overflow-y: scroll;background-color: white;" class="listView" >
+` + getListView() + `
+</table>
+</div>
+<div style="height: 60px;width: 100%;display: flex;background-color: #003D6C;">
+<div id="enterBt" class="enterBt" onclick="writeRxId()">確認</div>
+<!--<div id="leftBt" class="leftBt" onclick="glitter.goBack()">重選設定模式</div>-->
+<!--<div id="rightBt" class="rightBt" onclick="writeRxId()">儲存資料</div>-->
+</div>
+        `
+    }
+    lifeCycle.onCreate = function () {
+        // $(('#i1')).css('background-color','red')
+        // $(('#i1')).css('color','white')
+        NumScroll()
+        setInput()
+        if (glitter.deviceType===glitter.deviceTypeEnum.Web) {
+            //glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, "設定失敗")
+            return
+        }
+        //return
+        startRead()
+    }
+
+    /*
+    * 讀取所有Rx位置
+    * */
+    function startRead(){
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+
+        setTimeout(readAllRx,3000)
+    }
+
+    function readAllRx(){
+        // console.log("Record:"+glitter.readRxID.length+","+listItem[carType].length)
+        // if(glitter.readRxID !== undefined){
+        //     if(glitter.readRxID.length===listItem[carType].length){
+        //         for(var i=0;i<=glitter.readRxID.length;i++) {
+        //             listItem[carType][i].value = glitter.readRxID[i]
+        //             $(('#i' + i)).val(glitter.readRxID[i])
+        //         }
+        //         return
+        //     }
+        // }
+
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+        glitter.command.readRxID(listItem[carType].length,function (data) {
+                // var data=['A1 11 11 B5 FF FF 00 0B'.replaceAll(" ",""),'A2 22 22 01 FF FF 00 0B'.replaceAll(" ",""),
+                //           '44 44 44 FF FF FF 00 0B'.replaceAll(" ",""),'33 33 33 04 FF FF 00 0B'.replaceAll(" ",""),
+                //           'B6 66 66 06 FF FF 00 0B'.replaceAll(" ",""),'55 55 55 05 FF FF 00 0B'.replaceAll(" ","")]
+            // var data=['A1 11 11 B5 FF FF 00 0B'.replaceAll(" ",""),'A2 22 22 01 FF FF 00 0B'.replaceAll(" ",""),
+            //           'A4 44 44 FF FF FF 00 0B'.replaceAll(" ",""),'A3 33 33 04 FF FF 00 0B'.replaceAll(" ",""),]
+            console.log("ble-"+data)
+            glitter.closeDiaLog()
+            if (data.length === 0) {
+                //glitter.closeDiaLog()
+
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '讀取失敗', function () {
+                    setTimeout(function () {
+                        //glitter.goBack()
+                        glitter.readRxID=[]
+                    }, 200)
+                })
+                return
+            } else {
+
+                if (listItem[carType].length !== data.length) {
+                    //glitter.closeDiaLog() 車種選擇錯誤
+                    glitter.openDiaLog('dialog/Dia_Info_Problem_Bt.html', 'Dia_Info_Problem_Bt', false, true,{
+                        title:'車型錯誤',
+                        changeC:function(start){
+                            glitter.removePage("Page_Rx_Change")
+                                glitter.changePage('main/Page_Select_Wheels.html', "Page_Select_Wheels", false, {
+                                    callback:function (data){
+                                        carType=data
+                                        //Adapter.notifyDataSetChange()
+                                        //updateClickAction()
+                                    }
+                                });
+                                glitter.readRxID=[]
+                        }
+                    })
+                    return
+                } else {
+                    var havePos = []  //有的位置
+                    var notPosID = []  //沒有位置的id
+
+                    if(carType.indexOf("F")!==-1){
+                        //藍芽顯示表單第一位置
+                        // if(data[0].substring(6,7)==="B"){
+                        //     //console.log("藍芽顯示表單第一位置")
+                        //     var RxID = data[0].substring(0,6)
+                        //     havePos = havePos.concat(0)
+                        //     listItem[carType][0].value = RxID
+                        // }else{
+                        //     glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '請檢查是否有安裝藍芽接收器!!', function () {
+                        //         setTimeout(function () {
+                        //             glitter.goBack()
+                        //         }, 200)
+                        //     })
+                        //     return;
+                        // }
+
+                        //console.log("藍芽顯示表單第一位置")
+                        //藍芽序號開頭為A，而且接收第一個為藍芽接收器
+                        //其他序列號皆為數字
+                        if (data[0].substring(0, 1) === "A"){
+                            var RxID = data[0].substring(0,6)
+                            havePos = havePos.concat(0)
+                            listItem[carType][0].value = RxID
+                        }else{
+                            //檢查是否安裝藍芽接收器
+                            glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '藍芽接收器序號錯誤')
+                            return;
+                        }
+
+                        for(var a = 1; a < data.length; a++) {
+                            if(data[a].substring(6,8)!=="FF"){
+                                //console.log("顯示藍芽位置")
+                                var pos = parseInt(data[a].substring(7,8),16)
+                                var RxID = data[a].substring(0,6)
+
+                                //防止位置超出陣列，以及限制藍芽位置
+                                //console.log("藍芽位置:"+carDefine[carType].value[listItem[carType][0].title])
+                                var blePos=parseInt((carDefine[carType].value[listItem[carType][0].title]).substring(1,2),16)
+                                console.log("藍芽位置:"+blePos)
+                                console.log("藍芽位置:"+pos)
+                                //小於藍芽的位置，防止位置超出陣列
+                                if(pos < data.length && pos < blePos){
+                                    //重複位置判斷
+                                    if(havePos.indexOf(pos)===-1){
+                                        havePos = havePos.concat(pos)
+                                        listItem[carType][pos].value = RxID
+                                        //listItem[carType][a].value = data[a].substring(0,6)
+                                    }else{
+                                        notPosID = notPosID.concat(RxID)
+                                    }
+                                    //大於藍芽的位置，防止位置超出陣列
+                                }else if(pos <= data.length && pos > blePos){
+                                    //重複位置判斷
+                                    if(havePos.indexOf(pos-1)===-1) {
+                                        havePos = havePos.concat(pos - 1)
+                                        listItem[carType][pos - 1].value = RxID
+                                    }else{
+                                        notPosID = notPosID.concat(RxID)
+                                    }
+                                }else{
+                                    notPosID = notPosID.concat(RxID)
+                                }
+                            }else{
+                                notPosID = notPosID.concat(data[a].substring(0,6))
+                            }
+                        }
+
+                        // if(havePos.indexOf(0)===-1){
+                        //     glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '請檢查是否有安裝藍芽接收器!!', function () {
+                        //         setTimeout(function () {
+                        //             glitter.goBack()
+                        //         }, 200)
+                        //     })
+                        //     return;
+                        // }
+                        var noadd=0
+                        if(havePos.length !== data.length){
+                            for(var a = 1; a < data.length; a++) {
+                                // var pos = parseInt(data[a].substring(7,8),16)
+                                // var RxID = data[a].substring(0,6)
+
+                                if(havePos.indexOf(a)===-1){
+                                    listItem[carType][a].value = notPosID[noadd]
+                                    noadd++
+                                }
+                            }
+                        }
+                    }
+
+                    if(carType.indexOf("R")!==-1) {
+
+                        //電阻序號開頭為B，其他序列號皆為數字
+                        for (var a = 0; a < data.length; a++) {
+                            if (data[a].substring(0, 1) === "B") {
+                                var RxID = data[a].substring(0,6)
+                                havePos = havePos.concat(0)
+                                listItem[carType][0].value = RxID
+
+                                break
+                            }
+                        }
+                        if(havePos.length === 0){
+                            glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '檢查是否安裝電阻接收器')
+                        }
+
+                        for (var a = 0; a < data.length; a++) {
+                            //console.log("Rx_id_pos : "+(data[a].substring(6, 8)).toString() +",RxID : "+data[a].substring(0,6))
+                            var pos = parseInt(data[a].substring(7,8),16)
+                            var RxID = data[a].substring(0,6)
+                            if(listItem[carType][0].value !== RxID){
+                                if (data[a].substring(6, 8) !== "FF") {
+                                    // console.log("Rx_id_pos : "+pos +",length : "+data.length)
+                                    console.log("Rx_id:"+listItem[carType][0].value+","+RxID+","+havePos+","+pos)
+                                    //以防位置超出陣列、重複位置、位置與序列號不能與最後一顆接收器(電阻)相同
+
+                                    if(pos < data.length && havePos.indexOf(pos)===-1){
+                                        havePos = havePos.concat(pos)
+                                        listItem[carType][pos].value = RxID
+                                        //listItem[carType][a].value = data[a].substring(0,6)
+                                    }else{
+                                        console.log("Rx_id_notPosID:"+RxID)
+                                        notPosID = notPosID.concat(RxID)
+
+                                    }
+                                }else{
+                                    notPosID = notPosID.concat(RxID)
+                                }
+                            }
+
+                        }
+
+                        //console.log("havePos : "+havePos.length +",notPosID : "+notPosID.length)
+                        var noadd=0
+                        if(havePos.length !== data.length){
+                            for(var a = 0; a < data.length; a++) {
+                                // var pos = parseInt(data[a].substring(7,8),16)
+                                 var RxID = data[a].substring(0,6)
+                                console.log("noadd:"+RxID+","+havePos)
+                                if(havePos.indexOf(a)===-1){
+                                    listItem[carType][a].value = notPosID[noadd]
+                                    noadd++
+                                }
+                            }
+                        }
+                    }
+
+                    $('body').html(lifeCycle.onCreateView())
+                    setInput()
+
+                    var alldata=""
+                    for(var i=0;i<data.length;i++){
+                        //alldata = alldata+data.substring(8 * i, 8 + 8 * i)+"\n"
+                        alldata = alldata+data[i]+"\n"
+                        glitter.readRxID =  glitter.readRxID.concat(listItem[carType][i].value)
+                    }
+
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, alldata, function () {
+
+                    })
+                }
+                // RxAll=data
+                // readRxPos_Command()
+            }
+
+        })
+    }
+
+    function readRxPos() {
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+        console.log("ble-"+"readRxPos1")
+        readLen = 0
+        readRxPos_Command(RxAll)
+    }
+
+    var readLen = 0
+    var readText=""
+    var RxAll=[]
+    function readRxPos_Command() {
+
+        if (readLen >= RxAll.length) {
+            glitter.closeDiaLog()
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, readText)
+            $('body').html(lifeCycle.onCreateView())
+            setInput()
+            //readRxPos(data)
+            return
+        }
+        var sposition = readLen
+        readLen += 1
+        glitter.command.readRxPosition(RxAll[sposition], function (data) {
+            if (data === 'false') {
+                glitter.closeDiaLog()
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '設定失敗')
+                // glitter.openDiaLog('dialog/Dia_Info_Bt.html', 'Dia_Info_Bt', false, false, {
+                //     title: '讀取失敗，是否重新讀取?',
+                //     cancel: function () {
+                //         glitter.closeDiaLog()
+                //         glitter.goBack()
+                //     },
+                //     ok: function () {
+                //         glitter.closeDiaLog()
+                //         readRxPos(RxAll)
+                //     }
+                // })
+            } else {
+                //$(('#i' + sposition)).val(data)
+                readText=readText+","+data+"\n"
+                var pos=parseInt(data.substring(6,8),16)-1
+                //listItem[carType][pos-1].value = RxAll[sposition]
+                listItem[carType][pos].value = data.substring(0,6)
+                // readRxPos_Command(RxAll)
+                setTimeout(readRxPos_Command,1000)
+            }
+        })
+    }
+
+    function setInput(){
+        $("input").on("input", function (event) {
+            if(this.value.length>6){
+                this.value = this.value.substring(0,6).toUpperCase()
+                return
+            }
+            this.value = this.value.replace(/[^a-fA-F0-9]/g, '').toUpperCase();
+            listItem[carType][parseInt((this.id).replace("i",""))].value=this.value
+        });
+
+        touchChange("enter")
+        // touchChange("left")
+        // touchChange("right")
+        NumScroll()
+    }
+    function getCarView() {
+        switch (carType) {
+            case "F_6":
+                return `
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="width: 40px;transform: translateY(40px)">
+        <tr><td class="tdItem select" style="background-color: #003D6C;">B</td></tr>
+        </table>
+        <img src="../image/img-6%20wheels.png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(40px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem">1</h3></td></tr>
+        </table>
+        </div>
+        `
+            case "F_8_224":
+                return `
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(40px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem">1</h3></td></tr>
+         <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        </table>
+        <img src="../image/img-8%20wheels(224).png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(40px);width: 40px;">
+        <tr><td id="n2"><h3 class="tdItem">2</h3></td></tr>
+        <tr><td id="n3"><h3 class="tdItem">3</h3></td></tr>
+        </table>
+        </div>
+        `
+            case "F_8_242":
+                return `
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(40px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem">1</h3></td></tr>
+         <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        </table>
+        <img src="../image/img-8%20wheels(242).png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(40px);width: 40px;">
+        <tr><td id="n2"><h3 class="tdItem">2</h3></td></tr>
+        <tr><td id="n3"><h3 class="tdItem">3</h3></td></tr>
+        </table>
+        </div>
+        `
+            case "F_10_244":
+                return `
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(40px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem">1</h3></td></tr>
+         <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        </table>
+        <img src="../image/img_10_wheels_244.png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(40px);width: 40px;">
+        <tr><td id="n2"><h3 class="tdItem">2</h3></td></tr>
+        <tr><td id="n3"><h3 class="tdItem">3</h3></td></tr>
+        </table>
+        </div>
+        `
+            case "F_10_2224":
+                return `
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(25px);width: 40px;">
+          <tr><td id="n1" ><h3 class="tdItem" >1</h3></td></tr>
+          <tr><td id="n3" ><h3 class="tdItem">3</h3></td></tr>
+        <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        </table>
+        <img src="../image/img-10%20wheels(2224).png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(25px);width: 40px;">
+        <tr><td id="n2"><h3 class="tdItem">2</h3></td></tr>
+        <tr><td id="n4"><h3 class="tdItem">4</h3></td></tr>
+        <tr><td id="n5"><h3 class="tdItem">5</h3></td></tr>
+        </table>
+        </div>
+        `
+            case "F_12":
+                return `
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(30px);width: 40px;">
+          <tr><td id="n1"><h3 class="tdItem">1</h3></td></tr>
+        <tr><td id="n3"><h3 class="tdItem">3</h3></td></tr>
+         <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        </table>
+        <img src="../image/img-14%20wheels.png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(30px);width: 40px;">
+        <tr><td id="n2"><h3 class="tdItem">2</h3></td></tr>
+        <tr><td id="n4"><h3 class="tdItem">4</h3></td></tr>
+        <tr><td id="n5"><h3 class="tdItem">5</h3></td></tr>
+        </table>
+        </div>
+        `
+            case "F_14":
+               return `
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(30px);width: 40px;">
+          <tr><td id="n1"><h3 class="tdItem" >1</h3></td></tr>
+        <tr><td id="n3"><h3 class="tdItem">3</h3></td></tr>
+         <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        </table>
+        <img src="../image/img-12%20wheels.png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(30px);width: 40px;">
+        <tr><td id="n2"><h3 class="tdItem" >2</h3></td></tr>
+        <tr><td id="n4"><h3 class="tdItem">4</h3></td></tr>
+        <tr><td id="n5"><h3 class="tdItem">5</h3></td></tr>
+        </table>
+        </div>
+        `
+            case "R_4":
+                return`
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(25px);width: 40px;">
+        <tr><td><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        <tr><td id="n2"><h3 class="tdItem select" style="background-color: #003D6C;">E</h3></td></tr>
+<!--         <tr><td><h3></h3></td></tr>-->
+        </table>
+        <img src="../image/img-4-wheels.png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(5px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem">1</h3></td></tr>
+<!--        <tr><td ><h3 class="tdItem">2</h3></td></tr>-->
+        </table>
+        </div>
+        `
+            case "R_6_222":
+                return`
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(25px);width: 40px;">
+          <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        <tr><td id="n2" style=""><h3 class="tdItem">2</h3></td></tr>
+        <tr><td id="n4"><h3 class="tdItem select" style="background-color: #003D6C;">E</h3></td></tr>
+        </table>
+        <img src="../image/img-6-wheels(222).png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(5px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem" style="">1</h3></td></tr>
+        <tr><td id="n3" style=""><h3 class="tdItem">3</h3></td></tr>
+<!--        <tr><td ><h3 class="tdItem">4</h3></td></tr>-->
+        </table>
+        </div>
+        `
+            case "R_8_44":
+                return`
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(25px);width: 40px;">
+        <tr><td><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        <tr><td id="n2"><h3 class="tdItem select" style="background-color: #003D6C;">E</h3></td></tr>
+<!--         <tr><td><h3></h3></td></tr>-->
+        </table>
+        <img src="../image/img-8-wheels(44).png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(5px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem">1</h3></td></tr>
+<!--        <tr><td ><h3 class="tdItem">2</h3></td></tr>-->
+        </table>
+        </div>
+        `
+            case "R_8_2222":
+                return`
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(0px);width: 40px;">
+          <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+        <tr><td id="n2" style=""><h3 class="tdItem">2</h3></td></tr>
+         <tr><td id="n4"><h3 class="tdItem"">4</h3></td></tr>
+         <tr><td id="n6"><h3 class="tdItem select" style="background-color: #003D6C;">E</h3></td></tr>
+        </table>
+        <img src="../image/img-8-wheels(2222).png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(-15px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem" >1</h3></td></tr>
+        <tr><td id="n3"><h3 class="tdItem">3</h3></td></tr>
+        <tr><td id="n5"><h3 class="tdItem">5</h3></td></tr>
+<!--        <tr><td ><h3 class="tdItem">6</h3></td></tr>-->
+        </table>
+        </div>
+        `
+            case "R_12":
+                return`
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(15px);width: 40px;">
+          <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;" >B</h3></td></tr>
+          <tr><td id="n2" style=""><h3 class="tdItem">2</h3></td></tr>
+          <tr><td id="n4" ><h3 class="tdItem select" style="background-color: #003D6C;">E</h3></td></tr>
+        </table>
+        <img src="../image/img-12-wheels.png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(-5px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem" >1</h3></td></tr>
+        <tr><td id="n3"style=""><h3 class="tdItem">3</h3></td></tr>
+<!--        <tr><td ><h3 class="tdItem">4</h3></td></tr>-->
+        </table>
+        </div>
+        `
+            case "R_16":
+                return`
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: -50px;width: 100%;">
+        <table style="transform: translateY(5px);width: 40px;">
+          <tr><td ><h3 class="tdItem select" style="background-color: #003D6C;">B</h3></td></tr>
+            <tr><td id="n2"><h3 class="tdItem">2</h3></td></tr>
+            <tr><td id="n4"><h3 class="tdItem">4</h3></td></tr>
+            <tr><td id="n6"><h3 class="tdItem select" style="background-color: #003D6C;">E</h3></td></tr>
+        </table>
+        <img src="../image/img-16-wheels.png" style="width: 112px;height: 224px;">
+        <table style="transform: translateY(-15px);width: 40px;">
+        <tr><td id="n1"><h3 class="tdItem">1</h3></td></tr>
+        <tr><td id="n3"><h3 class="tdItem">3</h3></td></tr>
+        <tr><td id="n5"><h3 class="tdItem">5</h3></td></tr>
+<!--        <tr><td ><h3 class="tdItem">6</h3></td></tr>-->
+        </table>
+        </div>
+        `
+        }
+    }
+
+
+    /**
+     * listItem為每筆資料
+     * */
+    var listItem = {
+        F_6: [{title: 'B', value: ''}, {title: '1', value: ''}],
+        F_8_224: [{title: 'B', value: ''}, {title: '1', value: ''},
+            {title: '2', value: ''}, {title: '3', value: ''}],
+        F_8_242: [{title: 'B', value: ''}, {title: '1', value: ''},
+            {title: '2', value: ''}, {title: '3', value: ''}],
+        F_10_244: [{title: 'B', value: ''}, {title: '1', value: ''},
+            {title: '2', value: ''}, {title: '3', value: ''}],
+        F_10_2224: [{title: 'B', value: ''}, {title: '1', value: ''},
+            {title: '2', value: ''}, {title: '3', value: ''}, {title: '4', value: ''}, {title: '5', value: ''}],
+        F_12:[
+            {title: 'B', value: ''}, {title: '1', value: ''},
+            {title: '2', value: ''}, {title: '3', value: ''}, {title: '4', value: ''}, {title: '5', value: ''}],
+        F_14:[
+            {title: 'B', value: ''}, {title: '1', value: ''},
+            {title: '2', value: ''}, {title: '3', value: ''}, {title: '4', value: ''}, {title: '5', value: ''}],
+        R_4:[
+            {title: 'E', value: ''},
+            {title: '1', value: ''}],
+        R_6_222:[
+            {title: 'E', value: ''},
+            {title: '1', value: ''}, {title: '2', value: ''}, {title: '3', value: ''}],
+        R_8_44:[
+            {title: 'E', value: ''},
+            {title: '1', value: ''}],
+        R_8_2222:[
+            {title: 'E', value: ''},
+            {title: '1', value: ''}, {title: '2', value: ''}, {title: '3', value: ''}, {title: '4', value: ''},
+            {title: '5', value: ''}],
+        R_12:[
+            {title: 'E', value: ''},
+            {title: '1', value: ''}, {title: '2', value: ''}, {title: '3', value: ''}],
+        R_16:[
+            {title: 'E', value: ''},
+            {title: '1', value: ''}, {title: '2', value: ''}, {title: '3', value: ''}, {title: '4', value: ''},
+            {title: '5', value: ''}]
+    }
+    function getListView() {
+        var html = ''
+        for (var a = 0; a < listItem[carType].length; a++) {
+            html += (`
+<tr class="` + ((a === 0) ? 'rxTit' : 'itTit') + `" id="list` + a + `" style="font-size: 20px;height: 50px;width:100%">
+<td class="` + ((a === 0) ? 'rxTr' : 'tdSelect') + `" ` + ((a !== 0 ) ? 'onclick="changeTitle(' + a + ')"' : '') + ` style="width: 90px;height:52px;padding-left:10px;display: flex;justify-content: left;align-items: center;border-style:solid;border-width: 1px;border-right: 0px">` + listItem[carType][a].title + `</td>
+<td class="` + ((a === 0) ? 'rxTr ' : ('itTd ' + listItem[carType][a].result)) + `" style="height: 50px;width:calc(100% - 100px);">
+<input id='${"i"+a}' class="${((a === 0) ? ' ' : ( listItem[carType][a].result))}" value="${listItem[carType][a].value}" style="width:calc(100% - 10px);font-size: 20px;height: 50px;margin:0;padding-left:10px;border-width: 0;border-style: none;" readonly>
+</td>
+</tr>
+         `)
+        }
+        return html
+    }
+
+    function touchChange(button){
+        document.getElementById(button+"Bt").addEventListener('touchstart', function (event) {
+            console.log('touchstart' + ':' + this.id)
+            $("#"+button+"Bt").css('background-image', "url('../image/btn_botton_p.png')")
+
+        }, false);
+        document.getElementById(button+"Bt").addEventListener('touchend', function (event) {
+            console.log('touchend' + ':' + this.id)
+            $("#"+button+"Bt").css('background-image',"url('../image/btn_botton.png')")
+
+        }, false);
+        document.getElementById(button+"Bt").addEventListener('touchmove', function (event) {
+            //console.log('touchmove')
+
+            if(!(this.offsetTop <= event.touches[0].clientY && this.offsetTop+this.offsetHeight >= event.touches[0].clientY &&
+                this.offsetLeft <= event.touches[0].clientX && this.offsetLeft+this.offsetWidth >= event.touches[0].clientX)){
+                console.log('notouch:true')
+                $("#"+button+"Bt").css('background-image',"url('../image/btn_botton.png')")
+            }
+
+        },false);
+    }
+
+    function changeTitle(dl) {
+        var json = []
+        for (var i = 0; i < carDefine[carType].position.length; i++) {
+            json = json.concat({
+                title: carDefine[carType].position[i], click: function (tit) {
+                    for (var a = 0; a < listItem[carType].length; a++) {
+                        if (listItem[carType][a].title === tit) {
+                            listItem[carType][a].title = '－'
+                        }
+                    }
+                    if(tit==='F'){
+                        listItem[carType][dl].title = '－'
+                    }else{
+                        listItem[carType][dl].title = tit
+                    }
+
+                    $('body').html(lifeCycle.onCreateView())
+                    setInput()
+                    glitter.closeDiaLog()
+
+                    var scrolly=(parseInt(dl)-1)*50
+                    console.log(scrolly)
+                    $('#idData').scrollTop(scrolly)
+                }
+            })
+        }
+        glitter.openDiaLog('dialog/Dia_List_Item.html', 'Dia_List_Item', false,true,json)
+    }
+
+    /*
+    * 寫入資料
+    * */
+    function writeRxId() {
+        var datalist=[]
+        for(var i=0;i<listItem[carType].length;i++){
+            console.log("輪位"+i+":"+$(('#i' + i)).val())
+            $(('#i' + i)).css('background-color','white')
+            $(('#i' + i)).css('color','black')
+
+            // if($(('#i' + i)).val().trim() === ""){
+            //     glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '序號不能為空')
+            //     datalist=[]
+            //     return
+            // }
+            if(datalist.indexOf($(('#i' + i)).val())!==-1){
+                glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '有序號重複')
+                datalist=[]
+                return
+            }
+            if($(('#i' + i)).val().trim().length !== 6){
+                glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '序號需為6碼')
+                datalist=[]
+                return
+            }
+            if(listItem[carType][i].title === '－'){
+                glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '序號需有位置')
+                datalist=[]
+                return
+            }
+            datalist = datalist.concat($(('#i' + i)).val())
+        }
+
+        // if ((listItem[carType].filter(function (data) {
+        //     datalist = datalist.concat(data.value)
+        //     console.log("repeat:"+listItem[carType].indexOf(data.value)+","+(datalist.length-1)+","+listItem[carType].value)
+        //     //var a=(listItem[carType].filter(function (data) {return }).length)
+        //     return data.title === 'F' || data.value.length !==6 || data.value ==="" || listItem[carType].indexOf(data.value) !== datalist.length-1
+        // })).length > 0) {
+        //     glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '序號尚未輸入完全!!')
+        //     return
+        // }
+        // if ((listItem[carType].filter(function (data) {
+        //     return data.value.length !== 6
+        // })).length > 0) {
+        //     glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '序號長度需6碼!!')
+        //     return
+        // }
+
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "資料寫入中...")
+        writeCommand()
+    }
+
+    var writeLen = 0
+    var reWrite=0
+    var writeAllRx=[]
+    function writeCommand() {
+
+        if (writeLen >= listItem[carType].length) {
+            writeLen = 0
+            $('body').html(lifeCycle.onCreateView())
+            setInput()
+            writeRow()
+            return
+        }
+        writeAllRx = writeAllRx.concat(listItem[carType][writeLen].value+carDefine[carType].value[listItem[carType][writeLen].title]+"\n")
+        //console.log("writeAllRx : main:"+carDefine[carType].value[listItem[carType][writeLen].title] +",pos:"+listItem[carType][writeLen].title)
+        var spos=writeLen
+        glitter.command.writeRxId({
+            id: listItem[carType][writeLen].value,
+            pos: carDefine[carType].value[listItem[carType][writeLen].title]
+        }, function (result) {
+            listItem[carType][spos].result=result
+            if (result) {
+                reWrite=0
+                glitter.readRxID[parseInt(writeLen)-1]=$(('#i' + writeLen)).val()
+                writeLen += 1
+                $(('#i' + spos)).css('background-color','green')
+                $(('#i' + spos)).css('color','white')
+                setTimeout(writeCommand,1000)
+                //writeCommand()
+            } else {
+                if(reWrite<3){
+                    reWrite++
+                    glitter.showToast("第"+reWrite+"次")
+                    setTimeout(writeCommand,1000)
+                }else {
+                    reWrite=0
+                    // writeLen = 0
+                    glitter.closeDiaLog()
+                    //glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '序列號寫入失敗')
+                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '設定失敗')
+                    // glitter.openDiaLog('dialog/Dia_Info_Bt.html', 'Dia_Info_Bt', false, false, {
+                    //     title: '設定失敗，是否重新設定?',
+                    //     cancel: function () {
+                    //         glitter.closeDiaLog()
+                    //         glitter.goBack()
+                    //     },
+                    //     ok: function () {
+                    //         glitter.closeDiaLog()
+                    //         glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                    //         //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "寫入中...")
+                    //         writeCommand()
+                    //     }
+                    // })
+                    $('body').html(lifeCycle.onCreateView())
+                    setInput()
+                    $(('#i' + spos)).css('background-color','red')
+                    $(('#i' + spos)).css('color','white')
+                }
+            }
+        })
+    }
+
+    function writeRow(){
+        /*
+    * 判斷前後車
+    * */
+        var cart = '00'
+        if (carType.indexOf("F") !== -1) {
+            cart = '01'
+        } else {
+            cart = '02'
+        }
+        console.log("carRow:"+carDefine[carType].carRow[1]+","+carDefine[carType].carRow[2]+","+carDefine[carType].carRow[3]+","+carDefine[carType].carRow[4])
+        glitter.command.writeRowWheels(
+            cart,
+            //carDefine[carType].carRow[0].value
+            carDefine[carType].carRow[1],  carDefine[carType].carRow[2],
+            carDefine[carType].carRow[3],  carDefine[carType].carRow[4]
+        , function (result) {
+
+                glitter.closeDiaLog()
+                if(result){
+                    glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true, '設定成功')
+                    //glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, writeAllRx)
+                    writeAllRx=[]
+                }else{
+                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '設定失敗')
+                }
+
+        })
+    }
+
+    function NumScroll() {
+        var carType_length=0
+
+        if (carType.indexOf("F") !== -1) {
+            carType_length = listItem[carType].length-1
+        } else {
+            carType_length = listItem[carType].length-1
+        }
+
+        for (var i = 1; i <= carType_length; i++) {
+
+            document.getElementById("n" +i).onclick = function () {
+                for (var j = 1; j <= carType_length; j++) {
+                    //$(".tdItem "+'#n'+j).css("background-color", "#527585")
+                    //document.getElementById('n'+j).style.backgroundColor = "#527585"
+                    //console.log("removeClass:"+j)
+                    //document.getElementById('n'+j).classList.add("tdItem")
+
+                    // $('#n'+j+" h3").removeClass("tdItem");
+                    // $('#n'+j+" h3").removeClass("tdItemC");
+                    // $('#n'+j+" h3").addClass("tdItem")
+                    $('#n'+j +" h3").css("background-color", "#527585")
+                }
+                //$(".tdItem "+'#'+this.id).css("background-color", "#F39800")
+                //document.getElementById(this.id).style.backgroundColor = "#F39800"
+                //document.getElementById(this.id).classList.add("tdItemC")
+
+                // $('#'+this.id+" h3").removeClass("tdItem");
+                // $('#'+this.id+" h3").removeClass("tdItemC");
+                // $('#'+this.id+" h3").addClass("tdItemC")
+                $('#'+this.id +" h3").css("background-color", "#F39800")
+                // var scrolly=(parseInt(this.id.replace("n",""))-1)*50
+                // console.log(scrolly)
+                // $('#idData').scrollTop(scrolly)
+
+                var list=""
+                if (carType.indexOf("F") !== -1) {
+                    list="i"+this.id.replace("n","")
+                }else{
+                    list="i"+(parseInt(this.id.replace("n","")))
+                }
+
+                var mainId=""
+                var mainPos=""
+                for(var pos=1;pos <= carType_length;pos++){
+                    var fixPos=""
+                    if (carType.indexOf("F") !== -1) {
+                        fixPos=pos
+                    }else{
+                        fixPos=(pos)
+                    }
+                    console.log("mainPosfix:"+fixPos)
+
+                    if(listItem[carType][fixPos].title===list.replace("i","")){
+                        mainId=listItem[carType][fixPos].value
+                        mainPos=fixPos
+                        console.log("mainPos:"+fixPos)
+                        break
+                    }
+                }
+
+                if(mainPos===""){
+                    glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '此位置無序號')
+                    return
+                }
+
+                // var scrolly=(parseInt(mainPos)-1)*50
+                // console.log(scrolly)
+                // $('#idData').scrollTop(scrolly)
+
+                glitter.openDiaLog('dialog/Dia_Keyboard.html', 'Dia_Keyboard', false, true, {
+                    callback: function (data) {
+                        if(idVerify(data,mainPos)){
+                            //$('#' + list).val(data)
+
+                            listItem[carType][mainPos].value = data
+                            $('body').html(lifeCycle.onCreateView())
+                            setInput()
+
+                            // var scrolly=(parseInt(mainPos)-1)*50
+                            // console.log(scrolly)
+                            // $('#idData').scrollTop(scrolly)
+                        }
+
+                        // touchNum = 1
+                        // clock = Clock()
+                    },
+                    data: listItem[carType][mainPos].value,
+                    writeC:function (data) {
+                        if(idVerify(data,mainPos)){
+                            //$('#' + list).val(data)
+
+                            listItem[carType][mainPos].value = data
+                            $('body').html(lifeCycle.onCreateView())
+                            setInput()
+                            glitter.closeDiaLog("Dia_Keyboard")
+
+                            // var scrolly=(parseInt(mainPos)-1)*50
+                            // console.log(scrolly)
+                            // $('#idData').scrollTop(scrolly)
+                            // //writeIdOne()
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    //序列號驗證
+    function idVerify(id,pos) {
+        // if(id === ""){
+        //     glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '序號不能為空!')
+        //     return false
+        // }
+        var repeatID=0
+        // for(var i=0;i<listItem[carType].length;i++){
+        //     if(glitter.readRxID[i]===id){
+        //         repeatID++
+        //     }
+        // }
+        for(var i=0;i<listItem[carType].length;i++){
+            if(listItem[carType][i].value===id && pos !== i){
+                repeatID++
+            }
+        }
+        if(repeatID>0){
+            glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '序號重複')
+            return false
+        }
+        if(id.length !== 6 || id === ""){
+            glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem', false, true, '序號需為6碼')
+            return false
+        }
+        return true
+    }
+</script>

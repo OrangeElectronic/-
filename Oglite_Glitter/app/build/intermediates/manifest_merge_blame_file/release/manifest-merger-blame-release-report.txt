@@ -1,0 +1,389 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.orange.og_lite"
+4    android:versionCode="31"
+5    android:versionName="1.72" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+11-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:5:5-72
+11-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:5:22-70
+12    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+12-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:6:5-77
+12-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:6:22-75
+13    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+13-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:7:5-75
+13-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:7:22-73
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:8:5-66
+14-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:8:22-64
+15    <uses-permission android:name="android.permission.BLUETOOTH" />
+15-->[com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:11:5-68
+15-->[com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:11:22-65
+16    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+16-->[com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:12:5-81
+16-->[com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:12:22-78
+17    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+17-->[com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:13:5-79
+17-->[com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:13:22-76
+18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+18-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:11:5-80
+18-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:11:22-77
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:12:5-81
+19-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:12:22-78
+20    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+20-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:15:5-74
+20-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:15:22-71
+21    <uses-permission android:name="android.permission.CAMERA" />
+21-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:16:5-65
+21-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:16:22-62
+22
+23    <uses-feature android:name="android.hardware.camera.autofocus" />
+23-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:18:5-70
+23-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:18:19-67
+24    <uses-feature android:name="android.hardware.camera" />
+24-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:19:5-60
+24-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:19:19-57
+25
+26    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+26-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:15:5-74
+26-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:15:22-71
+27    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- File Permission -->
+27-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:23:5-77
+27-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:23:22-74
+28    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+28-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:11:5-80
+28-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:11:22-77
+29    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+29-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:24:5-79
+29-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:24:22-76
+30
+31    <permission
+31-->[androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:23:5-25:47
+32        android:name="com.orange.og_lite.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+32-->[androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:24:9-81
+33        android:protectionLevel="signature" />
+33-->[androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:25:9-44
+34
+35    <uses-permission android:name="com.orange.og_lite.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+35-->[androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:27:5-97
+35-->[androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:27:22-94
+36    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+36-->[com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+36-->[com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+37
+38    <application
+38-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:9:5-39:19
+39        android:name="com.orange.oglite_glitter.MyApp"
+39-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:17:13-34
+40        android:allowBackup="true"
+40-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:10:13-39
+41        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+41-->[androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:29:18-86
+42        android:extractNativeLibs="false"
+43        android:icon="@mipmap/icon_default_logo"
+43-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:11:13-53
+44        android:label="Oglite"
+44-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:12:13-35
+45        android:largeHeap="true"
+45-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:16:13-37
+46        android:networkSecurityConfig="@xml/network_security_config"
+46-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:13:13-73
+47        android:roundIcon="@mipmap/icon_default_logo"
+47-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:14:13-58
+48        android:supportsRtl="true"
+48-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:15:13-39
+49        android:theme="@style/Theme.AppCompat.NoActionBar" >
+49-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:18:13-63
+50        <activity
+50-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:19:9-28:20
+51            android:name="com.jianzhi.glitter.GlitterActivity"
+51-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:19:19-69
+52            android:exported="true"
+52-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:20:19-42
+53            android:screenOrientation="portrait"
+53-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:22:19-55
+54            android:theme="@style/SwipTheme__"
+54-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:33:13-47
+55            android:windowSoftInputMode="stateVisible|adjustResize" >
+55-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:21:19-74
+56            <intent-filter>
+56-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:23:13-27:29
+57                <action android:name="android.intent.action.MAIN" />
+57-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:24:17-68
+57-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:24:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:26:17-76
+59-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:26:27-74
+60            </intent-filter>
+61        </activity>
+62        <activity
+62-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:29:9-86
+63            android:name="com.orange.oglite_glitter.ScannerActivity"
+63-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:29:19-50
+64            android:exported="true" />
+64-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:29:51-74
+65
+66        <provider
+66-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:30:9-38:20
+67            android:name="androidx.core.content.FileProvider"
+67-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:31:17-66
+68            android:authorities="PhotoPicker_Ogenius"
+68-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:32:17-58
+69            android:exported="false"
+69-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:33:17-41
+70            android:grantUriPermissions="true" >
+70-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:34:17-51
+71            <meta-data
+71-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:35:13-37:48
+72                android:name="android.support.FILE_PROVIDER_PATHS"
+72-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:36:21-71
+73                android:resource="@xml/s" />
+73-->/Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:37:21-46
+74        </provider>
+75
+76        <activity android:name="com.jianzhi.glitter.WebViewAct" />
+76-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:30:9-67
+76-->[com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:30:19-64
+77        <activity android:name="com.zhihu.matisse.ui.MatisseActivity" />
+77-->[com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:28:9-73
+77-->[com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:28:19-70
+78        <activity android:name="com.zhihu.matisse.internal.ui.AlbumPreviewActivity" />
+78-->[com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:29:9-87
+78-->[com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:29:19-84
+79        <activity android:name="com.zhihu.matisse.internal.ui.SelectedPreviewActivity" />
+79-->[com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:30:9-90
+79-->[com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:30:19-87
+80
+81        <service
+81-->[com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:29:9-31:38
+82            android:name="com.jianzhi.jzblehelper.server.BluetoothLeService"
+82-->[com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:30:13-77
+83            android:enabled="true" />
+83-->[com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:31:13-35
+84
+85        <activity
+85-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:30:9-33:66
+86            android:name="com.facebook.FacebookActivity"
+86-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:31:13-57
+87            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+87-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:32:13-96
+88            android:theme="@style/com_facebook_activity_theme" />
+88-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:33:13-63
+89        <activity android:name="com.facebook.CustomTabMainActivity" />
+89-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:34:9-71
+89-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:34:19-68
+90        <activity
+90-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:35:9-49:20
+91            android:name="com.facebook.CustomTabActivity"
+91-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:36:13-58
+92            android:exported="true" >
+92-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:37:13-36
+93            <intent-filter>
+93-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:39:13-48:29
+94                <action android:name="android.intent.action.VIEW" />
+94-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:40:17-69
+94-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:40:25-66
+95
+96                <category android:name="android.intent.category.DEFAULT" />
+96-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:17-76
+96-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:27-73
+97                <category android:name="android.intent.category.BROWSABLE" />
+97-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:43:17-78
+97-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:43:27-75
+98
+99                <data
+99-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:45:17-47:50
+100                    android:host="cct.com.orange.og_lite"
+100-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:46:21-56
+101                    android:scheme="fbconnect" />
+101-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:47:21-47
+102            </intent-filter>
+103        </activity>
+104
+105        <service
+105-->[com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:8:9-14:19
+106            android:name="com.google.firebase.components.ComponentDiscoveryService"
+106-->[com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:9:13-84
+107            android:directBootAware="true"
+107-->[com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:35:13-43
+108            android:exported="false" >
+108-->[com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:10:13-37
+109            <meta-data
+109-->[com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:11:13-13:85
+110                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar"
+110-->[com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:12:17-116
+111                android:value="com.google.firebase.components.ComponentRegistrar" />
+111-->[com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:13:17-82
+112            <meta-data
+112-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:77:13-79:85
+113                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+113-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:78:17-109
+114                android:value="com.google.firebase.components.ComponentRegistrar" />
+114-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:79:17-82
+115            <meta-data
+115-->[com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:15:13-17:85
+116                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
+116-->[com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:16:17-113
+117                android:value="com.google.firebase.components.ComponentRegistrar" />
+117-->[com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:17:17-82
+118        </service>
+119
+120        <activity
+120-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:27:9-44:20
+121            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+121-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:28:13-80
+122            android:excludeFromRecents="true"
+122-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:29:13-46
+123            android:exported="true"
+123-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:30:13-36
+124            android:launchMode="singleTask"
+124-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:31:13-44
+125            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+125-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:32:13-72
+126            <intent-filter>
+126-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:33:13-43:29
+127                <action android:name="android.intent.action.VIEW" />
+127-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:40:17-69
+127-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:40:25-66
+128
+129                <category android:name="android.intent.category.DEFAULT" />
+129-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:17-76
+129-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:27-73
+130                <category android:name="android.intent.category.BROWSABLE" />
+130-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:43:17-78
+130-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:43:27-75
+131
+132                <data
+132-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:45:17-47:50
+133                    android:host="firebase.auth"
+133-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:46:21-56
+134                    android:path="/"
+135                    android:scheme="genericidp" />
+135-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:47:21-47
+136            </intent-filter>
+137        </activity>
+138        <activity
+138-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:45:9-62:20
+139            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+139-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:46:13-79
+140            android:excludeFromRecents="true"
+140-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:47:13-46
+141            android:exported="true"
+141-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:48:13-36
+142            android:launchMode="singleTask"
+142-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:49:13-44
+143            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+143-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:50:13-72
+144            <intent-filter>
+144-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:51:13-61:29
+145                <action android:name="android.intent.action.VIEW" />
+145-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:40:17-69
+145-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:40:25-66
+146
+147                <category android:name="android.intent.category.DEFAULT" />
+147-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:17-76
+147-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:27-73
+148                <category android:name="android.intent.category.BROWSABLE" />
+148-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:43:17-78
+148-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:43:27-75
+149
+150                <data
+150-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:45:17-47:50
+151                    android:host="firebase.auth"
+151-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:46:21-56
+152                    android:path="/"
+153                    android:scheme="recaptcha" />
+153-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:47:21-47
+154            </intent-filter>
+155        </activity>
+156
+157        <service
+157-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:64:9-73:19
+158            android:name="com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService"
+158-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:65:13-101
+159            android:enabled="true"
+159-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:66:13-35
+160            android:exported="false" >
+160-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:67:13-37
+161            <intent-filter>
+161-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:68:13-72:29
+162                <action android:name="com.google.firebase.auth.api.gms.service.START" />
+162-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:69:17-89
+162-->[com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:69:25-86
+163
+164                <category android:name="android.intent.category.DEFAULT" />
+164-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:17-76
+164-->[com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:27-73
+165            </intent-filter>
+166        </service>
+167
+168        <activity
+168-->[com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
+169            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+169-->[com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:24:13-79
+170            android:exported="false"
+170-->[com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:25:13-37
+171            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+171-->[com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:26:13-72
+172
+173        <provider
+173-->[com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:26:9-31:39
+174            android:name="com.google.firebase.provider.FirebaseInitProvider"
+174-->[com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:27:13-77
+175            android:authorities="com.orange.og_lite.firebaseinitprovider"
+175-->[com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:28:13-72
+176            android:directBootAware="true"
+176-->[com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:29:13-43
+177            android:exported="false"
+177-->[com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:30:13-37
+178            android:initOrder="100" />
+178-->[com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:31:13-36
+179
+180        <meta-data
+180-->[com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:23:9-25:69
+181            android:name="com.google.android.gms.version"
+181-->[com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:24:13-58
+182            android:value="@integer/google_play_services_version" />
+182-->[com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:25:13-66
+183        <!--
+184         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+185         with the application context. This config is merged in with the host app's manifest,
+186         but there can only be one provider with the same authority activated at any given
+187         point; so if the end user has two or more different apps that use Facebook SDK, only the
+188         first one will be able to use the provider. To work around this problem, we use the
+189         following placeholder in the authority to identify each host application as if it was
+190         a completely different provider.
+191        -->
+192        <provider
+192-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:39:9-42:40
+193            android:name="com.facebook.internal.FacebookInitProvider"
+193-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:40:13-70
+194            android:authorities="com.orange.og_lite.FacebookInitProvider"
+194-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:41:13-72
+195            android:exported="false" />
+195-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:42:13-37
+196
+197        <receiver
+197-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:44:9-50:20
+198            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+198-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:45:13-86
+199            android:exported="false" >
+199-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:46:13-37
+200            <intent-filter>
+200-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:47:13-49:29
+201                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+201-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:48:17-95
+201-->[com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:48:25-92
+202            </intent-filter>
+203        </receiver>
+204    </application>
+205
+206</manifest>

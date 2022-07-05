@@ -1,0 +1,167 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name JzIos_Framework
+import Foundation
+@_exported import JzIos_Framework
+import Swift
+import UIKit
+@objc open class JzAdapter : ObjectiveC.NSObject, UIKit.UITableViewDataSource, UIKit.UITableViewDelegate, UIKit.UIScrollViewDelegate {
+  public init(_ tb: UIKit.UITableView, _ model: ObjectiveC.NSObject)
+  @objc public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @objc public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  public func notifyDataSetChange()
+  public func setProtocal() -> JzIos_Framework.JzAdapter_Protocal
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_hasMissingDesignatedInitializers open class pagemenory {
+  public var page: UIKit.UIViewController!
+  public var tag: Swift.String
+  public var fragroot: UIKit.UIView!
+  @objc deinit
+}
+public protocol GetVersion {
+  func versionBack(_ version: Swift.String?)
+}
+@objc @_inheritsConvenienceInitializers open class DataStream : ObjectiveC.NSObject {
+  public func close()
+  public func setStream(_ ip: Swift.String, _ port: Swift.Int, _ timeout: Swift.Int = 3) throws
+  public func writeINT(_ int: Swift.Int) throws
+  public func writeUTF(_ string: Swift.String) throws
+  public func writeUnicode(_ string: Swift.String) throws
+  public func readUTf() throws -> Swift.String
+  public func readUniCode() throws -> Swift.String
+  public func decode(_ s: Swift.String) -> Swift.String
+  public func encode(_ s: Swift.String) -> Swift.String
+  public func bytesToHex(_ bt: [Swift.UInt8]) -> Swift.String
+  public func readInt() throws -> Swift.Int
+  public func readData()
+  @objc deinit
+  @objc override dynamic public init()
+}
+extension Data {
+  public func CRC16() -> Swift.UInt16
+}
+extension String {
+  public func getUrls() -> [Foundation.NSURL]
+  public func compareCurrentTime() -> Swift.String
+  public func sub(_ range: Swift.CountableRange<Swift.Int>) -> Swift.String
+  public func HexToByte() -> Foundation.Data?
+}
+extension UIView {
+  public func fillSuperview(padding: UIKit.UIEdgeInsets = .zero)
+  public func anchor(top: UIKit.NSLayoutYAxisAnchor?, leading: UIKit.NSLayoutXAxisAnchor?, bottom: UIKit.NSLayoutYAxisAnchor?, trailing: UIKit.NSLayoutXAxisAnchor?, padding: UIKit.UIEdgeInsets = .zero, size: CoreGraphics.CGSize = .zero)
+  public func showToast(_ text: Swift.String)
+  public func hideToast()
+}
+extension UITableView {
+  public func register(_ nib: Swift.String, _ id: Swift.String)
+}
+extension String {
+  public func decodeToUnicode() -> Swift.String
+  public func encodeToUtf_8() -> Swift.String
+}
+public protocol ControlInstance {
+  func getPro(_ name: Swift.String, _ normal: Swift.String) -> Swift.String
+  func getPro(_ name: Swift.String, _ normal: Swift.Bool) -> Swift.Bool
+  func getPro(_ name: Swift.String, _ normal: Swift.Int) -> Swift.Int
+  func setPro(_ name: Swift.String, _ key: Swift.String)
+  func setPro(_ name: Swift.String, _ key: Swift.Bool)
+  func setPro(_ name: Swift.String, _ key: Swift.Int)
+  func removePro()
+  func setHome(_ home: UIKit.UIViewController, _ tag: Swift.String)
+  func goBack()
+  func goBack(_ tag: Swift.String)
+  func changePage(_ newViewController: UIKit.UIViewController, _ tag: Swift.String, _ goback: Swift.Bool)
+  func changeFrage(_ original: UIKit.UIView, _ newViewController: UIKit.UIViewController, _ originViewController: UIKit.UIViewController)
+  func getPageByTag(_ tag: Swift.String) -> UIKit.UIViewController?
+  func openDiaLog(_ newViewController: UIKit.UIViewController, _ swipe: Swift.Bool, _ tag: Swift.String)
+  func openBottomSheetDialog(_ newViewController: UIKit.UIViewController, _ swipe: Swift.Bool, _ tag: Swift.String)
+  func closeDialLog()
+  func closeDialLog(_ tag: Swift.String)
+  func goMenu()
+  func getActivity() -> JzIos_Framework.JzActivity
+  func getViewWidth() -> Swift.Int
+  func getViewHeight() -> Swift.Int
+  func getDeviceInformation() -> JzIos_Framework.deviceInfo
+  func toast(_ text: Swift.String)
+  func closeApp()
+  func getNowPageTag() -> Swift.String
+  func getNowPage() -> UIKit.UIViewController
+  func setDrawer(_ newViewController: UIKit.UIViewController)
+  func openDrawer()
+  func closeDrawer()
+  func getDrawer() -> UIKit.UIViewController
+  func canDragDrawer()
+  func lockDrawer()
+  func getStoreVersion(_ caller: JzIos_Framework.GetVersion)
+  func removeController(_ controller: UIKit.UIViewController)
+  func getNewController(_ name: Swift.String, _ id: Swift.String) -> UIKit.UIViewController
+  func goAppStore(appid: Swift.String)
+  func getApkVersion() -> Swift.String
+  func getAllSubViews(_ view: UIKit.UIView) -> [UIKit.UIView]
+}
+@objc @_inheritsConvenienceInitializers open class JzActivity : UIKit.UIViewController, JzIos_Framework.ControlInstance {
+  public func getAllSubViews(_ view: UIKit.UIView) -> [UIKit.UIView]
+  public func openBottomSheetDialog(_ newViewController: UIKit.UIViewController, _ swipe: Swift.Bool, _ tag: Swift.String)
+  public func getApkVersion() -> Swift.String
+  public func getPro(_ name: Swift.String, _ normal: Swift.Bool) -> Swift.Bool
+  public func getPro(_ name: Swift.String, _ normal: Swift.Int) -> Swift.Int
+  public func setPro(_ name: Swift.String, _ key: Swift.Bool)
+  public func setPro(_ name: Swift.String, _ key: Swift.Int)
+  public func removePro()
+  public func goAppStore(appid: Swift.String)
+  public func closeDialLog(_ tag: Swift.String)
+  public func getDrawer() -> UIKit.UIViewController
+  public func getPageByTag(_ tag: Swift.String) -> UIKit.UIViewController?
+  public func getNewController(_ name: Swift.String, _ id: Swift.String) -> UIKit.UIViewController
+  public func removeController(_ controller: UIKit.UIViewController)
+  public func getNowPage() -> UIKit.UIViewController
+  public func getStoreVersion(_ caller: JzIos_Framework.GetVersion)
+  public func canDragDrawer()
+  public func lockDrawer()
+  public func openDrawer()
+  public func closeDrawer()
+  public func setDrawer(_ newViewController: UIKit.UIViewController)
+  public func getNowPageTag() -> Swift.String
+  public func closeApp()
+  public func goBack(_ tag: Swift.String)
+  public func getDeviceInformation() -> JzIos_Framework.deviceInfo
+  public func toast(_ a: Swift.String)
+  public func getViewWidth() -> Swift.Int
+  public func getViewHeight() -> Swift.Int
+  public func getActivity() -> JzIos_Framework.JzActivity
+  public func goMenu()
+  public func changePage(_ newViewController: UIKit.UIViewController, _ tag: Swift.String, _ goback: Swift.Bool)
+  public func changeFrage(_ original: UIKit.UIView, _ newViewController: UIKit.UIViewController, _ originViewController: UIKit.UIViewController)
+  public func getPro(_ name: Swift.String, _ normal: Swift.String) -> Swift.String
+  public func setPro(_ name: Swift.String, _ key: Swift.String)
+  public func setHome(_ home: UIKit.UIViewController, _ tag: Swift.String)
+  public func goBack()
+  public func openDiaLog(_ newViewController: UIKit.UIViewController, _ swipe: Swift.Bool, _ tag: Swift.String)
+  public func closeDialLog()
+  open var drawer: UIKit.UIViewController!
+  open var rootView: UIKit.UIView!
+  open var AllDialog: [JzIos_Framework.pagemenory]
+  public static var getControlInstance: JzIos_Framework.ControlInstance!
+  open var Pagememory: [JzIos_Framework.pagemenory]
+  open var Fraging: UIKit.UIViewController!
+  @objc override dynamic open func viewDidLoad()
+  open func viewInit()
+  open func changePageListener(_ controler: JzIos_Framework.pagemenory)
+  public func listallView(_ inview: [UIKit.UIView]) -> [UIKit.UIView]
+  @objc deinit
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+extension String {
+  public func replace(_ target: Swift.String, _ withString: Swift.String) -> Swift.String
+}
+@_hasMissingDesignatedInitializers public class deviceInfo {
+  @objc deinit
+}
+public protocol JzAdapter_Protocal {
+  func sizeInit() -> Swift.Int
+  func loadView(_ index: Swift.Int) -> UIKit.UITableViewCell
+  func setProtocal() -> JzIos_Framework.JzAdapter_Protocal
+}

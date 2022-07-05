@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>951056911376-j9540mr9h0v5a3kv4apff62rii0stlgl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.951056911376-j9540mr9h0v5a3kv4apff62rii0stlgl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAkuM1U4PucQCQ56GIfqPKzswCdbaCLufY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>951056911376</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.orange.txusb</string>
+	<key>PROJECT_ID</key>
+	<string>orange-testserver</string>
+	<key>STORAGE_BUCKET</key>
+	<string>orange-testserver.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:951056911376:ios:16c1090c6acfd6bf8f4e95</string>
+	<key>DATABASE_URL</key>
+	<string>https://orange-testserver.firebaseio.com</string>
+</dict>
+</plist>

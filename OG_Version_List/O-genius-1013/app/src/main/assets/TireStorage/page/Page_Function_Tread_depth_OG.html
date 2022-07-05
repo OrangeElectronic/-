@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    html{
+        width: 100%;
+        height: 100%;
+    }
+    #viewclass{
+        width: 100%;
+        height: calc(100% - 180px);
+        overflow-y: scroll;
+    }
+    .text_Style{
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+    }
+    .button_Style{
+        background-image: url("../image/btn_botton.png");
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .image_Style{
+        background-image: url("../image/Tread_depth_tool.png");
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        /*display: flex;*/
+        align-items: center;
+        justify-content: center;
+    }
+    .input_Style{
+        width: 30%;
+        height: 60px;
+        margin-top: 10px;
+        margin-left: 10px;
+        border-style: solid;
+        border-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+    }
+    table {
+        border-spacing: 0px;
+    }
+    table td{
+        border-style: solid;
+        border-color: #868e96;
+        border-width: 1px;
+    }
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+
+<body>
+
+</body>
+</html>
+<script>
+    let data = {};
+    data.wheel=["LF","RF","RR","LR"]
+    data.wheel_data=["0.00","0.00","0.00","0.00"]
+    data.rx_data=["","","",""]
+    var numWheel=""
+    var adapter=""
+
+    lifeCycle.onCreateView=function (){
+        return `
+<div class="text_Style" style="background-color: #1F333E;color: white;">Tread depth</div>
+
+<div id="viewclass">
+<!--<table id="tableview" style="width:100vw;"></table>-->
+</div>
+
+<div style="height: 60px;width: 100%;display: flex;flex-direction: row;">
+<div id="skip" class="button_Style" style="height: 100%;width: 30%">Skip</div>
+<div id="next" class="button_Style" style="height: 100%;width: 70%">Next</div>
+</div>`
+    }
+
+    var touch=false
+    lifeCycle.onCreate=function(){
+
+        numWheel=0
+
+        adapter_View()
+        use_Wheel_Button()
+        open_Code()
+        // numWheel=data.wheel[0]+"_Button"
+        // $('#'+numWheel).css("background-color","yellow")
+
+        //adapter.notifyDataSetChange()
+
+        $('#skip').click(function () {
+            clear_Code()
+        })
+        $('#next').click(function () {
+            updata()
+        })
+
+        glitter.Tread_depth = function(value){
+            if(value.length === 16){
+                if(value.substring(0,4)==="0200"){
+                    var tread_depth_value=parseInt(value.substring(11,14),16).toString() //胎紋深度
+                    var pn = value.substring(15,16) //0代表正，1代表負
+
+                    //不夠三位數補零
+                    var length = tread_depth_value.length
+                    if(length<3){
+                        for(var i=length;i<3;i++){
+                            tread_depth_value="0"+tread_depth_value
+                        }
+                    }
+
+                    //代入小數點
+                    //console.log(tread_depth_value.length)
+                    if(tread_depth_value.length>3){
+                        var integer=tread_depth_value.substring(0,2)
+                        var Decimal=tread_depth_value.substring(2,4)
+                        tread_depth_value=integer+"."+Decimal
+                    }else{
+                        var integer=tread_depth_value.substring(0,1)
+                        var Decimal=tread_depth_value.substring(1,3)
+                        tread_depth_value=integer+"."+Decimal
+                    }
+
+                    //正負判斷
+                    if(pn==="0"){
+                        data.wheel_data[numWheel] = tread_depth_value
+                        data.rx_data[numWheel] = data.wheel[numWheel]+":"+value
+                        //$('#'+numWheel).text(tread_depth_value)
+                    }else{
+                        data.wheel_data[numWheel] = "-"+tread_depth_value
+                        data.rx_data[numWheel] = data.wheel[numWheel]+":"+value
+                        //$('#'+numWheel).text("-"+tread_depth_value)
+                    }
+
+                    adapter.notifyDataSetChange()
+                    use_Wheel_Button()
+                }
+            }
+        }
+    }
+
+    function adapter_View(){
+        adapter=new GlAdapter(document.getElementById('viewclass'),
+            function (){return data.wheel.length},
+            function (position) {
+                //id=' + position + '
+                var html = ``
+                if(position===0){
+                    html += `<table  style="width:100vw;">`
+                }
+                html += `
+<tr style="width:100%;height:100px;">
+    <td style="width:40px;height:100px;text-align: center;background-color: #e8e8e8">`+data.wheel[position]+`</td>
+    <td style="width:calc(100% - 100px);height:100px;">
+        <div style="display: flex;justify-content:center;align-items: center;width:100%;height:100%;">
+<!--        <div style="width:10%;"></div>-->
+        <div id="`+data.wheel[position]+"_Button"+`" style="width:85%;height:50%;font-size:20px;border-style:solid;border-width: 1px;display:flex;align-items: center;padding-left: 10px;
+        background-color:`+((numWheel.toString()===position.toString()) ? 'yellow' : 'white')+`">`+data.wheel_data[position]+`</div>
+<!--        <div style="width:10%;"></div>-->
+        </div>
+    </td>
+    <td style="width:60px;height:100px;" class="image_Style"></td>
+</tr>`
+                //console.log("position:"+position+" , "+data.wheel.length)
+                if(position===data.wheel.length-1){
+                    html += `</table>`
+                }
+                return html
+            } )
+    }
+
+    function updata(){
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+        var dataWheel = []
+        for(var i=0;i<data.wheel_data.length;i++){
+            dataWheel = dataWheel.concat(data.wheel[i] +":"+ data.wheel_data[i])
+        }
+        glitter.updata("胎紋深度檢測",dataWheel,data.rx_data,function (success) {
+            glitter.closeDiaLogWithTag('Dia_Loading_notext')
+            if(success){
+                glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true, '上傳成功')
+            }else{
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '上傳失敗')
+            }
+        })
+        //var dataJson = {mode:"胎紋深度檢測",LF:data.wheel_data[0],RF:data.wheel_data[1],RR:data.wheel_data[2],LR:data.wheel_data[3],dataRx:data.rx_data,time:timedate}
+    }
+
+    function open_Code(){
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+        glitter.command.Tread_depth_Open(function (data) {
+            if(data==="true"){
+                glitter.closeDiaLogWithTag('Dia_Loading_notext')
+            }else{
+                glitter.closeDiaLogWithTag('Dia_Loading_notext')
+            }
+            //$('#text_Test').text(data)
+        })
+    }
+
+    function clear_Code(){
+        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+        glitter.command.Tread_depth_Clear(function (data) {
+            if(data==="true"){
+                glitter.closeDiaLogWithTag('Dia_Loading_notext')
+            }else{
+                glitter.closeDiaLogWithTag('Dia_Loading_notext')
+            }
+            //$('#text_Test').text(data)
+        })
+    }
+
+    function use_Wheel_Button(){
+        for(var p=0;p<data.wheel.length;p++){
+            $('#'+data.wheel[p]+"_Button").click(function () {
+                for(var i=0;i<data.wheel.length;i++){
+                    if(this.id === (data.wheel[i]+"_Button")){
+                        $('#'+data.wheel[i]+"_Button").css("background-color","yellow")
+                        numWheel=i.toString()
+                    }else{
+                        $('#'+data.wheel[i]+"_Button").css("background-color","white")
+                    }
+                }
+            })
+        }
+    }
+</script>

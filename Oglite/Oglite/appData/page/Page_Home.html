@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        width: 100%;
+        height: calc(100% - 60px);
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        width: calc(100% - 30px);
+        height: calc(100% - 10px);
+        overflow-y: scroll;
+        margin-top: 10px;
+        margin-left: 30px;
+        margin-right: 10px;
+        overflow-x: hidden;
+    }
+
+    .item {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .wrapper .item .itemImg {
+        width: calc(100vw / 2 - 50px);
+        height: calc(100vw / 2 - 50px);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-repeat: no-repeat;
+    }
+
+    .wrapper .item .itemTitle {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: calc(100vw / 2 - 50px);
+        text-align: center;
+    }
+
+</style>
+<body>
+
+</body>
+</html>
+<script>
+
+    let itemArray = [{
+        img: 'btn_check_sensor_n',
+        title: glitter.getLan(10),
+        click: function () {
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+            glitter.selectFunction.select=glitter.selectFunction.enum.ReadSensor
+        }
+    }, {
+        img: 'btn_program_n',
+        title: glitter.getLan(12),
+        click: function () {
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+            glitter.selectFunction.select=glitter.selectFunction.enum.Program
+        }
+    }, {
+        img: 'btn_id_copy_n',
+        title: glitter.getLan(117),
+        click: function () {
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+            glitter.selectFunction.select=glitter.selectFunction.enum.IdCopy
+        }
+    }, {
+        img: 'btn_obdii_relearn_n',
+        title: glitter.getLan(15),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.ObdRelearn
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+        }
+    }, {
+        img: 'btn_id_copy_by_obd_n',
+        title: glitter.getLan(401),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.IdCopy_OBD
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+        }
+    }, (glitter.publicBeans.language==="it")? undefined:{
+        img: 'btn_online_shopping_n',
+        title: glitter.getLan(17),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.Online_Shopping
+            switch (glitter.publicBeans.language){
+                case "en":
+                    glitter.openNewTab('https://simple-sensor.com')
+                    break
+                case "tw":
+                    glitter.openNewTab('https://simple-sensor.com')
+                    break
+                case "zh-rcn":
+                    glitter.openNewTab('https://simple-sensor.com')
+                    break
+                case "de":
+                    glitter.openNewTab('https://orange-rdks.de')
+                    break
+                case "it":
+                    glitter.openNewTab('https://orange-like.it')
+                    break
+                case "sk":
+                    glitter.openNewTab('https://simple-sensor.com')
+                    break
+                case "da":
+                    glitter.openNewTab('https://simple-sensor.com')
+                    break
+            }
+        }
+    }, {
+        img: 'btn_relearnprocedure_p',
+        title: glitter.getLan(135),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.Relearn_Procedure
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+        }
+    }, {
+        img: 'btn_setting_n',
+        title: glitter.getLan(36),
+        click: function () {
+            glitter.changePage("page/Page_Select_Setting_OGLite.html",'Page_Select_Setting_OGLite',true,{})
+            glitter.selectFunction.select=glitter.selectFunction.enum.Setting
+        }
+    }, {
+        img: 'btn_users_manual_p',
+        title: glitter.getLan(18),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.Manual
+        }
+    }]
+    lifeCycle.onCreate = function () {
+        for (var i = 0; i < itemArray.length; i++) {
+            if(itemArray[i]!==undefined){
+                $("#list").append(`<div class="item" onclick="itemArray[${i}].click()">
+<img class="itemImg" src="../img/${itemArray[i].img}.png">
+<h3 class="itemTitle">${itemArray[i].title}</h3>
+</div>`)
+            }
+        }
+        glitter.share.checkVersion()
+        glitter.openDiaLog('dialog/Dia_Update.html', 'Dia_Update', false, false, {}, function () {
+        })
+    }
+    lifeCycle.onCreateView = function () {
+        return `<div id="list" class="wrapper"></div>`
+    }
+    lifeCycle.onResume = function () {
+        glitter.share.checkVersion()
+    }
+
+
+
+    //
+
+</script>

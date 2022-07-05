@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "AB590C98-4A46-4471-B8BC-A4687C2FF35A"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB191C47-1118-4649-BF4F-D2918181ED5D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zhengxin/model/Md_Setting_Car.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0FE43C5F-4565-419A-A0FA-FCB13876C22A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zhengxin/model/Md_Setting_Car.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9752AFD6-C60D-495B-8089-521C8B44DB12"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zhengxin/page/Page_Car_Main.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "reFreshAdapter()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9752AFD6-C60D-495B-8089-521C8B44DB12 - 4399d5d6f1981adf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Zhengxin.Page_Car_Main.reFreshAdapter() -&gt; ()"
+                  moduleName = "Zhengxin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jianzhi.wang/Desktop/Orange_Electronic/Zhengxin/Zhengxin/page/Page_Car_Main.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "560">
+               </Location>
+               <Location
+                  uuid = "9752AFD6-C60D-495B-8089-521C8B44DB12 - 2951ce51342e2bf7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Swift.Int in Zhengxin.Page_Car_Main.reFreshAdapter() -&gt; ()"
+                  moduleName = "Zhengxin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jianzhi.wang/Desktop/Orange_Electronic/Zhengxin/Zhengxin/page/Page_Car_Main.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "9752AFD6-C60D-495B-8089-521C8B44DB12 - fa67573a1a92f5b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.UICollectionView, Foundation.IndexPath, Swift.Int) -&gt; __C.UICollectionViewCell in Zhengxin.Page_Car_Main.reFreshAdapter() -&gt; ()"
+                  moduleName = "Zhengxin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jianzhi.wang/Desktop/Orange_Electronic/Zhengxin/Zhengxin/page/Page_Car_Main.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "220">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

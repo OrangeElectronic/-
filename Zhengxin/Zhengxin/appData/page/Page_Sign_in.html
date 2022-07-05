@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+        width: 100%;
+        overflow-y: scroll;
+        height: 100%;
+    }
+    body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .logo {
+        top: 0px;
+        width: 168px;
+        height: 168px;
+        position: relative;
+        margin: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+
+
+    .t1 {
+        margin-top: -10px;
+        width: 100%;
+        color: rgba(106, 198, 215, 100);
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .inputPlace {
+        padding-left: 50px;
+        padding-right: 50px;
+        height: 50px;
+    }
+
+    .hintimg {
+        width: 50px;
+        height: 50px;
+        margin: 0;
+    }
+
+    input {
+        outline: none;
+        background: none;
+        border: none;
+        color: white;
+    }
+
+    .remeberBt.active {
+        background-image: url("../img/check_mark_red.png");
+        background-size: 20px 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .remeberBt {
+        border-radius: 18px;
+        background-color: white;
+        width: 18px;
+        height: 18px;
+        margin-left: 15px;
+        border-width: 3px;
+        border-color: white;
+        border-style: solid;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+<script>
+    var userInfoMation = undefined
+    lifeCycle.onCreateView=function(){
+        userInfoMation= rootActivity().userInfoMation
+       return `
+<img src="../img/app_img_logo.png" class="logo">
+<h3 class="t1">${glitter.getLan(679)}_V${glitter.share.version}</h3>
+<div style="width: 100%;flex-wrap: wrap;flex: auto;"></div>
+<div style="text-align: center;position: relative;z-index:0" id="truckImage">
+    <img src="../img/img_truck.png" style="width: 100%;">
+    <img src="../img/img_truck_reflection.png" style="width: 100%;opacity: 0.3;margin-top: -20px;">
+</div>
+   <div class="inputPlace" style="z-index:1;position:relative;margin-top:-` + $('#truckImage').height() / 3 + `px">
+   <div style="display: flex;">
+   <img src="../img/icon_user.png" class="hintimg">
+   <input placeholder="${glitter.getLan(86)}" style="flex: auto;" id="account">
+   </div>
+   <div style="height: 1px;width: 100%;background-color: rgba(106, 198, 215, 100);"></div>
+   <div style="display: flex;">
+   <img src="../img/icon_password.png" class="hintimg">
+   <input placeholder="${glitter.getLan(87)}" style="flex: auto;" type="password" id="password">
+   </div>
+      <div style="height: 1px;width: 100%;background-color: rgba(106, 198, 215, 100);"></div>
+       <div style="display: flex;height: 50px;align-items: center;">
+   <div class="remeberBt" id="remeberBt"></div>
+   <h3 style="color: white;font-size: 14px;margin-left: 15px;" >${glitter.getLan(669)}</h3>
+   </div>
+   <h3 style="font-size:14px;margin:0;border-radius:30px;background-color: #3F99AA;border-width:1px;border-style:solid;border-color:rgba(106, 198, 215, 100);width: 100%;height: 40px;text-align: center;line-height: 40px;color: white;padding: 0;"onclick="signIn()">${glitter.getLan(5)}</h3>
+  <h3 style="margin-top:10px;color: white;font-size: 14px;width: 100%;text-align: center;">${glitter.getLan(670)}</h3>
+<h3 style="font-size:14px;margin:0;border-radius:30px;border-width:1px;border-style:solid;border-color:rgba(106, 198, 215, 100);width: 100%;height: 40px;text-align: center;line-height: 40px;color: white;padding: 0" onclick="register()">${glitter.getLan(6)}</h3>
+<div style="display: inline-flex;align-items: center;height: 50px;flex-wrap: wrap;width: 100%;justify-content: center;">
+<img style="width: 30px;height: 30px;" src="../img/icon_forget_password.png">
+ <h3 style="color: white;font-size: 14px;margin-left: 0px;">${glitter.getLan(79)}</h3>
+</div>
+   </div>
+
+   `
+    }
+    lifeCycle.onCreate = function () {
+        glitter.getPro("autoLogin",function (data){if (data.data === "1") {
+            $('#remeberBt').toggleClass("active");
+            $("#account").val(userInfoMation.admin)
+            $("#password").val(userInfoMation.password)
+        }})
+        $('#remeberBt').click(function () {
+            glitter.getPro("autoLogin",function (data){glitter.setPro("autoLogin", (data.data === "1") ? "0" : "1")})
+            $('#remeberBt').toggleClass("active");
+        })
+
+
+    }
+
+    function signIn() {
+        var admin = $("#account").val()
+        var password = $("#password").val()
+        if (admin === '' || password === '') {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '請輸入帳號和密碼!!')
+            return
+        }
+        userInfoMation.admin = admin
+        userInfoMation.password = password
+        var map = {}
+        map.request = "login"
+        map.data = JSON.stringify(userInfoMation)
+        map.version=glitter.share.version
+        rootActivity().apiRequest.postWithDialog(map, function (data) {
+            if (data.result === "true") {
+                console.log(JSON.stringify(data))
+                rootActivity().userInfoMation = JSON.parse(data.data)
+                glitter.managerList=JSON.parse(data.manager)
+                rootActivity().storeUserInfo()
+                rootActivity().carInterFace.setData_Setting_Car(JSON.parse(data.carData))
+                glitter.setHome('page/Page_Home.html', 'Page_Home', '')
+            } else {
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '登入失敗，請檢查帳號密碼是否輸入正確!!')
+            }
+        }, function (error) {})
+    }
+
+    function register() {glitter.changePage("page/Page_Register.html","Page_Register",true,{})}
+</script>
+</body>
+</html>

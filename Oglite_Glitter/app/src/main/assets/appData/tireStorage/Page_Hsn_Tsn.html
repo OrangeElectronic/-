@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+  html {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+  }
+
+  body {
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .leftBottom {
+    background-image: url("../img/btn_letf.png");
+    flex: auto;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .rightBottom {
+    background-image: url("../img/right_line.png");
+    background-color: #FF4400;
+    width: 60%;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){
+      glitter.keyEventListener = function (json) {
+          var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+          if (json.mAction == 0) {
+              if (keyb.indexOf(json.mKeyCode) !== -1) {
+                  var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                  var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                  $(document.activeElement).val(data2)
+                  $(document.activeElement).trigger('input')
+              } else if (json.mKeyCode == 67) {
+                  var data = $(document.activeElement).val()
+                  if (data.length > 0) {
+                      $(document.activeElement).val(data.substring(0, data.length - 1))
+                      $(document.activeElement).trigger('input')
+                  }
+              }
+          }
+      }
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+<div style="width: 100%;height:calc(100% - 50px);overflow-x: hidden;overflow-y: scroll;">
+<div style="height: 60px;background-color: #1f333e;display: flex;align-content: center;justify-content: center;flex-direction: column;text-align: center;color: white;">HSN/TSN</div>
+<div style="height: 50px;display: flex;width: 100%;justify-content: space-around;margin-top: 15px;">
+<input style="width: 40%;border: 1px solid #1f333e;display: flex;text-align: center;font-size: 20px;" placeholder="HSN" id="HSN">
+<input style="width: 40%;border: 1px solid #1f333e;display: flex;text-align: center;font-size: 20px;" placeholder="TSN" id="TSN">
+</div>
+<div style="margin: 20px;text-align: center;">${glitter.language(520)}</div>
+<div style="text-align: center;margin: 20px;width: calc(100% - 40px);">
+<img src="../img/hsn_tsn_placeimage.png" style="width: 80%;">
+</div>
+</div>
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="glitter.goBack()" >
+        ${glitter.language(306)}
+        </div>
+         <div id="next" class="rightBottom" onclick="getHsnTsn()">
+        ${glitter.language(145)}
+        </div>
+</div>
+
+    `
+  }
+  lifeCycle.onResume = function () {
+      glitter.keyEventListener = function (json) {
+          var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+          if (json.mAction == 0) {
+              if (keyb.indexOf(json.mKeyCode) !== -1) {
+                  var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                  var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                  $(document.activeElement).val(data2)
+                  $(document.activeElement).trigger('input')
+              } else if (json.mKeyCode == 67) {
+                  var data = $(document.activeElement).val()
+                  if (data.length > 0) {
+                      $(document.activeElement).val(data.substring(0, data.length - 1))
+                      $(document.activeElement).trigger('input')
+                  }
+              }
+          }
+      }
+  }
+  function getHsnTsn(){
+      glitter.runJsInterFace("getHsn",{
+          hsn:$('#HSN').val(),
+          tsn:$('#TSN').val()
+      },function (response){
+          if(response.data.length>0){
+              gBundle.Hsn=$('#HSN').val()
+              gBundle.Tsn=$('#TSN').val()
+          }
+        if(response.data.length===1){
+            gBundle.Make=response.data[0].make
+            gBundle.Model=response.data[0].model
+            gBundle.Year=response.data[0].year
+            glitter.removePage('Page_Program_Detail')
+            glitter.removePage('Page_Select_Make')
+            glitter.removePage('Page_Select_Model')
+            glitter.removePage('Page_Vehicle_Selection')
+            setTimeout(function (){
+                glitter.removePage('Page_Select_Year')
+            },1000)
+            glitter.changePage('tireStorage/Page_Excute_Selection.html','Page_Excute_Selection',true, gBundle)
+        }else if(response.data.length===0){
+glitter.runJsInterFace("toast",{text:glitter.language(570)},function (response){})
+        }else{
+     glitter.changePage('tireStorage/Page_Select_Hsn.html','Page_Select_Hsn',true,{
+         data:response.data,
+         gBundle:gBundle
+     },function (){})
+        }
+      })
+  }
+</script>
+</body>
+</html>

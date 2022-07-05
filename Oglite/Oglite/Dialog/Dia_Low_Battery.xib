@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Dia_Low_Battery" customModule="Oglite" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Atl-kg-dBs">
+                    <rect key="frame" x="20" y="353" width="374" height="190.5"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon_replace" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-KL-fQF">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="150"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="tsc-dn-Ztg"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jz.438" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmA-tc-pEA">
+                            <rect key="frame" x="163" y="160" width="48" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="orange"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="UHD-KL-fQF" secondAttribute="trailing" id="L8H-pz-akP"/>
+                        <constraint firstItem="UHD-KL-fQF" firstAttribute="leading" secondItem="Atl-kg-dBs" secondAttribute="leading" id="Qv0-w3-Gnt"/>
+                        <constraint firstItem="ZmA-tc-pEA" firstAttribute="centerX" secondItem="Atl-kg-dBs" secondAttribute="centerX" id="VhD-9P-nYb"/>
+                        <constraint firstAttribute="bottom" secondItem="ZmA-tc-pEA" secondAttribute="bottom" constant="10" id="f6t-zb-02D"/>
+                        <constraint firstItem="UHD-KL-fQF" firstAttribute="top" secondItem="Atl-kg-dBs" secondAttribute="top" id="gjO-eH-XNm"/>
+                        <constraint firstItem="ZmA-tc-pEA" firstAttribute="top" secondItem="UHD-KL-fQF" secondAttribute="bottom" constant="10" id="hBG-un-54q"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="722-qD-fDj">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <connections>
+                        <action selector="close:" destination="-1" eventType="touchUpInside" id="g94-1m-MNc"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="722-qD-fDj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8Ok-09-xTk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Atl-kg-dBs" secondAttribute="trailing" constant="20" id="9tF-6l-9CM"/>
+                <constraint firstItem="Atl-kg-dBs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FzD-Lt-mcm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="722-qD-fDj" secondAttribute="bottom" id="TUN-2T-XVY"/>
+                <constraint firstItem="722-qD-fDj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Vax-eX-GqG"/>
+                <constraint firstItem="Atl-kg-dBs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Xhq-4p-xCN"/>
+                <constraint firstItem="Atl-kg-dBs" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="aeo-2r-I63"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="722-qD-fDj" secondAttribute="trailing" id="hQI-7g-02m"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="83.705357142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_replace" width="700" height="600"/>
+        <namedColor name="orange">
+            <color red="0.92549019607843142" green="0.40392156862745099" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

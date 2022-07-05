@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+  .title{
+
+  }
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){
+    document.getElementById("mymenu").addEventListener("show", myFunction);
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+    <div>
+    <div style=""></div>
+</div>
+    `
+  }
+</script>
+</body>
+</html>

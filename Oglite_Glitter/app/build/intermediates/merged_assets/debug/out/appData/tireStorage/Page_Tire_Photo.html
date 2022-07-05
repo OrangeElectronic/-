@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: auto;
+    color: white;
+    font-size: 16px;
+  }
+
+  html {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flexItem {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .flexGray {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 100%;
+    background-color: #cdcbcb;
+    color: #2F4C63;
+    font-size: 14px;
+  }
+
+  .flexWhite {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: calc(100% - 50px);
+    background-color: white;
+    color: #2F4C63;
+  }
+  .verticalFlex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: calc(100% - 50px);
+    height: 100%;
+    background-color: white;
+    color: #2F4C63;
+  }
+
+  input {
+    border: 1px solid lightgray;
+    width: calc(100% - 80px);
+    height: calc(100% - 10px);
+    font-size: 16px;
+    color: black;
+    padding-left: 10px;
+    min-height: 80px;
+  }
+
+  .bottomBar {
+    display: flex;
+    height: 50px;
+  }
+
+  #Content {
+    overflow-y: scroll;
+    height: calc(100vh - 170px);
+  }
+
+  .leftBottom {
+    background-image: url("../img/btn_letf.png");
+    flex: auto;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .rightBottom {
+    background-image: url("../img/botton_Press.png");
+    background-color: #FF4400;
+    width: 100%;
+    height: 60px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .blueHint {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    background-color: #EBF6FF;
+  }
+
+  .flexItem {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    display: flex;
+    background-color: #EBF6FF;
+  }
+
+  .blueHint h3 {
+    color: black;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid lightgray;
+    margin: 0;
+    height: 50px;
+  }
+
+  .Tposition {
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+  .spinner{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: calc(100% - 20px);
+    height: calc(100% - 10px);
+    border-radius: 10px;
+    padding-left: 10px;
+    background-image: url("../img/down.png");
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: right 10px center;
+    border: 1px solid lightgray;
+  }
+  .leftBottom {
+    background-image: url("../img/btn_letf.png");
+    flex: auto;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .rightBottom {
+    background-image: url("../img/right_line.png");
+    background-color: #FF4400;
+    width: 60%;
+    height: 50px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+</style>
+<body>
+
+</body>
+<script>
+  "use strict";
+  let titleText = [
+    {title: glitter.language(312), value: ''},
+    {title: glitter.language(309), value: ''},
+    {title: glitter.language(310), value: ''},
+    {title: glitter.language(311), value: ''}
+  ]
+  var sameSize=false
+  let tireDepth = [
+    {
+      title: "LF"
+    }
+  ]
+  lifeCycle.onCreate = function () {
+    gBundle.carFile.map(function (data){
+      if(data.Path===''){
+        data.Path=[]
+      }
+      try {
+        data.Path=JSON.parse(data.Path)
+      }catch (e){}
+    })
+    updateView()
+  }
+
+  function updateView() {
+    $('#Content').html('')
+    var array= ['LF','RF','RR','LR']
+    array.map(function (data2,position){
+      var ptext= [glitter.language(312),glitter.language(309),glitter.language(310),glitter.language(311)][position]
+      var data= gBundle.carFile.filter(function (data){
+        return data.TireLocal===data2
+      })[0]
+      var image=data.Path
+      var imageHtml=''
+      image.map(function (data,index){
+        imageHtml+=(`
+<div style="position: relative;border-radius: 10px;margin-left: 10px;background-color: whitesmoke;white-space: nowrap;">
+<img src="${data}" style="width: 60px;height: 60px;">
+<h3 style="font-size:20px;display: flex;align-items: center;justify-content: center;position: absolute;
+top:-25px;left: 50px;background-color: red;color: white;
+width: 20px;height:20px;border-radius: 50%;" onmousedown="
+gBundle.carFile.map(function (data){
+    data.Path=data.Path.filter(function (data){
+        return data!=='${data}'
+    })
+})
+updateView()
+">-</h3>
+</div>
+`)
+      })
+      $('#Content').append(`<div class="flexItem" style="height: 80px;">
+<div class="flexGray">${ptext}</div>
+<div id="imagePlace${position}" class="flexWhite" style="max-width:calc(100% - 150px);overflow-x:scroll;width: calc(100% - 150px);border: 1px solid whitesmoke;margin: 0;">
+${imageHtml}
+</div>
+<div class="flexWhite" style="width:60px;border: 1px solid whitesmoke;margin: 0;">
+<img src="../img/Button_Normal-55.png" style="width: 60px;height: 60px;" onclick="chooseImage(${position});">
+</div>
+</div>`)
+    })
+  }
+  function chooseImage (position){
+    var array= ['LF','RF','RR','LR']
+    var sd = gBundle.carFile.filter(function (data){return data.TireLocal===array[position]})[0]
+    if(!glitter.isOG){
+      function execute() {
+        glitter.chooseImage(function (response){
+          response.map(function (data){
+            sd.Path.push(data.link)
+          })
+          updateView()
+        })
+      }
+      if(glitter.deviceType===glitter.deviceTypeEnum.Android){
+        glitter.runJsInterFace("PerMission_Request",{
+          permission:[
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.CAMERA"]
+        },function (response){
+          if(response.result){
+            execute()
+          }else{
+            glitter.openDiaLog('tireStorage/dialog/Dia_Error.html', 'Dia_Error', false, true, "Please go setting and grant camera permission!", function () {
+            })
+          }
+        })
+      }else{
+        execute()
+      }
+
+    }else{
+      glitter.runJsInterFace("selectPhoto",{},function (response){
+        if(response.path){
+          response.path.map(function (data){
+            sd.Path.push("file://"+data)
+          })
+          updateView()
+        }
+      })
+    }
+
+    // glitter.chooseImage(function (list){
+    //   list.map(function (data){sd.Path.push(data.link)})
+    //   updateView()
+    // })
+  }
+  lifeCycle.onCreateView = function () {
+    return `
+   <div style="background-color: #2F4C63;height: 60px;width: 100%;display: flex;align-items: center;">
+    <h3 class="title">${glitter.language(560)}</h3>
+</div>
+<div id="Content"></div>
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick=" glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" >
+        ${glitter.language(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="getMMY()" >
+        ${glitter.language(145)}
+        </div>
+</div>
+    `
+  }
+  function getMMY(){
+    glitter.changePage('tireStorage/Page_Tire_Information2.html','Page_Tire_Information2',true,gBundle)
+  }
+</script>
+</html>

@@ -1,0 +1,812 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+MERGED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:2:1-17:12
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:2:1-36:12
+MERGED from [com.github.sam38124:JzBarCodeScanner:1.2] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f2453b121b1ce48fd763ca865c619be/jetified-JzBarCodeScanner-1.2/AndroidManifest.xml:2:1-12:12
+MERGED from [com.github.sam38124:JzUtil:4.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/e4be2fcf0e09d909c22b7ca5ef35c032/jetified-JzUtil-4.8/AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:2:1-26:12
+MERGED from [com.github.sam38124:JzTaskHandler:2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/20de43db4c23ff267cbfc2a9ed608034/jetified-JzTaskHandler-2.0/AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.sam38124:JzSqlHelper:6.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4e834d3bba383fa77141f53570f5f689/jetified-JzSqlHelper-6.8/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.navigation:navigation-ui-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/46c480ae83272c7b633cc07405166171/navigation-ui-ktx-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-ui:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/18591acce6470d64a29f4b41e66afb2d/navigation-ui-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.material:material:1.3.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4ec6dae4b8422a2b513059a31a3c0ebd/material-1.3.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/210f0bea95e6592434214399f21d1b07/constraintlayout-2.0.4/AndroidManifest.xml:2:1-11:12
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:17:1-33:12
+MERGED from [:fotalibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/fotalibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:1-26:12
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:1-30:12
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:2:1-34:12
+MERGED from [com.facebook.android:facebook-android-sdk:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5286b170427c045885e0db3d3c996f7e/jetified-facebook-android-sdk-8.1.0/AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-login:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/00ed9acffa580c2cdba97ca3031b2261/jetified-facebook-login-8.1.0/AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-gamingservices:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d4d119d3e17376ccd9a0c181ffe7ab0b/jetified-facebook-gamingservices-8.1.0/AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-share:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/24230b423c8c0aff925aaff986d3ebc8/jetified-facebook-share-8.1.0/AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:21:1-52:12
+MERGED from [com.airbnb.android:lottie:2.7.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/1daceaf3e79f17f7b22bea6fd898f8d2/jetified-lottie-2.7.0/AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/e7cd5bed04a56758e804aee5e6550808/appcompat-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.camera:camera-camera2:1.0.0-beta07] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/70246d1e31fc5879938c1e76100de102/jetified-camera-camera2-1.0.0-beta07/AndroidManifest.xml:17:1-24:12
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/15ae4922b0d6ac0b5f6b5818ee825df3/jetified-zxing-1.9.13/AndroidManifest.xml:2:1-13:12
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/a5c758161da54b02f71d1b8de42a7190/jetified-core-1.9.13/AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/688f9ee9f2749ec6993a4a59b8306bc0/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:2:1-17:12
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:17:1-83:12
+MERGED from [androidx.browser:browser:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ed22dd496b0ddff0fc750eaf1606ef90/browser-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/de86cb585dc157e75ed35167cf960173/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d224e278b625a5496f7f59391a98b85d/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/acf50bb433cc2f5010868b88ef46f031/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2c53fe8acdd46439e1531314a3e34184/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f199d2d6507873c96038aed2be821a7b/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:glide:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/258dff5b4a01d56815472485e0f91b91/jetified-glide-4.12.0/AndroidManifest.xml:2:1-12:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/361909d2dfb7fed589e66147d4394fd7/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/484c6b84898935d7093d578b27331fc1/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ad0301372cb4e744bf6103e5b5f44aa9/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4f88ab9389c648a05f68a817cc6f8785/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.camera:camera-core:1.0.0-beta07] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/0b770387e5930b27ec567bde6b86bcb5/jetified-camera-core-1.0.0-beta07/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/afab2fded462ff61fb885654d8da8c0b/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8eb6ddb45731e8201b5de9e172a7730f/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9230152b22fdfded4b942aa902032a88/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:2:1-21:12
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6eee776d7955eceef403855889f5af59/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:15:1-40:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2310a74fd5c3193b68cd83118b948fb1/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2a97be70a7fefa037ffa3835f99dbdfb/navigation-fragment-ktx-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-fragment:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/dc0812be7e35089c4544adb55bf17f5c/navigation-fragment-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment-ktx:1.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9d212f21dac1246e60b781f1f9bd81ac/jetified-fragment-ktx-1.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/349beaa0fc486d0b29e0b9d425e15da1/fragment-1.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d8e1249947b72546812723b61058939e/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8782d638fb1cb0f4d2a4897c0cbab3dc/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ad1025284bd58da378ce24278fae1416/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.facebook.android:facebook-applinks:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4704550fde72e02b1b0290795a353c58/jetified-facebook-applinks-8.1.0/AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-messenger:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4cb84a213e71613c581843d26622a942/jetified-facebook-messenger-8.1.0/AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:21:1-53:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/92af0e0c63cc18b433c7f0a50d56b154/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4f4bae42150dc6dfec7c796c045c1a69/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d152a49342ccc30c5a35686b2a7476b6/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/779e019642cc3fdcfd75f2a8e2c326dd/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/fa243dd70f210fd233f4cae7768df192/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c8f0ec10046e94d84347ec9a277a0814/navigation-runtime-ktx-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-runtime:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/50625e31144df92fd5c975a44b9217c2/navigation-runtime-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity-ktx:1.1.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/40baf1cc171db8a4675a3ea6e8eec7a2/jetified-activity-ktx-1.1.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.1.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/152cdf2ef02b82d29239c64340ed92d9/jetified-activity-1.1.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5240a833d6377435c4a25b3f70d9952c/navigation-common-ktx-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-common:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/686971a150b9dcd9b8c0f1f3dbc31026/navigation-common-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.core:core-ktx:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2a0b9d39478514a0186b3caf21d764af/jetified-core-ktx-1.9.0-alpha05/AndroidManifest.xml:2:1-8:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ab51a1a5bfa233e19daee212c39a733b/jetified-lifecycle-viewmodel-ktx-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/073962e5c32a1226d685c9355168f7fa/jetified-lifecycle-livedata-core-ktx-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/cd8bd4935fdc64dcb1047ab0a0a6bfb3/jetified-lifecycle-runtime-ktx-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.robohorse:gpversionchecker:1.8.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8122dbe1286aa0f463efe9fcfc2207d9/jetified-gpversionchecker-1.8.0/AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/bd92fadf19e24dcb1d1e7dab7c8c9bd9/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/3f2ed1ed0718cbdc77790f48da948204/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/32fb56655218d6954baa5bf2c900022e/jetified-gifdecoder-4.12.0/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.exifinterface:exifinterface:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/22f8b05ea8e97baa235a8a7e1cd1e8b9/exifinterface-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-components:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c54f08dee31864d12478b05a2a629f43/jetified-firebase-components-17.0.0/AndroidManifest.xml:15:1-23:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d930604db4310990f8619552a88baa85/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6c228fb8323e2fd80e8a2606a1a7553f/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5d4a86c146f91059c4599912f67ae965/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/acb924ca308b085794a7ed71e1928c8b/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/a9ff847cd7cecaa081ea5015f54b7092/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2b0a5d7664b804115f8d99e82c8bc4a2/lifecycle-livedata-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/daa4bb47b71b2ccec1e14580da6d8b1d/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6d6d1b51d26866bffa444201e19f97cf/jetified-lifecycle-viewmodel-savedstate-1.0.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/159424b8529b3f735c9d23226f0f8532/lifecycle-livedata-core-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/153600154921c8128c03f30a9a98deaf/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/040fff8a57299af8deec3feedd8a7ac2/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b68ea7800b89a876b4e3f0a07aa5e8d8/lifecycle-viewmodel-2.2.0-rc02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/425e86b64072a4e299d05699de9fddb6/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/872d1dce928088dbbfa214201f0f136c/jetified-library-1.0.4/AndroidManifest.xml:1:106-7:12
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c36560b6206a4c034f82b654e35da7c7/jetified-library-1.0.2/AndroidManifest.xml:1:116-8:12
+MERGED from [com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:2:1-13:12
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+	package
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:4:11-46
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:3:11-57
+	android:versionCode
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:1-41:12
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:5:5-72
+MERGED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:15:5-73
+MERGED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:15:5-73
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:14:5-73
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:14:5-73
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:5:22-70
+uses-permission#android.permission.BLUETOOTH_ADVERTISE
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:6:5-77
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:6:22-75
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:7:5-75
+MERGED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:14:5-76
+MERGED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:14:5-76
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:13:5-76
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:13:5-76
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:7:22-73
+uses-permission#android.permission.INTERNET
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:8:5-66
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:13:5-67
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:13:5-67
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:25:5-67
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:25:5-67
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:22:5-67
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:22:5-67
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:24:5-67
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:24:5-67
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.github.robohorse:gpversionchecker:1.8.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8122dbe1286aa0f463efe9fcfc2207d9/jetified-gpversionchecker-1.8.0/AndroidManifest.xml:11:5-67
+MERGED from [com.github.robohorse:gpversionchecker:1.8.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8122dbe1286aa0f463efe9fcfc2207d9/jetified-gpversionchecker-1.8.0/AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:8:22-64
+application
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:9:5-39:19
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:29:5-34:19
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:29:5-34:19
+MERGED from [com.google.android.material:material:1.3.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4ec6dae4b8422a2b513059a31a3c0ebd/material-1.3.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.3.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4ec6dae4b8422a2b513059a31a3c0ebd/material-1.3.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/210f0bea95e6592434214399f21d1b07/constraintlayout-2.0.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/210f0bea95e6592434214399f21d1b07/constraintlayout-2.0.4/AndroidManifest.xml:9:5-20
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:27:5-31:19
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:27:5-31:19
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:28:5-32:19
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:28:5-32:19
+MERGED from [com.facebook.android:facebook-android-sdk:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5286b170427c045885e0db3d3c996f7e/jetified-facebook-android-sdk-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-android-sdk:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5286b170427c045885e0db3d3c996f7e/jetified-facebook-android-sdk-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-login:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/00ed9acffa580c2cdba97ca3031b2261/jetified-facebook-login-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-login:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/00ed9acffa580c2cdba97ca3031b2261/jetified-facebook-login-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-gamingservices:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d4d119d3e17376ccd9a0c181ffe7ab0b/jetified-facebook-gamingservices-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-gamingservices:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d4d119d3e17376ccd9a0c181ffe7ab0b/jetified-facebook-gamingservices-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-share:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/24230b423c8c0aff925aaff986d3ebc8/jetified-facebook-share-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-share:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/24230b423c8c0aff925aaff986d3ebc8/jetified-facebook-share-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:29:5-50:19
+MERGED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:29:5-50:19
+MERGED from [com.airbnb.android:lottie:2.7.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/1daceaf3e79f17f7b22bea6fd898f8d2/jetified-lottie-2.7.0/AndroidManifest.xml:11:5-20
+MERGED from [com.airbnb.android:lottie:2.7.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/1daceaf3e79f17f7b22bea6fd898f8d2/jetified-lottie-2.7.0/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/15ae4922b0d6ac0b5f6b5818ee825df3/jetified-zxing-1.9.13/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/15ae4922b0d6ac0b5f6b5818ee825df3/jetified-zxing-1.9.13/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/a5c758161da54b02f71d1b8de42a7190/jetified-core-1.9.13/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/a5c758161da54b02f71d1b8de42a7190/jetified-core-1.9.13/AndroidManifest.xml:11:5-20
+MERGED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:7:5-15:19
+MERGED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:7:5-15:19
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:26:5-81:19
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:26:5-81:19
+MERGED from [com.github.bumptech.glide:glide:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/258dff5b4a01d56815472485e0f91b91/jetified-glide-4.12.0/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/258dff5b4a01d56815472485e0f91b91/jetified-glide-4.12.0/AndroidManifest.xml:10:5-20
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9230152b22fdfded4b942aa902032a88/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9230152b22fdfded4b942aa902032a88/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:11:5-19:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:11:5-19:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6eee776d7955eceef403855889f5af59/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6eee776d7955eceef403855889f5af59/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:25:5-38:19
+MERGED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:25:5-38:19
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2310a74fd5c3193b68cd83118b948fb1/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2310a74fd5c3193b68cd83118b948fb1/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.facebook.android:facebook-applinks:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4704550fde72e02b1b0290795a353c58/jetified-facebook-applinks-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-applinks:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4704550fde72e02b1b0290795a353c58/jetified-facebook-applinks-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-messenger:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4cb84a213e71613c581843d26622a942/jetified-facebook-messenger-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-messenger:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4cb84a213e71613c581843d26622a942/jetified-facebook-messenger-8.1.0/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:28:5-51:19
+MERGED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:28:5-51:19
+MERGED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:29:5-89
+MERGED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:29:5-89
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/32fb56655218d6954baa5bf2c900022e/jetified-gifdecoder-4.12.0/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/32fb56655218d6954baa5bf2c900022e/jetified-gifdecoder-4.12.0/AndroidManifest.xml:9:5-20
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d930604db4310990f8619552a88baa85/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d930604db4310990f8619552a88baa85/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/872d1dce928088dbbfa214201f0f136c/jetified-library-1.0.4/AndroidManifest.xml:5:5-19
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/872d1dce928088dbbfa214201f0f136c/jetified-library-1.0.4/AndroidManifest.xml:5:5-19
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c36560b6206a4c034f82b654e35da7c7/jetified-library-1.0.2/AndroidManifest.xml:5:5-6:19
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c36560b6206a4c034f82b654e35da7c7/jetified-library-1.0.2/AndroidManifest.xml:5:5-6:19
+MERGED from [com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:11:5-20
+MERGED from [com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:11:5-20
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:29:18-86
+	android:supportsRtl
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:15:13-39
+	android:label
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:12:13-35
+	tools:ignore
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:18:64-90
+	android:roundIcon
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:14:13-58
+	android:largeHeap
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:16:13-37
+	android:icon
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:11:13-53
+	android:allowBackup
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:10:13-39
+	android:theme
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:18:13-63
+	android:networkSecurityConfig
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:13:13-73
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:17:13-34
+activity#com.jianzhi.glitter.GlitterActivity
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:19:9-28:20
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:31:9-33:50
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:31:9-33:50
+	android:screenOrientation
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:22:19-55
+	android:windowSoftInputMode
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:21:19-74
+	android:exported
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:20:19-42
+	android:theme
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:33:13-47
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:19:19-69
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:23:13-27:29
+action#android.intent.action.MAIN
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:24:17-68
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:24:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:26:17-76
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:26:27-74
+activity#com.orange.oglite_glitter.ScannerActivity
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:29:9-86
+	android:exported
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:29:51-74
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:29:19-50
+provider#androidx.core.content.FileProvider
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:30:9-38:20
+	android:grantUriPermissions
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:34:17-51
+	android:authorities
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:32:17-58
+	android:exported
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:33:17-41
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:31:17-66
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:35:13-37:48
+	android:resource
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:37:21-46
+	android:name
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml:36:21-71
+uses-sdk
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+MERGED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzBarCodeScanner:1.2] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f2453b121b1ce48fd763ca865c619be/jetified-JzBarCodeScanner-1.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzBarCodeScanner:1.2] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f2453b121b1ce48fd763ca865c619be/jetified-JzBarCodeScanner-1.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzUtil:4.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/e4be2fcf0e09d909c22b7ca5ef35c032/jetified-JzUtil-4.8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzUtil:4.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/e4be2fcf0e09d909c22b7ca5ef35c032/jetified-JzUtil-4.8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzTaskHandler:2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/20de43db4c23ff267cbfc2a9ed608034/jetified-JzTaskHandler-2.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzTaskHandler:2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/20de43db4c23ff267cbfc2a9ed608034/jetified-JzTaskHandler-2.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzSqlHelper:6.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4e834d3bba383fa77141f53570f5f689/jetified-JzSqlHelper-6.8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzSqlHelper:6.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4e834d3bba383fa77141f53570f5f689/jetified-JzSqlHelper-6.8/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.navigation:navigation-ui-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/46c480ae83272c7b633cc07405166171/navigation-ui-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/46c480ae83272c7b633cc07405166171/navigation-ui-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/18591acce6470d64a29f4b41e66afb2d/navigation-ui-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/18591acce6470d64a29f4b41e66afb2d/navigation-ui-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.3.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4ec6dae4b8422a2b513059a31a3c0ebd/material-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.3.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4ec6dae4b8422a2b513059a31a3c0ebd/material-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/210f0bea95e6592434214399f21d1b07/constraintlayout-2.0.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/210f0bea95e6592434214399f21d1b07/constraintlayout-2.0.4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:20:5-22:41
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:20:5-22:41
+MERGED from [:fotalibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/fotalibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:5-24:41
+MERGED from [:fotalibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/fotalibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:5-24:41
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:5-24:41
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:5-24:41
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.android:facebook-android-sdk:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5286b170427c045885e0db3d3c996f7e/jetified-facebook-android-sdk-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-android-sdk:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5286b170427c045885e0db3d3c996f7e/jetified-facebook-android-sdk-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-login:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/00ed9acffa580c2cdba97ca3031b2261/jetified-facebook-login-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-login:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/00ed9acffa580c2cdba97ca3031b2261/jetified-facebook-login-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-gamingservices:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d4d119d3e17376ccd9a0c181ffe7ab0b/jetified-facebook-gamingservices-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-gamingservices:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d4d119d3e17376ccd9a0c181ffe7ab0b/jetified-facebook-gamingservices-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-share:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/24230b423c8c0aff925aaff986d3ebc8/jetified-facebook-share-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-share:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/24230b423c8c0aff925aaff986d3ebc8/jetified-facebook-share-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:25:5-27:41
+MERGED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:25:5-27:41
+MERGED from [com.airbnb.android:lottie:2.7.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/1daceaf3e79f17f7b22bea6fd898f8d2/jetified-lottie-2.7.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.airbnb.android:lottie:2.7.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/1daceaf3e79f17f7b22bea6fd898f8d2/jetified-lottie-2.7.0/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/e7cd5bed04a56758e804aee5e6550808/appcompat-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/e7cd5bed04a56758e804aee5e6550808/appcompat-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-camera2:1.0.0-beta07] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/70246d1e31fc5879938c1e76100de102/jetified-camera-camera2-1.0.0-beta07/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-camera2:1.0.0-beta07] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/70246d1e31fc5879938c1e76100de102/jetified-camera-camera2-1.0.0-beta07/AndroidManifest.xml:20:5-22:41
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/15ae4922b0d6ac0b5f6b5818ee825df3/jetified-zxing-1.9.13/AndroidManifest.xml:7:5-9:41
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/15ae4922b0d6ac0b5f6b5818ee825df3/jetified-zxing-1.9.13/AndroidManifest.xml:7:5-9:41
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/a5c758161da54b02f71d1b8de42a7190/jetified-core-1.9.13/AndroidManifest.xml:7:5-9:41
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/a5c758161da54b02f71d1b8de42a7190/jetified-core-1.9.13/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/688f9ee9f2749ec6993a4a59b8306bc0/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/688f9ee9f2749ec6993a4a59b8306bc0/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.browser:browser:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ed22dd496b0ddff0fc750eaf1606ef90/browser-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ed22dd496b0ddff0fc750eaf1606ef90/browser-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/de86cb585dc157e75ed35167cf960173/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/de86cb585dc157e75ed35167cf960173/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d224e278b625a5496f7f59391a98b85d/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d224e278b625a5496f7f59391a98b85d/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/acf50bb433cc2f5010868b88ef46f031/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/acf50bb433cc2f5010868b88ef46f031/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2c53fe8acdd46439e1531314a3e34184/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2c53fe8acdd46439e1531314a3e34184/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f199d2d6507873c96038aed2be821a7b/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f199d2d6507873c96038aed2be821a7b/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:glide:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/258dff5b4a01d56815472485e0f91b91/jetified-glide-4.12.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/258dff5b4a01d56815472485e0f91b91/jetified-glide-4.12.0/AndroidManifest.xml:6:5-8:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/361909d2dfb7fed589e66147d4394fd7/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/361909d2dfb7fed589e66147d4394fd7/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/484c6b84898935d7093d578b27331fc1/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/484c6b84898935d7093d578b27331fc1/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ad0301372cb4e744bf6103e5b5f44aa9/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ad0301372cb4e744bf6103e5b5f44aa9/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4f88ab9389c648a05f68a817cc6f8785/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4f88ab9389c648a05f68a817cc6f8785/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.camera:camera-core:1.0.0-beta07] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/0b770387e5930b27ec567bde6b86bcb5/jetified-camera-core-1.0.0-beta07/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-core:1.0.0-beta07] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/0b770387e5930b27ec567bde6b86bcb5/jetified-camera-core-1.0.0-beta07/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/afab2fded462ff61fb885654d8da8c0b/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/afab2fded462ff61fb885654d8da8c0b/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8eb6ddb45731e8201b5de9e172a7730f/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8eb6ddb45731e8201b5de9e172a7730f/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9230152b22fdfded4b942aa902032a88/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9230152b22fdfded4b942aa902032a88/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6eee776d7955eceef403855889f5af59/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6eee776d7955eceef403855889f5af59/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2310a74fd5c3193b68cd83118b948fb1/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2310a74fd5c3193b68cd83118b948fb1/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2a97be70a7fefa037ffa3835f99dbdfb/navigation-fragment-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2a97be70a7fefa037ffa3835f99dbdfb/navigation-fragment-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-fragment:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/dc0812be7e35089c4544adb55bf17f5c/navigation-fragment-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-fragment:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/dc0812be7e35089c4544adb55bf17f5c/navigation-fragment-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment-ktx:1.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9d212f21dac1246e60b781f1f9bd81ac/jetified-fragment-ktx-1.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment-ktx:1.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9d212f21dac1246e60b781f1f9bd81ac/jetified-fragment-ktx-1.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/349beaa0fc486d0b29e0b9d425e15da1/fragment-1.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/349beaa0fc486d0b29e0b9d425e15da1/fragment-1.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d8e1249947b72546812723b61058939e/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d8e1249947b72546812723b61058939e/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8782d638fb1cb0f4d2a4897c0cbab3dc/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8782d638fb1cb0f4d2a4897c0cbab3dc/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ad1025284bd58da378ce24278fae1416/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ad1025284bd58da378ce24278fae1416/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.android:facebook-applinks:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4704550fde72e02b1b0290795a353c58/jetified-facebook-applinks-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-applinks:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4704550fde72e02b1b0290795a353c58/jetified-facebook-applinks-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-messenger:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4cb84a213e71613c581843d26622a942/jetified-facebook-messenger-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-messenger:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4cb84a213e71613c581843d26622a942/jetified-facebook-messenger-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:24:5-26:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/92af0e0c63cc18b433c7f0a50d56b154/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/92af0e0c63cc18b433c7f0a50d56b154/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4f4bae42150dc6dfec7c796c045c1a69/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/4f4bae42150dc6dfec7c796c045c1a69/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d152a49342ccc30c5a35686b2a7476b6/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d152a49342ccc30c5a35686b2a7476b6/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/779e019642cc3fdcfd75f2a8e2c326dd/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/779e019642cc3fdcfd75f2a8e2c326dd/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/fa243dd70f210fd233f4cae7768df192/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/fa243dd70f210fd233f4cae7768df192/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c8f0ec10046e94d84347ec9a277a0814/navigation-runtime-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c8f0ec10046e94d84347ec9a277a0814/navigation-runtime-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/50625e31144df92fd5c975a44b9217c2/navigation-runtime-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/50625e31144df92fd5c975a44b9217c2/navigation-runtime-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-ktx:1.1.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/40baf1cc171db8a4675a3ea6e8eec7a2/jetified-activity-ktx-1.1.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-ktx:1.1.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/40baf1cc171db8a4675a3ea6e8eec7a2/jetified-activity-ktx-1.1.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.1.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/152cdf2ef02b82d29239c64340ed92d9/jetified-activity-1.1.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.1.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/152cdf2ef02b82d29239c64340ed92d9/jetified-activity-1.1.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5240a833d6377435c4a25b3f70d9952c/navigation-common-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5240a833d6377435c4a25b3f70d9952c/navigation-common-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/686971a150b9dcd9b8c0f1f3dbc31026/navigation-common-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/686971a150b9dcd9b8c0f1f3dbc31026/navigation-common-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2a0b9d39478514a0186b3caf21d764af/jetified-core-ktx-1.9.0-alpha05/AndroidManifest.xml:5:5-6:38
+MERGED from [androidx.core:core-ktx:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2a0b9d39478514a0186b3caf21d764af/jetified-core-ktx-1.9.0-alpha05/AndroidManifest.xml:5:5-6:38
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ab51a1a5bfa233e19daee212c39a733b/jetified-lifecycle-viewmodel-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/ab51a1a5bfa233e19daee212c39a733b/jetified-lifecycle-viewmodel-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/073962e5c32a1226d685c9355168f7fa/jetified-lifecycle-livedata-core-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/073962e5c32a1226d685c9355168f7fa/jetified-lifecycle-livedata-core-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/cd8bd4935fdc64dcb1047ab0a0a6bfb3/jetified-lifecycle-runtime-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/cd8bd4935fdc64dcb1047ab0a0a6bfb3/jetified-lifecycle-runtime-ktx-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.robohorse:gpversionchecker:1.8.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8122dbe1286aa0f463efe9fcfc2207d9/jetified-gpversionchecker-1.8.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.robohorse:gpversionchecker:1.8.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8122dbe1286aa0f463efe9fcfc2207d9/jetified-gpversionchecker-1.8.0/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/bd92fadf19e24dcb1d1e7dab7c8c9bd9/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/bd92fadf19e24dcb1d1e7dab7c8c9bd9/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/3f2ed1ed0718cbdc77790f48da948204/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/3f2ed1ed0718cbdc77790f48da948204/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/32fb56655218d6954baa5bf2c900022e/jetified-gifdecoder-4.12.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/32fb56655218d6954baa5bf2c900022e/jetified-gifdecoder-4.12.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/22f8b05ea8e97baa235a8a7e1cd1e8b9/exifinterface-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.2.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/22f8b05ea8e97baa235a8a7e1cd1e8b9/exifinterface-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-components:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c54f08dee31864d12478b05a2a629f43/jetified-firebase-components-17.0.0/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:17.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c54f08dee31864d12478b05a2a629f43/jetified-firebase-components-17.0.0/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d930604db4310990f8619552a88baa85/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d930604db4310990f8619552a88baa85/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6c228fb8323e2fd80e8a2606a1a7553f/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6c228fb8323e2fd80e8a2606a1a7553f/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5d4a86c146f91059c4599912f67ae965/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5d4a86c146f91059c4599912f67ae965/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/acb924ca308b085794a7ed71e1928c8b/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/acb924ca308b085794a7ed71e1928c8b/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/a9ff847cd7cecaa081ea5015f54b7092/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/a9ff847cd7cecaa081ea5015f54b7092/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2b0a5d7664b804115f8d99e82c8bc4a2/lifecycle-livedata-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2b0a5d7664b804115f8d99e82c8bc4a2/lifecycle-livedata-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/daa4bb47b71b2ccec1e14580da6d8b1d/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/daa4bb47b71b2ccec1e14580da6d8b1d/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6d6d1b51d26866bffa444201e19f97cf/jetified-lifecycle-viewmodel-savedstate-1.0.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/6d6d1b51d26866bffa444201e19f97cf/jetified-lifecycle-viewmodel-savedstate-1.0.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/159424b8529b3f735c9d23226f0f8532/lifecycle-livedata-core-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/159424b8529b3f735c9d23226f0f8532/lifecycle-livedata-core-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/153600154921c8128c03f30a9a98deaf/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/153600154921c8128c03f30a9a98deaf/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/040fff8a57299af8deec3feedd8a7ac2/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/040fff8a57299af8deec3feedd8a7ac2/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b68ea7800b89a876b4e3f0a07aa5e8d8/lifecycle-viewmodel-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0-rc02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b68ea7800b89a876b4e3f0a07aa5e8d8/lifecycle-viewmodel-2.2.0-rc02/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/425e86b64072a4e299d05699de9fddb6/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/425e86b64072a4e299d05699de9fddb6/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/872d1dce928088dbbfa214201f0f136c/jetified-library-1.0.4/AndroidManifest.xml:3:5-72
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/872d1dce928088dbbfa214201f0f136c/jetified-library-1.0.4/AndroidManifest.xml:3:5-72
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c36560b6206a4c034f82b654e35da7c7/jetified-library-1.0.2/AndroidManifest.xml:3:5-72
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c36560b6206a4c034f82b654e35da7c7/jetified-library-1.0.2/AndroidManifest.xml:3:5-72
+MERGED from [com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:5:5-7:41
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+		ADDED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.BLUETOOTH
+ADDED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:11:5-68
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:14:5-68
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:14:5-68
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:21:5-68
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:21:5-68
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:17:5-68
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:17:5-68
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:5-68
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:5-68
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:19:5-68
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:19:5-68
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:11:22-65
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:12:5-81
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:26:5-81
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:26:5-81
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:23:5-81
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:23:5-81
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:5-81
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:5-81
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:25:5-81
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:25:5-81
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:12:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:13:5-79
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:27:5-79
+MERGED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:27:5-79
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:24:5-79
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:24:5-79
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:26:5-79
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:26:5-79
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Plugin_Bluetooth:1.4.7] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/c7a257426f91ae75a768d962262b53db/jetified-Glitter_Plugin_Bluetooth-1.4.7/AndroidManifest.xml:13:22-76
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:11:5-80
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:21:5-80
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:21:5-80
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:25:5-80
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:25:5-80
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:23:5-80
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:23:5-80
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:11:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:12:5-81
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:20:5-81
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:20:5-81
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:24:5-81
+MERGED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:24:5-81
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:22:5-81
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:12:22-78
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:15:5-74
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:18:5-74
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:18:5-74
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:5-74
+MERGED from [:blelibrary] /Users/orangerd/Desktop/Orange Electronic/Orange_Product/Oglite_Glitter/blelibrary/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:5-74
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:20:5-74
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:20:5-74
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:15:22-71
+uses-permission#android.permission.CAMERA
+ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:16:5-65
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:13:5-65
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:13:5-65
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:15:5-65
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:15:5-65
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:16:22-62
+uses-feature#android.hardware.camera.autofocus
+ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:18:5-70
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:11:5-70
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:11:5-70
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:11:5-70
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:11:5-70
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:18:19-67
+uses-feature#android.hardware.camera
+ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:19:5-60
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:15:5-60
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:15:5-60
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:17:5-60
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:17:5-60
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:19:19-57
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:23:5-77
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:19:5-77
+MERGED from [com.github.sam38124:JzFrameWork:10.4.02] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/2f032d0c471f3dc4c7f700541b5cb46f/jetified-JzFrameWork-10.4.02/AndroidManifest.xml:19:5-77
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:21:5-77
+MERGED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:21:5-77
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:23:22-74
+activity#com.jianzhi.glitter.WebViewAct
+ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:30:9-67
+	android:name
+		ADDED from [com.github.sam38124:Glitter_Android:2.7.8] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/01cfa255812cdfedd467600006166173/jetified-Glitter_Android-2.7.8/AndroidManifest.xml:30:19-64
+activity#com.zhihu.matisse.ui.MatisseActivity
+ADDED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:28:9-73
+	android:name
+		ADDED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:28:19-70
+activity#com.zhihu.matisse.internal.ui.AlbumPreviewActivity
+ADDED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:29:9-87
+	android:name
+		ADDED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:29:19-84
+activity#com.zhihu.matisse.internal.ui.SelectedPreviewActivity
+ADDED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:30:9-90
+	android:name
+		ADDED from [com.zhihu.android:matisse:0.5.3-beta3] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/f337a480cfd91e2ef0f7a8f69bd4c81d/jetified-matisse-0.5.3-beta3/AndroidManifest.xml:30:19-87
+service#com.jianzhi.jzblehelper.server.BluetoothLeService
+ADDED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:29:9-31:38
+	android:enabled
+		ADDED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:31:13-35
+	android:name
+		ADDED from [com.github.sam38124:JzBleHelper:7.9] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/51f2fba52d6aca414d2a07ac3df7ecb9/jetified-JzBleHelper-7.9/AndroidManifest.xml:30:13-77
+activity#com.facebook.FacebookActivity
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:30:9-33:66
+	android:configChanges
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:32:13-96
+	android:theme
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:33:13-63
+	android:name
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:31:13-57
+activity#com.facebook.CustomTabMainActivity
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:34:9-71
+	android:name
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:34:19-68
+activity#com.facebook.CustomTabActivity
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:35:9-49:20
+	tools:node
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:38:13-31
+	android:exported
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:37:13-36
+	android:name
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:36:13-58
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:cct.${applicationId}+data:scheme:fbconnect
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:39:13-48:29
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:cct.com.orange.og_lite+data:scheme:fbconnect
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:39:13-48:29
+action#android.intent.action.VIEW
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:40:17-69
+	android:name
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:40:25-66
+category#android.intent.category.DEFAULT
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:17-76
+	android:name
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:42:27-73
+category#android.intent.category.BROWSABLE
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:43:17-78
+	android:name
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:43:27-75
+data
+ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:45:17-47:50
+	android:host
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:46:21-56
+	android:scheme
+		ADDED from [com.facebook.android:facebook-common:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/39e7ad3541de08687c673084d6e510a3/jetified-facebook-common-8.1.0/AndroidManifest.xml:47:21-47
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:8:9-14:19
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:74:9-80:19
+MERGED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:74:9-80:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:12:9-18:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:12:9-18:19
+MERGED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:33:9-37:35
+MERGED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:33:9-37:35
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:10:13-37
+	tools:targetApi
+		ADDED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:37:13-32
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:35:13-43
+	android:name
+		ADDED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:9:13-84
+meta-data#com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar
+ADDED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:11:13-13:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:13:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth-ktx:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/9545f9cdd63507ce2e416d7821cfb78c/jetified-firebase-auth-ktx-21.0.0/AndroidManifest.xml:12:17-116
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:24:22-76
+activity#com.google.firebase.auth.internal.GenericIdpActivity
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:27:9-44:20
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:29:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:31:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:30:13-36
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:32:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:28:13-80
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:genericidp
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:33:13-43:29
+activity#com.google.firebase.auth.internal.RecaptchaActivity
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:45:9-62:20
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:47:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:49:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:48:13-36
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:50:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:46:13-79
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:recaptcha
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:51:13-61:29
+service#com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:64:9-73:19
+	android:enabled
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:66:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:67:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:65:13-101
+intent-filter#action:name:com.google.firebase.auth.api.gms.service.START+category:name:android.intent.category.DEFAULT
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:68:13-72:29
+action#com.google.firebase.auth.api.gms.service.START
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:69:17-89
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:69:25-86
+meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
+ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:77:13-79:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:79:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b2dc439744ea02c562b5de051e23d16b/jetified-firebase-auth-21.0.0/AndroidManifest.xml:78:17-109
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b9fa9a931a58527433281cea1712cf89/jetified-play-services-base-17.1.0/AndroidManifest.xml:24:13-79
+meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar
+ADDED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:15:13-17:85
+	android:value
+		ADDED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:17:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/d23cd3adf267fe0428a95f891b05c781/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:16:17-113
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:26:9-31:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:28:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:30:13-37
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:29:13-43
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:31:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:20.0.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/efdbd4dfb50c9149c2c0f544e98cc6ef/jetified-firebase-common-20.0.0/AndroidManifest.xml:27:13-77
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/b5febc66fe3ca2db72997b11ccdc6922/jetified-play-services-basement-17.1.0/AndroidManifest.xml:24:13-58
+provider#com.facebook.internal.FacebookInitProvider
+ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:39:9-42:40
+	android:authorities
+		ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:41:13-72
+	android:exported
+		ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:42:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:40:13-70
+receiver#com.facebook.CurrentAccessTokenExpirationBroadcastReceiver
+ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:44:9-50:20
+	android:exported
+		ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:46:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:45:13-86
+intent-filter#action:name:com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED
+ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:47:13-49:29
+action#com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED
+ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:48:17-95
+	android:name
+		ADDED from [com.facebook.android:facebook-core:8.1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/8273f22735136415a34e26a8150586d0/jetified-facebook-core-8.1.0/AndroidManifest.xml:48:25-92
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:23:5-25:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:25:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:24:9-81
+permission#com.orange.og_lite.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:23:5-25:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:25:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:24:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:27:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:27:22-94
+uses-permission#com.orange.og_lite.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:27:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0-alpha05] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/5f5f47308f9436110f1850f23c80f71d/core-1.9.0-alpha05/AndroidManifest.xml:27:22-94
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+	android:name
+		ADDED from [com.android.installreferrer:installreferrer:1.0] /Users/orangerd/.gradle/caches/transforms-2/files-2.1/835702e61d14298a44593e568b5d3e04/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107

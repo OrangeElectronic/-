@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+  .title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: auto;
+    margin-right: 50px;
+    color: white;
+    font-size: 18px;
+  }
+</style>
+
+<body>
+
+</body>
+<script>
+  lifeCycle.onCreateView=function (){
+    return `
+    <div style="background-color: #E95008;height: 60px;width: 100%;display: flex;align-items: center;">
+    <img src="img/btn_back_normal.png" style="width: 50px;height: 50px;" onclick="glitter.onBackPressed()">
+    <h3 class="title">${glitter.language(538)}</h3>
+    </div>
+    `
+  }
+  lifeCycle.onCreate=function (){
+
+  }
+</script>
+</html>

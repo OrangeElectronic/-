@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    /*body{*/
+    /*    background-image: url('image/img_trailer10_front.png');*/
+    /*    background-repeat: no-repeat;*/
+    /*    background-attachment: fixed;*/
+    /*    background-size: 50% 50%;*/
+    /*    margin: 50px;*/
+    /*    backgroun-position:center;*/
+    /*}*/
+    body {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background-image: url('../image/img_background.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+    }
+
+    /*#t01 tr:nth-child(even) {*/
+    /*    background-color: #eee;*/
+    /*}*/
+    /*#t01 tr:nth-child(odd) {*/
+    /*    background-color: #fff;*/
+    /*}*/
+    /*#t01 th {*/
+    /*    color: white;*/
+    /*    background-color: black;*/
+    /*}*/
+    /*#t01 {*/
+    /*    transform: translateX(5%);*/
+    /*    height:10%;*/
+    /*    width: 90%;*/
+    /*    margin-top: 94px;*/
+    /*    !*left: 10%;*!*/
+    /*    !*right: 10%;*!*/
+    /*    !*background-color: #f1f1c1;*!*/
+    /*}*/
+    #t01 {
+        height:1%;
+        width: 90%;
+        margin-top: 10px;
+    }
+
+    .itemclass{
+        height:80%;
+        width: 90%;
+        /*margin-left: 5%;*/
+        /*margin-right: 5%;*/
+        transform: translateX(5%);
+        display: inline-block;
+        position: relative;
+    }
+
+    table tbody tr td {
+        /*border: 1px solid black;*/
+        height:70px;
+        /*width: 70px;*/
+        width: 10%;
+
+        /*transform: translateY(20%);*/
+        /*transform: translateX(50%);*/
+        /*margin-top: 94px;*/
+        background-color: white;
+        color: black;
+        text-align: center;
+
+    }
+.table tbody tr td:hover{
+    background-color: black;
+    color: white;
+
+}
+    ul {
+        list-style-type: none;
+        margin: 1px;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+    li {
+        margin: 1px;
+        height:70px;
+        width: 70px;
+        /*width: 10%;*/
+        float: right;
+    }
+    li a {
+        /*height:70px;*/
+        /*width: 100px;*/
+        /*height:70px;*/
+        /*width: 70px;*/
+        /*width: 70px;*/
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        /*margin: 5px;*/
+    }
+    li a:hover {
+        /*height:70px;*/
+        /*width: 70px;*/
+        background-color: #111;
+    }
+    .active {
+        background-color: red;
+    }
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+<table id="t01">
+<!--    <tr>-->
+<!--        <th>Firstname</th>-->
+<!--        <th>Lastname</th>-->
+<!--        <th>Age</th>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>111111</td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td>222222</td>-->
+<!--    </tr>-->
+
+</table>
+<div class="itemclass">
+<table class="table">
+<!--    onclick="ShowTire()"-->
+    <tbody id="tbody"></tbody>
+</table>
+</div>
+
+<ul>
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+</ul>
+</body>
+</html>
+
+<script>
+    //data ={}
+
+    // data = {
+    //     "Q1": ["111111","","","222222"],
+    //     "Q2": ["444444","555555","666666","777777"],
+    //     "Q3": ["888888","999999","AAAAAA","BBBBBB"],
+    //     'Q4': ["CCCCCC","DDDDDD","EEEEEE","FFFFFF"], // test case 1: no data
+    //     'Q5': ["111112","111113","111114","111115"], // test case 2: only answer field
+    //     'Q6': ["222223","222224","222225","222226"],// test case 3: for string
+    // };
+    var data = {};
+    data.Q1=["111111","","","222222"];
+    data.Q2=["444444","555555","666666","777777"];
+    data.Q3=["888888","999999","AAAAAA","BBBBBB"];
+    data.Q4=["CCCCCC","DDDDDD","EEEEEE","FFFFFF"];
+    data.Q5=["111112","111113","111114","111115"];
+    data.Q6=["222223","222224","222225","222226"];
+    console.log(JSON.stringify(data))
+    // a.Q1=a.Q1.concat("111111")
+    // a.Q1=a.Q1.concat("")
+    // a.Q1=a.Q1.concat("")
+    // a.Q1=a.Q1.concat("222222")
+    // data.constructor('Q7',["333333","333334","333335","333336"]);
+    // For Q4, Q5, you can added some extra codes to uses default values intead, or ignore this row.
+
+    // formmat the data first, add some validators if neccessary
+    function formatAdapter (data) {
+        return Object.entries(data).map((item) => {
+            // let newItem = {}
+            // newItem[item[0]] = {'options': item[1].slice(0, item[1].length -1),
+            //     'answer': item[-1]} // assuming the last element is the answer, [0:last] is the options
+            return [item[1][0], item[1][1], item[1][2], item[1][3]]
+        })
+    }
+    let formmatedData = formatAdapter(data)
+
+    var tbody = document.getElementById('tbody');
+
+    // generate the header
+    // tbody.innerHTML += "<tr>" +
+    //     "<th id='q'>" + "Question" + "</th>" +
+    //     "<th id='o'>" + "Options" + "</th>" +
+    //     "<th id='ca'>" + "Correct Answer" + "</th>" +
+    //     "</tr>"
+    // generate the rows(Html) for each questions
+
+    let rowHtmls = formmatedData.map((item) => {
+        let row =
+            // '<tr>'+
+            '<tr>' +
+            '<td>'+item[0]+'</td>'
+            + '<td>'+item[1]+'</td>'
+            + '<td>'+item[2]+'</td>'
+            + '<td>'+item[3]+'</td>' +
+            '</tr>'
+            // +'</tr>'
+        // row += item[1].slice(1).reduce((pre, cur) => {
+        //     return pre + '<tr><td>'+cur+'</td></tr>'
+        // }, '')
+        return row
+    })
+
+    // combine header(html) and rows(html)
+    tbody.innerHTML += rowHtmls.reduce((pre, cur) => {
+        return pre+cur
+    }, '')
+
+    setOnClick()
+
+    function tableText(tableCell) {
+        if (window.confirm(tableCell))
+        {
+            console.log('BBBBBB');
+            return "BBBBBB"
+        }
+        else
+        {
+            console.log('AAAAAA');
+            return "AAAAAA"
+        }
+        alert(tableCell)
+        //return "BBBBBB"
+    }
+
+    // tbody.innerHTML = "";
+    // data.Q1[0][0] = "AAAAAA"
+    //
+    // formmatedData = formatAdapter(data)
+    // data.alpha = 10
+    // tbody.innerHTML += rowHtmls.reduce((pre, cur) => {
+    //     return pre+cur
+    // }, '')
+
+    function ShowTire(){
+        alert("測試");
+    }
+
+    function setOnClick(){
+        if (tbody !== undefined) {
+            for (var i = 0; i < tbody.rows.length; i++) {
+                for (var j = 0; j < tbody.rows[i].cells.length; j++) {
+                    tbody.rows[i].cells[j].onclick = function () {
+                        //data[i][j]
+                        var el = this
+                        var obj = {};
+                        obj.fun = function (string,turn) {
+
+                            if(el.innerHTML != string){
+                                //console.log('切換')
+                                if((obj.left === el.innerHTML && turn!=='left') || (obj.right === el.innerHTML && turn!=='right')){
+                                    console.log('切換')
+                                    if(el.innerHTML==data.Q2[0] || el.innerHTML==data.Q2[1]){
+                                        console.log('切換1')
+                                        data.Q2[0]=obj.right
+                                        data.Q2[1]=obj.left
+                                    }
+                                    if(el.innerHTML==data.Q2[2] || el.innerHTML==data.Q2[3]){
+                                        console.log('切換2')
+                                        data.Q2[2]=obj.right
+                                        data.Q2[3]=obj.left
+                                    }
+                                    if(el.innerHTML==data.Q3[0] || el.innerHTML==data.Q3[1]){
+                                        console.log('切換3')
+                                        data.Q3[0]=obj.right
+                                        data.Q3[1]=obj.left
+                                    }
+                                    if(el.innerHTML==data.Q3[2] || el.innerHTML==data.Q3[3]){
+                                        console.log('切換4')
+                                        data.Q3[2]=obj.right
+                                        data.Q3[3]=obj.left
+                                    }
+                                    if(el.innerHTML==data.Q4[0] || el.innerHTML==data.Q4[1]){
+                                        console.log('切換5')
+                                        data.Q4[0]=obj.right
+                                        data.Q4[1]=obj.left
+                                    }
+                                    if(el.innerHTML==data.Q4[2] || el.innerHTML==data.Q4[3]){
+                                        console.log('切換6')
+                                        data.Q4[2]=obj.right
+                                        data.Q4[3]=obj.left
+                                    }
+                                    tbody.innerHTML = "";
+                                    formmatedData = formatAdapter(data)
+                                    let rowHtmls = formmatedData.map((item) => {
+                                        let row =
+                                            '<tr>' +
+                                            '<td>'+item[0]+'</td>'
+                                            + '<td>'+item[1]+'</td>'
+                                            + '<td>'+item[2]+'</td>'
+                                            + '<td>'+item[3]+'</td>' +
+                                            '</tr>'
+                                        // row += item[1].slice(1).reduce((pre, cur) => {
+                                        //     return pre + '<tr><td>'+cur+'</td></tr>'
+                                        // }, '')
+                                        return row
+                                    })
+                                    tbody.innerHTML += rowHtmls.reduce((pre, cur) => {
+                                        return pre+cur
+                                    }, '')
+                                    setOnClick()
+                                }
+                            }
+
+                        }
+                        //
+                        if(el.innerHTML==data.Q2[0] || el.innerHTML==data.Q2[1]){
+                            obj.left = data.Q2[0]
+                            obj.right = data.Q2[1]
+                        }
+                        if(el.innerHTML==data.Q2[2] || el.innerHTML==data.Q2[3]){
+                            obj.left = data.Q2[2]
+                            obj.right = data.Q2[3]
+                        }
+                        if(el.innerHTML==data.Q3[0] || el.innerHTML==data.Q3[1]){
+                            obj.left = data.Q3[0]
+                            obj.right = data.Q3[1]
+                        }
+                        if(el.innerHTML==data.Q3[2] || el.innerHTML==data.Q3[3]){
+                            obj.left = data.Q3[2]
+                            obj.right = data.Q3[3]
+                        }
+                        if(el.innerHTML==data.Q4[0] || el.innerHTML==data.Q4[1]){
+                            obj.left = data.Q4[0]
+                            obj.right = data.Q4[1]
+                        }
+                        if(el.innerHTML==data.Q4[2] || el.innerHTML==data.Q4[3]){
+                            obj.left = data.Q4[2]
+                            obj.right = data.Q4[3]
+                        }
+                        // obj.left = "AAAAAAA"
+                        // obj.right = "BBBBBB"
+                        if(data.Q1.indexOf(el.innerHTML)===-1){
+                            glitter.openDiaLog('main/Dia_RxSet.html', 'Dia_RxSet', false, false, obj);
+                        }
+
+                        //this.innerHTML = tableText(this.innerHTML);
+                        //this.style.backgroundColor = "Red"
+                    };
+                }
+            }
+        }
+    }
+
+</script>

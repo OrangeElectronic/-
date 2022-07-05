@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+    }
+
+    .CarPlace {
+        background-image: url("../img/img_trailer8_rear.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .wheel {
+        width: 40px;
+        height: 40px;
+        margin-left: 12px;
+    }
+
+    .wheel2 {
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+    }
+
+    .select {
+        background-image: url("../img/icon_tire_number_normal.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 50px;
+        height: 50px;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btable td {
+        border-width: 1px;
+        border-color: #6AC6D7;
+        border-style: solid;
+        margin: 0;
+        padding: 0;
+    }
+
+    .btable {
+        border-spacing: 0;
+    }
+
+    input {
+        margin-left: 10px;
+        height: 100%;
+        background-color: transparent;
+        color: white;
+        font-size: 16px;
+        width: calc(100% - 20px);
+        outline: none;
+        border-style: none;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../carView.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    var uploadMap = {}
+    for (var i in glitter.setCar) {
+        uploadMap[i] = glitter.setCar[i];
+    }
+    lifeCycle.onCreateView = function () {
+        return (glitter.getTitleBar(glitter.getLan(691)) + `
+     <div style="text-align:center;display:flex;justify-content:center;font-size:16px;font-weight:600;width: 100%;height: 60px;text-align: center;background-color: white;
+     color: #002F51;" onclick="resetCarName()">
+     <h3 id="plateNumber" style="background-image: url('../img/icon_edit.png');background-size: 15px 15px;background-repeat: no-repeat;background-position: right center;padding-right: 25px;"> ${uploadMap.plateNumber}</h3>
+</div>
+<div id="itemList" style="width: 100%;overflow-y: scroll;height: calc(100% - 350px);overflow-x: hidden;">
+
+<h3 style="color: white;font-size: 14px;line-height:20px;margin: 10px 10px 0px;text-align: center;min-height: 40px;">
+${glitter.getLan(715)}
+</h3>
+<div style="margin-top:10px;position: relative;">
+<div style="height: 300px;width: 100%;display: flex;margin-top: 0;justify-content: center;position: relative;">
+` + getLeft(uploadMap.carType) + `
+<div style="width:144px;height: 100%;" class="CarPlace">
+` + getCarView(uploadMap.carType) + `
+</div>
+` + getRight(uploadMap.carType) + `
+</div>
+</div>
+</div>
+<div style="flex: auto;"></div>
+<table  class="btable" style="border-width: 1px;border-color: #6AC6D7;width: calc(100% - 20px);height: 100px;border-style: solid;margin-bottom: 10px;">
+<tr style="height: 50px;">
+<td style="width: 50px;color: white;line-height: 50px;text-align: center;">NO.</td>
+<td style="width: calc((100% - 50px)/2);color: white;line-height: 50px;text-align: center;">${glitter.getLan(716)}</td>
+<td style="width: calc((100% - 50px)/2);color: white;line-height: 50px;text-align: center;">${glitter.getLan(717)}</td>
+<td style="width: calc((100% - 50px)/2);color: white;line-height: 50px;text-align: center;">${glitter.getLan(718)}</td>
+</tr>
+<tr style="height: 50px;">
+<td style="width: 50px;color: white;text-align: center;" id="numberHint">0</td>
+<td style="width: calc((100% - 50px)/2);color: white;text-align: center;">
+<input id="barCode" type="text">
+</td>
+<td style="width: calc((100% - 50px)/2);color: white;text-align: center;" >
+<input id="qrCode" type="text">
+</td>
+<td style="width: calc((100% - 50px)/2);color: white;text-align: center;">
+<input id="rout" type="text">
+</td>
+</tr>
+</table>
+<div class="sig" style="height: 50px;margin: 10px;width:calc(100% - 20px);display: flex;">
+<div onclick="setUP(true)" style="color: white;height: 50px;width: calc(50% - 10px);text-align: center;line-height: 50px;border-width: 1px;border-color:#92C0DF;border-style: solid;border-top-left-radius: 25px;border-bottom-left-radius: 25px;">
+${glitter.getLan(567)}
+</div>
+<div style="background-color:#6AC6D7;margin-left:10px;color: white;height: 50px;flex:auto;text-align: center;line-height: 50px;border-width: 1px;border-color:#92C0DF;border-style: solid;border-bottom-right-radius: 25px;border-top-right-radius: 25px;" onclick="scan()">
+${glitter.getLan(35)}
+</div>
+</div>
+   `)
+    }
+    var focus = 1
+    var waitSwitch = undefined
+    var canNext = true
+    var lastMilage=''
+    lifeCycle.onCreate = function () {
+        updateInput()
+        waitSwitch()
+        changeFocus(focus)
+        for (var a = 1; a < parseInt(uploadMap.count) + 1; a++) {
+            $('#w' + a).click(function () {
+                if (!canNext) {
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(719))
+                    return
+                }
+                changeFocus(parseInt(this.id.replace('w', '')))
+            })
+            $('#n' + a).click(function () {
+                if (!canNext) {
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(719))
+                    return
+                }
+                changeFocus(parseInt(this.id.replace('n', '')))
+            })
+        }
+        $("#qrCode").on("input", function (event) {
+            if ((this.value.length >= 6) || this.value.length === 0) {
+                canNext = true
+            } else {
+                canNext = false
+            }
+            if (this.value.length >= 6) {
+                this.value = this.value.substring(0, 6).toUpperCase()
+                return
+            }
+            this.value = this.value.replace(/[^a-fA-F0-9]/g, '').toUpperCase();
+        });
+
+
+        $("#barCode").on("input", function (event) {
+            this.value = this.value.replace(/[^a-fA-F0-9]/g, '').toUpperCase();
+        });
+        $("#rout").on("input", function (event) {
+            lastMilage=this.value
+            this.value = this.value.replace(/[^0-9]/g, '').toUpperCase();
+        });
+
+
+    }
+
+    function changeFocus(a) {
+        $('#w' + focus).attr('src', '../img/icon_wheel_normal.png')
+        $('#n' + focus).css('background-image', 'url(../img/icon_tire_number_normal.png)')
+        setUP(false)
+        focus = a
+        checkTire()
+        $('#w' + focus).attr('src', '../img/icon_tire_select.png')
+        $('#n' + focus).css('background-image', 'url(../img/icon_tire_number_select.png')
+        $('#numberHint').html('' + a)
+        $('#qrCode').val('')
+        $('#barCode').val('')
+        $("#rout").val(lastMilage)
+        updateInput()
+
+    }
+
+    function checkTire() {
+        uploadMap.sensor = uploadMap.sensor.map(function (obj) {
+            if (obj.id !== '' && obj.id !== undefined) {
+                $('#w' + obj.wh).attr('src', '../img/icon_wheel_ok.png')
+                $('#n' + obj.wh).css('background-image', 'url(../img/icon_tire_number_ok.png)')
+            } else {
+
+            }
+            return obj;
+        })
+    }
+
+    function updateInput() {
+        uploadMap.sensor = uploadMap.sensor.map(function (obj) {
+            if (obj.wh === ('' + focus)) {
+                console.log('obj.id' + obj.id + '---obj.barCode' + '---' + obj.barCode+'---'+obj.milage)
+                $('#qrCode').val(obj.id)
+                $('#barCode').val(obj.barCode)
+                $('#rout').val((obj.milage===undefined) ? lastMilage:((obj.milage==='') ? lastMilage:obj.milage))
+                lastMilage=  $('#rout').val()
+            }
+            return obj;
+        })
+    }
+
+    function setUP(update) {
+        if (!canNext) {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '傳感器ID必須輸入6位數!!')
+            return
+        }
+        for (var a = 0; a < uploadMap.sensor.length; a++) {
+            if (uploadMap.sensor[a].wh === ('' + focus)) {
+                uploadMap.sensor[a].id = $('#qrCode').get(0).value
+                uploadMap.sensor[a].barCode = $('#barCode').get(0).value
+                uploadMap.sensor[a].milage = $("#rout").get(0).value
+            }
+        }
+        var size = uploadMap.sensor.filter(it => it.wh === ('' + focus)).length;
+        if (size === 0) {
+            uploadMap.sensor = uploadMap.sensor.concat(glitter.getData_SensorPosition($('#qrCode').get(0).value, ('' + focus), $('#barCode').get(0).value))
+        }
+        console.log(JSON.stringify(uploadMap))
+        if (update) {
+            upload()
+        }
+    }
+
+    function scan() {
+        glitter.openBottomSheet('dialog/Dia_Select_Scan.html', 'Dia_Select_Scan', function (type) {
+            glitter.closeBottomSheet()
+            glitter.openQrScanner(function (a) {
+                if (type === 1) {
+                    $('#qrCode').val(a.replace(/[^a-fA-F0-9]/g, '').toUpperCase())
+                } else {
+                    $('#barCode').val(a)
+                }
+            })
+        }, "150px", true)
+
+    }
+
+    function upload() {
+        uploadMap.carName = rootActivity().userInfoMation.first_Name + rootActivity().userInfoMation.name
+        var map = {}
+        map.request = "settingCar"
+        map.admin = rootActivity().userInfoMation.admin
+        map.plate = uploadMap.plateNumber
+        map.data = JSON.stringify(uploadMap)
+        map.resetCarNumber = glitter.setCar.plateNumber
+        rootActivity().apiRequest.postWithDialog(map, function (data) {
+            if (data.result === "true") {
+                var item = rootActivity().carInterFace.getData_Setting_Car().filter(word => word.plateNumber.toUpperCase().indexOf(glitter.setCar.plateNumber.toUpperCase()) === -1)
+                var ar = [uploadMap].concat(item)
+                rootActivity().carInterFace.setData_Setting_Car(ar)
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '設定完成')
+            } else {
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '設定失敗')
+            }
+        }, function (error) {
+
+        })
+    }
+
+    /**
+     * 重新設定車號
+     * */
+    function resetCarName() {
+        glitter.openDiaLog('dialog/Dia_Set_CarName.html', 'Dia_Set_CarName', false, false, function (data) {
+            $('#plateNumber').html(data)
+            uploadMap.plateNumber = data
+        })
+    }
+
+</script>

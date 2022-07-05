@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    body {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    var item = rootActivity().carInterFace.getData_Setting_Car()
+    var adapter = undefined
+    lifeCycle.onCreate = function () {
+        adapter = new GlAdapter(document.getElementById('itemList'), function () {
+            return item.length
+        }, function (position) {
+            var type = item[position].carType
+            return `
+            <div style="height: 80px;width: 100%;display: flex;align-items: center;justify-content: center;" >
+            <div style="display: flex;height: 60px;width: calc(100% - 32px);border-radius: 20px;">
+            <img src="../img/tire.png" style="height: 60px;width: 60px;">
+            <div style="display:flex;align-items:center;height: 60px;flex: auto">
+            <h3 style="color: white;font-size: 20px;margin-left: 5px;">`
+                + glitter.print(function (){
+                  try {
+                      return JSON.parse('{"unicode":"' + item[position].plateNumber.replace('\\u', 'u').replace('u', '\\u') + '"}').unicode
+                  }  catch (e){
+                      return item[position].plateNumber
+                  }
+                }) +
+                `</h3>
+            <div style="flex: auto"></div>
+            <h3 style="color: white;font-size: 14px;margin-right: 10px;">` + (item[position].carType.indexOf("F") !== -1 ? glitter.getLan(711) : "") + `</h3>
+            <img src="../img/icon_delete.png" style="width: 30px;height: 30px;" onclick="deleteCar(`+position+`)">
+            </div>
+</div>
+</div>
+
+` + ((position === item.length - 1) ? "" : "<div style=\"margin-left:5px;margin-right:5px;height: 1px;background-color: #6ac6d7;\"></div>") + `
+            `
+        })
+    }
+    lifeCycle.onCreateView = function () {
+        return (glitter.getTitleBar(glitter.getLan(743))) + `
+<div style="width: 100%;height: 60px;line-height: 60px;text-align: center;background-color: white;
+     color: #002F51;">
+     ${glitter.getLan(629)}:` + item.length + `
+</div>
+      <div style="height: calc(100% - 120px);overflow-y: scroll;width: 100%;" id="itemList"></div>
+        `
+    }
+
+    function deleteCar(position) {
+
+        var map = {
+            request: 'deleteCar',
+            plate: item[position].plateNumber
+        }
+        rootActivity().apiRequest.postWithDialog(map,
+            function (data) {
+             if(data.result==='true'){
+                 item=item.filter(function (data){
+                     return data.plateNumber!==item[position].plateNumber
+                 })
+                 rootActivity().carInterFace.setData_Setting_Car(item)
+                 adapter.notifyDataSetChange()
+             }else{
+                 glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(746)+'!!')
+             }
+            }, function () {
+
+            })
+    }
+</script>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .unSelect {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid lightgray;
+    }
+
+    .Select {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid lightgray;
+        background-color: #1a4064;
+    }
+
+    .enter {
+        width: calc(100% - 30px);
+        height: 40px;
+        background-image: url("../img/btn_rectangle.png");
+        border-radius: 10px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+</style>
+<body>
+<script>
+    var frontSame = false
+    var allSame = false
+    var rearSame=false
+    var selectIndex = 0
+    lifeCycle.onCreate = function () {
+        try {
+            $('#Size').val(gBundle.data.Size)
+            $('#Size1').val(gBundle.data.Size1)
+            $('#Size2').val(gBundle.data.Size2)
+        } catch (e) {
+        }
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                    }
+                }
+            }
+        }
+        for(var a=30;a<=355;a+=5){
+            if(gBundle.Size===`${a}`){
+                $('#Size').prepend(`<option>${a}</option>`)
+            }else{
+                $('#Size').append(`<option>${a}</option>`)
+            }
+        }
+        for(var a=25;a<=100;a+=5){
+            if(gBundle.Size1===`${a}`){
+                $('#Size1').prepend(`<option>${a}</option>`)
+            }else{
+                $('#Size1').append(`<option>${a}</option>`)
+            }
+        }
+        for(var a=10;a<=28;a++){
+            if(gBundle.Size2===`${a}`){
+                $('#Size2').prepend(`<option>${a}</option>`)
+            }else{
+                $('#Size2').append(`<option>${a}</option>`)
+            }
+        }
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+    <div style="width: 250px;background-color: white;border-radius: 10px;display: flex;flex-direction: column;align-items: center;justify-content: center;position: relative;
+   padding-bottom: 10px;">
+<img style="width: 30px;height: 30px;position: absolute;right: 10px;top:10px;" src="../img/close.png" onclick="glitter.closeDiaLog()">
+<h3 style="width: calc(100% - 20px);font-size: 16px;">${glitter.language(485)} / ${gBundle.position}</h3>
+<div style="display: flex; width: calc(100% - 20px);justify-content: space-around;align-items: center;margin-top: 10px;">
+<select style="width: calc(33% - 20px);height: 30px;font-size: 14px;text-align: center;" id="Size" type="number" ></select>
+<span>\/</span>
+<select style="width: calc(33% - 20px);height: 30px;font-size: 14px;text-align: center;" id="Size1"  type="number" ></select>
+<span>R</span>
+<select style="width: calc(33% - 20px);height: 30px;font-size: 14px;text-align: center;" id="Size2"  type="number"></select>
+</div>
+<div style="display: flex;margin-top: 10px;width: calc(100% - 30px);align-items: center;">
+<div class="unSelect click" onclick="$('.click').removeClass('Select');$(this).addClass('Select');frontSame=!frontSame;"></div>
+<span style="margin-left: 10px;">${glitter.language(553)}</span>
+</div>
+<div style="display: flex;margin-top: 10px;width: calc(100% - 30px);align-items: center;">
+<div class="unSelect click" onclick="$('.click').removeClass('Select');$(this).addClass('Select');allSame=!allSame;"></div>
+<span style="margin-left: 10px;">${glitter.language(554)}</span>
+</div>
+
+<div style="display: flex;margin-top: 10px;width: calc(100% - 30px);align-items: center;">
+<div class="unSelect click" onclick="$('.click').removeClass('Select');$(this).addClass('Select');rearSame=!rearSame;"></div>
+<span style="margin-left: 10px;">${glitter.language(576)}</span>
+</div>
+<div class="enter" onclick="gBundle.callback(frontSame,allSame,rearSame,{
+    Size:$('#Size').val(),
+    Size1:$('#Size1').val(),
+    Size2:$('#Size2').val()
+});glitter.closeDiaLog();">${glitter.language(415)}</div>
+</div>
+    `
+    }
+</script>
+</body>
+</html>

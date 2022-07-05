@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    html {
+        height: 100%;
+        width: 100%;
+        /*margin: 0;*/
+    }
+
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        /*background-image: url('../img/img_background.png');*/
+        align-items: center;
+        flex-direction: column;
+        /*background-repeat: no-repeat;*/
+        /*background-attachment: fixed;*/
+        /*background-size: 100% 100%;*/
+        overflow-x: hidden;
+    }
+
+    .inview {
+        /*width: 100%;*/
+        height: calc(100% - 180px);
+        /*height: 100px;*/
+        /*display: flex;*/
+        /*flex: auto;*/
+        /*position: relative;*/
+        /*align-items: center;*/
+        justify-content: center;
+        /*flex-direction: column;*/
+        /*overflow-y: scroll;*/
+        /*overflow-x: hidden;*/
+    }
+
+    .leftBt {
+        background-image: url("../img/btn_left_n.png");
+        width: 50%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 16px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rightBt {
+        background-image: url("../img/btn_right_n.png");
+        width: 50%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 16px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .enterBt {
+        background-image: url("../img/btn_botton.png");
+        width: 100%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreate = function () {
+        // touchChange("left")
+        // touchChange("right")
+    }
+
+    function touchChange(button) {
+        document.getElementById(button + "Bt").addEventListener('touchstart', function (event) {
+            console.log('touchstart' + ':' + this.id)
+            $("#" + button + "Bt").css('background-image', "url('../img/btn_" + button + "_p.png')")
+
+        }, false);
+        document.getElementById(button + "Bt").addEventListener('touchend', function (event) {
+            console.log('touchend' + ':' + this.id)
+            $("#" + button + "Bt").css('background-image', "url('../img/btn_" + button + "_n.png')")
+
+        }, false);
+
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+<div style="height: 60px;width: 100%;display: flex;justify-content: center;align-items:center;background-color: white;font-size: 28px">${glitter.getLan(63)}</div>
+
+<div class="inview" style="display: flex">
+<div style="height: calc(100%);width: 85%;font-size: 14px;padding: 3%;border-style: solid; overflow-y: scroll;overflow-x: hidden;">
+${(glitter.getLan(72))
+            .replaceAll("\n","<br>")}
+</div>
+</div>
+<div id="Enter" class="enterBt">Enter</div>
+// <!--<div style="height: 60px;width: 100%;display: flex;background-color: #003D6C;">-->
+// <!--<div id="leftBt" class="leftBt" onclick="glitter.goBack()">不同意</div>-->
+// <!--<div id="rightBt" class="rightBt" onclick="glitter.goBack()">同意</div>-->
+// <!--</div>-->
+        `
+    }
+</script>

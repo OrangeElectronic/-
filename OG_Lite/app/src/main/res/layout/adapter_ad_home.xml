@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/Home_R"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.orange.jzchi.jzframework.Widget.AspetRelate
+        android:id="@+id/aspet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:ratio="1">
+
+        <ImageView
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:background="@mipmap/btn_id_copy_by_obd_n" />
+    </com.orange.jzchi.jzframework.Widget.AspetRelate>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aspet"
+        android:layout_alignParentBottom="false"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/idcopyobd"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="21sp" />
+
+</RelativeLayout>

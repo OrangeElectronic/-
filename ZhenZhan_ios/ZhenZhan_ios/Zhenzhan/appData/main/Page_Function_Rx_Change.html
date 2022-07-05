@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    /*body{*/
+    /*    background-image: url('image/img_trailer10_front.png');*/
+    /*    background-repeat: no-repeat;*/
+    /*    background-attachment: fixed;*/
+    /*    background-size: 50% 50%;*/
+    /*    margin: 50px;*/
+    /*    backgroun-position:center;*/
+    /*}*/
+    html{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+
+        overflow-y: hidden;
+        height: 100%;
+        width: 100%;
+        /*height: 100vh;*/
+        /*width: 100vw;*/
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+    }
+    #N1{
+        background-color: #003D6C;
+        width: 40px;
+        height:40px;
+        margin-top:120px;
+        margin-left: -150px;
+        /*height:50%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 39%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N2{
+        width: 40px;
+        height:40px;
+        margin-top:30px;
+        margin-left:150px;
+        /*height:6%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 61.5%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N3{
+        width: 40px;
+        height:40px;
+        margin-top:30px;
+        margin-left: -150px;
+        /*height:50%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 39%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #N4{
+        width: 40px;
+        height:40px;
+        margin-top:120px;
+        margin-left:150px;
+        /*height:6%;*/
+        /*transform: translateX(-50%);*/
+        /*left: 61.5%;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+
+    #T1{
+        width: 33px;
+        height:37px;
+        margin-left:66px;
+        margin-top: -106px;
+        /*display: flex;*/
+        /*justify-content: center;*/
+        /*align-items: center;*/
+        /*transform: translateX(-50%);*/
+        /*align-content: center;*/
+        /*left: 173px;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+
+    }
+    #T2{
+        width: 33px;
+        height:37px;
+        margin-left:-66px;
+        margin-top: -106px;
+        /*display: flex;*/
+        /*justify-content: center;*/
+        /*align-items: center;*/
+        /*transform: translateX(-50%);*/
+
+        /*left: 114px;*/
+        /*margin-top: 94px;*/
+        position: absolute;
+    }
+    #T3{
+        width: 33px;
+        height:37px;
+        margin-left:66px;
+        margin-top: 34px;
+        /*transform: translateX(-50%);*/
+        /*left: 64%;*/
+        /*margin-top: 193.5px;*/
+        position: absolute;
+    }
+    #T4{
+        width: 33px;
+        height:37px;
+        margin-left:38px;
+        margin-top: 34px;
+        /*transform: translateX(-50%);*/
+        /*left: 58.5%;*/
+        /*margin-top: 193.5px;*/
+        position: absolute;
+    }
+    #T5{
+        width: 33px;
+        height:37px;
+        margin-left:-37px;
+        margin-top: 34px;
+        /*transform: translateX(-50%);*/
+        /*left: 64%;*/
+        /*margin-top: 234.5px;*/
+        position: absolute;
+    }
+    #T6{
+        width: 33px;
+        height:37px;
+        margin-left:-66px;
+        margin-top: 34px;
+        /*transform: translateX(-50%);*/
+        /*left: 58.5%;*/
+        /*margin-top: 234.5px;*/
+        position: absolute;
+    }
+    #T7{
+        width: 33px;
+        height:37px;
+        margin-left:66px;
+        margin-top: 118px;
+        /*transform: translateX(-50%);*/
+        /*left: 36%;*/
+        /*margin-top: 234.5px;*/
+        position: absolute;
+    }
+    #T8{
+        width: 33px;
+        height:37px;
+        margin-left:38px;
+        margin-top: 118px;
+        /*transform: translateX(-50%);*/
+        /*left: 41.5%;*/
+        /*margin-top: 234.5px;*/
+        position: absolute;
+    }
+    #T9{
+        width: 33px;
+        height:37px;
+        margin-left:-37px;
+        margin-top: 118px;
+        /*transform: translateX(-50%);*/
+        /*left: 36%;*/
+        /*margin-top: 193.5px;*/
+        position: absolute;
+    }
+    #T10{
+        width: 33px;
+        height:37px;
+        margin-left:-66px;
+        margin-top: 118px;
+        /*transform: translateX(-50%);*/
+        /*left: 41.5%;*/
+        /*margin-top: 193.5px;*/
+        position: absolute;
+    }
+    #Car img {
+        width: auto;
+        height: 100%;
+        /*height: 30%;*/
+        /*transform: translateX(100%);*/
+        /*left: 110px;*/
+        /*margin-top: 50px;*/
+        /*border: #48af4a;*/
+        /*border-width: 1px;*/
+        /*border-style: solid;*/
+
+    }
+    #Car{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 224px;
+    }
+    #Car_Page{
+        /*height: 500px;*/
+        width: 100%;
+        /*transform: translateX(-50%);*/
+        /*left: 50%;*/
+        /*margin-top: 20px;*/
+        position: relative;
+    }
+    /*#down_page img {*/
+    /*    width: 40%;*/
+    /*    height: 40%;*/
+    /*    transform: translateX(-50%);*/
+    /*    left: 50%;*/
+    /*    margin-top: 50px;*/
+    /*    position: absolute;*/
+    /*}*/
+    .Tire{
+        width: 33px;
+        height:37px;
+        background-image: url('../image/icon_wheel_normal.png');
+        background-size: 100% 100%;
+    }
+ .Num{
+     background-color: #527585;
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+     border-radius: 5px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 17px;
+     color: white;
+     font-weight: 600;
+ }
+
+ ul.Change_Spinner li{
+     height: 100%;
+     width: 100%;
+     position: relative;
+     background-color: white;
+     list-style: none;
+     float:left;
+ }
+    ul.Change_Spinner li a{
+        /*display: block;*/
+        background-color: white;
+        /*text-decoration: none;*/
+    }
+
+    ul.Change_Spinner li ul{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: white;
+        z-index: 3;
+        display: none;
+        float:left;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul.Change_Spinner li:hover ul{
+        background-color: white;
+        /*z-index: 3;*/
+        /*hide*/
+        /*display: block;*/
+
+    }
+ /*table tableclass tr td{*/
+ /*    border-color: #111111;*/
+ /*    border-width: 1px;*/
+ /*    border-style: solid;*/
+ /*    border-spacing: 0;*/
+ /*}*/
+    .bottomSheet{
+        height: 150px;
+        background-color: black;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        z-index: 5;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+    }
+
+    #triangle_up {
+        position: absolute;
+        /*align-items: left;*/
+        display: flex;
+        border-right: 6px solid white;
+        border-left: 6px solid white;
+        border-bottom: 10px solid blue;
+        display:inline-block;
+    }
+    #triangle_down {
+        border-right: 6px solid white;
+        border-left: 6px solid white;
+        border-top: 10px solid blue;
+        display:inline-block;
+    }
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<body id="bodyClick">
+<!--<div class="bottomSheet">-->
+
+</div>
+<div style="height: calc(100% - 60px);overflow-y: scroll;">
+    <div id="Car_Page" style="width:100%;flex-direction:column;display: flex;">
+        <div style="margin-top:3%;margin-left:3%;font-size: 24px;position:absolute">10輪</div>
+        <!-- 这里是后面的图片层 -->
+        <div id="Car">
+            <img src="../image/img_10_wheels_244.png">
+            <div id="T1" class="Tire">
+                <!--            <img style="height: 100%; width: auto" src="../image/icon_wheel_normal.png">-->
+            </div>
+            <div id="T2" class="Tire"></div>
+            <div id="T3" class="Tire"></div>
+            <div id="T4" class="Tire"></div>
+            <div id="T5" class="Tire"></div>
+            <div id="T6" class="Tire"></div>
+            <div id="T7" class="Tire"></div>
+            <div id="T8" class="Tire"></div>
+            <div id="T9" class="Tire"></div>
+            <div id="T10" class="Tire"></div>
+
+            <div id="N1" class="Num">B
+                <!--            <img style="height: 100%; width: 100%" src="../image/icon_tire.png">-->
+            </div>
+            <div id="N2" class="Num">1</div>
+            <div id="N3" class="Num">2</div>
+            <div id="N4" class="Num">3</div>
+        </div>
+
+    </div>
+
+    <div  style="flex-direction:column;margin-bottom:1%;margin-top:1%;display: flex;justify-content: center;align-items:center;width:100%;">
+        <table style="width:90%;border-spacing: 1px;border-color: #A4AFB5;background-color: black;">
+            <tr style="border-color:#A4AFB5;border-style:solid;background-color:black;width:100%;">
+            <td style="margin-right:10px;color:white;border-color:black;background-color:#527585;width:25%;text-align: center">接收器<br>位置</td>
+            <td style="margin:0;color:white;border-color:black;background-color:#527585;width:59.5%;height:48px;text-align: center;padding: 0;">接收器序號</td>
+            <td style="margin:0;color:white;border-color:black;background-color:#527585;width:16.5%;height:48px;text-align: center;padding: 0;">綁定<br>輪數</td>
+            </tr>
+        </table>
+        <table id="tableclass" style="margin-top:-1px;width:90%;border-spacing: 1px;border-color: #A4AFB5;background-color: black;"></table>
+    </div>
+
+    <div id="Test_Page" style="height: 224px">
+        <div id="Car_view" style="display: flex;position:relative;justify-content: center;align-items: center;width:100%;"></div>
+    </div>
+
+</div>
+
+<!--    <table style="margin-top:3%;border-width:1px;border-color:black;display: flex;justify-content: center;align-items:center; height:48px;width:100%"  >-->
+<!--        <tr><td style="background-color:#527585;width:10%">輪位</td>-->
+<!--            <td style="background-color:#527585;width:80%">Sensor ID 號碼</td>-->
+<!--            <td style="background-color:#CED8DF;width:10%">QR</td></tr>-->
+<!--    </table>-->
+<!--    background-image:url('../image/button.png')-->
+<div id="enter" style="z-index:2;background-repeat: no-repeat;background-size: 100% 100%;background-image:url('../image/button.png');height:60px;width:100%;margin:0px;padding: 0px;display: flex;justify-content: center;align-items: center;text-align: center;font-size: 24px;color:white;">確認</div>
+
+<!--border='1;cellpadding="10"-->
+
+<!--<div style="display: flex;width:100%;height: 50px">-->
+<!--<div style="width:20%;border-width:1px;border-left:solid;border-color:#FFAC55;padding:5px;"></div>-->
+<!--<div style="width:80%;border-width:1px;border-left:solid;border-color:#FFAC55;padding:5px;"></div>-->
+<!--</div>-->
+</body>
+</html>
+<script>
+
+    document.getElementById('Car_view').innerHTML =
+        ` <img src="../image/img_10_wheels_244.png" style="display: flex;position: absolute;width:auto;height:224px;">
+                <div style="display: flex;">
+                    <table>
+                      <tr>
+                        <td class="Tire"></td>
+                        <td class="Tire"></td>
+                      </tr>
+                      <tr>
+                        <td class="Tire"></td>
+                        <td class="Tire"></td>
+                        <td class="Tire"></td>
+                        <td class="Tire"></td>
+                      </tr>
+                      <tr>
+                        <td class="Tire"></td>
+                        <td class="Tire"></td>
+                        <td class="Tire"></td>
+                        <td class="Tire"></td>
+                      </tr>
+                    </table>
+                    </div>
+        `
+
+    $('#sasa').hide()
+    $('#sasa').show()
+    let data={}
+    //data.wheel_num=['','']
+    //data.wheel_num=['A','B','C','D','E','F','G','H','I','J']
+    data.wheel_id=['','','','','']
+    data.keyup=['A','B','C','D','E','F','1','2','3','4','5','6','7','8','9','0']
+    let TireCount=2
+    for(let i=0;i<10;i++) {
+        let tire = document.getElementById("T" + (i+1).toString())
+        // let num = document.getElementById(.toString())
+        //$(document).ready(function() {
+        //if(obj != null){
+        $("#"+"N" + (i+1)).click(function (e){
+            //e.preventDefault()
+            if(i===0){
+                return
+            }
+
+            let num=document.getElementById("N"+(i+1)).innerText
+
+            for(let j=0;j<10;j++){
+                let wheel_num=document.getElementById("Wheel_Num"+j).innerText
+                let rx_num=document.getElementById("Rx_Num"+j).innerText
+                if(num===rx_num){
+                    //console.log("按鈕位置:"+ (i) +"," + "選單位置:" + parseInt(wheel_num))
+                    Tire_Change(j,i)
+                    return
+                }
+            }
+
+        })
+        // tire.onclick = function () {
+        //
+        // }
+        // num.onclick = function () {
+        //     $('#'+"T"+(i+1)).attr('src',"../image/icon_tire_select.png")
+        //     $('#'+"N"+(i+1)).attr('src',"../image/icon_tire_number_select.png")
+        //     //glitter.changePage('main/Page_Select_Function.html', "Page_Select_Function", true, {});
+        // }
+    }
+
+    let Adapter=new GlAdapter(document.getElementById('tableclass'),
+        function (){return data.wheel_id.length},
+        function (position) {
+            //id=' + position + '
+            //<img id=' + "test"+position + ' height="30%" width="100%" >
+            //'<table style="margin-top:3%;border-width:1px;border-color:black;display: flex;justify-content: center;align-items:center; height:48px;width:100%" >' +
+            let html=''
+
+            // if(position==0){
+            //     html=
+            //         '<tr style="border-color:#A4AFB5;border-style:solid;background-color:black;width:100%;">' +
+            //         '<td style="color:white;border-color:black;background-color:#527585;width:15%;text-align: center">輪位</td>' +
+            //         '<td style="margin:0;color:white;border-color:black;background-color:#527585;width:85%;height:48px;text-align: center;padding: 0;">Sensor ID 號碼</td>'+
+            //         '</tr>'
+            // }else{
+
+
+                html =
+                    // '<tr style="border-color:#A4AFB5;border-style:solid;background-color:black;width:100%;">' +
+                    // '<td style="color:white;background-color:white;border-color:black;height:48px;width:15%;text-align: center">'+
+                    // '<select style="position: relative;width:100%;height:100%;border-style: none;margin:0px;padding: 0;" id="select_main" name="select_main">'+
+                    //     '<option style="width:100%;height:100%;" value="">請選擇</option>'+
+                    //     '<option style="width:100%;height:100%;" value="A">A</option>'+
+                    //     '<option style="width:100%;height:100%;" value="B">B</option>'+
+                    //     '<option style="width:100%;height:100%;" value="C">C</option>'+
+                    // '</select>'+'</td>' +
+                    // '<td style="margin:0;color:white;border-color:black;background-color:white;width:70%;height:48px;text-align: center;padding: 0;"></td>' +
+                    // '<td style="color:white;border-color:black;background-color:#CED8DF;width:15%;text-align: center">QR</td>' +
+                    // '</tr>'
+
+                    '<tr style="border-color:#A4AFB5;border-style:solid;background-color:black;width:100%;">' +
+                    '<td style="color:white;background-color:white;border-color:black;height:48px;width:25%;justify-content: center;text-align: center;z-index: 2;">'+
+                    // '<ul class="Change_Spinner" style="width:100%;height:100%;display:flex;justify-content: center;text-align: center;align-items: center;margin:0px;padding: 0;">' +
+                    // '<li id='+"rx_button"+position+' style="width:100%;height:100%;background-color:white;">' +
+                    // '<a  id='+"Rx_Num"+position+' style="color: #111111;width:90%;height:100%;background-color:white;display:flex;justify-content: left;text-align:left;align-items: center;margin-left:10%;padding:0;z-index: 1;">'+position+'</a>'+  //&ensp;
+                    // '<ul id='+"rx_show"+position+' style="display:none;left:-1px;border-color:black;border-width:1px;border-style:solid;width:100%;height: auto" >'+
+
+                    // '<li style="width:100%;height:25px;color: #111111;display:flex;justify-content: left;text-align:left;align-items: center;"><a>&emsp;A</a></li>'+
+                    // '<li style="width:100%;height:25px;color: #111111;display:flex;justify-content: left;text-align:left;align-items: center;"><a>&emsp;B</a></li>'+
+                    // '<li style="width:100%;height:25px;color: #111111;display:flex;justify-content: left;text-align:left;align-items: center;"><a>&emsp;C</a></li>'+
+                        Rx_html(position)+
+                    //'</ul>'+'</li></ul></td>' +
+                    '</td>' +
+                    '<td style="margin:0;color:white;border-color:black;background-color:white;width:59.5%;height:48px;text-align: center;padding: 0;"></td>' +
+                    '<td style="color:white;background-color:white;border-color:black;height:48px;width:16.5%;justify-content: center;text-align: center;z-index: 2">' +
+                        Wheel_Num_html(position)+
+                    '</td>' +
+                    '</tr>'
+
+            //}
+
+            return html
+        } )
+    Adapter.notifyDataSetChange()
+
+    for (let i=0;i<data.wheel_id.length;i++) {
+        document.getElementById("rx_button" + i.toString()).onclick = function (e) {
+            e.stopImmediatePropagation();
+            //e.defaultPrevented
+            //console.log($("ul.Change_Spinner li ul").css.toString())
+            //$("ul.Change_Spinner li:hover ul").css("display","block")
+
+            console.log("rx_button" + i.toString())
+            Close_Rx_show(i)
+            Close_Wheel_Show(-1)
+            if ($("#rx_show"+i).css('display') === 'block') {
+                $("#rx_show"+i).hide()
+                $("#Rx_list"+i).css("transform","scaleY(-1)")
+                //$("#Rx_list"+i).css("transform","scaleY","1")
+                //document.getElementById("Rx_list"+i).innerText = "ｖ"
+            }else{
+                $("#rx_show"+i).show()
+                $("#Rx_list"+i).css("transform","scaleY(1)")
+                //$("#Rx_list"+i).css("transform","scaleY","1")
+                //document.getElementById("Rx_list"+i).innerText = "^"
+
+                for (let p=0;p<data.wheel_id.length;p++) {
+                    $("#rx" + i + "-" + p).click(function (){
+                        console.log("rx_click" + i + "," + p + "," + document.getElementById("rx" + i.toString() + "-" + p.toString()).innerText)
+                        //console.log("Rx_num : "+document.getElementById("Rx_Num"+i).innerText)
+
+                        let main_num=document.getElementById("Rx_Num"+i).innerText
+                        let rx_num=document.getElementById("rx" + i + "-" + p).innerText
+
+                        let main_Wheel_num=document.getElementById("Wheel_Num"+i).innerText
+                        let Wheel_num=""
+                        let Some_p=main_num
+                        //不同位置
+                        if( main_num.trim() != rx_num.trim()){
+                            console.log("rx不同位置"+main_num)
+
+                            for(let some=0;some<data.wheel_id.length;some++){
+                                let change_num=document.getElementById("Rx_Num"+some).innerText
+                                let change_rx_num=document.getElementById("rx" + i + "-" + i).innerText
+                                if(change_num.trim()===rx_num.trim()){
+                                    console.log("change"+change_rx_num)
+                                    document.getElementById("Rx_Num"+some).innerText=main_num
+
+                                    Wheel_num = document.getElementById("Wheel_Num"+some).innerText
+                                    document.getElementById("Wheel_Num"+some).innerText=main_Wheel_num
+                                    Some_p=i
+                                }
+                            }
+                            document.getElementById("Rx_Num"+i).innerText = rx_num.trim()
+                            document.getElementById("Wheel_Num"+i).innerText=Wheel_num
+                            Tire_Change(i,parseInt(Some_p))
+
+                            return
+                            //let change_num=document.getElementById("Rx_Num"+p).innerText
+                        }
+                        Tire_Change(i,parseInt(Some_p))
+
+                        //Tire_Change(Some_p)
+                        //$("ul.Change_Spinner li ul").css("display", "none")
+                        //$("ul.Change_Spinner li ul").hide()
+                        //$("ul.Change_Spinner li:hover ul").css("display", "none")
+                        //if ($("#rx_show"+p).css('display') === 'block') {
+                        //$("#rx_show"+p).css("display","none")
+                    })
+
+                    //$("#rx"+i+"-"+p)
+                    document.getElementById("rx"+i+"-"+p).addEventListener('touchstart', function (event) {
+                       $("#rx"+i+"-"+p).css("background","#0075C1")
+                        $("#rx"+i+"-"+p).css("color","#FFFFFF")
+                    })
+                    document.getElementById("rx"+i+"-"+p).addEventListener('touchend', function (event) {
+                        $("#rx"+i+"-"+p).css("background","#FFFFFF")
+                        $("#rx"+i+"-"+p).css("color","#111111")
+                    })
+
+                }
+            }
+        }
+
+        document.getElementById("Wheel_Button" + i.toString()).onclick = function (e) {
+            e.stopImmediatePropagation();
+
+            //console.log($("ul.Change_Spinner li ul").css.toString())
+            //$("ul.Change_Spinner li:hover ul").css("display","block")
+
+            console.log("Wheel_Button" + i.toString())
+            Close_Rx_show(-1)
+            Close_Wheel_Show(i)
+            if ($("#Wheel_Show"+i).css('display') === 'block') {
+                $("#Wheel_Show"+i).hide()
+                $("#Wheel_list"+i).css("transform","scaleY(-1)")
+            }else{
+                $("#Wheel_Show"+i).show()
+                $("#Wheel_list"+i).css("transform","scaleY(1)")
+                for (let p=0;p<=TireCount;p++) {
+                    $("#Wheel" + i + "-" + p).click(function (){
+                        console.log("Wheel_click" + i + "," + p + "," + document.getElementById("Wheel" + i + "-" + p).innerText)
+                        //console.log("Rx_num : "+document.getElementById("Rx_Num"+i).innerText)
+
+                        let main_num=document.getElementById("Wheel_Num"+i).innerText
+                        let Wheel_num=document.getElementById("Wheel" + i + "-" + p).innerText
+                        let rx_num=document.getElementById("Rx_Num"+i).innerText
+
+                        //不同位置
+                        if( main_num.trim() != Wheel_num.trim()){
+                            console.log("Wheel_num不同位置")
+                            document.getElementById("Wheel_Num"+i).innerText=Wheel_num
+                            Tire_Change(i,parseInt(rx_num))
+                            return
+                        }else{
+                            Tire_Change(i,parseInt(rx_num))
+                        }
+                    })
+
+                }
+            }
+        }
+
+    }
+
+    //
+    //         e.preventDefault()
+    //         //console.log("rx_button"+i.toString()+"true")
+    //     }
+    //     // document.getElementById("rx_button"+i.toString()).addEventListener('touchstart', function (event) {
+    //     //     console.log("rx_show_start")
+    //     // })
+    //     // document.getElementById("rx_button"+i.toString()).addEventListener('touchend', function (event) {
+    //     //     console.log("rx_show_end")
+    //     // })
+    //     // document.getElementById("rx_button"+i.toString()).addEventListener('touchcancel', function (event) {
+    //     //     console.log("rx_show_cancel")
+    //     // })
+    //     // document.getElementById("rx_button"+i.toString()).addEventListener('touchmove', function (event) {
+    //     //     console.log("rx_show_move")
+    //     // })
+    // }
+
+    document.getElementById('bodyClick').onclick = function (e){
+        console.log("bodyClick")
+        // $("ul.Change_Spinner li ul").css("display","none")
+        // $("ul.Change_Spinner li ul").hide()
+
+        Close_Rx_show(-1)
+        Close_Wheel_Show(-1)
+    }
+
+    document.getElementById("enter").onclick = function (e){
+        e.preventDefault()
+        for(let i=0;i<data.wheel_num.length;i++){
+            let x = document.getElementById("text"+i.toString());
+            console.log("第"+(i+1)+"輪:"+x.value)
+        }
+
+    }
+
+    function keyup_Function(i){
+         let x = document.getElementById("text"+i.toString());
+        x.value = x.value.replace(/[^a-fA-F0-9]/g, '').toUpperCase();
+         //x.value = x.value.toUpperCase()
+        if(x.value.length>=6){
+            console.log("大於6 size")
+            x.value = x.value.substring(0,6)
+            return false
+            //x.value.innerText = x.value.innerText.substring(0,6)
+        }
+        // document.getElementById("demo").innerHTML = x;
+
+        // if(data.keyup.indexOf(x.value)===-1){
+        //     console.log("字元無在範圍內")
+        //     x.value = x.value.replace(,"")
+        //     return false
+        // }
+        // let time=0
+        // for(let i=0;i<data.keyup.length;i++) {
+        //     if(x.value===data.keyup[i]){
+        //         console.log("字元有在範圍內")
+        //         time++
+        //         break
+        //     }
+        // }
+        // if(time===0){
+        //     x.value = x.value.substring(0,x.value.length-1)
+        //     return false
+        // }
+
+    }
+
+    function Tire_Change(Tire_p,Num_p){
+        // for(let j=0;j<10;j++){
+        //     //$('#T'+(j+1)+" img").attr('src',"../image/icon_wheel_normal.png")
+        //     $('#T'+(j+1)).css('background-image',"url('../image/icon_wheel_normal.png')")
+        //     //$('#N'+(i+1)).css('background-image',"../image/icon_tire.png")
+        //     $('#N'+(j+1)).css('background-color',"#527585")
+        //     $('#N1').css('background-color',"#003D6C")
+        // }
+        for (let j=0;j<5;j++){
+            let rx_num = parseInt(document.getElementById("Rx_Num"+j).innerText)
+            $('#T'+(rx_num*2+1)).css('background-image',"url('../image/icon_wheel_normal.png')")
+            $('#T'+(rx_num*2+2)).css('background-image',"url('../image/icon_wheel_normal.png')")
+
+            if(document.getElementById("Wheel_Num"+j).innerText === "1"){
+                console.log("一輪Wheel_Num"+Tire_p)
+                $('#T'+(rx_num*2+1)).css('background-image',"url('../image/icon_wheel_ok.png')")
+            }
+            if(document.getElementById("Wheel_Num"+j).innerText === "2"){
+                console.log("二輪Wheel_Num"+Tire_p)
+                $('#T'+(rx_num*2+1)).css('background-image',"url('../image/icon_wheel_ok.png')")
+                $('#T'+(rx_num*2+2)).css('background-image',"url('../image/icon_wheel_ok.png')")
+            }
+            $('#N'+(j+1)).css('background-color',"#527585")
+            $('#N1').css('background-color',"#003D6C")
+        }
+
+        $('#N'+(Num_p+1)).css('background-color',"#F39800")
+        if(document.getElementById('N'+(Num_p+1)).innerText==="B"){
+            return
+        }
+
+        //$('#T'+(i+1)+" img").attr('src',"../image/icon_tire_select.png")
+        if(document.getElementById("Wheel_Num"+Tire_p).innerText === "1"){
+            console.log("一輪Wheel_Num"+Tire_p)
+            $('#T'+(Num_p*2+1)).css('background-image',"url('../image/icon_tire_select.png')")
+        }
+        if(document.getElementById("Wheel_Num"+Tire_p).innerText === "2"){
+            console.log("二輪Wheel_Num"+Tire_p)
+            $('#T'+(Num_p*2+1)).css('background-image',"url('../image/icon_tire_select.png')")
+            $('#T'+(Num_p*2+2)).css('background-image',"url('../image/icon_tire_select.png')")
+        }
+    }
+
+    function Close_Rx_show(position){
+        for (let i=0;i<data.wheel_id.length;i++) {
+            //console.log("rx_button" + i.toString())
+            if(position===-1){
+                $("#rx_show" + i).hide()
+                $("#Rx_list"+i).css("transform","scaleY(-1)")
+            }else{
+                if ($("#rx_show" + i).css('display') === 'block' && position===i){
+
+                }else{
+                    $("#rx_show" + i).hide()
+                    $("#Rx_list"+i).css("transform","scaleY(-1)")
+                }
+            }
+
+            // if ($("#rx_show" + i).css('display') === 'block') {
+            //     $("#rx_show" + i).css("display", "none")
+            // }
+        }
+    }
+
+    function Close_Wheel_Show(position){
+        for (let i=0;i<=data.wheel_id.length;i++) {
+            //console.log("rx_button" + i.toString())
+            if(position===-1){
+                $("#Wheel_Show" + i).hide()
+                $("#Wheel_list"+i).css("transform","scaleY(-1)")
+            }else{
+                if ($("#Wheel_Show" + i).css('display') === 'block' && position===i){
+
+                }else{
+                    $("#Wheel_Show" + i).hide()
+                    $("#Wheel_list"+i).css("transform","scaleY(-1)")
+                }
+            }
+
+            // if ($("#rx_show" + i).css('display') === 'block') {
+            //     $("#rx_show" + i).css("display", "none")
+            // }
+        }
+    }
+
+    function Rx_html(position){
+        let Rx_html=''
+        Rx_html=
+            // '<ul class="Change_Spinner" style="width:100%;height:100%;display:flex;justify-content: center;text-align: center;align-items: center;margin:0px;padding: 0;">' +
+            // '<li id='+"rx_button"+position+' style="width:100%;height:100%;background-color:white;">' +
+            // '<a  id='+"Rx_Num"+position+' style="color: #111111;width:90%;height:100%;background-color:white;display:flex;justify-content: left;text-align:left;align-items: center;margin-left:10%;padding:0;z-index: 1;">'+position+'</a>'+
+            // //'<div id='+"Rx_list"+position+' style="color:black;width:100%;height:100%;display:flex;justify-content: flex-end;text-align:right;align-items: center;transform:scaleY(1);">ｖ</div>'+  //&ensp;
+            // '<ul id='+"rx_show"+position+' style="display:none;left:-1px;border-color:black;border-width:1px;border-style:solid;width:100%;height: auto" >'
+
+        '<ul class="Change_Spinner" style="width:100%;height:100%;display:flex;justify-content: center;text-align: center;align-items: center;margin:0px;padding: 0;">' +
+        '<li id='+"rx_button"+position+' style="width:100%;height:100%;background-color:white;">' +
+        '<div style="width:100%;height:100%;position: relative;display: flex;flex-direction: row;">' +
+            '<a  id='+"Rx_Num"+position+' style="color: #111111;width:90%;height:100%;background-color:white;display:flex;justify-content: left;text-align:left;align-items: center;margin-left:10%;padding:0;z-index: 1;">'+position+'</a>'+
+            '<a id='+"Rx_list"+position+' style="color:black;width:100%;height:100%;display:flex;justify-content: flex-end;text-align:right;align-items: center;font-size:10px;transform:scaleY(-1);">ｖ</a></div>'+  //&ensp;
+        '<ul id='+"rx_show"+position+' style="display:none;left:-1px;border-color:black;border-width:1px;border-style:solid;width:100%;height: auto" >'
+
+
+        for(let i=0;i<data.wheel_id.length;i++){
+            Rx_html+='<li id='+"rx"+position+"-"+i+' style="width:80%;height:25px;color: #111111;display:flex;justify-content: left;text-align:left;align-items: center;background:white;padding-left:20%">'+i+'</li>' //&emsp;
+        }
+
+        Rx_html+='</ul></li></ul>'
+
+        return Rx_html
+    }
+
+    function Wheel_Num_html(position){
+        let Rx_html=''
+        Rx_html=
+            '<ul class="Change_Spinner" style="width:100%;height:100%;display:flex;justify-content: center;text-align: center;align-items: center;margin:0px;padding: 0;">' +
+            '<li id='+"Wheel_Button"+position+' style="width:100%;height:100%;background-color:white;">' +
+            '<div style="width:100%;height:100%;position: relative;display: flex;flex-direction: row;">' +
+                '<a id='+"Wheel_Num"+position+' style="color: #111111;width:90%;height:100%;background-color:white;display:flex;justify-content: left;text-align:left;align-items: center;margin-left:10%;padding:0;z-index: 1;">'+0+'</a>'+
+                '<a id='+"Wheel_list"+position+' style="color:black;width:100%;height:100%;display:flex;justify-content: flex-end;text-align:right;align-items: center;font-size:10px;transform:scaleY(-1);">ｖ</a></div>'+  //&ensp;
+            '<ul id='+"Wheel_Show"+position+' style="display:none;left:-1px;border-color:black;border-width:1px;border-style:solid;width:100%;height: auto" >'
+
+        for(let i=0;i<=TireCount;i++){
+            Rx_html+='<li id='+"Wheel"+position+"-"+i+' style="width:80%;height:25px;color: #111111;display:flex;justify-content: left;text-align:left;align-items: center;margin-left:20%"><a>'+i+'</a></li>' //&emsp;
+        }
+
+        Rx_html+='</ul>'+'</li></ul>'
+
+        return Rx_html
+    }
+
+</script>

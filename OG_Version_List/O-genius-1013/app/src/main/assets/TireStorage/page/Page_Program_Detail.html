@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: calc(100% - 110px);
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 60px);
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .wrapper h3 {
+        color: white;
+        background-color: #40606F;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        min-height: 60px;
+        margin: 0;
+        border-bottom: 1px solid white;
+    }
+
+    .tireCancel {
+        background-image: url("../img/icon_tire_cancel.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tireSelect {
+        background-image: url("../img/yellow_tire.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tireOk {
+        background-image: url("../img/icon_tire_ok.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mindiv {
+        width: 40px;
+        height: 50px;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .maxdiv {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        flex: auto;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .item {
+        display: flex;
+        height: 50px;
+        min-height: 50px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .maxdiv img {
+        margin-left: 5px;
+        height: 40px;
+        width: 40px;
+    }
+
+    .rightBottom2 {
+        background-image: url("../img/btn_right.png");
+        width: 50%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .scrollView {
+        position: relative;
+        z-index: 2;
+        margin-top: -150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 170px;
+        height: 150px;
+        background-color: white;
+        overflow-y: scroll;
+    }
+
+    .scrollView h3 {
+        display: flex;
+        color: white;
+        margin: 0;
+        background-size: 100% 100%;
+    }
+
+    .scrollView .it {
+        background-color: #314a56;
+        color: white;
+        border-bottom: 1px solid white;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    //選擇的燒錄數量
+    var wheelArray = 4
+    //點擊的位置
+    var selectPosition = {position: 0}
+    //讀取到的Sensor資料
+    var itemData = {}
+
+    lifeCycle.onCreate = function () {
+        glitter.keyEventListener = function (json) {
+            if (json.mAction == 0) {
+                if (json.mKeyCode == 20 && ((selectPosition.position + 1) < wheelArray)) {
+                    selectPosition.position = selectPosition.position + 1
+                } else if (json.mKeyCode == 19 && ((selectPosition.position - 1) > 0)) {
+                    selectPosition.position = selectPosition.position - 1
+
+                } else if (json.mKeyCode == 280) {
+                    glitter.runJsInterFace("scanSensor", {}, function (data) {
+                        if(data.data!==undefined){
+                            if(selectPosition.position!==-1){
+                                itemData[`${selectPosition.position}`] = {
+                                    id: data.data,
+                                    bat: "",
+                                    kpa: "",
+                                    c: "",
+                                    vol: ""
+                                }
+                                notifyList(true)
+                            }
+                        }
+                        glitter.runJsInterFace("playBeet",{},function (){})
+                    })
+                }else if(json.mKeyCode == 131){
+                    readSensor()
+                }
+            }
+        }
+        glitter.selectWay = 0
+        glitter.addObserver(selectPosition, "position", function (result) {
+            notifyList()
+        })
+        glitter.readRxReceive = function () {
+            readSensor()
+        }
+        $("body").click(function () {
+            $('#selectWay').hide()
+        })
+        $('#selectWay').hide()
+        if (glitter.share.isOgenius) {
+            glitter.runJsInterFace("getInt", {
+                name: "Pre"
+            }, function (data) {
+                switch (data.data) {
+                    case "0":
+                        glitter.publicBeans.pressure = 'psi'
+                        break
+                    case "1":
+                        glitter.publicBeans.pressure = 'bar'
+                        break
+                    case "2":
+                        glitter.publicBeans.pressure = 'kpa'
+                        break
+                    default:
+                        glitter.publicBeans.pressure = 'kpa'
+                        break
+                }
+                notifyList()
+            })
+            glitter.runJsInterFace("getInt", {
+                name: "Tem"
+            }, function (data) {
+                switch (data.data) {
+                    case "0":
+                        glitter.publicBeans.tem = 'C'
+                        break
+                    case "1":
+                        glitter.publicBeans.tem = 'F'
+                        break
+                    default:
+                        glitter.publicBeans.tem = 'C'
+                        break
+                }
+                notifyList()
+            })
+        }
+    }
+
+    function notifyList(toNext) {
+        var img = ''
+        var html = `<div class="item" style="background-color: #d7d8d9">
+<div id="selectWayC" class="mindiv"></div>
+<div class="maxdiv">ID</div>
+<div class="mindiv">${glitter.publicBeans.pressure}</div>
+<div class="mindiv">${glitter.publicBeans.tem}</div>
+<div class="mindiv" style="background-image: url('../img/icon_sensor_battery.png');background-size: 40px 40px;background-repeat: no-repeat;background-position: center;"></div>
+</div>`
+        if (selectPosition.position !== -1) {
+            var toggle = true
+            for (var b = 0; b < wheelArray; b++) {
+                if (toggle && toNext && itemData["" + b] === undefined) {
+                    toggle = false
+                    selectPosition.position = b
+                    break
+                }
+            }
+        }
+
+        for (var a = 0; a < wheelArray; a++) {
+            $("#w" + a).removeClass("tireSelect")
+            $("#w" + a).removeClass("tireOk")
+            var wtext=[glitter.language(312),glitter.language(309),glitter.language(310),glitter.language(311)][a]
+            if (itemData["" + a] === undefined) {
+                html += `
+      <div onclick="selectPosition.position=${a};clickItem(${a});" id="focus${a}" class="item" style="background-color: ${(selectPosition.position === a) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position === a) ? 'white' : 'black'};">
+<div class="mindiv" style="background-color:#d7d8d9;color: black; ">${wtext}</div>
+<div class="maxdiv"></div>
+<div class="mindiv"></div>
+<div class="mindiv"></div>
+<div class="mindiv"></div>
+</div>
+      `
+            } else {
+                $("#w" + a).toggleClass("tireOk")
+                var wtext=[glitter.language(312),glitter.language(309),glitter.language(310),glitter.language(311)][a]
+                html += `
+<div onclick="selectPosition.position=${a};clickItem(${a});" id="focus${a}" class="item" style="background-color: ${(selectPosition.position === a) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position === a) ? 'white' : 'black'};">
+<div class="mindiv" style="background-color:#d7d8d9;color: black; ">${wtext}</div>
+<div class="maxdiv">${(itemData["" + a].result) ? '<img src="../img/icon_check_sensor_ok.png">' : (itemData["" + a].result === false) ? '<img src="../img/icon_check_sensor_fail.png">' : ''}${itemData["" + a].id}</div>
+<div class="mindiv">${(itemData["" + a].kpa)}</div>
+<div class="mindiv">${(itemData["" + a].c)}</div>
+<div class="mindiv">${itemData["" + a].bat}</div>
+</div>
+      `
+            }
+        }
+        $("#w" + selectPosition.position).toggleClass("tireSelect")
+        $('#itemList').html(html)
+        $('#selectWayC').click(function () {
+            // $('#selectWay').show()
+            return false
+        })
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${((gBundle.Make === undefined) || (gBundle.Model === undefined) || (gBundle.Year === undefined)) ? `` : `${gBundle.Make}/${gBundle.Model}/${gBundle.Year}`}
+</h3>
+${(glitter.share.isOgenius) ? `
+<div style="height: 90px;display: flex;align-items: center;justify-content: center;width: calc(100% - 40px);margin-left: 20px;">
+${glitter.language(425)}
+</div>
+` : `
+<div style="width: 100%;position: relative;flex:auto;">
+<div style="display: flex;position:absolute;height: 100%;width: 100%;align-items: center;">
+<div style="flex: auto;margin-left: 10px;">
+<h3 style="font-size: 18px;font-weight:400; ">※ ${glitter.language(505)}</h3>
+<h3 style="color: #FF4400;font-size: 18px;font-weight:400;">※ ${glitter.language(425)}</h3>
+</div>
+<img src="../img/oglite_hint.png" style="height: 100%;max-width: 50%;">
+</div>
+</div>
+`}
+<div id="selectWay" class="scrollView">
+<div style="flex: auto;"></div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=0;notifyList();">
+<img src="../img/icon_read_sensor.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.language(143)}</h3>
+</div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=1;notifyList();">
+<img src="../img/icon_key_in.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.language(26)}</h3>
+</div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=2;notifyList();">
+<img src="../img/icon_scan.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.language(19)}</h3>
+</div>
+</div>
+<div id="itemList" style="width: 100%;display: flex;flex-direction: column;">
+
+</div>
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="
+          glitter.changePage('page/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)
+          " >
+        ${glitter.language(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+         readSensor()
+         ">
+        ${glitter.language(143)}
+        </div>
+</div>
+    `
+    }
+    /*
+    * 讀取函式
+    * */
+    var toggle = true
+    var programFinish = false
+    var itemlist = undefined
+    var success=false
+    function readSensor() {
+        if(success){
+            gBundle.triepress=itemData
+            glitter.changePage('page/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)
+            return;
+        }
+        if (!toggle) {
+            return
+        }
+        toggle = false
+        if (Object.keys(itemData).length === wheelArray) {
+            toggle = true
+            program()
+            return;
+        }
+        glitter.share.getMMY(`select count(1)
+                              from \`Summary table\`
+                              where \`Make\` = '${gBundle.Make}'
+                              and \`Model\` = '${gBundle.Model}'
+                              and \`Year\` = '${gBundle.Year}'
+                              and \`OG Programe\`='True'`,
+            function (result) {
+                var count = result.data[0]["count(1)"]
+                if (count === '0') {
+                    glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, gBundle)
+                } else {
+                    glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.language(231), function () {
+                    })
+                    glitter.runJsInterFace("readMtSensor", {count: 4, make: gBundle.Make, model: gBundle.Model, year: gBundle.Year}, function (data) {
+                        itemlist = data.data
+                        toggle = true
+                        glitter.closeDiaLogWithTag('Dia_Loading_Cancel')
+                        itemData = {}
+                        var size = 0
+                        data.data.map(function (result) {
+                            size += 1
+                            Object.keys(itemData).map(function (data) {
+                                if (itemData[data]) {
+                                    if (itemData[data].id === result.id) {
+                                        itemData[data] = undefined
+                                    }
+                                }
+                            })
+                            itemData[`${selectPosition.position}`] = result
+                            notifyList(true)
+                        })
+                        selectPosition.position = -1
+                        notifyList()
+                    })
+                }
+            })
+
+    }
+    /*
+    * 燒錄函式
+    * */
+    function program() {
+        itemlist=[]
+        for(var a=0;a<wheelArray;a++){
+            itemlist.push(itemData[`${a}`])
+        }
+        glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.language(8), function () {
+        })
+        glitter.runJsInterFace("startProgram", {
+            data: itemlist,
+            make: gBundle.Make,
+            model: gBundle.Model,
+            year: gBundle.Year
+        }, function (response) {
+            glitter.closeDiaLogWithTag('Dia_Loading_Cancel')
+            toggle = true
+            var result=true
+            Object.keys(itemData).map(function (data) {
+                response.data.map(function (data2){
+                    if (data2.id.substring(4, 8) === itemData[data].id.substring(4, 8)) {
+                        itemData[data] = data2
+                        result=result&&data2.result
+                    }
+                })
+            })
+            success=result
+            if(success){
+                $('#next').html(glitter.language(145))
+            }
+            selectPosition.position=-1
+            notifyList()
+        })
+    }
+
+    //選擇某列
+    function clickItem(result) {
+        if (programFinish) {
+            return
+        }
+        switch (glitter.selectWay) {
+            case 0:
+                readSensor()
+                break
+            case 1:
+                keyInId(result)
+                break
+            case 2:
+                glitter.openQrScanner(function (data) {
+                    if (data.indexOf(",") !== -1) {
+                        data = data.split(',')[1]
+                        var data2 = {
+                            idCount: data.length,
+                            id: data,
+                            bat: "",
+                            kpa: "",
+                            c: "",
+                            vol: ""
+                        }
+                        itemData["" + result] = data2
+                        notifyList(true)
+                    } else if (data.indexOf("*") !== -1) {
+                        data = data.split('*')[1]
+                        var data2 = {
+                            idCount: data.length,
+                            id: data,
+                            bat: "",
+                            kpa: "",
+                            c: "",
+                            vol: ""
+                        }
+                        itemData["" + result] = data2
+                        notifyList(true)
+                    } else if (data.length <= 8) {
+                        var data2 = {
+                            idCount: data.length,
+                            id: data,
+                            bat: "",
+                            kpa: "",
+                            c: "",
+                            vol: ""
+                        }
+                        itemData["" + result] = data2
+                        notifyList(true)
+                    }
+                })
+                break
+        }
+    }
+
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+</script>

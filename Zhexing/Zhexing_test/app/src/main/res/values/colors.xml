@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="title_color">#002F51</color>
+    <color name="sign_in_title_color">#6AC6D7</color>
+    <color name="init_text_color">#6B7B85</color>
+    <color name="address_text_color">#F8F8F8</color>
+    <color name="title_black">#1F333E</color>
+    <color name="text_change_color">#D87A06</color>
+    <color name="title_yyyymmdd_orange">#E64E00</color>
+    <color name="title_mmss_gray">#6B7B85</color>
+    <color name="Red">#ff0000</color>
+    <color name="orange_button">#E64E00</color>
+    <color name="driver_name">#FF9B00</color>
+    <color name="qr_code_background_color">#314B57</color>
+</resources>

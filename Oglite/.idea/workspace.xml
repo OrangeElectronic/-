@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fb6b96d0-0b81-4f21-9189-dc9fb1f2e655" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Oglite.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite.xcodeproj/project.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite.xcodeproj/project.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/WorkspaceSettings.xcsettings" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/WorkspaceSettings.xcsettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Headers/BleLibrary-Swift.h" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Headers/BleLibrary-Swift.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/Project/arm64.swiftsourceinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/Project/arm64.swiftsourceinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/arm64-apple-ios.swiftdoc" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/arm64-apple-ios.swiftdoc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/arm64-apple-ios.swiftmodule" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/arm64-apple-ios.swiftmodule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/arm64.swiftdoc" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/arm64.swiftdoc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/arm64.swiftmodule" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/BleLibrary.framework/Modules/BleLibrary.swiftmodule/arm64.swiftmodule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/BleLibrary/BleLibrary.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/BleLibrary/BleLibrary.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Command.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Command.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Dialog/Dia_Logout.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Dialog/Dia_Logout.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Dialog/Dia_NoSensor.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Dialog/Dia_NoSensor.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Dialog/Dia_Reset.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Dialog/Dia_Reset.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Dialog/Dia_Update.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Dialog/Dia_Update.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Dialog/Progress.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Dialog/Progress.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Dialog/Progress.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Dialog/Progress.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Headers/FotaLibrary-Swift.h" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Headers/FotaLibrary-Swift.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/Project/arm64.swiftsourceinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/Project/arm64.swiftsourceinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/arm64-apple-ios.swiftdoc" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/arm64-apple-ios.swiftdoc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/arm64-apple-ios.swiftmodule" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/arm64-apple-ios.swiftmodule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/arm64.swiftdoc" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/arm64.swiftdoc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/arm64.swiftmodule" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary.framework/Modules/FotaLibrary.swiftmodule/arm64.swiftmodule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary/FotaLibrary.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary/FotaLibrary.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary/FotaLibrary.xcodeproj/project.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary/FotaLibrary.xcodeproj/project.xcworkspace/xcuserdata/jianzhi.wang.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/FotaLibrary/FotaLibrary.xcodeproj/xcuserdata/jianzhi.wang.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/FotaLibrary/FotaLibrary.xcodeproj/xcuserdata/jianzhi.wang.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/MemoryUploader.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/MemoryUploader.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/ObdCommand.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/ObdCommand.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/OgCommand.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/OgCommand.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Add_Favorite.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Add_Favorite.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Area.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Area.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_CheckSesor_Detail.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_CheckSesor_Detail.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_CheckSesor_Detail.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_CheckSesor_Detail.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Device_Information.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Device_Information.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Enroll.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Enroll.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Favroite.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Favroite.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Home.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Home.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Idcopy_obd.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Idcopy_obd.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Idcopy_obd.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Idcopy_obd.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Program.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Program.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Program.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Program.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Program_Detail.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Program_Detail.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Scanner.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Scanner.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Scanner.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Scanner.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Select_Make.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Select_Make.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Select_Model.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Select_Model.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Select_Year.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Select_Year.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Setting_Favorite.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Setting_Favorite.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_SignIn.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_SignIn.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_Vehicle_Select.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_Vehicle_Select.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/Page/Page_WebView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/Page/Page_WebView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/ViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/ViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/Cell_DataSelect.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/Cell_DataSelect.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/Cell_Device_Infoemation.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/Cell_Device_Infoemation.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/Cell_Favorite.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/Cell_Favorite.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/Cell_Program_Detail.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/Cell_Program_Detail.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/Cell_Program_Detail.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/Cell_Program_Detail.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/Cell_Sensor_Info.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/Cell_Sensor_Info.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/Cell_Vehicle_Detail.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/Cell_Vehicle_Detail.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/Cell_Vehicle_Detail.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/Cell_Vehicle_Detail.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/HomeItem.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/HomeItem.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/cell/HomeItem.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/cell/HomeItem.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/model/Md_FileJsonVersion .swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/model/Md_FileJsonVersion .swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/model/PublicBeans.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/model/PublicBeans.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/model/SensorData.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/model/SensorData.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/model/SharePre.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/model/SharePre.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/tool/ConversionJson.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/tool/ConversionJson.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oglite/tool/DonloadFile.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Oglite/tool/DonloadFile.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1pE1tvyYAtG9C0RYeULlZxIMhQm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb6b96d0-0b81-4f21-9189-dc9fb1f2e655" name="Default Changelist" comment="" />
+      <created>1614733653597</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614733653597</updated>
+      <workItem from="1614733654798" duration="53000" />
+      <workItem from="1614734160871" duration="108000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

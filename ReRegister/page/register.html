@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    .scrollView{
+        overflow-y: scroll;
+        height: calc(100% - 50px);
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .scrollView h3{
+        font-size: 20px;
+    }
+    .scrollView h2{
+        font-size: 16px;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreate = function () {
+
+    }
+    lifeCycle.onCreateView = function () {
+        return `<div style="font-size:16px;height: 50px;width: 100%;background-color: #E95008;display: flex;align-items: center;justify-content: center;color: white;">
+${glitter.ogInterFace.getLan("jz.16")}
+</div>
+<div class="scrollView">
+<h3 style="font-size: 16px;">${glitter.ogInterFace.getLan("jz.488")}</h3>
+</div>
+<h2>${glitter.ogInterFace.getLan("jz.92")}</h2>
+<input style="font-size: 14px;" value="${gBundle}">
+<h2>${glitter.ogInterFace.getLan("jz.93")}</h2>
+<h2>${glitter.ogInterFace.getLan("jz.94")}</h2>
+`
+    }
+</script>

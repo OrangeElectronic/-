@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreateView=function (){
+
+        return `<div style="width:100%;display: flex;height: 60px;align-items: center;justify-content: center;font-size: 18px;background-color: #EE4F15;color: white;">
+   ${(!glitter.titleBarData.withHome) ? `<img src="image/btn_back.png" style="width: 50px;height: 50px;" onclick="glitter.goBack()">`:`<div style="width: 50px;"></div>`}
+   <div style="width: 50px;"></div>
+${(glitter.titleBarData.text!=="工程模式") ? `<h3 style="flex:auto;text-align: center;" onClick="glitter.TxRxData()">${glitter.titleBarData.text}</h3>`:`<h3 style="flex: auto; text-align: center;">${glitter.titleBarData.text}</h3>`}
+        ${(glitter.titleBarData.bleConnect) ? '  <img src="image/ble_connect.png" style="width: 50px;height: 30px;" >':'<div style="width: 50px;"></div>'}
+    ${(!glitter.titleBarData.withHome) ? ' <img src="image/btn_home.png" style="width: 50px;height: 50px;" onclick="glitter.goMenu()">':'<div style="width: 50px;"></div>'}
+    </div>`
+    }
+
+    lifeCycle.onCreate=function (){
+        glitter.titleBarData.update=function (){
+            $('body').html(lifeCycle.onCreateView())
+        }
+    }
+</script>

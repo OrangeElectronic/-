@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  html{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;flex-direction: column;align-items: center;justify-content: center;
+  }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/extension.js"></script>
+<body>
+</body>
+</html>
+<script>
+  lifeCycle.onCreate=function (){
+
+  }
+
+  lifeCycle.onCreateView=function (){
+    return `
+        <div style="border-radius:10px;background-color: #E64E00;width: calc(100% - 30px);display: flex;flex-direction: column;align-items: center;justify-content: center;">
+        ${
+      glitter.print(function (){
+        if(["1","2"].indexOf( glitter.mmyInterFace.selectMMY["OGL Auto"])!==-1){
+          return `<h3 style="font-size: 20px;border-bottom: 1px solid white;width: 100%;text-align: center;padding-bottom: 10px;padding-top: 10px;margin:0;color: #f5ff68;"
+onclick="
+glitter.selectFunction.select=glitter.selectFunction.enum.ObdRelearn
+glitter.goMenu()
+glitter.changePage('page/Page_ID_Copy.html','Page_ID_Copy',true,{})
+glitter.closeDiaLog()
+">${glitter.getLan(15)}</h3>
+<div style="width: 1px;height: 100%;background-color: white;"></div>`
+        }else{
+          return  ``
+        }
+      })
+    }
+ <h3 style="font-weight:400;color: white;font-size: 20px;border-bottom: 1px solid white;width: 100%;text-align: center;padding-bottom: 10px;padding-top: 10px;margin:0;"
+ onclick="
+ glitter.goBack('Page_Number_Choice')
+ glitter.closeDiaLog()
+ "
+ >${glitter.getLan(288)}</h3>
+  <h3 style="font-weight:400;color: white;font-size: 20px;width: 100%;text-align: center;border-bottom: 1px solid white;padding-bottom: 10px;padding-top: 10px;margin:0;"
+  onclick="
+     glitter.changePage('page/Page_Comic_Relearm_Procedure.html','Page_Comic_Relearm_Procedure',true,{})
+     glitter.closeDiaLog()
+  ">${glitter.getLan(135)}</h3>
+  <h3 style="font-weight:400;color: white;font-size: 20px;width: 100%;text-align: center;padding-bottom: 10px;padding-top: 10px;margin:0;"
+  onclick="
+    glitter.closeDiaLog()
+  ">${glitter.getLan(3)}</h3>
+</div>
+</div>
+        `
+  }
+
+</script>

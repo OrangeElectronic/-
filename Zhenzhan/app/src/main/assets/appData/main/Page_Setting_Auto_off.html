@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+    }
+    #viewclass{
+        width: 100%;
+        /*display: flex;*/
+        flex-direction: column;
+        /*align-content: center;*/
+        /*margin-bottom: 5%;*/
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    .titleText{
+        height:60px;
+        width:100%;
+        font-size:20px;
+        background-color:white;
+        color:black;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .enterBt {
+        background-image: url("../image/btn_botton.png");
+        width: 100%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .delete {
+        width: 30px;
+        height: 30px;
+        background-color: white;
+        color: #40606F;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .tdSelect {
+        border-style:solid;display:flex;align-items:center;color: black;
+        border-width: 1px;
+        border-radius: 5px;
+        color: gray;
+        font-size: 20px;
+        background-image: url("../image/grag.png");
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+
+    let data = {};
+    data.text=["Auto off after"]
+    data.times=["5 minutes","10 minutes","15 minutes","Never"]
+    var timesPos=0
+
+    lifeCycle.onCreate=function(){
+     updateView()
+        $('#Enter').click(function () {
+            glitter.goBack()
+        })
+  }
+  function updateView(){
+      let Adapter=new GlAdapter(document.getElementById('viewclass'),
+          function (){return data.text.length},
+          function (position) {
+          var spiiner=[]
+          var pos=0
+          if(position===0){
+              spiiner=data.times
+              pos=timesPos
+          }
+              //id=' + position + '
+              //<img id=' + "test"+position + ' height="30%" width="100%" >
+              let html = `
+<div class="titleText" style="margin-top: 5%;font-weight: bold">
+` + data.text[position] + `</div>
+<div id=`+"spinner"+position +` class="tdSelect" style="height: 60px;width:auto;margin-top: 1%;margin-left: 10%;margin-right: 10%;padding-left:5% ">
+` + spiiner[pos] + `</div>
+`
+              return html
+          } )
+      Adapter.notifyDataSetChange()
+
+      for (var i=0;i<data.text.length;i++){
+          var id = "spinner"+i
+          $("#"+id).click(function () {
+              var spiiner=[]
+              if(this.id==="spinner0"){
+                  spiiner=data.times
+              }
+              changeTitle(this.id,spiiner)
+          })
+      }
+      function changeTitle(id,spiiner){
+          var json = []
+          //var id = this.id
+          for (var i = 0; i <spiiner.length; i++) {
+              json = json.concat({
+                  title: spiiner[i], click: function (tit) {
+                      console.log("MMY:"+i+","+spiiner[i])
+
+                          for (var m = 0; m <spiiner.length; m++) {
+                              if(tit===spiiner[m]){
+                                  if(id==="spinner0"){
+                                      if(timesPos!==m){
+                                          timesPos=m
+                                      }
+                                  }
+                                  break
+                              }
+                          }
+
+                          updateView()
+                          glitter.closeDiaLog()
+                  }
+              })
+          }
+          glitter.openDiaLog('dialog/Dia_List_Item.html', 'Dia_List_Item', false,true,json)
+      }
+
+  }
+
+  lifeCycle.onCreateView=function (){
+        return (`<div style="width: 100%;height: 60px;background-color: #1F333E;color: white;display:flex;justify-content: center;align-items: center">Auto off</div>
+
+            <div style="width: 100%;height: calc(100% - 180px);" id="viewclass"></div>
+            <div id="Enter" class="enterBt">Enter</div>
+
+`)
+  }
+</script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+    <link href="../glitterBundle/bootstrap2.css" rel="stylesheet">
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    img{
+        width: 200px;
+    }
+    .centerImg{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background-image: url("../img/btn_rectangle.png");
+        background-size: 100% 100%;
+        border-radius: 10px;
+        width: 200px;
+        height: 40px;
+    }
+
+</style>
+<body>
+<script>
+
+    lifeCycle.onCreate = function () {
+
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+    <h3 style="height: 50px;background-color: orange;display: flex;align-items: center;justify-content: center;color: white;margin: 0;">
+    ${glitter.getLan(579)}
+</h3>
+<div class="text-center flex-column align-items-center justify-content-evenly row" style="width: 100%;height: calc(100% - 110px);overflow-y: scroll;padding: 0;margin: 0;">
+<div class="text-center flex-column align-items-center justify-content-center" style="display: flex;" onclick="
+glitter.selectWay=0;
+ glitter.changePage('page/Page_Program_Detail.html','Page_Program_Detail',true,{})
+">
+<img src="../img/OG%20Lite燒錄sensor擺放位置.png">
+<h3 class="centerImg">${glitter.getLan(305)}</h3>
+</div>
+<div style="width: 100%;background-color: whitesmoke;height: 1px;"></div>
+<div class="text-center flex-column align-items-center justify-content-center" style="display: flex;" onclick="
+glitter.selectWay=2;
+ glitter.changePage('page/Page_Program_Detail.html','Page_Program_Detail',true,{})
+">
+<img src="../img/OG%20Lite_SCAN%20ID.png">
+<h3 class="centerImg">${glitter.getLan(19)}</h3>
+</div>
+</div>
+    `
+    }
+</script>
+</body>
+</html>

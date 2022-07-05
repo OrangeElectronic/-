@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    body{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;flex-direction: column;align-items: center;justify-content: center;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+</body>
+</html>
+<script>
+    lifeCycle.onCreate=function (){
+       if((glitter.share.CancelError)){
+           glitter.share.CancelError=false
+           glitter.closeDiaLogWithTag(getTag())}
+    }
+    lifeCycle.onCreateView=function (){
+        return `
+        <div style="border-radius:10px;background-color: #E64E00;width: 140px;height: 170px;display: flex;flex-direction: column;align-items: center;justify-content: center;">
+        <img src="../img/icon_error.png" style="width: 60px;height: 60px;background-color: white;border-radius: 30px;">
+        <h3 style="color: white;font-size: 13px;">${glitter.getLan(300)}</h3>
+</div>
+        `
+    }
+</script>

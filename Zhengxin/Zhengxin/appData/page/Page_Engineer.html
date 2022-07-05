@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+        overflow-y: hidden;
+    }
+
+    .review {
+        padding-left: 10px;
+        overflow-y: scroll;
+        height: calc(100% - 60px);
+        width: 100%;
+    }
+
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/extension.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    var waitUpload=""
+    var time=""
+    lifeCycle.onCreate = function () {
+        for (var a = 0; a < glitter.obdData.data.length; a++) {
+            let dataList = glitter.obdData.data[a].data
+            for (var i = 0; i < dataList.length; i++) {
+                $('#review').append(`<h3 style='color: white;'>${dataList[i].data}</h3>`)
+            }
+            $('#review').append(`<h3 style='color: red;'>${glitter.obdData.data[a].time}</h3>`)
+        }
+        glitter.obdData.callback = function (data,readSpeed) {
+            var scrollbt = glitter.isScrollBtn($('#review'))
+            let dataList = data.data
+            var html=``
+            for (let i = 0; i < dataList.length; i++) {
+                html+=`<h3 style='color: white;'>${dataList[i].data}</h3>\n`
+            }
+            html+=`<h3 style='color: red;'>${data.time}</h3>\n`
+            $('#review').append(html)
+            if (scrollbt) {
+                glitter.scrollToBtn($('#review'))
+            }
+            if(readSpeed){
+                waitUpload+=html.replace(/'/g,"\\'")
+                time=data.time
+            }
+        }
+        setTimeout(function () {
+            glitter.scrollToBtn($('#review'))
+        }, 100)
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `${glitter.getTitleBar('工程模式')}
+      <div class="review" id="review" style="height: calc(100% - 100px);"></div>
+<!--      <div  style="background-color: white;width: 100%;height: 50px;display: flex;align-items: center;justify-content: center;">-->
+<!--      <h3 onclick="toggle=true;" style="background-color: #315CA1;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;color: white;">開始</h3>-->
+<!--      <h3 onclick="toggle=false;upload();"  style="background-color: #315CA1;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;color: white;">停止並上傳</h3>-->
+<!--      </div>-->
+        `
+    }
+
+    function upload(){
+        rootActivity().apiRequest.postTextWithDialog("INSERT INTO `zhengxin_obd_data`.`obd_data` (`data`,`time`) VALUES ('"+waitUpload+"','"+time+"');\n" , function (data) {
+            if (data === "success") {
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '上傳成功!!',function () {})
+            } else {
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '上傳失敗!!')
+            }
+        }, function (error) { })
+    }
+
+</script>

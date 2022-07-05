@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: auto;
+        color: white;
+        font-size: 16px;
+    }
+
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    .unSelect {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid lightgray;
+    }
+
+    .Select {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid lightgray;
+        background-color: #1a4064;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .flexGray {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        width: 120px;
+        height: 100%;
+        background-color: #cdcbcb;
+        color: #2F4C63;
+        font-size: 14px;
+    }
+
+    .flexWhite {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-right: 10px;
+        padding-left: 10px;
+        width: calc(100% - 120px);
+        height: 100%;
+        background-color: white;
+        color: #2F4C63;
+    }
+
+    input {
+        border: 1px solid lightgray;
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+        color: #6a6a6a;
+    }
+
+    .bottomBar {
+        display: flex;
+        height: 50px;
+    }
+
+    #Content {
+        overflow-y: scroll;
+        padding-bottom: 50px;
+        height: calc(100vh - 180px);
+    }
+
+
+    .blueHint {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .blueHint h3 {
+        color: black;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid lightgray;
+        margin: 0;
+        height: 50px;
+    }
+
+    .Tposition {
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+    }
+
+    .spinner {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% - 20px);
+        height: calc(100% - 10px);
+        border-radius: 10px;
+        padding-left: 10px;
+        background-image: url("../img/down.png");
+        background-repeat: no-repeat;
+        background-size: 15px 15px;
+        background-position: right 10px center;
+        border: 1px solid lightgray;
+    }
+
+    .bottomBar {
+        display: flex;
+        height: 50px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 60px;
+        width: 40%;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/botton_Press.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .flex {
+        display: flex;
+        width: 100%;
+        height: 70px;
+    }
+
+    .minItem {
+        width: 50px;
+        color: black;
+        border: 1px solid whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .maxItem {
+        width: calc((100% - 50px) / 3);
+        border: 1px solid whitesmoke;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        word-break: break-word;
+        font-size: 12px;
+    }
+
+    input {
+        width: calc(100% - 20px);
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: calc(100% - 20px);
+        min-width: 40px;
+        border: 1px solid whitesmoke;
+        font-size: 14px;
+        color: black;
+    }
+</style>
+<body>
+<script>
+    "use strict";
+    lifeCycle.onCreate = function () {
+
+    }
+
+    function configCarFile() {
+        try {
+            ["LF", "RF", "RR", "LR"].map(function (data) {
+                if (gBundle.carFile.filter(function (data2) {
+                    return data === data2.TireLocal
+                }).length === 0) {
+                    gBundle.carFile.push({
+                        "Lplate": gBundle.Lplate,
+                        "TireLocal": data,
+                        "TireBrand": "",
+                        "TireModel": "",
+                        "Depth": "",
+                        "Dot": "",
+                        "SN": "",
+                        "Size": "",
+                        "Size1": "",
+                        "Size2": "",
+                        "Path": [],
+                        "WebPath": "",
+                        "Speed": ""
+                    })
+                }
+            })
+        } catch (e) {
+            gBundle.carFile = []
+            configCarFile()
+            console.log(e)
+        }
+    }
+
+    lifeCycle.onCreateView = function () {
+        configCarFile()
+        return `
+       <div style="background-color: #2F4C63;height: 60px;width: 100%;display: flex;align-items: center;">
+    <h3 class="title">${glitter.language(552)}</h3>
+</div>
+<div id="Content">
+<div id="Tiresame">
+${bindView({
+            bind:'Tiresame',
+            view:function () {
+                var tireSameList = [0, 1, 2]
+                var html = ''
+                tireSameList.map(function (data, index) {
+                    html += `<div style="width: 100%;height: 50px;display: flex;align-items: center;border-bottom: 1px solid lightgray;">
+<div style="display: flex;align-items: center;justify-content: center;width: 50px;height: 50px;border-right: 1px solid lightgray;" onclick="
+${event(function () {
+                        if (gBundle.selectTireSmae == data) {
+                            gBundle.selectTireSmae = undefined
+                        } else {
+                            gBundle.selectTireSmae = data
+                        }
+                        notifyDataChange('Tiresame')
+                    })}
+">
+<div class="${(data === gBundle.selectTireSmae) ? `Select` : `unSelect`}"></div>
+</div>
+<h3 style="color: black;margin: 0 0 0 10px;font-size: 15px;">${[glitter.getLan(553), glitter.getLan(554), glitter.getLan(576)][index]}</h3>
+</div>`
+                })
+                return html
+            }
+        })}
+</div>
+<div id="carFile" style="border: 1px solid lightgray;">
+${bindView({
+            bind:'carFile',
+            view:function () {
+                var html = ``
+                var mapIndex = ["LF", "RF", "RR", "LR"]
+                function run(){}
+                mapIndex.map(function (index) {
+                    var haveData = false
+                    var data2 = getCatFile(index)
+                    if (data2.TireBrand === '' || (!data2.TireBrand)) {
+                        data2.TireBrand = '1'
+                    }
+                    html += `<div style="height: 150px;display: flex;border-bottom: 1px solid lightgray;">
+<div style="width: 50px;display: flex;align-items: center;justify-content: center;background-color: whitesmoke;border-right: 1px solid lightgray;">${index}</div>
+<div style="width: calc(100vw - 50px);display: flex;flex-direction: column;">
+<div style="display: flex;width: 100%;height: 50px;border-bottom: 1px solid lightgray;align-items: center;padding-right: 10px;box-sizing: border-box;">
+<select id="selectItem" style="flex:auto;margin-right:10px;height: 40px;border-radius: 10px;border: 1px solid whitesmoke;background-color: white;margin-left: 10px;" onchange="${event(function (e) {
+                        switch (gBundle.selectTireSmae) {
+                            case 0:
+                                gBundle.carFile.map(function (data){
+                                    data.TireBrand = $(e).val()
+                                })
+                                break
+                            case 1:
+                                var at=['LF','RF']
+                                if(at.indexOf(index)!==-1){
+                                    getCatFile("LF").TireBrand = $(e).val()
+                                    getCatFile("RF").TireBrand = $(e).val()
+                                }
+                                break
+                            case 2:
+                                var ar=['LR','RR']
+                                if(ar.indexOf(index)!==-1){
+                                    getCatFile("LR").TireBrand = $(e).val()
+                                    getCatFile("RR").TireBrand = $(e).val()
+                                }
+                                break
+                        }
+                        data2.TireBrand = $(e).val()
+                        notifyDataChange('carFile');
+                    })}" >
+${glitter.print(function () {
+                        var html = ''
+                        html += `<option value="Other" selected>${glitter.getLan(514)}</option>`
+                        glitter.share.publicData.brand.map(function (data) {
+                            if (data.id === data2.TireBrand) {
+                                haveData = true
+                            }
+                            html += `<option value="${data.id}" ${(data.id === data2.TireBrand) ? `selected` : ``}>${data.name}</option>`
+                        })
+
+                        return html
+                    })}
+</select>
+${glitter.print(function () {
+                        if (haveData) {
+                            return ``
+                        } else {
+                            return `<input style="text-align:left;padding-left:10px;box-sizing:border-box;width: 50vw;height: 35px;border: 1px solid lightgray;" onchange="
+${event(function (e) {
+                                switch (gBundle.selectTireSmae) {
+                                    case 0:
+                                        gBundle.carFile.map(function (data){
+                                            data.TireBrand = $(e).val()
+                                        })
+                                        break
+                                    case 1:
+                                        var at=['LF','RF']
+                                        if(at.indexOf(index)!==-1){
+                                            getCatFile("LF").TireBrand = $(e).val()
+                                            getCatFile("RF").TireBrand = $(e).val()
+                                        }
+                                        break
+                                    case 2:
+                                        var ar=['LR','RR']
+                                        if(ar.indexOf(index)!==-1){
+                                            getCatFile("LR").TireBrand = $(e).val()
+                                            getCatFile("RR").TireBrand = $(e).val()
+                                        }
+                                        break
+                                }
+                                data2.TireBrand = $(e).val()
+                                notifyDataChange('carFile');
+                            })}" value="${(getCatFile(index).TireBrand !== glitter.getLan(514)) ? getCatFile(index).TireBrand : ``}"
+placeholder="${glitter.getLan(514)}">`
+                        }
+                    })}
+</div>
+<div style="height: 50px;width: 100%;display: flex;align-items: center;justify-content: center;border-bottom: 1px solid lightgray;">
+<input style="text-align:left;padding-left:10px;box-sizing:border-box;width: calc(100% - 20px);height: 35px;border: 1px solid lightgray;" placeholder="Model" onchange="
+${event(function (e) {
+                        switch (gBundle.selectTireSmae) {
+                            case 0:
+                                gBundle.carFile.map(function (data){
+                                    data.TireModel = $(e).val()
+                                })
+                                break
+                            case 1:
+                                var at=['LF','RF']
+                                if(at.indexOf(index)!==-1){
+                                    getCatFile("LF").TireModel = $(e).val()
+                                    getCatFile("RF").TireModel = $(e).val()
+                                }
+                                break
+                            case 2:
+                                var ar=['LR','RR']
+                                if(ar.indexOf(index)!==-1){
+                                    getCatFile("LR").TireModel = $(e).val()
+                                    getCatFile("RR").TireModel = $(e).val()
+                                }
+                                break
+                        }
+                        data2.TireModel = $(e).val()
+                        notifyDataChange('carFile');
+                    })}
+" value="${data2.TireModel}"></div>
+<div style="width: 100%;display: flex;height: 50px;align-items: center;padding-left: 10px;padding-right: 10px;box-sizing: border-box;">
+<select style="flex:auto;height: 40px;font-size: 14px;text-align: center;border: 1px solid whitesmoke;background-color: white;" id="Size" type="number" onchange="
+${event(function (e) {
+                        switch (gBundle.selectTireSmae) {
+                            case 0:
+                                gBundle.carFile.map(function (data){
+                                    data.Size = $(e).val()
+                                })
+                                break
+                            case 1:
+                                var at=['LF','RF']
+                                if(at.indexOf(index)!==-1){
+                                    getCatFile("LF").Size = $(e).val()
+                                    getCatFile("RF").Size = $(e).val()
+                                }
+                                break
+                            case 2:
+                                var ar=['LR','RR']
+                                if(ar.indexOf(index)!==-1){
+                                    getCatFile("LR").Size = $(e).val()
+                                    getCatFile("RR").Size = $(e).val()
+                                }
+                                break
+                        }
+                        data2.Size = $(e).val()
+                        notifyDataChange('carFile');
+                    })}
+" >
+${glitter.print(function () {
+                        var html = ''
+                        for (var a = 30; a <= 355; a += 5) {
+                            html += `<option ${(data2.Size === `${a}`) ? `selected` : ``}>${a}</option>`
+                        }
+                        return html
+                    })}
+</select>
+<span style="margin-left: 10px;font-size: 16px;margin-right: 10px;">/</span>
+<select style="flex:auto;height: 40px;font-size: 14px;text-align: center;border: 1px solid whitesmoke;background-color: white;" id="Size" type="number" onchange="${event(function (e) {
+                        switch (gBundle.selectTireSmae) {
+                            case 0:
+                                gBundle.carFile.map(function (data){
+                                    data.Size1 = $(e).val()
+                                })
+                                break
+                            case 1:
+                                var at=['LF','RF']
+                                if(at.indexOf(index)!==-1){
+                                    getCatFile("LF").Size1 = $(e).val()
+                                    getCatFile("RF").Size1 = $(e).val()
+                                }
+                                break
+                            case 2:
+                                var ar=['LR','RR']
+                                if(ar.indexOf(index)!==-1){
+                                    getCatFile("LR").Size1 = $(e).val()
+                                    getCatFile("RR").Size1 = $(e).val()
+                                }
+                                break
+                        }
+                        data2.Size1 = $(e).val()
+                        notifyDataChange('carFile');
+                    })}" >
+${glitter.print(function () {
+                        var html = ''
+                        for (var a = 25; a <= 100; a += 5) {
+                            html += `<option ${(data2.Size1 === `${a}`) ? `selected` : ``}>${a}</option>`
+                        }
+                        return html
+                    })}
+</select>
+<span style="margin-left: 10px;font-size: 16px;margin-right: 10px;">R</span>
+<select style="flex:auto;height: 40px;font-size: 14px;text-align: center;border: 1px solid whitesmoke;background-color: white;" id="Size" type="number" onchange="${event(function (e) {
+                        switch (gBundle.selectTireSmae) {
+                            case 0:
+                                gBundle.carFile.map(function (data){
+                                    data.Size2 = $(e).val()
+                                })
+                                break
+                            case 1:
+                                var at=['LF','RF']
+                                if(at.indexOf(index)!==-1){
+                                    getCatFile("LF").Size2 = $(e).val()
+                                    getCatFile("RF").Size2 = $(e).val()
+                                }
+                                break
+                            case 2:
+                                var ar=['LR','RR']
+                                if(ar.indexOf(index)!==-1){
+                                    getCatFile("LR").Size2 = $(e).val()
+                                    getCatFile("RR").Size2 = $(e).val()
+                                }
+                                break
+                        }
+                        data2.Size2 = $(e).val()
+                        notifyDataChange('carFile');
+                    })}" >
+${glitter.print(function () {
+                        var html = ''
+                        for (var a = 12; a <= 28; a += 1) {
+                            html += `<option ${(data2.Size2 === `${a}`) ? `selected` : ``}>${a}</option>`
+                        }
+                        return html
+                    })}
+</select>
+<select style="flex:auto;height: 40px;font-size: 14px;text-align: center;border: 1px solid whitesmoke;background-color: white;" id="Size" type="number" onchange="${event(function (e) {
+                        switch (gBundle.selectTireSmae) {
+                            case 0:
+                                gBundle.carFile.map(function (data){
+                                    data.Speed = $(e).val()
+                                })
+                                break
+                            case 1:
+                                var at=['LF','RF']
+                                if(at.indexOf(index)!==-1){
+                                    getCatFile("LF").Speed = $(e).val()
+                                    getCatFile("RF").Speed = $(e).val()
+                                }
+                                break
+                            case 2:
+                                var ar=['LR','RR']
+                                if(ar.indexOf(index)!==-1){
+                                    getCatFile("LR").Speed = $(e).val()
+                                    getCatFile("RR").Speed = $(e).val()
+                                }
+                                break
+                        }
+                        data2.Speed = $(e).val()
+                        notifyDataChange('carFile');
+                    })}" >
+${glitter.print(function () {
+                        var html = ''
+                        var array = ['N', 'Q', 'S', 'T', 'H', 'V', 'W', 'Y', 'Z']
+                        array.map(function (data) {
+                            html += `<option ${(data2.Speed === `${data}`) ? `selected` : ``}>${data}</option>`
+                        })
+                        return html
+                    })}
+</select>
+
+</div>
+</div>
+</div>`
+                })
+                return html
+            }
+        })}
+</div>
+</div>
+        <div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick=" glitter.changePage('page/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" >
+          ${glitter.language(562)}
+        </div>
+         <div id="next" class="rightBottom" onmousedown="glitter.changePage('page/Page_Tire_Depth.html','Page_Tire_Depth',true,gBundle);" >
+        ${glitter.language(145)}
+        </div>
+</div>
+    `
+    }
+    window.addEventListener("resize", function (v) {
+        this.LastWindowHeight = this.CurWindowHeight;
+        this.CurWindowHeight = window.innerHeight;
+        if ((this.LastWindowHeight - this.CurWindowHeight) / this.LastWindowHeight > 0.25) {
+            if(glitter.isOG){
+                document.activeElement.scrollIntoView()
+            }
+            $('#Content').css('height', 'calc(100vh - 120px)')
+            $('#bottomBar').hide()
+        } else {
+            $('#Content').css('height', 'calc(100vh - 180px)')
+            $('#bottomBar').show()
+        }
+    });
+    lifeCycle.onResume = function () {
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                    }
+                }
+            }
+        }
+    }
+
+    function getCatFile(index) {
+        return gBundle.carFile.filter(function (data2) {
+            return index === data2.TireLocal
+        })[0]
+    }
+</script>
+</body>
+</html>

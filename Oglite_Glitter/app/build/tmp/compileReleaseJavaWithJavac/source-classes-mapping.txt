@@ -1,0 +1,20 @@
+com/orange/oglite_glitter/BuildConfig.java
+ com.orange.oglite_glitter.BuildConfig
+com/orange/oglite_glitter/Fota/FotaPeripheral.java
+ com.orange.oglite_glitter.Fota.FotaPeripheral
+com/orange/oglite_glitter/Fota/FotaPeripheralImpl.java
+ com.orange.oglite_glitter.Fota.FotaPeripheralImpl
+ com.orange.oglite_glitter.Fota.FotaPeripheralImpl$1
+ com.orange.oglite_glitter.Fota.FotaPeripheralImpl$2
+com/orange/oglite_glitter/Fota/FotaPeripheralManagerImpl.java
+ com.orange.oglite_glitter.Fota.FotaPeripheralManagerImpl
+ com.orange.oglite_glitter.Fota.FotaPeripheralManagerImpl$1
+ com.orange.oglite_glitter.Fota.FotaPeripheralManagerImpl$2
+com/orange/oglite_glitter/Fota/FotaPeripheralManagerListener.java
+ com.orange.oglite_glitter.Fota.FotaPeripheralManagerListener
+com/orange/oglite_glitter/Fota/FotaPeripheralListener.java
+ com.orange.oglite_glitter.Fota.FotaPeripheralListener
+com/orange/oglite_glitter/Fota/FotaState.java
+ com.orange.oglite_glitter.Fota.FotaState
+com/orange/oglite_glitter/Fota/FotaPeripheralManager.java
+ com.orange.oglite_glitter.Fota.FotaPeripheralManager

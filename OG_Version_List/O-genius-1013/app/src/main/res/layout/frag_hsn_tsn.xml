@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/st"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
+
+        <EditText
+                android:id="@+id/hsnt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/stroke"
+                android:ems="10"
+                android:hint="HSN(zu 2.1/zu 2)"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:textSize="14sp" />
+
+        <ImageView
+                android:id="@+id/imageView33"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/cornerwhite" />
+
+        <EditText
+                android:id="@+id/tsnt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/stroke"
+                android:ems="10"
+                android:hint="TSN(zu 2.2/zu 3)"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:textSize="14sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/color_FF314A56">
+
+        <TextView
+                android:id="@+id/textView38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="Fahrzeug auswählen"
+                android:textColor="@color/color_white"
+                android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+            android:id="@+id/sn_setup"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_FF314A56"
+            android:gravity="center"
+            android:text="Suchen "
+            android:textColor="@color/color_white"
+            android:textSize="17sp" />
+
+    <ImageView
+            android:id="@+id/imageView35"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/st"
+            android:layout_marginBottom="60dp"
+            app:srcCompat="@mipmap/hsn_tsn_placeimage" />
+</RelativeLayout>

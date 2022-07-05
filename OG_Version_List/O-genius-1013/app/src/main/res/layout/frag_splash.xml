@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/backgrview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:background="@mipmap/loadingicon">
+
+    <!--loading-->
+    <!-- <com.orange.tpms.widget.LoadingWidget
+        android:id="@+id/ldw_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />-->
+
+    <!--loading-->
+    <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="274dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:translationY="50dp"
+            android:visibility="visible"
+
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loadwhite.json"
+            app:lottie_loop="true"/>
+
+    <com.orange.tpms.widget.NormalDialogWidget
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
+    <TextView
+            android:id="@+id/textView54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="TextView"
+            android:textColor="@color/white"/>
+
+</RelativeLayout>

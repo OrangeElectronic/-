@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .big {
+        margin-top: 10px;
+        height: 210px;
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .small {
+        margin-top: 0px;
+        border-bottom: 1px black solid;
+        height: 110px;
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .smallText {
+        color: #314a56;
+        font-size: 16px;
+        flex: auto;
+        margin-left: 10px;
+    }
+    .bigBottom {
+        position: absolute;
+        background-image: url("../img/btn_rectangle.png");
+        width: 100%;
+        height: 50px;
+        bottom: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreate = function () {
+        setKeyEvent()
+        changeFocus()
+    }
+
+
+    lifeCycle.onCreateView = function () {
+        return `
+    <h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${glitter.language(119)}
+</h3>
+<div style="height: calc(100vh - 100px);overflow-y: scroll;display: flex;flex-direction: column;align-items: center;justify-content: space-around;" id="itemList">
+<div class="big" onclick="glitter.changePage('page/Page_Select_Make.html','Page_Select_Make',true,gBundle)">
+<img src="../img/mmy.png" style="height: 130px;width: 130px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">${glitter.language(121)}</h3>
+</div>
+<div style="width: 100%;background-color: whitesmoke;height: 1px;"></div>
+<div class="big" onclick="glitter.changePage('page/Page_Select_Make.html','Page_Select_Make',true,gBundle);">
+<img src="../img/hsn_n.png" style="height: 130px;width: 130px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">HSN/TSN</h3>
+</div>
+</div>
+    `
+    }
+    lifeCycle.onResume=function (){
+        setKeyEvent()
+    }
+    var focus=0
+    function setKeyEvent(){
+        if(glitter.share.isOgenius){
+            glitter.keyEventListener=function (json){
+                if(json.mAction==0){
+                    if(json.mKeyCode==20&&focus<1){
+                        focus++
+                        changeFocus()
+                    }else if(json.mKeyCode==19&&focus>0){
+                        focus--
+                        changeFocus()
+                    }else if(json.mKeyCode==66){
+                        if(focus===0){
+                            glitter.changePage('page/Page_Select_Make.html','Page_Select_Make',true,gBundle);
+                        }else{
+
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    function changeFocus(){
+        switch (focus){
+            case 0:
+                $('#itemList').html(`
+                <div class="big" onclick="glitter.changePage('page/Page_Select_Make.html','Page_Select_Make',true,gBundle)">
+<img src="../img/btn_vehicle_selection_p.png" style="height: 130px;width: 130px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">${glitter.language(121)}</h3>
+</div>
+<div style="width: 100%;background-color: whitesmoke;height: 1px;"></div>
+<div class="big" onclick="glitter.changePage('page/Page_Hsn_Tsn.html','Page_Hsn_Tsn',true,gBundle);">
+<img src="../img/hsn_n.png" style="height: 130px;width: 130px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">HSN/TSN</h3>
+</div>
+                `)
+                break
+            case 1:
+                $('#itemList').html(`
+                <div class="big" onclick="glitter.changePage('page/Page_Select_Make.html','Page_Select_Make',true,gBundle)">
+<img src="../img/mmy.png" style="height: 130px;width: 130px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">${glitter.language(121)}</h3>
+</div>
+<div style="width: 100%;background-color: whitesmoke;height: 1px;"></div>
+<div class="big" onclick="glitter.changePage('page/Page_Hsn_Tsn.html','Page_Hsn_Tsn',true,gBundle);">
+<img src="../img/hsn_p.png" style="height: 130px;width: 130px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">HSN/TSN</h3>
+</div>
+                `)
+                break
+        }
+    }
+
+
+</script>

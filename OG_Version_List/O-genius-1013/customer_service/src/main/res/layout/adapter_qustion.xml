@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            app:srcCompat="@mipmap/app_btn_bluetooth_n"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/app_btn_bluetooth_n" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_toEndOf="@id/imageView"
+            android:gravity="center"
+            android:text="藍芽連線"
+            android:textColor="@color/Black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</RelativeLayout>

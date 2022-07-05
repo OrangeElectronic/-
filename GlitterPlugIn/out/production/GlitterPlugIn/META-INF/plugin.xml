@@ -1,0 +1,32 @@
+<idea-plugin>
+  <id>com.squareStudio.glitter</id>
+  <name>Glitter</name>
+  <version>1.0</version>
+  <vendor email="sam38124@gmail.com" url="www.squarestudio.tw">SquareStudio</vendor>
+
+  <description></description>
+  <change-notes> </change-notes>
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+    <toolWindow id="Sample Calendar" secondary="true" icon="AllIcons.General.Modified" anchor="right"
+                factoryClass="com.squareStudio.glitter.action.toolWindow.MyToolWindowFactory"/>
+  </extensions>
+  <actions>
+    <!-- Add your actions here -->
+    <action id="Glitter_Initial" class="com.squareStudio.glitter.action.Glitter_Initial" text="Glitter Initial"
+            description="Initial your glitter">
+      <add-to-group group-id="NavBarToolBar" anchor="first"/>
+    </action>
+
+    <action id="test" class="com.squareStudio.glitter.action.test" text="測試" description="測試">
+      <add-to-group group-id="ToolsMenu" anchor="first"/>
+    </action>
+  </actions>
+
+</idea-plugin>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+  <link href="../glitterBundle/bootstrap.css" rel="stylesheet">
+  <link href="../fontawesome-free-5.15.4-web/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/xcode.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <link href="../css/article.css" rel="stylesheet">
+
+</head>
+<style>
+  .caselist img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    position: relative;
+  }
+
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){
+    hljs.highlightAll();
+
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+<div class="inner">
+  <h3 style="font-size: 39px;font-weight: 400;margin-top: 10px;">AddAppointment</h3>
+    <div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 20px;"></div>
+    <h4>Use this api to get updated sensor data.</h4>
+    <div style="height: 1px;width: 100%;background-color: whitesmoke;margin-top: 20px;margin-bottom: 10px;"></div>
+    <span>Request Method : <span class="text-danger">POST</span><br><br>
+    <span>Request URL : <a style="color: dodgerblue;cursor: pointer;"  target="_blank">https://bento2.orange-electronic.com/tireHotelApi</a></span><br>
+<br>
+<span>Content-Type : <span class="text-danger">application/json</span></span><br><br>
+<span>Request Data : </span><br><br>
+${glitter.share.code.js(`
+/*
+Key value:
+1. Appoint: Put the appoint time (Date Format:yyyy-mm-dd hh:mm:ss)
+
+2. Default Season: Set the default appear tire on O-genius (Value:1.summer 2.winter 3.allSeason)
+
+3. Book_Information: Put the user information include name/plate/mail
+
+4. Vehicle_Information: Put the car information include HSN/TSN/Maker/Model/Year/Leasing
+
+5. Summer Tire/Winter Tire/All Tire: Put the season tire store information include
+StorageDate/Location/Tire_Size/Quantity/MeasureDate/LfDepth(Front left
+tire)/RfDepth(Front right tire)/RrDepth(Rear right tire)/ LrDepth (Rear left tire)
+ If no data please put NA as default value
+
+6. ogAccount:Put the og account what you sign in on o-genius
+
+7. HaveMmy:If you have Make/Model/Year please put true else put false
+*/
+
+{
+    "request": "AddAppointment",
+    "appoint": "2021-04-19 10:49:00",
+    "defaultSeason": "summer",
+    "Booking_Information": {
+        "name": "jianzhi.wang",
+        "plate": "y3-5427",
+        "mail": "sam38124@gmail.com"
+    },
+    "Vehicle_Information": {
+        "HSN": "1234",
+        "TSN": "4567",
+        "Maker": "ABARTH",
+        "Model": "124",
+        "Year": "2016->",
+        "Leasing": "YES"
+    },
+    "Summer_Tire": {
+        "storageDate": "2019/10/20 10: 53: 00",
+        "location": "4-1",
+        "tire_Size": "13inch",
+        "quantity": "4",
+        "measureDate": "2019/10/20 10: 53: 00",
+        "lfDepth": "1",
+        "rfDepth": "2",
+        "rrDepth": "3",
+        "lrDepth": "4"
+    },
+    "Winter_Tire": {
+        "storageDate": "2019/10/21 10: 53: 00",
+        "location": "4-1",
+        "tire_Size": "13inch",
+        "quantity": "3",
+        "measureDate": "2019/10/21 10: 53: 00",
+        "lfDepth": "5",
+        "rfDepth": "6",
+        "rrDepth": "7",
+        "lrDepth": "NA"
+    },
+    "ALL_Tire": {
+        "storageDate": "2019/10/22 10: 53: 00",
+        "location": "4-1",
+        "tire_Size": "13inch",
+        "quantity": "3",
+        "measureDate": "2019/10/22 10: 53: 00",
+        "lfDepth": "NA",
+        "rfDepth": "NA",
+        "rrDepth": "NA",
+        "lrDepth": "NA"
+    },
+    "ogAccount": "orangerd",
+    "HaveMmy": "true",
+    "token": "asbasnew2"
+}
+
+`)}
+
+<br><br><span>Response Data : </span><br><br>
+${glitter.share.code.js(`
+{
+"result":"true"
+}
+
+`)}
+
+
+
+
+        </div>
+</div>
+    `
+  }
+
+</script>
+</body>
+</html>

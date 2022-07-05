@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #content {
+        width: calc(100% - 100px);
+        height: 70%;
+        background: #406D91;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+    }
+    .BleText{
+        /*width: calc(100% - 20px);*/
+        /*height: 10%;*/
+        height: 50px;
+        width: 95%;
+        color: white;
+        font-size: 14px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding-left: 5%;
+        flex-shrink:0
+    }
+    #content h4{
+        color: white;
+        font-size: 16px;
+    }
+    .spi{
+        background: white;
+        height: 1px;
+        width: 100%;
+        flex-shrink:0
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body></body>
+</html>
+<script>
+
+    var bleTest = ["BLE_FRONT"]
+    lifeCycle.onCreateView = function () {
+        return `
+        <div id="content">
+        <h4>連線設備</h4>
+</div>
+        `
+    }
+
+    var bleData = 0
+    lifeCycle.onCreate=function (){
+
+        var clock = Clock()
+
+        $('body').html(' <div id="content">\n' +
+            '        <h4>連線設備</h4>\n' +
+            '<div class="spi"></div></div>')
+        function timer(){
+
+            if(bleData<bleTest.length) {
+                for (var a = 0; a < bleTest.length; a++) {
+                    //glitter.connect(`+a+`)
+                    $('#content').append(`<div class="BleText" id="` + "ble" + a + `" onclick="" style="background:#406D91">` + bleTest[a] + `</div>
+<div class="spi"></div>`)
+//              document.getElementById('content').innerHTML += `<div class="BleText" id="`+"ble"+a+`" onclick="connect(`+a+`)" style="background-color:#406D91">`+glitter.bleList[a].name+`</div>
+// <div class="spi"></div>`
+
+                    var text_button = document.getElementById('ble' + a)
+                    $('#ble' + a).click(function () {
+                        //e.preventDefault()
+                        //var num=this.id.replace("ble","")
+                        //glitter.selectCarType = "F_12"
+                        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                        setTimeout(changePage, 3000)
+                        return false
+                    })
+
+                    text_button.addEventListener('touchstart', function (event) {
+                        console.log('touchstart' + ':' + this.id)
+                        $('#' + this.id).css('background', "#E64E00")
+                    }, false);
+                    text_button.addEventListener('touchend', function (event) {
+                        console.log('touchend' + ':' + this.id)
+                        $('#' + this.id).css('background', "#406D91")
+                    }, false);
+                }
+                bleData=bleTest.length
+            }
+
+        }
+        setInterval(timer,1000)
+    }
+
+    function changePage(){
+        glitter.closeDiaLog("Dia_Loading_notext")
+       glitter.changePage('main/Page_Select_Function.html', "Page_Select_Function", true, {})
+    }
+
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+
+    var pos=undefined
+    glitter.connect=function (position){
+
+        pos=position
+        glitter.share.bleUtil.isConnect({
+            callback:function (response){
+                var res=response.result
+                try {
+                    if(res&&(glitter.bleList[position].address===glitter.publicBeans.lastConnect)){
+                        console.log("isConnect:"+"true")
+                        glitter.publicBeans.lastConnect=glitter.bleList[position].address
+                        glitter.share.bleUtil.stopScan()
+                        gBundle()
+                    }else{
+                        console.log("isConnect:"+"false")
+                        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "藍芽連線中...")
+                        if(res){
+                            //console.log("isConnect:"+"disConnect")
+                            console.log("藍芽disConnect_dialog")
+                            glitter.share.bleUtil.disConnect()
+                        }
+                        glitter.share.bleUtil.isConnect({
+                            callback: function (response){
+                                let res=response.result
+                                //glitter.closeDiaLogWithTag('Dia_Loading_notext')
+                                if(res){
+                                    setTimeout(glitter.runExclusive,3000)
+                                }else{
+                                    glitter.closeDiaLogWithTag('Dia_Loading_notext')
+                                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '連線失敗')
+                                }
+                            }
+                        })
+
+                        // glitter.bleUtil.manager.disConnect()
+
+                        // conn(position)
+                    }
+                }catch (e){
+                    alert(e)
+                }
+            }
+        })
+
+
+    }
+
+    var run=0
+    glitter.runExclusive =function () {
+        if(glitter.CarType === "Tread_depth"){
+            console.log("glitter.Tread_depth_end")
+            glitter.closeDiaLogWithTag('Dia_Loading_notext')
+            glitter.publicBeans.lastConnect=glitter.bleList[pos].address
+            glitter.share.bleUtil.stopScan()
+            gBundle()
+            glitter.closeDiaLogWithTag('Dia_Scan_Ble')
+            return
+        }
+
+        var cart = '00'
+        if(glitter.CarType === "F"){
+            cart = 'B1'
+        }
+        if(glitter.CarType === "R"){
+            cart = 'B2'
+        }
+        console.log("glitter.CarType:"+glitter.CarType)
+        glitter.command.exclusive(cart,function (data) {
+            run++
+            if(run===2){
+                glitter.closeDiaLogWithTag('Dia_Loading_notext')
+                glitter.publicBeans.lastConnect=glitter.bleList[pos].address
+                glitter.share.bleUtil.stopScan()
+                gBundle()
+                glitter.closeDiaLogWithTag('Dia_Scan_Ble')
+                run=0
+            }else{
+                if(data){
+                    setTimeout(glitter.runExclusive,500)
+                }else{
+                    run=0
+                }
+            }
+        })
+    }
+
+    function conn(){
+        alert(122132)
+
+    }
+</script>

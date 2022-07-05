@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html{
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/start_ble.png');*/
+        background-repeat: no-repeat;
+        /*background-attachment: fixed;*/
+        background-color: black;
+        /*background-size: 100% 100%;*/
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+    }
+    .viewCenter{
+        align-items: center;
+        justify-content: center;
+    }
+    .addButton{
+        background-image: url('../image/landscape_btn_026_h.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .reduceButton{
+        background-image: url('../image/landscape_btn_025_h.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+
+    .sliderBar {
+        -webkit-appearance: none;
+        background: gray;
+        color: #d58512;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+    .sliderBar:hover {
+        opacity: 1;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        /*background:green;*/
+        background-image: url("../image/portrait_img_005.png");
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        /*background-attachment: fixed;*/
+        cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: orange;
+        cursor: pointer;
+    }
+    /*!** FF*!*/
+    input[type="range"]::-moz-range-progress {
+        background-color: orange;
+    }
+    input[type="range"]::-moz-range-track {
+        background-color: orange;
+    }
+    /* IE*/
+    input[type="range"]::-ms-fill-lower {
+        background-color: orange;
+    }
+    input[type="range"]::-ms-fill-upper {
+        background-color: orange;
+    }
+    .add_and_reduce{
+        display:flex;width: 35px;height: 35px;color: white;font-size: 30px;
+    }
+    .add_and_reduce_Color{
+        background-color: gray;
+    }
+    /*.add_and_reduce_Color:active{*/
+    /*    background-color: black;*/
+    /*}*/
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<script src="../jslib/touch.js"></script>
+<link rel="stylesheet" type="text/css" href="../until/jquery-ui.css"/>
+<script src="../until/jquery-ui.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+
+    var adapter=''
+    //name:["Pressure Unit","High-Pressure Alert","","Low-Pressure Alert","","Temperature Unit","Temperature Alert","","警報音效","Alert Notification","自動定位開關","Restore defaults"]
+    //high_pressure:1200,low_pressure:600,high_temperature:90
+    var dataTPMS ={name:[glitter.getLanguage("63"),glitter.getLanguage("64"),"",glitter.getLanguage("65"),"",glitter.getLanguage("66"),glitter.getLanguage("67"),"",glitter.getLanguage("125"),glitter.getLanguage("69"),glitter.getLanguage("123"),glitter.getLanguage("70")],
+                   pressure_Unit:"kPa",temperature_Unit:"°C",high_pressure:156,low_pressure:120,high_temperature:60,notification:true}
+    // var dataTPMS = [{name:"Pressure Unit",pressure_Unit:"kPa"},{name:"High-Pressure Alert",high_pressure:1200},{name:"",high_pressure:600},
+    //                 {name:"Low-Pressure Alert",low_pressure:600},{name:"",low_pressure:600},{name:"Temperature Unit",temperature_Unit:"°C"},
+    //                 {name:"Temperature Alert",high_temperature:90},{name:"",high_temperature:90},{name:"Alert Notification",notification:"on"},
+    //                 {name:"Restore defaults",value:""}]
+    var original={HighTem:60,HighPre:156,LowPre:120,Pre_Unit:"kPa",Tem_Unit:"°C",Notice:glitter.tpmsValue.playSound_Alarm}
+    var cartype=glitter.carType
+    if(cartype===1 || glitter.app==="HT471A"){
+        cartype="01"
+    }else if(cartype===2){
+        cartype="02"
+    }
+    //紀錄現在畫面方向，直向:false，橫向:true
+    var changeScreen=false
+    if(glitter.screenPage==="PORTRAIT" || glitter.screenPage===undefined){
+        changeScreen=false
+    }else{
+        changeScreen=true
+    }
+    //changeScreen=true
+
+    glitter.share.orientationPageCallback.push({callback: function (screen) {
+        console.log("setTire:"+screen)
+        if(screen==="PORTRAIT"){
+            changeScreen=false
+        }else{
+            changeScreen=true
+        }
+        createView()
+        // $('body').html(lifeCycle.onCreateView())
+        // touchChange("Enter")
+        // viewAdapter()
+    },tag:"Page_Setting_TPMS"})
+
+    // dataTPMS.name.map(function (value, index, array) {
+    //     console.log("dataTPMS:"+JSON.stringify(value))
+    // })
+
+    lifeCycle.onCreateView=function (){
+        return `
+        <div id="viewTPMS" style="width: 100%;height: calc(100% - 50px);overflow-y: scroll;overflow-x: hidden;"></div>
+        `
+    }
+
+    var tpmsModel={value:dataTPMS.high_pressure,value2:dataTPMS.low_pressure,temValue:dataTPMS.high_temperature,alert:glitter.tpmsValue.playSound_Alarm}
+    lifeCycle.onCreate=function (){
+        readTPMS()
+
+        createView()
+
+        // function touchButton(color,change){
+        //     touchColorChange("highPreReduce",color,change)
+        //     touchColorChange("highPreAdd",color,change)
+        //     touchColorChange("lowPreReduce",color,change)
+        //     touchColorChange("lowPreAdd",color,change)
+        //     touchColorChange("highTemReduce",color,change)
+        //     touchColorChange("highTemAdd",color,change)
+        // }
+        // touchButton("gray","black")
+
+
+        // $("#slider").slider(
+        //     {
+        //         min: 0,
+        //         max: 100,
+        //         step: 1
+        //         // ,change: showValue
+        //
+        //     });
+        //document.getElementById().innerText
+
+        // $('#frag1').click(function () {
+        //     console.log("frag1:true")
+        //     dataTPMS.high_pressure = 1200
+        //     dataTPMS.low_pressure = 600
+        //     dataTPMS.high_temperature = 80
+        // })
+
+        //如果單位、數值、設定變動到，按了返回則會進入此goBack
+        glitter.goBack_TPMS = function () {
+            glitter.goBack = function () {
+                console.log("glitter.goBack:")
+
+                var car=parseInt(cartype,16)
+                if(tpmsModel.temValue.toString() !== original.HighTem.toString() ||
+                    tpmsModel.value.toString() !== original.HighPre.toString() ||
+                    tpmsModel.value2.toString() !== original.LowPre.toString() ||
+                    glitter.tpmsValue.temperature_Unit[car] !== original.Tem_Unit ||
+                    glitter.tpmsValue.pressure_Unit[car] !== original.Pre_Unit ||
+                    glitter.tpmsValue.playSound_Alarm !== tpmsModel.alert){
+
+                    console.log(JSON.stringify(original)+","+JSON.stringify(tpmsModel))
+                    //確定更改TPMS警報設定嗎?
+                    glitter.openDiaLog('dialog/Dia_Info_Problem_Bt.html', 'Dia_Info_Problem_Bt', false, true, {
+                        title:glitter.getLanguage("89"),
+                        cancel:function () {
+                            //console.log("Dia_Info_Problem_Bt:cancel")
+                            glitter.goBack=glitter.copyGoBack.clone()
+                            glitter.closeDiaLog('Dia_Info_Problem_Bt')
+                            glitter.goBack()
+                        },
+                        ok:function () {
+                            //console.log("Dia_Info_Problem_Bt:ok")
+                            glitter.closeDiaLogWithTag('Dia_Info_Problem_Bt')
+                            writeTPMS()
+                        }}, function () {})
+                }else{
+                    glitter.goBack=glitter.copyGoBack.clone()
+                    glitter.goBack()
+                }
+            }
+        }
+        glitter.goBack_TPMS()
+
+    }
+
+    function createView(){
+
+            //console.log("createView:"+position)
+            // adapter=new GlAdapter(document.getElementById('viewTPMS'),
+            //     function (){return dataTPMS.name.length},
+            //     function (position) {
+
+            //間距、按鈕觸發等設定元件*
+                    // <div id="slider" style="width: calc(100% - 30px);height: 10px;background-color: gray;"></div>
+                    var left20 = `<div style="width: 20px"></div>`
+                    var left10 = `<div style="width: 10px;"></div>`
+                    var left5 = `<div style="width: 5px"></div>`
+                    var left1 = `<div style="width: 1px"></div>`
+                    var valueLine = function (pos){
+                        return`<div id="frag${pos}" style="${changeScreen ? `flex:auto`:`width:100%`};height: 50px;"></div>`
+                    }
+                    var touchBlack=`${event(function (e){
+                        $(e).css("background-color","black") })}`
+                    var touchGray=`${event(function (e){
+                        $(e).css("background-color","gray") })}`
+                    var unitView=function (type,array,unit) {
+                        var html=''
+                        array.map(function (data){
+                            html+=`<div class="viewCenter" style="${changeScreen ? `flex:1`:`width: 70px`};height: 100%;display: flex;
+                                ${(unit === data) ? `background:gray;`:``}"
+                                onclick="${event(function (){
+                                if(type==="pre"){
+                                    original.Pre_Unit = data
+                                }else if(type==="tem"){
+                                    original.Tem_Unit = data
+                                }
+                            })}">${data}</div>
+                               `
+                        })
+                        return html
+                    }
+                    var addView=function (event){
+                        return`<div id="highPreAdd" class="viewCenter add_and_reduce add_and_reduce_Color"
+                            onclick="${event}" ontouchstart="${touchBlack}" ontouchend="${touchGray}">+</div>`
+                    }
+                    var reduceView=function (event){
+                        return`<div id="highPreReduce" class="viewCenter add_and_reduce add_and_reduce_Color"
+                            style="font-size: 20px;" onclick="${event}" ontouchstart="${touchBlack}" ontouchend="${touchGray}">－</div>`
+                    }
+                    var buttonView=function (id,bool) {
+                        //${bool ? `display:flex`:''}
+                        return`<div id="${id}" style="${bool ? `display:block`:`display:flex`};height:30px;width: 100px;background:url(../image/portrait_btn_022.png);">
+                              <img style="width:50%;height:100%;background:url(../image/${bool ? 'portrait_btn_022_n.png':'portrait_btn_022_h.png'});">
+                         </div>`
+                    }
+
+                    var alertEvent = `${event(function () {
+                        if (tpmsModel.alert) {
+                            tpmsModel.alert = false
+                        } else {
+                            tpmsModel.alert = true
+                        }
+                    })}`
+
+        var songEvent = `${event(function () {
+            glitter.changePage('page/Page_Select_Music.html', "Page_Select_Music", true, {})
+        })}`
+
+                    var restore_default = `
+                    ${event(function (){
+                        tpmsModel.value = 1200
+                        tpmsModel.value2 = 702
+                        tpmsModel.temValue = 90
+                    })}
+                `
+                    var touchEvent = `ontouchstart="${touchGray}" ontouchend="${touchBlack}"`
+
+            //HTML*
+        var preUnitHTML = `${changeScreen ? dataTPMS.name[0] : ``}<div style="flex: auto;"></div>
+<div id="preUnit" style="display:flex;align-items: center;height: 100%;${changeScreen ? `width:50%`:``}">${
+     bindView({
+         bind: 'preUnit',
+         view: function () {
+               var html = unitView("pre", ["bar", "kPa", "psi"], original.Pre_Unit)
+                   // var array=["bar","kPa","psi"]
+                   // array.map(function (data){
+                   //     html+=`<div class="viewCenter" style="width: 70px;height: 100%;display: flex;
+                   //                 ${(glitter.tpmsValue.pressure_Unit === data) ? `background:gray;`:``}"
+                   //                 onclick="${event(function (){ glitter.tpmsValue.pressure_Unit = data })}">${data}</div>
+                   //            `
+                   // })
+                return html + left20
+         },
+         obj: [{obj: original, key: 'Pre_Unit'}]
+     })}
+</div>`
+        var temUnitHTML = `${changeScreen ? dataTPMS.name[5] : ``}<div style="flex: auto;"></div>
+<div id="temUnit" style="display:flex;align-items: center;height: 100%;${changeScreen ? `width:50%`:``};">
+     ${bindView({
+           bind: 'temUnit',
+           view: function () {
+                 var html = unitView("tem", ["°C", "°F"], original.Tem_Unit)
+                 return html + left20
+           },
+           obj: [{obj: original, key: 'Tem_Unit'}]
+     })}
+</div>`
+            var highPreHTML = `${changeScreen ? ``:`<div style="flex: auto;"></div>`}
+<div id="highPrediv" style="display:flex;align-items: center;${changeScreen ? `width: 50%`:``}">
+    ${changeScreen ? `<div style="width: 60%;">${dataTPMS.name[1]}</div>` : ``}
+    <div id="highPreValue" style="${changeScreen ? `display:flex;justify-content: right;width:40%`:``};">
+        ${bindView({
+                bind: 'highPreValue',
+                view: function () {
+                    return `${glitter.pre_Unit(tpmsModel.value,original.Pre_Unit) + (changeScreen ? `&nbsp`+original.Pre_Unit:``)}`
+                },
+                obj:[{obj:tpmsModel,key:"value"},{obj:original,key:"Pre_Unit" }]
+        })}
+    </div>
+
+</div>
+<div style="display: flex;align-items: center;${changeScreen ? `width: 50%`:``};">
+    ${left20}
+    ${reduceView(event(function (){tpmsModel.value-=6}))}
+    ${changeScreen ? left5+valueLine(2):left1}
+    ${addView(event(function (){tpmsModel.value+=6}))}
+    ${left20}
+</div>
+`
+            var lowPreHTML = `${changeScreen ? `` : `<div style="flex: auto;"></div>`}
+<div id="lowPrediv" style="display:flex;align-items: center;${changeScreen ? `width:50%`:``};">
+    ${changeScreen ? `<div style="width: 60%;">${dataTPMS.name[3]}</div>` : ``}
+    <div id="lowPreValue" style="${changeScreen ? `display:flex;justify-content: right;width:40%`:``};">
+         ${bindView({
+                bind:'lowPreValue',
+                view:function (){
+                    //${glitter.pre_Unit(tpmsModel.value2+120)}
+                    return `${glitter.pre_Unit(tpmsModel.value2,original.Pre_Unit) + (changeScreen ? `&nbsp`+original.Pre_Unit:``)}`},
+                obj:[{obj:tpmsModel,key:"value2"},{obj:original,key:"Pre_Unit" }]
+         })}
+    </div>
+</div>
+<div style="display: flex;align-items: center;${changeScreen ? `width: 50%`:``};">
+    ${left20}
+    ${reduceView(event(function (){ tpmsModel.value2-=6 }))}
+    ${changeScreen ? left5+valueLine(4):left1}
+    ${addView(event(function (){ tpmsModel.value2+=6 }))}
+    ${left20}
+</div>`
+            var highTemHTML = `${changeScreen ? `` : `<div style="flex: auto;"></div>`}
+<div id="highTemdiv" style="display:flex;align-items: center;${changeScreen ? `width:50%`:``};">
+    ${changeScreen ? `<div style="width: 60%;">${dataTPMS.name[6]}</div>` : ``}
+    <div id="highTemValue" style="${changeScreen ? `display:flex;justify-content: right;width:40%`:``};">
+         ${bindView({
+                bind:'highTemValue',
+                view:function (){
+                    //${glitter.pre_Unit(tpmsModel.value2+120)}
+                    return `${glitter.tem_Unit(tpmsModel.temValue,original.Tem_Unit) + (changeScreen ? `&nbsp`+original.Tem_Unit:``)}`},
+                obj:[{obj:tpmsModel,key:"temValue"},{obj:original,key:"Tem_Unit" }]
+            })}
+    </div>
+</div>
+<div style="display: flex;align-items: center;${changeScreen ? `width: 50%`:``};">
+    ${left20}
+    ${reduceView(event(function (){ tpmsModel.temValue-=1 }))}
+    ${changeScreen ? left5+valueLine(7):left1}
+    ${addView(event(function (){ tpmsModel.temValue+=1 }))}
+    ${left20}
+</div>`
+            var alertHTML = `<div style="flex: auto;"></div>
+<div id="alertdiv" style="align-items: center;">
+     ${bindView({
+            bind:'alertdiv',
+            view:function (){
+                    //${glitter.pre_Unit(tpmsModel.value2+120)}
+                    //${tpmsModel.alert ? `display:block`:`display:flex`}
+                 return `<div style="flex: auto;"></div>
+                         <div style="display:flex;height:30px;width: 100px;background:url(../image/portrait_btn_022.png);">
+                              ${tpmsModel.alert ? `<div style="width:50%;height:100%;"></div>`:``}
+                              <img style="width:50%;height:100%;background:url(../image/${tpmsModel.alert ?
+                              'portrait_btn_022_n.png':'portrait_btn_022_h.png'});">
+                         </div>`},
+                obj:[{obj:tpmsModel,key:"alert"}]
+     })}
+</div>
+${left20}`
+
+        var songHTML = `<div style="flex: auto;"></div>>${left20}`
+
+            var autoPositionHTML = `<div style="flex: auto;"></div>
+<div style="width: 70px;height: 40px;background:url(../image/portrait_btn_022_h.png);color: white;
+     display:flex;justify-content: center;align-items: center;" onclick="writeAuto(false)">${glitter.getLanguage("121")}</div>
+${left10}
+<div style="width: 70px;height: 40px;background:url(../image/portrait_btn_022_n.png);color: white;
+     display:flex;justify-content: center;align-items: center;" onclick="writeAuto(true)">${glitter.getLanguage("120")}</div>
+${left20}`
+
+        var allView=``
+        //var count = changeScreen ? 8 : dataTPMS.name.length
+        var count = changeScreen ? 8 : dataTPMS.name.length
+        switch (glitter.app){
+            case "HT471A":
+                count = changeScreen ? 8 : dataTPMS.name.length
+                break
+            default:
+                count = changeScreen ? 7 : dataTPMS.name.length-1
+                break
+        }
+        for (var position=0; position < count ;position++){
+            var slider = false
+            var mainHTML = ``
+            var line=`<div style="width: 100%;height: 1px;background-color: white;"></div>`
+            var clickEvent=``
+            var touchView=false
+            var titleText = dataTPMS.name[position]
+
+            if(changeScreen){
+                if(position===0){
+                    titleText = ``
+                    mainHTML = `
+<div style="width: 60%;height:100%;display: flex;align-items:center;">${preUnitHTML}</div>
+<div style="width: 40%;height:100%;display:flex;align-items:center;">${temUnitHTML}</div>`
+                }else if(position===1){
+                    titleText = ``
+                    //titleText = dataTPMS.name[1]
+                    mainHTML = highPreHTML
+                }else if(position===2){
+                    titleText = ``
+                    //titleText = dataTPMS.name[3]
+                    mainHTML = lowPreHTML
+                }else if(position===3){
+                    titleText = ``
+                    //titleText = dataTPMS.name[6]
+                    mainHTML = highTemHTML
+                }else if(position===4){
+                    titleText = dataTPMS.name[8]
+                    mainHTML = songHTML
+                    clickEvent=songEvent
+                    touchView=true
+                } else if(position===5){
+                    titleText = dataTPMS.name[9]
+                    mainHTML = alertHTML
+                    clickEvent=alertEvent
+                    touchView=true
+                }else if(position===6){
+                    switch (glitter.app) {
+                        case "HT471A":
+                            titleText = dataTPMS.name[10]
+                            //關閉 開啟
+                            mainHTML=autoPositionHTML
+                            touchView=true
+                            break
+                        default:
+                            titleText = dataTPMS.name[11]
+                            clickEvent=restore_default
+                            touchView=true
+                            break
+                    }
+                }else if(position===7){
+                    titleText = dataTPMS.name[11]
+                    clickEvent=restore_default
+                    touchView=true
+                }
+            }else{
+                if(position===0){
+                   mainHTML = preUnitHTML
+                }else if(position===1){
+                    line = ``
+                    mainHTML = highPreHTML
+// ${bindView({
+                    //         bind:'highPrediv',
+                    //         view:function (){
+                    //             //${glitter.pre_Unit(tpmsModel.value+156)}
+                    //
+                    //             return `
+                    // ${glitter.pre_Unit(tpmsModel.value,original.Pre_Unit)}
+                    // ${left20}
+                    // ${reduceView(event(function (){
+                    //     tpmsModel.value-=6
+                    //  }))}
+                    // ${changeScreen ? valueLine(2):left1}
+                    // ${addView(event(function (){
+                    //     tpmsModel.value+=6
+                    // }))}
+                    // ${left20}`},
+                    //         obj:[{obj:tpmsModel,key:"value"},{obj:original,key:"Pre_Unit" }]
+                    //     })}
+                }else if(position===2){
+                    slider = true
+                    mainHTML = valueLine(position)
+                }else if(position===3){
+                    line = ``
+                    mainHTML = lowPreHTML
+                }else if(position===4){
+                    slider = true
+                    mainHTML = valueLine(position)
+                }else if(position===5){
+                    mainHTML = temUnitHTML
+                }else if(position===6){
+                    line = ``
+                    mainHTML = highTemHTML
+                }else if(position===7){
+                    slider = true
+                    mainHTML = valueLine(position)
+                }else if(position===8){
+                    mainHTML = songHTML
+                    clickEvent=songEvent
+                    touchView=true
+                }else if(position===9){
+                    //${buttonView("open",true)}
+                    mainHTML = alertHTML
+                    clickEvent=alertEvent
+                    touchView=true
+                }else if(position===10){
+                    switch (glitter.app) {
+                        case "HT471A":
+                            //關閉 開啟
+                            mainHTML=autoPositionHTML
+                            //mainHTML = restore_default
+                            touchView=true
+                            break
+                        default:
+                            titleText = dataTPMS.name[11]
+                            clickEvent=restore_default
+                            touchView=true
+                            break
+                    }
+                } else if(position===11){
+                    clickEvent=restore_default
+                    //mainHTML = restore_default
+                    touchView=true
+                }
+            }
+
+            allView += `
+                <div style="width: 100%;height: 50px;display: flex;color: white;font-size: 20px;align-items: center;"
+                    onClick="${(clickEvent!==``) ? clickEvent : ''}" ${touchView ? touchEvent : ''}>
+                    ${slider ? left5 : left10}
+                    <div style="max-width: 200px;">${titleText}</div>
+                    ${mainHTML}
+                </div>
+                ${line}
+                `
+                //})
+            //console.log("createView"+position+":"+allView)
+        }
+        //console.log("createView:"+allView)
+        $('#viewTPMS').html(allView)
+
+        glitter.changeFrag($('#frag2').get(0),'../widget/seekbar.html','seekbar2',{
+            type:'value',
+            tpmsModel:tpmsModel,
+            max:1500, min:156, step:6
+        })
+        glitter.changeFrag($('#frag4').get(0),'../widget/seekbar.html','seekbar4',{
+            type:'value2',
+            tpmsModel:tpmsModel,
+            max:1464, min:120, step:6
+        })
+        glitter.changeFrag($('#frag7').get(0),'../widget/seekbar.html','seekbar7',{
+            type:'temValue',
+            tpmsModel:tpmsModel,
+            max:100, min:60, step:1
+        })
+    }
+
+    function readTPMS(){
+        glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+
+        var car=parseInt(cartype,16)
+        glitter.command.readUnitRange(cartype,function (data) {
+            glitter.closeDiaLog()
+
+            if(data[0] === "false"){
+                // dataTPMS.high_temperature="0"
+                // dataTPMS.high_pressure="0"
+                // dataTPMS.low_pressure="0"
+
+                tpmsModel.temValue=60
+                tpmsModel.value=156
+                tpmsModel.value2=120
+
+                original.HighTem=60
+                original.HighPre=156
+                original.LowPre=120
+                original.Pre_Unit = glitter.tpmsValue.pressure_Unit[car]
+                original.Tem_Unit = glitter.tpmsValue.temperature_Unit[car]
+                original.Notice = glitter.tpmsValue.playSound_Alarm
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '讀取失敗', function () {
+                    setTimeout(function () {
+                        //glitter.goBack()
+
+                    }, 200)})
+                console.log("readTPMS:"+JSON.stringify(data))
+            }else{
+                // glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '讀取成功'+"\n"+(parseInt(data[0])-50)+","+data[1]+","+data[2], function () {
+                //     setTimeout(function () {
+                //
+                //     }, 200)})
+                // dataTPMS.high_temperature=(parseInt(data[0])-50).toString()
+                // dataTPMS.high_pressure=data[1]
+                // dataTPMS.low_pressure=data[2]
+                tpmsModel.temValue=data[0]
+                tpmsModel.value=data[1]
+                tpmsModel.value2=data[2]
+
+                original.HighTem=data[0]
+                original.HighPre=data[1]
+                original.LowPre=data[2]
+                original.Pre_Unit = glitter.tpmsValue.pressure_Unit[car]
+                original.Tem_Unit = glitter.tpmsValue.temperature_Unit[car]
+                glitter.setPro("pressure_Unit",JSON.stringify(glitter.tpmsValue.pressure_Unit))
+                glitter.setPro("temperature_Unit",JSON.stringify(glitter.tpmsValue.temperature_Unit))
+                original.Notice = tpmsModel.alert
+                glitter.tpmsValue.playSound_Alarm = tpmsModel.alert
+                glitter.setPro("setNotice",tpmsModel.alert.toString())
+
+                glitter.share.home.updateUI(cartype,glitter.updateData.TPMS,data)
+            }
+            glitter.updateMemmory({mode_data:"讀取-警報值"+cartype,result_data:(data.length!==0 ? "success":"fail")})
+
+        })
+    }
+
+    function writeTPMS(){
+        glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+
+        var car=parseInt(cartype,16)
+        glitter.command.writeUnitRange(cartype,tpmsModel.temValue,tpmsModel.value,tpmsModel.value2,function (data) {
+            //glitter.closeDiaLog('Dia_Progress_Spinner')
+
+            //console.log("writeTPMS:true")
+            if(!data){
+                glitter.closeDiaLog('Dia_Progress_Spinner')
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '設定失敗', function () {
+                    setTimeout(function () {
+                        //glitter.goBack()
+                    }, 200)})
+            }else{
+                original.HighTem=tpmsModel.temValue
+                original.HighPre=tpmsModel.value
+                original.LowPre=tpmsModel.value2
+                glitter.tpmsValue.pressure_Unit[car] = original.Pre_Unit
+                glitter.tpmsValue.temperature_Unit[car] = original.Tem_Unit
+                glitter.setPro("pressure_Unit",JSON.stringify(glitter.tpmsValue.pressure_Unit))
+                glitter.setPro("temperature_Unit",JSON.stringify(glitter.tpmsValue.temperature_Unit))
+                glitter.tpmsValue.playSound_Alarm = tpmsModel.alert
+
+                var tpmsValue=[tpmsModel.temValue,tpmsModel.value,tpmsModel.value2]
+                glitter.share.home.updateUI(cartype,glitter.updateData.TPMS,tpmsValue)
+
+                //**
+                // glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true, '設定成功', function () {
+                //     setTimeout(function () {
+                //
+                //     }, 200)})
+                // setTimeout(function () {
+                //     glitter.goBack=glitter.copyGoBack.clone()
+                //     glitter.closeDiaLog('Dia_Info_Success')
+                //     glitter.goBack()
+                // }, 3000)
+            }
+            // var message=`{result:${data},data:{H_Temp:${H_Temp}, high_pre：${high_pre}, low_pre：${low_pre}}`
+            // glitter.updateMemmory("設定-警示值設定",`{${message}}`)
+            glitter.updateMemmory({mode_data:"設定-警報值"+cartype,result_data:(data ? "success":"fail")})
+
+            if(data){
+                setTimeout(readAllStatus,1000)
+            }
+        })
+    }
+
+    function readAllStatus(){
+
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+        glitter.command.readAllTireStatus(cartype,16,function (read_data) {
+            console.log("ble-" + read_data)
+            glitter.closeDiaLog('Dia_Progress_Spinner')
+            // if (read_data.length === 0) {
+            if (read_data[0] === "false") {
+                //glitter.closeDiaLog()
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '讀取失敗', function () {
+                    setTimeout(function () {
+                        //glitter.goBack()
+
+                    }, 200)
+                })
+            } else {
+                glitter.share.home.updateUI(cartype,glitter.updateData.TIRE_STATUS,read_data)
+            }
+
+            //"讀取-胎溫胎壓狀態",(read_data[0] === "false" ? "fail" : "success")
+            glitter.updateMemmory({mode_data:"讀取-胎溫胎壓狀態"+cartype,result_data:(read_data[0] === "false" ? "fail" : "success")})
+
+            if (read_data[0] !== "false") {
+                glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, false, '設定成功', function () {
+                    setTimeout(function () {
+
+                    }, 200)})
+                setTimeout(function () {
+                    glitter.goBack=glitter.copyGoBack.clone()
+                    glitter.closeDiaLog('Dia_Info_Success')
+                    glitter.goBack()
+                }, 3000)
+            }
+        })
+
+    }
+
+    function writeAuto(open){
+        var auto=""
+        if(open){
+            auto="0A"
+        }else{
+            auto="0F"
+        }
+
+        glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+
+        glitter.command.writeAutoPosition("02",auto,function (data) {
+            glitter.closeDiaLog('Dia_Progress_Spinner')
+            if(!data){
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '設定失敗', function () {
+                    setTimeout(function () {
+                        //glitter.goBack()
+                    }, 200)})
+            }else{
+                glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true, '設定成功', function () {
+                    setTimeout(function () {
+
+                    }, 200)})
+            }
+            glitter.updateMemmory({mode_data:"設定-自動定位"+(open ? "(開啟)":"(關閉)"),result_data:(data ? "success":"fail")})
+        })
+    }
+
+    function addButton(){
+
+    }
+
+
+</script>

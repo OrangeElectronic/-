@@ -1,0 +1,643 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100F97822384089D002AC2BD /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100F97802384089D002AC2BD /* Register.swift */; };
+		100F97832384089D002AC2BD /* Register.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100F97812384089D002AC2BD /* Register.xib */; };
+		10B238A4231664930063072F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238A3231664930063072F /* AppDelegate.swift */; };
+		10B238A6231664930063072F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238A5231664930063072F /* ViewController.swift */; };
+		10B238A8231664940063072F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B238A7231664940063072F /* Assets.xcassets */; };
+		10B238AB231664940063072F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B238A9231664940063072F /* Main.storyboard */; };
+		10B238CD231665080063072F /* tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238B3231665010063072F /* tool.swift */; };
+		10B238CE231665080063072F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B238B4231665070063072F /* Assets.xcassets */; };
+		10B238CF231665080063072F /* Cabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238B6231665070063072F /* Cabel.swift */; };
+		10B238D0231665080063072F /* Enroll.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B238B7231665070063072F /* Enroll.xib */; };
+		10B238D1231665080063072F /* parent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10B238B8231665070063072F /* parent.plist */; };
+		10B238D2231665080063072F /* Sqlhelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238B9231665070063072F /* Sqlhelper.swift */; };
+		10B238D3231665080063072F /* FtpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238BA231665080063072F /* FtpManager.swift */; };
+		10B238D4231665080063072F /* Extend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238BC231665080063072F /* Extend.swift */; };
+		10B238D5231665080063072F /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238BD231665080063072F /* Language.swift */; };
+		10B238D6231665080063072F /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238BE231665080063072F /* Command.swift */; };
+		10B238D7231665080063072F /* CRC16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238BF231665080063072F /* CRC16.swift */; };
+		10B238D8231665080063072F /* FormatConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238C0231665080063072F /* FormatConvert.swift */; };
+		10B238D9231665080063072F /* MainPrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238C1231665080063072F /* MainPrace.swift */; };
+		10B238DA231665080063072F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238C2231665080063072F /* Extension.swift */; };
+		10B238DB231665080063072F /* Enroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238C3231665080063072F /* Enroll.swift */; };
+		10B238DC231665080063072F /* MainPrace.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B238C4231665080063072F /* MainPrace.xib */; };
+		10B238DD231665080063072F /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B238C6231665080063072F /* Function.swift */; };
+		10B238DE231665080063072F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B238C9231665080063072F /* Main.storyboard */; };
+		10B238DF231665080063072F /* child.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10B238CB231665080063072F /* child.plist */; };
+		10B238E0231665080063072F /* Extension.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B238CC231665080063072F /* Extension.xib */; };
+		10B239052318FA620063072F /* SersorRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B239042318FA620063072F /* SersorRecord.swift */; };
+		10F9623123BF6629000A61D0 /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F9622E23BF65DC000A61D0 /* ORSSerial.framework */; };
+		10F9623223BF6629000A61D0 /* ORSSerial.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 10F9622E23BF65DC000A61D0 /* ORSSerial.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10F9623323BF6629000A61D0 /* ORSSerialPort Tests.xctest in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 10F9623023BF65DC000A61D0 /* ORSSerialPort Tests.xctest */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10F9623523BF9223000A61D0 /* simple-loader2.json in Resources */ = {isa = PBXBuildFile; fileRef = 10F9623423BF9223000A61D0 /* simple-loader2.json */; };
+		A5EB34F77B3AB9A9A779B17B /* Pods_USB_TPMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F5811BE40B422A9C5B2ACC /* Pods_USB_TPMS.framework */; };
+		CAEBAF9923CEB70B004B7F40 /* SensorBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEBAF9823CEB70B004B7F40 /* SensorBean.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		10F9622D23BF65DC000A61D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10F9622823BF65DC000A61D0 /* ORSSerialPort.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9DCA89121A2BB106009285EB;
+			remoteInfo = ORSSerial;
+		};
+		10F9622F23BF65DC000A61D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10F9622823BF65DC000A61D0 /* ORSSerialPort.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D7472131B6D7767002D8B10;
+			remoteInfo = "ORSSerialPort Tests";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		10B238F1231665760063072F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				10F9623223BF6629000A61D0 /* ORSSerial.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10B238F2231665760063072F /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				10F9623323BF6629000A61D0 /* ORSSerialPort Tests.xctest in Embed PlugIns */,
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		100F97802384089D002AC2BD /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		100F97812384089D002AC2BD /* Register.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Register.xib; sourceTree = "<group>"; };
+		10B238A0231664930063072F /* USB TPMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "USB TPMS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		10B238A3231664930063072F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		10B238A5231664930063072F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		10B238A7231664940063072F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		10B238AA231664940063072F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		10B238AC231664940063072F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10B238AD231664940063072F /* USB_TPMS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = USB_TPMS.entitlements; sourceTree = "<group>"; };
+		10B238B3231665010063072F /* tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tool.swift; sourceTree = "<group>"; };
+		10B238B4231665070063072F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		10B238B6231665070063072F /* Cabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cabel.swift; sourceTree = "<group>"; };
+		10B238B7231665070063072F /* Enroll.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Enroll.xib; sourceTree = "<group>"; };
+		10B238B8231665070063072F /* parent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = parent.plist; sourceTree = "<group>"; };
+		10B238B9231665070063072F /* Sqlhelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sqlhelper.swift; sourceTree = "<group>"; };
+		10B238BA231665080063072F /* FtpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FtpManager.swift; sourceTree = "<group>"; };
+		10B238BC231665080063072F /* Extend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extend.swift; sourceTree = "<group>"; };
+		10B238BD231665080063072F /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		10B238BE231665080063072F /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		10B238BF231665080063072F /* CRC16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRC16.swift; sourceTree = "<group>"; };
+		10B238C0231665080063072F /* FormatConvert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatConvert.swift; sourceTree = "<group>"; };
+		10B238C1231665080063072F /* MainPrace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPrace.swift; sourceTree = "<group>"; };
+		10B238C2231665080063072F /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		10B238C3231665080063072F /* Enroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enroll.swift; sourceTree = "<group>"; };
+		10B238C4231665080063072F /* MainPrace.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPrace.xib; sourceTree = "<group>"; };
+		10B238C6231665080063072F /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		10B238C7231665080063072F /* USB TPMS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "USB TPMS.entitlements"; sourceTree = "<group>"; };
+		10B238CA231665080063072F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		10B238CB231665080063072F /* child.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = child.plist; sourceTree = "<group>"; };
+		10B238CC231665080063072F /* Extension.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Extension.xib; sourceTree = "<group>"; };
+		10B239042318FA620063072F /* SersorRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SersorRecord.swift; sourceTree = "<group>"; };
+		10F9622823BF65DC000A61D0 /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "ORSSerialPort-master/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = "<group>"; };
+		10F9623423BF9223000A61D0 /* simple-loader2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "simple-loader2.json"; sourceTree = "<group>"; };
+		15A98A158C7AAD2EB6B10809 /* Pods-USB TPMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USB TPMS.release.xcconfig"; path = "Target Support Files/Pods-USB TPMS/Pods-USB TPMS.release.xcconfig"; sourceTree = "<group>"; };
+		27F5811BE40B422A9C5B2ACC /* Pods_USB_TPMS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_USB_TPMS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAEBAF9823CEB70B004B7F40 /* SensorBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorBean.swift; sourceTree = "<group>"; };
+		D634FCBA8B5A3A3569D0B5F7 /* Pods-USB TPMS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USB TPMS.debug.xcconfig"; path = "Target Support Files/Pods-USB TPMS/Pods-USB TPMS.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10B2389D231664930063072F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5EB34F77B3AB9A9A779B17B /* Pods_USB_TPMS.framework in Frameworks */,
+				10F9623123BF6629000A61D0 /* ORSSerial.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10B23897231664930063072F = {
+			isa = PBXGroup;
+			children = (
+				10F9623423BF9223000A61D0 /* simple-loader2.json */,
+				10F9622823BF65DC000A61D0 /* ORSSerialPort.xcodeproj */,
+				10B238A2231664930063072F /* USB TPMS */,
+				10B238A1231664930063072F /* Products */,
+				3D70BE81485BFB7E6665F592 /* Pods */,
+				8A907543B729167026EDBC48 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		10B238A1231664930063072F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10B238A0231664930063072F /* USB TPMS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10B238A2231664930063072F /* USB TPMS */ = {
+			isa = PBXGroup;
+			children = (
+				10B238B4231665070063072F /* Assets.xcassets */,
+				10B238C8231665080063072F /* Base.lproj */,
+				10B238CB231665080063072F /* child.plist */,
+				10B238C3231665080063072F /* Enroll.swift */,
+				10B238B7231665070063072F /* Enroll.xib */,
+				10B238C2231665080063072F /* Extension.swift */,
+				10B238CC231665080063072F /* Extension.xib */,
+				10B238C0231665080063072F /* FormatConvert.swift */,
+				10B238BA231665080063072F /* FtpManager.swift */,
+				10B238C5231665080063072F /* HttpResopnse */,
+				10B238C1231665080063072F /* MainPrace.swift */,
+				10B238C4231665080063072F /* MainPrace.xib */,
+				10B238B8231665070063072F /* parent.plist */,
+				10B238B5231665070063072F /* Serial */,
+				10B238B9231665070063072F /* Sqlhelper.swift */,
+				10B238BB231665080063072F /* tool */,
+				10B238B3231665010063072F /* tool.swift */,
+				10B238C7231665080063072F /* USB TPMS.entitlements */,
+				10B238A3231664930063072F /* AppDelegate.swift */,
+				10B238A5231664930063072F /* ViewController.swift */,
+				10B238A7231664940063072F /* Assets.xcassets */,
+				10B238A9231664940063072F /* Main.storyboard */,
+				10B238AC231664940063072F /* Info.plist */,
+				10B238AD231664940063072F /* USB_TPMS.entitlements */,
+				100F97802384089D002AC2BD /* Register.swift */,
+				100F97812384089D002AC2BD /* Register.xib */,
+				CAEBAF9823CEB70B004B7F40 /* SensorBean.swift */,
+			);
+			path = "USB TPMS";
+			sourceTree = "<group>";
+		};
+		10B238B5231665070063072F /* Serial */ = {
+			isa = PBXGroup;
+			children = (
+				10B238B6231665070063072F /* Cabel.swift */,
+			);
+			path = Serial;
+			sourceTree = "<group>";
+		};
+		10B238BB231665080063072F /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				10B238BC231665080063072F /* Extend.swift */,
+				10B238BD231665080063072F /* Language.swift */,
+				10B238BE231665080063072F /* Command.swift */,
+				10B238BF231665080063072F /* CRC16.swift */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
+		10B238C5231665080063072F /* HttpResopnse */ = {
+			isa = PBXGroup;
+			children = (
+				10B238C6231665080063072F /* Function.swift */,
+				10B239042318FA620063072F /* SersorRecord.swift */,
+			);
+			path = HttpResopnse;
+			sourceTree = "<group>";
+		};
+		10B238C8231665080063072F /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				10B238C9231665080063072F /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		10F9622923BF65DC000A61D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10F9622E23BF65DC000A61D0 /* ORSSerial.framework */,
+				10F9623023BF65DC000A61D0 /* ORSSerialPort Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D70BE81485BFB7E6665F592 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D634FCBA8B5A3A3569D0B5F7 /* Pods-USB TPMS.debug.xcconfig */,
+				15A98A158C7AAD2EB6B10809 /* Pods-USB TPMS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8A907543B729167026EDBC48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27F5811BE40B422A9C5B2ACC /* Pods_USB_TPMS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10B2389F231664930063072F /* USB TPMS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10B238B0231664940063072F /* Build configuration list for PBXNativeTarget "USB TPMS" */;
+			buildPhases = (
+				F0DD8D1566DADCDBDB6D72F8 /* [CP] Check Pods Manifest.lock */,
+				10B2389C231664930063072F /* Sources */,
+				10B2389D231664930063072F /* Frameworks */,
+				10B2389E231664930063072F /* Resources */,
+				10B238F1231665760063072F /* Embed Frameworks */,
+				10B238F2231665760063072F /* Embed PlugIns */,
+				E8B6241D2DB9F7D1B226EB7D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "USB TPMS";
+			productName = "USB TPMS";
+			productReference = 10B238A0231664930063072F /* USB TPMS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		10B23898231664930063072F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "王建智";
+				TargetAttributes = {
+					10B2389F231664930063072F = {
+						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.NetworkExtensions = {
+								enabled = 0;
+							};
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 10B2389B231664930063072F /* Build configuration list for PBXProject "USB TPMS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 10B23897231664930063072F;
+			productRefGroup = 10B238A1231664930063072F /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 10F9622923BF65DC000A61D0 /* Products */;
+					ProjectRef = 10F9622823BF65DC000A61D0 /* ORSSerialPort.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				10B2389F231664930063072F /* USB TPMS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		10F9622E23BF65DC000A61D0 /* ORSSerial.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ORSSerial.framework;
+			remoteRef = 10F9622D23BF65DC000A61D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		10F9623023BF65DC000A61D0 /* ORSSerialPort Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ORSSerialPort Tests.xctest";
+			remoteRef = 10F9622F23BF65DC000A61D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		10B2389E231664930063072F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10B238E0231665080063072F /* Extension.xib in Resources */,
+				10B238DE231665080063072F /* Main.storyboard in Resources */,
+				10B238DF231665080063072F /* child.plist in Resources */,
+				10B238DC231665080063072F /* MainPrace.xib in Resources */,
+				100F97832384089D002AC2BD /* Register.xib in Resources */,
+				10B238A8231664940063072F /* Assets.xcassets in Resources */,
+				10B238D1231665080063072F /* parent.plist in Resources */,
+				10F9623523BF9223000A61D0 /* simple-loader2.json in Resources */,
+				10B238CE231665080063072F /* Assets.xcassets in Resources */,
+				10B238AB231664940063072F /* Main.storyboard in Resources */,
+				10B238D0231665080063072F /* Enroll.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E8B6241D2DB9F7D1B226EB7D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-USB TPMS/Pods-USB TPMS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-USB TPMS/Pods-USB TPMS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0DD8D1566DADCDBDB6D72F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-USB TPMS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10B2389C231664930063072F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10B238D4231665080063072F /* Extend.swift in Sources */,
+				CAEBAF9923CEB70B004B7F40 /* SensorBean.swift in Sources */,
+				100F97822384089D002AC2BD /* Register.swift in Sources */,
+				10B238D7231665080063072F /* CRC16.swift in Sources */,
+				10B238D9231665080063072F /* MainPrace.swift in Sources */,
+				10B238D2231665080063072F /* Sqlhelper.swift in Sources */,
+				10B238CD231665080063072F /* tool.swift in Sources */,
+				10B238D3231665080063072F /* FtpManager.swift in Sources */,
+				10B238D8231665080063072F /* FormatConvert.swift in Sources */,
+				10B238CF231665080063072F /* Cabel.swift in Sources */,
+				10B238D6231665080063072F /* Command.swift in Sources */,
+				10B238DD231665080063072F /* Function.swift in Sources */,
+				10B239052318FA620063072F /* SersorRecord.swift in Sources */,
+				10B238DB231665080063072F /* Enroll.swift in Sources */,
+				10B238DA231665080063072F /* Extension.swift in Sources */,
+				10B238D5231665080063072F /* Language.swift in Sources */,
+				10B238A6231664930063072F /* ViewController.swift in Sources */,
+				10B238A4231664930063072F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		10B238A9231664940063072F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10B238AA231664940063072F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		10B238C9231665080063072F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10B238CA231665080063072F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		10B238AE231664940063072F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		10B238AF231664940063072F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		10B238B1231664940063072F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D634FCBA8B5A3A3569D0B5F7 /* Pods-USB TPMS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HEQGGF6N89;
+				INFOPLIST_FILE = "USB TPMS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = orange.macos.usbtpms;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		10B238B2231664940063072F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15A98A158C7AAD2EB6B10809 /* Pods-USB TPMS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HEQGGF6N89;
+				INFOPLIST_FILE = "USB TPMS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = orange.macos.usbtpms;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10B2389B231664930063072F /* Build configuration list for PBXProject "USB TPMS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10B238AE231664940063072F /* Debug */,
+				10B238AF231664940063072F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10B238B0231664940063072F /* Build configuration list for PBXNativeTarget "USB TPMS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10B238B1231664940063072F /* Debug */,
+				10B238B2231664940063072F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 10B23898231664930063072F /* Project object */;
+}

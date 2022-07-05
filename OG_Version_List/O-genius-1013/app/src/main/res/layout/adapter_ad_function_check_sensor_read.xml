@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:id="@+id/Sensor_Data"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_below="@id/title"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+        <View
+                android:id="@+id/view6"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/WH_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/blue_LIGHT"
+                android:gravity="center"
+                android:text="WH"
+                android:textColor="@color/check_text_color"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view8"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/Vehice_ID_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:gravity="center"
+                android:text="ID"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view9"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/Psi_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/app_psi"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view11"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/C_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/app_c"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view23"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+        <TextView
+                android:id="@+id/BAT_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/app_bat"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+        <View
+                android:id="@+id/view27"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+        <View
+                android:id="@+id/view37"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#BFD1DD">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="0.8"
+                android:background="#BFD1DD">
+
+            <TextView
+                    android:id="@+id/textView39"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="ID"
+                    android:textColor="@color/check_text_color"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:background="#BFD1DD">
+            <TextView
+                    android:text="kpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView63"
+                    android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:background="#BFD1DD">
+
+            <TextView
+                    android:text="c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView64"
+                    android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:background="#BFD1DD">
+
+            <TextView
+                    android:text="c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView65"
+                    android:layout_centerInParent="true"/>
+            <ImageView
+                    android:id="@+id/imageView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/icon_sensor_battery"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+            android:id="@+id/view28"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/title"
+            android:background="@color/gray" />
+
+    <LinearLayout
+            android:id="@+id/two_sensor_value"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone">
+
+        <TextView
+                android:id="@+id/ID_text"
+                android:layout_width="108dp"
+                android:layout_height="match_parent"
+                android:gravity="center|end"
+                android:text="@string/app_id"
+                android:textColor="@color/check_text_color"
+                android:textSize="17sp" />
+
+        <TextView
+                android:id="@+id/ID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="22dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/check_text_color"
+                android:textSize="17sp" />
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/textView41"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/two_sensor_value"
+            android:layout_marginStart="110dp"
+            android:layout_marginEnd="22dp"
+            android:background="@color/check_text_color"
+            android:visibility="gone" />
+</RelativeLayout>

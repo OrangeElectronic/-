@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    .scrollView {
+        width: 100%;
+        height: calc(100% - 160px);
+        background-color: white;
+        overflow-y: scroll;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        width: 50%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .fullBottom {
+
+        background-image: url("../img/btn_rectangle.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        width: 50%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .flexit {
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        height: 50px;
+    }
+
+    .flexit h3 {
+        color: black;
+        font-size: 16px;
+        font-weight: 600;
+        width: 150px;
+    }
+
+    .flexit h4 {
+        color: black;
+        font-size: 13px;
+        font-weight: 400;
+        margin-left: 10px;
+    }
+
+    h3 {
+        color: black;
+        font-size: 16px;
+        font-weight: 400;
+        word-break: break-all;
+    }
+
+    .textBlock {
+        word-break: break-word;
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    var make = glitter.mmyInterFace.selectMake.replace(/>/g, "&gt;").replace(/</g, "&lt;")
+    var model = glitter.mmyInterFace.selectModel.replace(/>/g, "&gt;").replace(/</g, "&lt;")
+    var year = glitter.mmyInterFace.selectYear.replace(/>/g, "&gt;").replace(/</g, "&lt;")
+
+    lifeCycle.onCreate = function () {
+        // if (glitter.selectFunction.select === glitter.selectFunction.enum.ObdRelearn) {
+        //     switch (glitter.mmyInterFace.selectMMY["OGL Auto"]) {
+        //         case "0":
+        //             $("#cancel").css("background-image", "url(\"../img/btn_rectangle.png\")")
+        //             $("#cancel").css("width", '100%')
+        //             $("#next").hide()
+        //             break
+        //         case "1":
+        //             break
+        //         case "2":
+        //             break
+        //         case "3":
+        //             break
+        //     }
+        // } else if (glitter.selectFunction.select === glitter.selectFunction.enum.IdCopy_OBD) {
+        //     switch (glitter.mmyInterFace.selectMMY["OGL Auto"]) {
+        //         case "0":
+        //             $("#cancel").css("background-image", "url(\"../img/btn_rectangle.png\")")
+        //             $("#cancel").css("width", '100%')
+        //             $("#next").hide()
+        //             break
+        //         case "1":
+        //             break
+        //         case "2":
+        //             break
+        //         case "3":
+        //             $("#cancel").css("background-image", "url(\"../img/btn_rectangle.png\")")
+        //             $("#cancel").css("width", '100%')
+        //             $("#next").hide()
+        //             break
+        //         case "6":
+        //             $("#next").html(glitter.getLan(13))
+        //             break
+        //     }
+        // }
+
+        if (glitter.deviceType !== glitter.deviceTypeEnum.Web) {
+            glitter.mmyInterFace.getRelearnMode(function (response) {
+                switch (glitter.publicBeans.language) {
+                    case "tw":
+                        gBundle.reltext = response["Traditional Chinese"]
+                        break
+                    case "zh-rcn":
+                        gBundle.reltext = response["Jane"]
+                        break
+                    case "de":
+                        gBundle.reltext = response["German"]
+                        break
+                    case "en":
+                        gBundle.reltext = response["English"]
+                        break
+                    case "it":
+                        gBundle.reltext = response["Italian"]
+                        break
+                    case "Spanish":
+                        gBundle.reltext = response["Spanish"]
+                        break
+                    case "Russian":
+                        gBundle.reltext = response["Russia"]
+                        break
+                    case "sk":
+                        gBundle.reltext = response["Czech-Slowakia"]
+                        break
+                    case "Czech-Slowakia":
+                        gBundle.reltext = response["Czech-Slowakia"]
+                        break
+                    case "da":
+                        gBundle.reltext = response["Danish"]
+                        break
+                    case "Japan":
+                        gBundle.reltext = response["Japanese"]
+                        break
+                    case "France":
+                        gBundle.reltext = response["France"]
+                        break
+                    default:
+                        gBundle.reltext = response["English"]
+                        break
+                }
+                if ((glitter.mmyInterFace.selectMMY["Relearn code"].indexOf('INDIRECT') === -1)) {
+                    gBundle.reltext = gBundle.reltext.replace(/\\n/g, "")
+                } else {
+                    gBundle.reltext = gBundle.reltext.replace(/\\n/g, "<br>")
+                }
+            })
+        }
+
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+<div style="display: flex;align-items: center;justify-content: center;height: 50px;width: 100%;background-color: #1f333e;color: white;overflow: hidden;white-space: nowrap;">
+ <h3 style="word-break: break-all;color: white;">
+${make}/${model}/${year}
+</h3>
+</div>
+
+<div class="scrollView">
+<h3 style="font-weight:600;margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #ff9e00;color: #ffffff;width: 100%;">
+${glitter.getLan(135)}
+</h3>
+<div class="flexit" id="relearm">
+<h3>${glitter.getLan('486')}</h3>
+<h4>${glitter.print(function () {
+            var relearm = glitter.mmyInterFace.selectMMY["OGL Relearn Set"]
+            if (relearm.indexOf(',') === -1) {
+                relearm = [relearm]
+            } else {
+                relearm = relearm.split('.')
+            }
+            var html = ''
+            relearm.map(function (data) {
+                switch (data) {
+                    case "0":
+                        if (html !== '') {
+                            html += ','
+                        }
+                        html+=glitter.getLan(49)
+                        break
+                    case "1":
+                        if (html !== '') {
+                            html += ','
+                        }
+                        html+=glitter.getLan(15)
+                        break
+                    case "3":
+                        if (html !== '') {
+                            html += ','
+                        }
+                        html+=glitter.getLan(305)
+                        break
+                    case "6":
+                        if (html !== '') {
+                            html += ','
+                        }
+                        html+=glitter.getLan(13)
+                        break
+                    case "4":
+                        if (html !== '') {
+                            html += ','
+                        }
+                        $('#relearm').hide()
+                        break
+                }
+            })
+            if(html===''){
+                setTimeout(function () {
+                    $('#relearm').hide()
+                },100)
+            }
+            return html
+        })}</h4>
+</div>
+<div class="flexit">
+<h3>OE Part#</h3>
+<h4>${glitter.mmyInterFace.selectMMY["OE Part Num"]}</h4>
+</div>
+<div class="flexit" style="background-color: #FFF0e4">
+<h3>Orange Sensor</h3>
+<h4>${glitter.mmyInterFace.selectMMY["Sensor"]}</h4>
+</div>
+<div class="flexit">
+<h3>Step.</h3>
+</div>
+<h3 style="margin-top: 0;margin-left: 10px;margin-right: 10px;">
+<div id="comic">
+${bindView({
+            bind: 'comic',
+            view: function () {
+                var mapComic = {
+                    RL_01: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-01.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 31%;left: 5%;height: 22%;">${text}</div>
+</div>`
+                    },
+                    RL_02: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-02.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 11%;left: 5%;height: 31%;">${text}</div>
+</div>`
+                    },
+                    RL_03: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-03.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 60%;left: 5%;height: 40%;">${text}</div>
+</div>`
+                    },
+                    RL_04: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-04.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 45%;left: 5%;height: 50%;">${text}</div>
+</div>`
+                    },
+                    RL_05: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-05.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 65%;left: 5%;height: 28%;">${text}</div>
+</div>`
+                    },
+                    RL_06: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-06.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 55%;left: 5%;height: 40%;">${text}</div>
+</div>`
+                    },
+                    RL_07: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-07.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 36%;left: 5%;height: 58%;">${text}</div>
+</div>`
+                    },
+                    RL_08: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-08.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 54%;left: 5%;height: 39%;">${text}</div>
+</div>`
+                    },
+                    RL_09: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-09.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 59%;left: 5%;height: 36%;">${text}</div>
+</div>`
+                    },
+                    RL_10: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-10.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 45%;left: 5%;height: 49%;">${text}</div>
+</div>`
+                    },
+                    RL_11: function (text) {
+                        return ``
+//                         return `<div style="position: relative;width: 100%;">
+// <img src="../comicImage/RL-11.png" style="width: 100%;z-index: 0;position: relative;">
+// <div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 54%;left: 5%;height: 41%;">${text}</div>
+// </div>`
+                    },
+                    RL_12: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-12.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 49%;left: 5%;height: 45%;">${text}</div>
+</div>`
+                    },
+                    RL_13: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-13.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 11%;left: 5%;height: 28%;">${text}</div>
+</div>`
+                    },
+                    RL_14: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-14.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 56%;left: 5%;height: 29%;">${text}</div>
+</div>`
+                    },
+                    RL_15: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-15.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 53%;left: 5%;height: 42%;">${text}</div>
+</div>`
+                    },
+                    RL_16: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-16.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 61%;left: 5%;height: 22%;">${text}</div>
+</div>`
+                    },
+                    RL_17: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-17.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 53%;left: 5%;height: 40%;">${text}</div>
+</div>`
+                    },
+                    RL_18: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-18.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 45%;left: 5%;height: 48%;">${text}</div>
+</div>`
+                    },
+                    RL_19: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-19.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 63%;left: 7%;height: 28%;">${text}</div>
+</div>`
+                    },
+                    RL_20: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-20.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 50%;left: 5%;height: 45%;">${text}</div>
+</div>`
+                    },
+                    RL_21: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-21.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 67%;left: 5%;height: 28%;">${text}</div>
+</div>`
+                    },
+                    RL_22: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-22.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 59%;left: 5%;height: 34%;">${text}</div>
+</div>`
+                    },
+                    RL_23: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-23.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 59%;left: 7%;height: 33%;">${text}</div>
+</div>`
+                    },
+                    RL_24: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-24.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 57%;left: 6%;height: 36%;">${text}</div>
+</div>`
+                    },
+                    RL_25: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-25.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 8%;left: 6%;height: 23%;">${text}</div>
+</div>`
+                    },
+                    RL_26: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-26.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 48%;left: 6%;height: 45%;">${text}</div>
+</div>`
+                    },
+                    RL_27: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-27.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 57%;left: 4%;height: 38%;">${text}</div>
+</div>`
+                    },
+                    RL_28: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-28.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 54%;left: 5%;height: 40%;">${text}</div>
+</div>`
+                    },
+                    RL_29: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-29.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 54%;left: 5%;height: 40%;">${text}</div>
+</div>`
+                    },
+                    RL_30: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-30.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 10%;left: 5%;height: 28%;">${text}</div>
+</div>`
+                    },
+                    RL_31: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-31.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 55%;left: 5%;height: 40%;">${text}</div>
+</div>`
+                    },
+                    RL_32: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-32.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 49%;left: 5%;height: 41%;">${text}</div>
+</div>`
+                    },
+                    RL_33: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-33.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 10%;left: 5%;height: 28%;">${text}</div>
+</div>`
+                    },
+                    RL_34: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-34.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 65%;left: 5%;height: 28%;">${text}</div>
+</div>`
+                    },
+                    RL_35: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-35.png" style="width: 100%;z-index: 0;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 55%;left: 5%;height: 38%;">${text}</div>
+</div>`
+                    },
+                    RL_36: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-36.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 82%;aspect-ratio: 1 / 1;z-index: 2;top: 10%;left: 9%;height: 80%;">${text}</div>
+</div>`
+                    },
+                    RL_37: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-37.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 14%;left: 6%;height: 33%;">${text}</div>
+</div>`
+                    },
+                    RL_38: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-38.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 62%;left: 6%;height: 33%;">${text}</div>
+</div>`
+                    },
+                    RL_39: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-39.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 11%;left: 6%;height: 33%;">${text}</div>
+</div>`
+                    },
+                    RL_40: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-40.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 55%;left: 6%;height: 36%;">${text}</div>
+</div>`
+                    },
+                    RL_41: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-41.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 55%;left: 6%;height: 36%;">${text}</div>
+</div>`
+                    },
+                    RL_42: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-42.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 61%;left: 6%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_43: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-43.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 58%;left: 6%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_44: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-44.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 15%;left: 6%;height: 30%;">${text}</div>
+</div>`
+                    },
+                    RL_45: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-45.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 42%;left: 6%;height: 32%;">${text}</div>
+</div>`
+                    },
+                    RL_46: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-46.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 13%;left: 6%;height: 31%;">${text}</div>
+</div>`
+                    },
+                    RL_47: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-47.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 63%;left: 6%;height: 31%;">${text}</div>
+</div>`
+                    },
+                    RL_48: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-48.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 12%;left: 6%;height: 31%;">${text}</div>
+</div>`
+                    },
+                    RL_49: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-49.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 58%;left: 5%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_50: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-50.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 59%;left: 6%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_51: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-51.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 59%;left: 6%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_52: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-52.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 61%;left: 6%;height: 33%;">${text}</div>
+</div>`
+                    },
+                    RL_53: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-53.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 53%;left: 6%;height: 41%;">${text}</div>
+</div>`
+                    },
+                    RL_54: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-54.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 55%;left: 6%;height: 40%;">${text}</div>
+</div>`
+                    },
+                    RL_55: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-55.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 6%;left: 6%;height: 33%;">${text}</div>
+</div>`
+                    },
+                    RL_56: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-56.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 12%;left: 6%;height: 37%;">${text}</div>
+</div>`
+                    },
+                    RL_57: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-57.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 60%;left: 6%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_58: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-58.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 60%;left: 6%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_59: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-59.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 58%;left: 6%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_60: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-60.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 61%;left: 6%;height: 35%;">${text}</div>
+</div>`
+                    },
+                    RL_61: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-61.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 70%;left: 6%;height: 25%;">${text}</div>
+</div>`
+                    },
+                    RL_62: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-62.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 45%;left: 6%;height: 47%;">${text}</div>
+</div>`
+                    },
+                    RL_63: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-63.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 62%;left: 6%;height: 22%;">${text}</div>
+</div>`
+                    },
+                    RL_64: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-64.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 15%;left: 6%;height: 22%;">${text}</div>
+</div>`
+                    },
+                    RL_65: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-65.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 68%;left: 6%;height: 25%;">${text}</div>
+</div>`
+                    },
+                    RL_66: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-66.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 88%;aspect-ratio: 1 / 1;z-index: 2;top: 53%;left: 5%;height: 30%;">${text}</div>
+</div>`
+                    },
+                    RL_67: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-67.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 90%;aspect-ratio: 1 / 1;z-index: 2;top: 10%;left: 5%;height: 45%;">${text}</div>
+</div>`
+                    },
+                    RL_68: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-68.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 90%;aspect-ratio: 1 / 1;z-index: 2;top: 10%;left: 5%;height: 45%;">${text}</div>
+</div>`
+                    },
+                    RL_69: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-69.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 90%;aspect-ratio: 1 / 1;z-index: 2;top: 62%;left: 5%;height: 30%;">${text}</div>
+</div>`
+                    },
+                    RL_70: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-70.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 89%;aspect-ratio: 1 / 1;z-index: 2;top: 15%;left: 6%;height: 38%;">${text}</div>
+</div>`
+                    },
+                    RL_71: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-71.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 65%;aspect-ratio: 1 / 1;z-index: 2;top: 11%;left: 30%;height: 77%;">${text}</div>
+</div>`
+                    },
+                    RL_72: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-72.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 90%;aspect-ratio: 1 / 1;z-index: 2;top: 64%;left: 5%;height: 77%;">${text}</div>
+</div>`
+                    },
+                    RL_73: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-73.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 90%;aspect-ratio: 1 / 1;z-index: 2;top: 68%;left: 5%;height: 77%;">${text}</div>
+</div>`
+                    },
+                    RL_74: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-74.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 70%;aspect-ratio: 1 / 1;z-index: 2;top: 42%;left: 27%;height: 77%;">${text}</div>
+</div>`
+                    },
+                    RL_75: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-75.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 85%;aspect-ratio: 1 / 1;z-index: 2;top: 55%;left: 8%;height: 80%;">${text}</div>
+</div>`
+                    },
+                    RL_76: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-76.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 85%;aspect-ratio: 1 / 1;z-index: 2;top: 67%;left: 8%;height: 80%;">${text}</div>
+</div>`
+                    },
+                    RL_77: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-77.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 85%;aspect-ratio: 1 / 1;z-index: 2;top: 70%;left: 8%;height: 80%;">${text}</div>
+</div>`
+                    },
+                    RL_78: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-78.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 85%;aspect-ratio: 1 / 1;z-index: 2;top: 65%;left: 8%;height: 80%;">${text}</div>
+</div>`
+                    },
+                    RL_79: function (text) {
+                        return `<div style="position: relative;width: 100%;">
+<img src="../comicImage/RL-79.png" style="width: 100%;z-index: 1;position: relative;">
+<div class="textBlock" style="position:absolute;width: 85%;aspect-ratio: 1 / 1;z-index: 2;top: 65%;left: 8%;height: 80%;">${text}</div>
+</div>`
+                    },
+                }
+                var html = ''
+                try {
+                    if ((glitter.mmyInterFace.selectMMY["Relearn code"].indexOf('INDIRECT') !== -1)) {
+                        html += gBundle.reltext
+                    } else {
+                        gBundle.reltext.split('RL.').map(function (data) {
+                            if (data.indexOf('C_', 0) !== -1) {
+                                console.log(`lineData-${data.substring(0, 2)}:${data.substring(data.indexOf('C_', 0) + 1, data.length)}`)
+                                html += mapComic[`RL_${data.substring(0, 2)}`](data.substring(data.indexOf('C_', 0) + 2, data.length).replace(/\\n/g, ''))
+                            }
+                            if (data.indexOf('E_', 0) !== -1) {
+                                html += mapComic[`RL_${data.substring(0, 2)}`](data.substring(data.indexOf('E_', 0) + 2, data.length).replace(/\\n/g, ''))
+                            }
+                        })
+                    }
+
+                } catch (e) {
+                    if (glitter.deviceType === glitter.deviceTypeEnum.Web) {
+                        html = mapComic.RL_79('gBundle.reltextgBundle.gBundle.reltextgBundle.gBundle.reltextgBundle.gBundle.reltextgBundle.gBundle.reltextgBundle.gBundle.reltextgBundle.gBundle.reltextgBundle.reltextgBundle.reltextgBundle.reltextgBundle.reltextgBundle.reltext')
+
+                    } else {
+                        html = mapComic.RL_72(gBundle.reltext)
+                        console.log('error' + e)
+                    }
+                }
+
+                return html
+            },
+            dataList: [{obj: gBundle, key: "reltext"}]
+        })}
+</div>
+</h3>
+</div>
+<div>
+${glitter.print(function () {
+// glitter.selectFunction.select=glitter.selectFunction.enum.Relearn_Procedure
+            // glitter.selectFunction.switchToPage()
+            function getText(data){
+                    switch (data) {
+                        case "1":
+                            return glitter.getLan(15)
+                        case "3":
+                            return glitter.getLan(305)
+                        case "6":
+                            return glitter.getLan(13)
+                    }
+            }
+
+            function switchAction(data){
+                switch (data) {
+                    case "1":
+                        glitter.selectFunction.select=glitter.selectFunction.enum.ObdRelearn
+                        glitter.changePage('page/Page_Select_WheelCount.html', 'Page_Select_WheelCount', true, {})
+                        break
+                    case "3":
+                        glitter.selectFunction.select=glitter.selectFunction.enum.ReadSensor
+                        glitter.selectFunction.switchToPage()
+                        break
+                    case "6":
+                        glitter.selectFunction.select=glitter.selectFunction.enum.IdCopy
+                        glitter.selectFunction.switchToPage()
+                        break
+                }
+            }
+            var relearm = glitter.mmyInterFace.selectMMY["OGL Relearn Set"]
+            if (relearm.indexOf(',') === -1) {
+                relearm = [relearm]
+            } else {
+                relearm = relearm.split(',')
+            }
+            relearm=relearm.filter((dd)=>{
+                var arrayIndex=["1","3","6"]
+                return arrayIndex.indexOf(dd)!==-1
+            })
+            if(relearm.length===2){
+                return  `<div style="position:absolute;bottom:60px;width:100%;display: flex;z-index: 10;align-items: center;background-color: #314A56;height: 60px;">
+            <img src="../img/menu.png" style="border: 1px solid white;border-radius: 10px;width: 40px;height: 40px;margin-left: 10px;" onclick="glitter.goMenu()"/>
+           <div  class="leftBottom" style="margin-left: 5px;margin-right: 5px;height: 50px;" onclick="${event(function (){
+                    switchAction(relearm[0])
+                })}" >
+        ${getText(relearm[0])}
+        </div>
+         <div  class="rightBottom" style="margin-left: 5px;margin-right: 5px;height: 50px;" onclick="${event(function (){
+                    switchAction(relearm[1])
+                })}" >
+        ${getText(relearm[1])}
+        </div>
+</div>`
+            }else if(relearm.length===1){
+                return  `<div style="position:absolute;bottom:60px;width:100%;display: flex;z-index: 10;align-items: center;background-color: #314A56;height: 60px;">
+          <img src="../img/menu.png" style="border: 1px solid white;border-radius: 10px;width: 40px;height: 40px;margin-left: 10px;" onclick="glitter.goMenu()"/>
+          <div  class="fullBottom" style="margin-left: 5px;margin-right: 5px;height: 50px;" onclick="${event(function (){
+                    switchAction(relearm[0])
+                })}" >
+        ${getText(relearm[0])}
+        </div>
+</div>`
+            }else{
+               return  `<div style="position:absolute;bottom:60px;width:100%;display: flex;z-index: 10;">
+          <div id="cancel" class="fullBottom" onclick="glitter.goMenu()" >
+        ${glitter.getLan(9)}
+        </div>
+</div>`
+            }
+        })}
+</div>
+
+
+        `
+    }
+
+    function switchTo() {
+        if (glitter.selectFunction.select === glitter.selectFunction.enum.Program) {
+            glitter.changePage('page/Page_Number_Choice.html', 'Page_Number_Choice', true, {})
+        } else if (glitter.selectFunction.select === glitter.selectFunction.enum.IdCopy) {
+            glitter.changePage('page/Page_Select_Trigger_Way.html', 'Page_Select_Trigger_Way', true, {})
+        } else if (glitter.selectFunction.select === glitter.selectFunction.enum.IdCopy_OBD) {
+            glitter.changePage('page/Page_Select_Trigger_Way.html', 'Page_Select_Trigger_Way', true, {})
+        } else if (glitter.selectFunction.select === glitter.selectFunction.enum.ObdRelearn) {
+            if (glitter.mmyInterFace.selectMMY["OGL Auto"] === "3") {
+                glitter.selectFunction.select=glitter.selectFunction.enum.ReadSensor
+            glitter.changePage('page/Page_ReadSensor.html', 'Page_ReadSensor', true, {})
+            } else if (glitter.mmyInterFace.selectMMY["OGL Auto"] === "6") {
+                glitter.selectFunction.select=glitter.selectFunction.enum.IdCopy
+            glitter.changePage('page/Page_Idcopy_Selection.html', 'Page_Idcopy_Selection', true, {})
+            } else if ((glitter.mmyInterFace.selectMMY["OGL Auto"] === "1") || (glitter.mmyInterFace.selectMMY["OGL Auto"] === "2")) {
+                try {
+                    glitter.selectFunction.select=glitter.selectFunction.enum.ObdRelearn
+                    var array = JSON.parse(glitter.mmyInterFace.selectMMY["Read Tire Num"])
+                    if (array.length === 1) {
+                        glitter.mmyInterFace.selectMMY["Wheel_Count"] = array[0].index
+                        glitter.mmyInterFace.selectMMY["OBD1"] = array[0].value
+                        glitter.changePage('page/Page_Select_Trigger_Way.html', 'Page_Select_Trigger_Way', true, {})
+                    } else {
+                        glitter.changePage('page/Page_Select_WheelCount.html', 'Page_Select_WheelCount', true, {})
+                    }
+                } catch (e) {
+                    glitter.changePage('page/Page_Select_WheelCount.html', 'Page_Select_WheelCount', true, {})
+                }
+
+
+            }
+        }
+
+    }
+</script>

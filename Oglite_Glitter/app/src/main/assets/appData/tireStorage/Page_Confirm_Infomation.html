@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+    <script src="../glitterBundle/extension.js"></script>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .flex {
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid white;
+        height: 50px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .minItem {
+        width: 33%;
+        background-color: #D7D8D9;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        font-size: 13px;
+    }
+
+    .six {
+        flex: auto;
+        height: 100%;
+        width: 66%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+
+    .fixPx {
+        width: 50px;
+        background-color: #D7D8D9;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        font-size: 13px;
+        border: 1px solid lightgray;
+    }
+
+    .fixFlex {
+        width: calc((100% - 50px) / 3);
+        background-color: white;
+        border: 1px solid lightgray;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 10px;
+        font-size: 13px;
+    }
+
+    .fixFlex2 {
+        width: calc((100% - 100px) / 2);
+        background-color: white;
+        border: 1px solid lightgray;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 10px;
+        font-size: 13px;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 60px);
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .wrapper h3 {
+        color: white;
+        background-color: #40606F;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        min-height: 60px;
+        margin: 0;
+        border-bottom: 1px solid white;
+    }
+
+    .tireCancel {
+        background-image: url("../img/icon_tire_cancel.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tireSelect {
+        background-image: url("../img/yellow_tire.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tireOk {
+        background-image: url("../img/icon_tire_ok.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mindiv {
+        width: 40px;
+        height: 50px;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .maxdiv {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        flex: auto;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .item {
+        display: flex;
+        height: 50px;
+        min-height: 50px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .maxdiv img {
+        margin-left: 5px;
+        height: 40px;
+        width: 40px;
+    }
+
+    .rightBottom2 {
+        background-image: url("../img/btn_right.png");
+        width: 50%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .scrollView {
+        position: relative;
+        z-index: 2;
+        margin-top: -150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 170px;
+        height: 150px;
+        background-color: white;
+        overflow-y: scroll;
+    }
+
+    .scrollView h3 {
+        display: flex;
+        color: white;
+        margin: 0;
+        background-size: 100% 100%;
+    }
+
+    .scrollView .it {
+        background-color: #314a56;
+        color: white;
+        border-bottom: 1px solid white;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flex {
+        display: flex;
+        align-content: center;
+        width: 100%;
+        height: 60px;
+    }
+
+    .minTitle {
+        color: black;
+        display: flex;
+        position: relative;
+        align-content: center;
+        justify-content: center;
+        background-color: lightgray;
+        width: 50px;
+        height: 60px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .maxItem {
+        width: calc(50%);
+        height: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .maxItem img {
+        width: 50px;
+        height: 50px;
+    }
+
+    input {
+        border: 1px solid lightgray;
+        width: calc(100% - 20px);
+        height: 40px;
+        color: black;
+        font-size: 16px;
+        margin-top: 7px;
+        padding-left: 10px;
+    }
+
+    .flex div {
+        border: 1px solid whitesmoke;
+    }
+</style>
+<body>
+</body>
+<script>
+    "use strict";
+    var storageinformation = [
+        {
+        //車牌
+        title: 467,
+        value: gBundle.Lplate
+    }, {
+        //儲存類型
+        title: 565,
+        value: [glitter.language(549), glitter.language(550), glitter.language(551)][parseInt(gBundle.tirtype, 10)]
+    }, {
+        //數量
+        title: 481,
+        value: gBundle.Qty
+    },
+        {
+            //洗輪圈
+            title: 795,
+            value: glitter.print(function () {
+                if(gBundle.CTR=="1"){
+                    return glitter.language(113)
+                }else{
+                    return glitter.language(659)
+                }
+            })
+        },{
+        //櫃位
+        title: 479,
+        value: gBundle.Storage
+    }, {
+        //時間
+        title: 480,
+        value: new Date().format("yyyy-MM-dd hh:mm:ss")
+    }, {
+        //車輛擁有者
+        title: 547,
+        value: gBundle.Fname
+    }, {
+        //電話號碼
+        title: 95,
+        value: gBundle.Phone
+    }, {
+        //信箱
+        title: 'mail',
+        value: gBundle.Email
+    }, {
+            //地址
+            title: glitter.language(96),
+            value: gBundle.Address
+        },{
+            //CITY/POSTAL
+            title: glitter.language(792),
+            value: gBundle.City+gBundle.Postal
+        }, {
+        //HSN
+        title: 'HSN/TSN',
+        value: gBundle.Hsn + ' ' + gBundle.Tsn
+    }, {
+        //Make
+        title: 482,
+        value: gBundle.Make
+    }, {
+        //Model
+        title: 483,
+        value: gBundle.Model
+    }, {
+        //Year
+        title: 484,
+        value: gBundle.Year
+    }]
+    var tireInfomation = [
+        ['', glitter.language(556), glitter.language(559), glitter.language(485)],
+        [glitter.language(312)],
+        [glitter.language(309)],
+        [glitter.language(310)],
+        [glitter.language(311)]
+    ]
+    var itemData = gBundle.triepress
+    lifeCycle.onCreate = function () {
+        gBundle.lastDate = new Date().format("yyyy-MM-dd hh:mm:ss")
+        gBundle.sensorData = []
+        $('#content').append(`<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 50px;background-color: #EBF6FF;color: black;width: 100%;">
+${glitter.language(564)}
+</h3>`)
+        storageinformation.map(function (data) {
+            $('#content').append(`
+<div class="flex">
+<div class="minItem">
+${glitter.language(data.title)}
+</div>
+<div class="six">
+${data.value}
+</div>
+</div>`)
+        })
+
+        $('#content').append(`<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 50px;background-color: #EBF6FF;color: black;width: 100%;">
+${glitter.language(552)}
+</h3>`)
+        tireInfomation.map(function (data, position) {
+            if (position === 0) {
+                $('#content').append(`
+          <div class="flex">
+          <div class="fixPx">${data[0]}</div>
+          <div class="fixFlex">${data[1]}</div>
+            <div class="fixFlex">${data[2]}</div>
+              <div class="fixFlex">${data[3]}</div>
+</div>
+          `)
+            } else {
+                var dd = gBundle.carFile.filter(function (data) {
+                    return data.TireLocal === ['LF', 'RF', 'RR', 'LR'][position - 1]
+                })[0]
+                var brandName = ''
+                try {
+                    glitter.share.publicData.brand.filter(function (data) {
+                        return data.id == dd.TireBrand
+                    }).map(function (data) {
+                        brandName = data.name
+                    })
+                } catch (e) {
+                }
+                $('#content').append(`
+          <div class="flex">
+          <div class="fixPx">${data[0]}</div>
+          <div class="fixFlex">${brandName}</div>
+            <div class="fixFlex">${dd.TireModel}</div>
+              <div class="fixFlex">${dd.Size + '/' + dd.Size1 + '/' + dd.Size2 + dd.Speed}</div>
+</div>
+          `)
+            }
+
+        })
+        $('#content').append(`<div style="background-color: #EBF6FF;height: 50px;width: 100%;color: black;display: flex;align-items: center;justify-content: center;font-weight: 600;font-size: 18px;">
+${glitter.language(90)}
+</div>
+<div id="Sn_Place">
+
+</div>`)
+        updateSn()
+        $('#content').append(`<div style="background-color: #EBF6FF;height: 50px;width: 100%;color: black;display: flex;align-items: center;justify-content: center;font-weight: 600;font-size: 18px;">
+${glitter.language(563)}
+</div>
+<div>
+<div class="flex">
+<div class="minTitle">${glitter.language(312)}</div>
+<div class="maxItem">
+<input id="LF">
+</div>
+<div class="minTitle">${glitter.language(309)}</div>
+<div class="maxItem">
+<input id="RF">
+</div>
+</div>
+<div class="flex">
+<div class="minTitle">${glitter.language(311)}</div>
+<div class="maxItem">
+<input id="LR">
+</div>
+<div class="minTitle">${glitter.language(310)}</div>
+<div class="maxItem">
+<input id="RR">
+</div>
+</div>
+</div>`)
+        $('#content').append(`<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 50px;background-color: #EBF6FF;color: black;width: 100%;">
+${glitter.language(472)}
+</h3>`)
+        var LF = gBundle.carFile.filter(function (data) {
+            return data.TireLocal === 'LF'
+        })[0]
+        var RF = gBundle.carFile.filter(function (data) {
+            return data.TireLocal === 'RF'
+        })[0]
+        var RR = gBundle.carFile.filter(function (data) {
+            return data.TireLocal === 'RR'
+        })[0]
+        var LR = gBundle.carFile.filter(function (data) {
+            return data.TireLocal === 'LR'
+        })[0]
+        try {
+            $('#content').append(`
+<div class="flex">
+          <div class="fixPx">${glitter.language(312)}</div>
+          <div class="fixFlex2">${glitter.print(function () {
+                var text = LF.Depth
+                if (text.substring(0, 1) == "0") {
+                    text = text.substring(1, text.length)
+                    if (parseInt(gBundle.tirtype, 10) == 0) {
+                        if (LF.Depth < "02.0") {
+                            text = `<span style="color: red;">${text}</span>`
+                        }
+                    } else {
+                        if (LF.Depth < "04.0") {
+                            text = `<span style="color: red;">${text}</span>`
+                        }
+                    }
+                }
+                return text
+            })}</div>
+            <div class="fixPx">${glitter.language(309)}</div>
+              <div class="fixFlex2">
+              ${glitter.print(function () {
+                var text = RF.Depth
+                if (text.substring(0, 1) == "0") {
+                    text = text.substring(1, text.length)
+                    if (parseInt(gBundle.tirtype, 10) == 0) {
+                        if (RF.Depth < "02.0") {
+                            text = `<span style="color: red;">${text}</span>`
+                        }
+                    } else {
+                        if (RF.Depth < "04.0") {
+                            text = `<span style="color: red;">${text}</span>`
+                        }
+                    }
+                }
+                return text
+            })}</div>
+</div>`)
+        }catch (e){}
+        try {   $('#content').append(` <div class="flex">
+          <div class="fixPx">${glitter.language(311)}</div>
+          <div class="fixFlex2">${glitter.print(function () {
+            var text = LR.Depth
+            if (text.substring(0, 1) == "0") {
+                text = text.substring(1, text.length)
+                if (parseInt(gBundle.tirtype, 10) == 0) {
+                    if (LR.Depth < "02.0") {
+                        text = `<span style="color: red;">${text}</span>`
+                    }
+                } else {
+                    if (LR.Depth < "04.0") {
+                        text = `<span style="color: red;">${text}</span>`
+                    }
+                }
+            }
+            return text
+        })}</div>
+          <div class="fixPx">${glitter.language(310)}</div>
+          <div class="fixFlex2">${glitter.print(function () {
+            var text = RR.Depth
+            if (text.substring(0, 1) == "0") {
+                text = text.substring(1, text.length)
+                if (parseInt(gBundle.tirtype, 10) == 0) {
+                    if (parseInt(RR.Depth, 10) < 2) {
+                        text = `<span style="color: red;">${text}</span>`
+                    }
+                } else {
+                    if (parseInt(RR.Depth, 10) < 4) {
+                        text = `<span style="color: red;">${text}</span>`
+                    }
+                }
+            }
+            return text
+        })}</div>
+</div>`)}catch (e){}
+
+        $('#content').append(`<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 50px;background-color: #EBF6FF;color: black;width: 100%;">
+${glitter.language(560)}
+</h3>`)
+        var array = ["LF", "RF", "RR", "LR"]
+        array.map(function (data2, position) {
+            var data = gBundle.carFile.filter(function (data) {
+                return data.TireLocal === data2
+            })[0]
+            var path = data.Path
+            try {
+                path=JSON.parse(data.Path)
+            }catch (e){}
+            if (!Array.isArray(path)) {
+                path = []
+            }
+            var imageHtml = ''
+            path.map(function (data, index) {
+                imageHtml += (`
+<div style="position: relative;border-radius: 10px;margin-left: 10px;background-color: whitesmoke;white-space: nowrap;">
+<img src="${data}" style="width: 60px;height: 60px;">
+</div>
+`)
+            })
+            $('#content').append(` <div class="flex" style="height: 70px;">
+          <div class="fixPx">${[glitter.language(312), glitter.language(309), glitter.language(310), glitter.language(311)][position]}</div>
+
+          <div class="fixFlex2" style="flex: auto;">${imageHtml}</div>
+</div>`)
+        })
+        $('#content').append(`<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 50px;background-color: #EBF6FF;color: black;width: 100%;">
+${glitter.language(566)}
+</h3>`)
+        $('#content').append(`<div id="itemList" style="width: 100%;display: flex;flex-direction: column;"></div>`)
+        notifyList()
+    }
+    //選擇的燒錄數量
+    var wheelArray = 4
+    var selectPosition = {position: -1}
+
+    function notifyList(toNext) {
+        var img = ''
+        var html = `<div class="item" style="background-color: #d7d8d9">
+<div id="selectWayC" class="mindiv"></div>
+<div class="maxdiv">ID</div>
+<div class="mindiv">${glitter.publicBeans.pressure}</div>
+<div class="mindiv">${glitter.publicBeans.tem}</div>
+<div class="mindiv" style="background-image: url('../img/icon_sensor_battery.png');background-size: 40px 40px;background-repeat: no-repeat;background-position: center;"></div>
+</div>`
+        if (selectPosition.position !== -1) {
+            var toggle = true
+            for (var b = 0; b < wheelArray; b++) {
+                if (toggle && toNext && itemData["" + b] === undefined) {
+                    toggle = false
+                    selectPosition.position = b
+                    break
+                }
+            }
+        }
+
+        for (var a = 0; a < wheelArray; a++) {
+            $("#w" + a).removeClass("tireSelect")
+            $("#w" + a).removeClass("tireOk")
+            if (itemData["" + a] === undefined) {
+                html += `
+<div onclick="selectPosition.position=${a};clickItem(${a});" id="focus${a}" class="item" style="background-color: ${(selectPosition.position === a) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position === a) ? 'white' : 'black'};">
+<div class="mindiv" style="background-color:#d7d8d9;color: black; ">${a + 1}</div>
+<div class="maxdiv"></div>
+<div class="mindiv"></div>
+<div class="mindiv"></div>
+<div class="mindiv"></div>
+</div>
+      `
+            } else {
+                gBundle.sensorData.push(itemData["" + a])
+                itemData["" + a].result = undefined
+                itemData["" + a].Lplate = gBundle.Lplate
+                itemData["" + a].TireLocal = ["LF", "RF", "RR", "LR"][a]
+                if (itemData["" + a].TireBar === undefined) {
+                    itemData["" + a].TireBar = itemData["" + a].kpa
+                    itemData["" + a].kpa = undefined
+                }
+                if (itemData["" + a].Degree === undefined) {
+                    itemData["" + a].Degree = itemData["" + a].c
+                    itemData["" + a].c = undefined
+                }
+                if (itemData["" + a].Bet === undefined) {
+                    itemData["" + a].Bet = itemData["" + a].bat
+                    itemData["" + a].bat = undefined
+                }
+                if (itemData["" + a].SensorId === undefined) {
+                    itemData["" + a].SensorId = itemData["" + a].id
+                    itemData["" + a].id = undefined
+                }
+                $("#w" + a).toggleClass("tireOk")
+                html += `
+<div onclick="selectPosition.position=${a};clickItem(${a});" id="focus${a}" class="item" style="background-color: ${(selectPosition.position === a) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position === a) ? 'white' : 'black'};">
+<div class="mindiv" style="background-color:#d7d8d9;color: black; ">${a + 1}</div>
+<div class="maxdiv">${(itemData["" + a].result) ? '<img src="../img/icon_check_sensor_ok.png">' : (itemData["" + a].result === false) ? '<img src="../img/icon_check_sensor_fail.png">' : ''}${itemData["" + a].SensorId}</div>
+<div class="mindiv">${(itemData["" + a].TireBar)}</div>
+<div class="mindiv">${(itemData["" + a].Degree)}</div>
+<div class="mindiv">${itemData["" + a].Bet}</div>
+</div>
+      `
+            }
+        }
+        $("#w" + selectPosition.position).toggleClass("tireSelect")
+        $('#itemList').html(html)
+        $('#selectWayC').click(function () {
+            // $('#selectWay').show()
+            return false
+        })
+        var map = ['LF', 'RF', 'LR', 'RR']
+        map.map(function (data) {
+            let data2 = gBundle.carFile.filter(function (da) {
+                return da.TireLocal === data
+            })[0]
+            $('#' + data).val(data2.Dot)
+            $('#' + data).bind('input propertychange', function () {
+                data2.Dot = $(this).val()
+            });
+            $('#' + data).attr("readonly", true)
+        })
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+   <h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${glitter.language(564)}
+</h3>
+<div id="content" style="height: calc(100% - 170px);overflow-y: scroll; overflow-x: hidden;"></div>
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="
+          glitter.removePage(['Page_Store_Info','Page_Tire_Information','Page_Tire_Depth','Page_Tire_Photo','Page_Tire_Information2','Page_Program_Detail'])
+          glitter.changePage('tireStorage/Page_Store_Info.html','Page_Store_Info',true,gBundle)
+          glitter.removePage('Page_Confirm_Infomation')
+          " >
+        ${glitter.language(568)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+         //暫存已便後續上傳
+         uploadData()
+         ">
+        ${glitter.language(567)}
+        </div>
+</div>
+    `
+    }
+
+    function uploadData() {
+
+        if (gBundle.addForms) {
+            gBundle["Date"] = new Date().format("yyyy-MM-dd hh:mm:ss")
+        }
+        if (gBundle.account === undefined) {
+            gBundle.account = glitter.share.account
+        }
+        if(gBundle.CreateId === undefined){
+            gBundle.CreateId=glitter.share.account
+        }
+        if ((glitter.deviceType === glitter.deviceTypeEnum.Web) || (!glitter.isOG)) {
+            gBundle.Date = new Date().format("yyyy-MM-dd hh:mm:ss")
+            glitter.share.dataLoading(true)
+            glitter.postRequest('TireHotel', 'uploadAppoint', {
+                data: gBundle
+            }, function (response) {
+                glitter.share.dataLoading(false)
+                if (response !== undefined) {
+                    if (response.result) {
+                        glitter.openDiaLog('tireStorage/dialog/Dia_Saved.html', 'Dia_Saved', false, true, {}, function () {
+                            glitter.goBack("Page_Function_Select")
+                        })
+                    } else {
+                        glitter.openDiaLog('tireStorage/dialog/Dia_Error.html', 'Dia_Error', false, true, glitter.language(256), function () {
+                        })
+                    }
+                } else {
+                    glitter.openDiaLog('tireStorage/dialog/Dia_Error.html', 'Dia_Error', false, true, glitter.language(256), function () {
+                    })
+                }
+            })
+        } else {
+            gBundle.Date = new Date().format("yyyy-MM-dd hh:mm:ss")
+            glitter.share.dataLoading(true)
+            glitter.serialUtil.storeObject({
+                name: `${new Date().getTime()}`,
+                rout: 'waitUpload',
+                data: gBundle
+            }, function (result) {
+                glitter.share.dataLoading(false)
+                glitter.openDiaLog('tireStorage/dialog/Dia_Saved.html', 'Dia_Saved', false, true, {}, function () {
+                    glitter.goMenu()
+                })
+            })
+        }
+    }
+
+
+    function updateSn() {
+        var html = []
+        var array = ['LF', 'RF', 'LR', 'RR']
+        array.map(function (data, position) {
+            var ptext = [glitter.language(312), glitter.language(309), glitter.language(311), glitter.language(310)][position]
+            let data2 = gBundle.carFile.filter(function (da) {
+                return da.TireLocal === data
+            })[0]
+            html.push(`
+            <div class="minTitle">${ptext}</div>
+            <div class="maxItem" onclick="scan('${data}')">
+${data2.SN}
+</div>
+            `)
+        })
+        $('#Sn_Place').html(`<div class="flex">
+${html[0]}
+${html[1]}
+</div>
+<div class="flex">
+${html[2]}
+${html[3]}
+</div>`)
+    }
+</script>
+</html>

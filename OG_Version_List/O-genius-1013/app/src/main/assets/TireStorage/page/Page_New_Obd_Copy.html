@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: calc(100% - 110px);
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .flex {
+        width: 100%;
+        display: flex;
+        height: 50px;
+    }
+
+    .flex div {
+        height: 100%;
+        border-color: #99A7B3;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .scrollView {
+        position: absolute;
+        z-index: 2;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 170px;
+        background-color: white;
+        overflow-y: scroll;
+    }
+
+    .scrollView h3 {
+        display: flex;
+        color: white;
+        margin: 0;
+        background-size: 100% 100%;
+    }
+
+    .scrollView .it {
+        background-color: #314a56;
+        color: white;
+        border-bottom: 1px solid white;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<body>
+<script>
+    var single = false
+    //Sensor數據
+    var sensorData = []
+    //是否點擊方匡位置
+    var focus = -1
+    //選擇的燒錄行數
+    var selectRows = 0
+    //是否能執行按鈕事件（防止重複執行）
+    var toggle = true
+    lifeCycle.onCreate = function () {
+        //判斷有無預先加載Sensor
+        if (gBundle.triepress === undefined) {
+            single = true
+            sensorData = [
+                {
+                    oldSensor: '',
+                    newSensor: '',
+                    result: undefined
+                }
+            ]
+            focus = 0
+            updateView()
+        } else {
+            single = false
+            selectRows = -1
+            for (var a = 0; a < 4; a++) {
+                sensorData.push({
+                    oldSensor: (gBundle.triepress[a] === undefined) ? '' : gBundle.triepress[a].id,
+                    newSensor: '',
+                    result: undefined
+                })
+                if ((gBundle.triepress[a] !== undefined)) {
+                    if (selectRows === -1) {
+                        selectRows = a
+                    }
+                }
+            }
+            updateView()
+        }
+        glitter.readRxReceive = function () {
+            read()
+        }
+        gBundle.triepress={}
+    }
+    lifeCycle.onResume=function (){
+        glitter.readRxReceive = function () {
+            read()
+        }
+    }
+    function updateView() {
+        $('#contentList').html(`
+        <h3 style="font-size: 18px;width: calc(100% - 40px);margin: 20px;text-align: center;color: orangered;">${glitter.language(425)}</h3>
+        <div id="selectWay" class="scrollView">
+<div style="flex: auto;"></div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=0;updateView();">
+<img src="../img/icon_read_sensor.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.language(143)}</h3>
+</div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=1;updateView();">
+<img src="../img/icon_key_in.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.language(26)}</h3>
+</div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=2;updateView();">
+<img src="../img/icon_scan.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.language(19)}</h3>
+</div>
+</div>
+        `)
+        var img = ''
+        switch (glitter.selectWay) {
+            case 0:
+                img = '<img src="../img/readblack.png" style="width:100%;height:calc(100%);">'
+                break
+            case 1:
+                img = '<img src="../img/key%20in.png" style="width:100%;height:calc(100%);">'
+                break
+            case 2:
+                img = '<img src="../img/scan.png" style="width:100%;height:calc(100%);">'
+                break
+        }
+        $('#selectWay').hide()
+        $('#contentList').append(`
+<div class="flex" style="background-color: #D7D8D9;">
+<div  style="width: 50px;" onclick="
+if(single){
+    $('#selectWay').toggle()
+}
+">${(single) ? img : ''}</div>
+<div style="max-width:calc((100% - 104px)/2);flex: auto;">
+${glitter.language(417)}
+</div>
+<div style="flex:auto;max-width:calc((100% - 104px)/2);">
+${glitter.language(418)}
+</div>
+<div style="width: 50px;">
+${glitter.language(303)}
+</div>
+</div>`)
+        if (single) {
+            $('#contentList').append(`
+<div class="flex" style="background-color: white;">
+<div  style="width: 50px;background-color: #D7D8D9;">1</div>
+<div style="max-width:calc((100% - 104px)/2);flex: auto;background-color: ${(focus === 0) ? '#FF9D07' : 'white'};color: ${(focus === 0) ? 'white' : 'black'};" id="original-0">
+${sensorData[0].oldSensor}
+</div>
+<div style="flex:auto;max-width:calc((100% - 104px)/2);">
+${sensorData[0].newSensor}
+</div>
+<div style="width: 50px;background-color: white;">
+${(sensorData[0].result === undefined) ? `` : `<img src="${sensorData[0].result ? '../img/icon_check_sensor_ok.png' : '../img/icon_check_sensor_fail.png'}" style="width: 40px;height: 40px;">`}
+</div>
+</div>
+`)
+            $('#original-0').click(function () {
+                if (!sensorData[0].result) {
+                    if (focus === 0) {
+                        focus = -1
+                    } else {
+                        focus = 0
+                    }
+                    if (focus === 0) {
+                        read()
+                    }
+                    updateView()
+                }
+            })
+            if (sensorData[0].result) {
+                $('#contentList').append(`<div style="display: flex;width: 100%;margin-top:10px;height: 50px;align-items: center;justify-content: center;">
+<div style="
+display:flex;align-items: center;justify-content: center;background-image: url('../img/bt_long_unselect.png');width: 150px;height: 40px;color: white;background-repeat: no-repeat;background-size: 100% 100%;"
+onclick="
+            single = true
+            sensorData=[{
+                    oldSensor:'',
+                    newSensor:'',
+                    result:undefined
+                }]
+            focus=-1
+            updateView()
+">${glitter.language(134)}</div>
+</div>`)
+            }
+        } else {
+            var wheelArray = [glitter.language(312), glitter.language(309), glitter.language(310), glitter.language(311)]
+            sensorData.map(function (data, position) {
+                $('#contentList').append(`
+<div class="flex" style="${((data.result) || (selectRows === position)) ? 'background-color: white;' : 'background-color: lightgray;'}" onclick="${(data.oldSensor === '') ? '' : `selectRows=${position};updateView();`}">
+<div  style="width: 50px;background-color: #D7D8D9;">${wheelArray[position]}</div>
+<div style="max-width:calc((100% - 104px)/2);flex: auto;" id="original-0">
+${data.oldSensor}
+</div>
+<div style="flex:auto;max-width:calc((100% - 104px)/2);">
+${data.newSensor}
+</div>
+<div style="width: 50px;background-color: white;">
+${(data.result === undefined) ? `` : `<img src="${data.result ? '../img/icon_check_sensor_ok.png' : '../img/icon_check_sensor_fail.png'}" style="width: 40px;height: 40px;">`}
+</div>
+</div>
+`)
+            })
+        }
+        //按鈕事件定義
+        switch (sensorData[selectRows].result) {
+            //尚未燒錄
+            case undefined:
+                $('#bottomBar').html(`
+                  <div id="cancel" class="leftBottom" onclick="glitter.changePage('page/Page_Relearm_Procedure_Munu.html','Page_Relearm_Procedure_Munu',true,gBundle)" >
+        ${glitter.language(135)}
+        </div>
+         <div id="next" class="rightBottom" onclick="writeSensor()" >
+        ${glitter.language(13)}
+        </div>
+                `)
+                break
+            //燒錄失敗
+            case false:
+                $('#bottomBar').html(`
+                  <div id="cancel" class="leftBottom" onclick="glitter.changePage('page/Page_Relearm_Procedure_Munu.html','Page_Relearm_Procedure_Munu',true,{})" >
+        ${glitter.language(135)}
+        </div>
+         <div id="next" class="rightBottom" onclick="writeSensor()" >
+        ${glitter.language(288)}
+        </div>
+                `)
+                break
+            //燒錄成功
+            case true:
+                $('#bottomBar').html(`
+                   <div id="cancel" class="leftBottom" onclick="glitter.changePage('page/Page_Relearm_Procedure_Munu.html','Page_Relearm_Procedure_Munu',true,{})" >
+        ${glitter.language(135)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+            glitter.changePage('page/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)
+         " >
+        ${glitter.language(145)}
+        </div>
+                `)
+                break
+        }
+        if (focus !== -1) {
+            $('#bottomBar').html(`
+                  <div id="cancel" class="leftBottom" onclick="glitter.changePage('page/Page_Relearm_Procedure_Munu.html','Page_Relearm_Procedure_Munu',true,{})" >
+        ${glitter.language(135)}
+        </div>
+         <div id="next" class="rightBottom" onclick="read()" >
+        ${glitter.language(404)}
+        </div>
+                `)
+        }
+    }
+
+    //寫入（步驟->讀新Sensor->燒錄->寫入）
+    function writeSensor() {
+        if (!toggle) {
+            return
+        }
+        toggle = false
+        glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.language(8), function () {})
+        //ID Copy
+        function idCopy(){
+            glitter.runJsInterFace("idCopy",{
+                originID:sensorData[selectRows].oldSensor,
+                newID:sensorData[selectRows].newSensor},function (response){
+                sensorData[selectRows].result = response.result
+                if(response.result){
+                gBundle.triepress[""+selectRows]=response.data
+                }
+                toggle = true
+                glitter.closeDiaLogWithTag('Dia_Loading_Cancel')
+                if(!response.result){
+                    glitter.openDiaLog('dialog/Dia_Error.html', 'Dia_Error', false, true, glitter.language(147), function () {})
+                }else{
+                    sensorData[selectRows].newSensor=sensorData[selectRows].oldSensor
+                }
+                updateView()
+            })
+        }
+        //燒錄函示
+        function program() {
+            glitter.runJsInterFace("startProgram", {
+                data: [{id:sensorData[selectRows].newSensor}],
+                make: gBundle.Make,
+                model: gBundle.Model,
+                year: gBundle.Year
+            }, function (response) {
+                var result=true
+                response.data.map(function (data2){
+                    if (data2.id.substring(4, 8) === sensorData[selectRows].newSensor.substring(4, 8)) {
+                        sensorData[selectRows].newSensor=data2.id
+                        result=result&&data2.result
+                    }
+                })
+                if(result){
+                    idCopy()
+                }else{
+                    sensorData[selectRows].result = false
+                    glitter.closeDiaLogWithTag('Dia_Loading_Cancel')
+                    glitter.openDiaLog('dialog/Dia_Error.html', 'Dia_Error', false, true, glitter.language(147), function () {})
+                    toggle = true
+                    updateView()
+                }
+            })
+        }
+        //讀取函示
+        function readNewSensor() {
+            glitter.runJsInterFace("readMtSensor", {count: 1, make: gBundle.Make, model: gBundle.Model, year: gBundle.Year}, function (data) {
+                data.data.map(function (result) {
+                    sensorData[selectRows].newSensor = result.id
+                    updateView()
+                    program()
+                })
+                if(data.data.length===0){
+                    glitter.closeDiaLogWithTag('Dia_Loading_Cancel')
+                    sensorData[selectRows].result = false
+                    updateView()
+                    toggle = true
+                    glitter.openDiaLog('dialog/Dia_Error.html', 'Dia_Error', false, true, glitter.language(300), function () {})
+                }
+            })
+        }
+        readNewSensor()
+    }
+
+    //讀取
+    function read() {
+        if (!toggle) {
+            return
+        }
+        switch (glitter.selectWay) {
+            case 0:
+                toggle = false
+                glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.language(231) + "...")
+                glitter.command.readSensor(function (result) {
+                    toggle = true
+                    glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                    if (result === "cancel") {
+                        return
+                    }
+                    if (result) {
+                        sensorData[focus].oldSensor = result.id
+                        focus = -1
+                        updateView()
+                    } else {
+                        glitter.openDiaLog('dialog/Dia_Error.html', 'Dia_Error', false, true, {}, function () {
+                        })
+                    }
+                })
+                break
+            case 1:
+                glitter.openDiaLog('dialog/Dia_Keyboard.html', 'Dia_Keyboard', false, true, {
+                    length:(glitter.share.isDEC()) ? 10:8,
+                    callback: function (data) {},
+                    data:((glitter.share.isDEC()) ? `${parseInt(sensorData[focus].oldSensor,16)}`.replace("NaN",""):sensorData[focus].oldSensor),
+                    writeC: function (data) {
+                        if(glitter.share.isDEC()){
+                            data=parseInt(data,10).toString(16);
+                        }
+                        sensorData[focus].oldSensor = data
+                        focus = -1
+                        updateView()
+                        glitter.closeDiaLog()
+                    }
+                })
+                break
+            case 2:
+                glitter.openQrScanner(function (data) {
+                    if (data.indexOf(",") !== -1) {
+                        data = data.split(',')[1]
+                        sensorData[focus].oldSensor = data
+                        focus = -1
+                        updateView()
+                    } else if (data.indexOf("*") !== -1) {
+                        data = data.split('*')[1]
+                        sensorData[focus].oldSensor = data
+                        focus = -1
+                        updateView()
+                    } else if (data.length <= 8) {
+                        sensorData[focus].oldSensor = data
+                        focus = -1
+                        updateView()
+                    }
+                })
+                break
+        }
+
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+    <div style="height: 60px;background-color: #1f333e;display: flex;align-content: center;justify-content: center;flex-direction: column;text-align: center;color: white;">
+${gBundle.Make}/${gBundle.Model}/${gBundle.Year}
+</div>
+<div style="flex: auto;" id="contentList">
+
+</div>
+
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+              <div id="cancel" class="leftBottom" onclick="glitter.changePage('page/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" >
+        ${glitter.language(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="readSensor()" >
+        ${glitter.language(143)}
+        </div>
+</div>
+
+    `
+    }
+
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+    String.prototype.replaceAt = function(index, replacement) {
+        return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+    }
+</script>
+</body>
+</html>

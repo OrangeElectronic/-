@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    html{
+        height: 100vh;
+        width: 100vw;
+    }
+    body {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background-image: url('../image/start_logo.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-color: black;
+        background-size: 100% 100%;
+    }
+
+    .viewCenter{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .changeEnter{
+        background-image: url("../image/button_selsect_quantity_normal.png");
+        width: 80%;
+        height: 70px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .contrast{
+        -webkit-filter:contrast(2);
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../jslib/touch.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+
+    var text = {title:"Safety Notice",content:"Do not change settings or staring at the screen while driving.The developer and distributors of this application are not responsible for any accidents,injuries or property damage that may occur during its use.Always drive safely and obey the traffic laws."
+                ,agree:"Agree"}
+
+    //紀錄現在畫面方向，直向:false，橫向:true
+    var changeScreen=false
+    if(glitter.screenPage==="PORTRAIT" || glitter.screenPage===undefined){
+        changeScreen=false
+    }else{
+        changeScreen=true
+    }
+
+    glitter.share.orientationPageCallback.push( {callback:function (screen) {
+        console.log("setTire:"+screen)
+        if(screen==="PORTRAIT"){
+            changeScreen=false
+            $('body').css("background-size","100% 100%")
+        }else{
+            changeScreen=true
+            $('body').css("background-size","30% 100%")
+        }
+        $('body').html(lifeCycle.onCreateView())
+        touchChange("agree")
+        //Adapter.notifyDataSetChange()
+    },tag:"Page_Logo_Show"})
+
+    lifeCycle.onCreate=function (){
+        // console.log("二進制1:"+parseInt("1A",16).toString(2))
+        // console.log("二進制2:"+parseInt("A",16).toString(2))
+        // var hex4 = parseInt("4",16).toString(2)
+        // for(var i=hex4.length;i<4;i++){
+        //     hex4 = "0"+hex4
+        // }
+        // console.log("二進制1:"+hex4)
+        //console.log("二進制2:"+parseInt("0100",2))
+
+        text.title=glitter.getLanguage("2")
+        text.content=glitter.getLanguage("3")
+        text.agree=glitter.getLanguage("4")
+        $('body').html(this.onCreateView())
+
+        //Call back when the onCreateView function is executed
+        touchChange("agree")
+
+        glitter.runJsInterFace("PerMission_Request",{
+            permission:[
+                "android.permission.READ_EXTERNAL_STORAGE","android.permission.WRITE_EXTERNAL_STORAGE"]
+        },function (response){
+            console.log("請求結果"+response.result)
+        })
+
+    }
+    function agreeEnter() {
+        glitter.setHome('page/Page_Show_Truck.html','Page_Show_Truck',{})
+    }
+
+    lifeCycle.onCreateView=function (){
+        //Return your body content
+        // text-align:justify;
+        //Do not change settings or staring at the screen while driving.The developer and distributors of this application are not responsible for any accidents,injuries or property damage that may occur during its use.Always drive safely and obey the traffic laws.
+
+        return `<div style="height: 55%">
+                    <div style="height:120px;"></div>
+                    <div style="height:35px;font-size: 30px;color: white;width: 100%;text-align: center;"> ${text.title} </div>
+                    <div style="width: 76%;height: calc(100% - 225px);overflow-y: scroll;color: white;font-size: 20px;margin-left: 12%;margin-right: 12%;padding:0;text-align:justify;">
+                        ${text.content}
+                    </div>
+                    <div class="viewCenter" style="height: 70px;">
+                        <div id="agree" class="changeEnter" onclick="agreeEnter()">${text.agree}</div>
+                    </div>
+                </div>
+                `
+    }
+
+    lifeCycle.onResume=function (){
+        //Call back when reappear
+    }
+    lifeCycle.onPause=function (){
+        //Call back when page pause
+    }
+    lifeCycle.onDestroy=function (){
+        //Call back when page disappears
+    }
+
+
+</script>

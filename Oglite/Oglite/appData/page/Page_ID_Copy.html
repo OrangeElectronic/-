@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 60px);
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .wrapper h3 {
+        color: white;
+        background-color: #40606F;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        min-height: 60px;
+        margin: 0;
+        border-bottom: 1px solid white;
+    }
+
+    .tireCancel {
+        background-image: url("../img/icon_tire_cancel.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tireSelect {
+        background-image: url("../img/yellow_tire.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .tireOk {
+        background-image: url("../img/icon_tire_ok.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .tireOk {
+        background-image: url("../img/icon_tire_ok.png");
+        background-size: 72px 72px;
+        width: 72px;
+        height: 72px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mindiv {
+        width: 50px;
+        height: 50px;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .maxdiv {
+        width: 50px;
+        height: 50px;
+        flex: auto;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .item {
+        display: flex;
+        height: 50px;
+        min-height: 50px;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        width: 40%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+    .mindiv img {
+        margin-left: 5px;
+        height: 40px;
+        width: 40px;
+    }
+    .scrollView{
+        position: relative;
+        z-index: 2;
+        margin-top: -150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 170px;
+        height: 150px;
+        background-color: white;
+        overflow-y: scroll;
+    }
+    .scrollView h3{
+        display: flex;
+        color: white;
+        margin: 0;
+        background-size: 100% 100%;
+    }
+    .scrollView .it{
+        background-color: #314a56;
+        color: white;
+        border-bottom: 1px solid white;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    var wheelArray = [glitter.getLan(312), glitter.getLan(309), glitter.getLan(310), glitter.getLan(311)]
+    var selectPosition = {position: 0}
+    var itemData = {}
+    lifeCycle.onCreate=function (){
+        glitter.addObserver(selectPosition, "position", function (result) {
+            notifyList()
+        })
+        glitter.readRxReceive=function (){
+            readSensor()
+        }
+        if(glitter.selectFunction.select===glitter.selectFunction.enum.IdCopy_OBD){
+            glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.getLan(405) + "...")
+            glitter.command.loadingOBD(function (result){
+                if(result==='cancel'){glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                return}
+                if(result){
+                    glitter.command.getOBDid(function (sensor){
+                        glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                        if(sensor==='cancel'){return}
+                        if(sensor){
+                            for(var a=0;a<parseInt(glitter.mmyInterFace.selectMMY.Wheel_Count,10);a++){
+                                itemData[""+a*2]={id:sensor[a]}
+                            }
+                            notifyList()
+                        }else{
+                            glitter.openDiaLog('dialog/Dia_Error_Hint.html','Dia_Error_Hint',false,true,glitter.getLan(132),function (){})
+                        }
+                    })
+                }else{
+                    glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                    glitter.openDiaLog('dialog/Dia_Error_Hint.html','Dia_Error_Hint',false,true,glitter.getLan(132),function (){})
+                }
+            })
+        }
+        $("body").click(function (){
+            $('#selectWay').hide()
+        })
+        $('#selectWay').hide()
+    }
+    lifeCycle.onCreateView=function (){
+        return `
+<h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #1f333e;color: white;width: 100%;">
+${glitter.mmyInterFace.selectMake}/${glitter.mmyInterFace.selectModel}/${glitter.mmyInterFace.selectYear}
+</h3>
+<div style="    height: 200px;width: 100%;display: flex;align-items: center;justify-content: center;">
+<div class="car" style="position:relative;height: 100%;width: 200px;">
+<div class="tireCancel" id="w0" style="position:absolute;margin-left: 10px;top: 26px;" onclick="selectPosition.position=0;">${wheelArray[0]}</div>
+<div class="tireCancel" id="w1" style="position:absolute;right: 10px;top: 26px;" onclick="selectPosition.position=2;">${wheelArray[1]}</div>
+<div class="tireCancel" id="w2" style="position:absolute;right: 10px;bottom: 22px;" onclick="selectPosition.position=4;">${wheelArray[2]}</div>
+<div class="tireCancel" id="w3" style="position:absolute;margin-left: 10px;bottom: 22px;" onclick="selectPosition.position=6;">${wheelArray[3]}</div>
+<img src="../img/img_car_four_tire.png" style="width: 80px;height: 132px;position: absolute;transform: translate(-50%,-50%);
+left: calc(50%);top: 50%;">
+</div>
+</div>
+<div id="selectWay" class="scrollView">
+<div style="flex: auto;"></div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=0;notifyList();">
+<img src="../img/icon_read_sensor.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.getLan(143)}</h3>
+</div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=1;notifyList();">
+<img src="../img/icon_key_in.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.getLan(26)}</h3>
+</div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=2;notifyList();">
+<img src="../img/icon_scan.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.getLan(19)}</h3>
+</div>
+</div>
+<div id="itemList" style="width: 100%;height:calc(100% - 380px);overflow-y:scroll;display: flex;flex-direction: column;margin-top: 0;">
+
+</div>
+<div style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick="glitter.goMenu()" >
+        ${glitter.getLan(9)}
+        </div>
+         <div id="next" class="rightBottom" onclick="idCopy()" >
+        ${glitter.getLan(13)}
+        </div>
+</div>
+        `
+    }
+    function notifyList(toNext) {
+        var img=''
+        switch (glitter.selectWay){
+            case 0:
+                img='<img src="../img/read.png" style="width:100%;height:calc(100%);">'
+                break
+            case 1:
+                img='<img src="../img/key%20in.png" style="width:100%;height:calc(100%);">'
+                break
+            case 2:
+                img='<img src="../img/scan.png" style="width:100%;height:calc(100%);">'
+                break
+        }
+        var html = `<div class="item" style="background-color: #d7d8d9">
+<div id="selectWayC" class="mindiv">${img}</div>
+<div class="maxdiv">${glitter.getLan(31)}</div>
+<div class="maxdiv">${glitter.getLan(418)}</div>
+<div class="mindiv">OK</div>
+</div>`
+        var toggle=true
+        for(var b=0;b<wheelArray.length;b++){
+            if((toggle&&toNext && itemData["" + b*2] === undefined)&&(glitter.selectFunction.select!==glitter.selectFunction.enum.ObdRelearn)){
+                toggle=false
+                selectPosition.position=b*2
+                break
+            }
+            if(toggle&&toNext && itemData["" + (b*2+1)] === undefined){
+                toggle=false
+                selectPosition.position=(b*2+1)
+                break
+            }
+        }
+        for (var a = 0; a < wheelArray.length; a++) {
+            $("#w" + a).removeClass("tireSelect")
+            $("#w" + a).removeClass("tireOk")
+            if(glitter.selectFunction.select===glitter.selectFunction.enum.ObdRelearn){
+                html += `
+      <div  id="focus${a}" class="item" >
+<div class="mindiv" style="background-color:#d7d8d9;color: black; ">${wheelArray[a]}</div>
+<div class="maxdiv" style="background-color: ${(itemData["" + a*2] === undefined) ? 'gray' : 'white'};color:  ${(selectPosition.position === a*2) ? 'white' : 'black'};">${(itemData["" + a*2]===undefined || (itemData["" + (a*2)].id===undefined)) ? '':itemData["" + a*2].id}</div>
+<div onclick="selectPosition.position=${a*2+1};clickItem(${a*2+1});" class="maxdiv" style="background-color: ${(selectPosition.position === (a*2+1)) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position ===  (a*2+1)) ? 'white' : 'black'};">${(itemData["" + (a*2+1)]===undefined || (itemData["" + (a*2+1)].id===undefined)) ? '':itemData["" + (a*2+1)].id}</div>
+<div class="mindiv">${(itemData[""+(a*2+1)]===undefined||itemData[""+(a*2+1)].result===undefined) ? '':(itemData[""+(a*2+1)].result) ? '<img src="../img/icon_check_sensor_ok.png">':'<img src="../img/icon_check_sensor_fail.png">' }</div>
+</div>
+      `
+            }else{
+                html += `
+      <div  id="focus${a}" class="item" >
+<div class="mindiv" style="background-color:#d7d8d9;color: black; ">${wheelArray[a]}</div>
+<div onclick="selectPosition.position=${a*2};clickItem(${a*2});"  class="maxdiv" style="background-color: ${(selectPosition.position === a*2) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position === a*2) ? 'white' : 'black'};">${(itemData["" + a*2]===undefined || (itemData["" + (a*2)].id===undefined)) ? '':itemData["" + a*2].id}</div>
+<div onclick="selectPosition.position=${a*2+1};clickItem(${a*2+1});" class="maxdiv" style="background-color: ${(selectPosition.position === (a*2+1)) ? '#ff9e00' : 'white'};color:  ${(selectPosition.position ===  (a*2+1)) ? 'white' : 'black'};">${(itemData["" + (a*2+1)]===undefined || (itemData["" + (a*2+1)].id===undefined)) ? '':itemData["" + (a*2+1)].id}</div>
+<div class="mindiv">${(itemData[""+(a*2+1)]===undefined||itemData[""+(a*2+1)].result===undefined) ? '':(itemData[""+(a*2+1)].result) ? '<img src="../img/icon_check_sensor_ok.png">':'<img src="../img/icon_check_sensor_fail.png">' }</div>
+</div>
+      `
+            }
+
+            if((itemData[""+(a*2+1)]!==undefined&&(itemData[""+(a*2+1)].result!==undefined))){
+                    if(itemData[""+(a*2+1)].result){
+                        $("#w" +a).toggleClass("tireOk")
+                    }
+            }
+        }
+        $("#w" + parseInt(selectPosition.position/2,10)).toggleClass("tireSelect")
+        $('#itemList').html(html)
+        $('#selectWayC').click(function (){
+            $('#selectWay').show()
+            return false
+        })
+    }
+    /*
+    * 讀取函式
+    * */
+    var toggle=true
+    function readSensor() {
+        if(!toggle){return}
+        toggle=false
+        glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.getLan(231) + "...")
+        if(selectPosition.position%2===0||(glitter.selectFunction.select===glitter.selectFunction.enum.ObdRelearn)){
+            glitter.command.readSensor(function (result) {
+                toggle=true
+                if(result){}
+                glitter.closeDiaLog("Dia_Loading_Cancel")
+                if(result==="cancel"){return}
+                if (result) {
+                    Object.keys(itemData).map(function (data){
+                        if(itemData[data]){
+                            if(itemData[data].id===result.id){
+                                itemData[data]=undefined
+                            }
+                        }
+                    })
+                    itemData[`${selectPosition.position}`] = result
+                    notifyList(true)
+                } else {
+                    glitter.openDiaLog('dialog/Dia_Error.html','Dia_Error',false,true,{},function (){})
+                }
+            })
+        }else{
+            glitter.command.readMultiSensor(1,function (result,itemlist) {
+                glitter.command.commandFinish(function (){})
+                toggle=true
+                glitter.closeDiaLog("Dia_Loading_Cancel")
+                if(result==="cancel"){return}
+                if (result) {
+                    var size = 0
+                    itemlist.map(function (result) {
+                        size += 1
+                        Object.keys(itemData).map(function (data){
+                            if(itemData[data]){
+                                if(itemData[data].id===result.id){
+                                    itemData[data]=undefined
+                                }
+                            }
+                        })
+                        itemData[`${selectPosition.position}`] = result
+                    })
+                    notifyList(true)
+                } else {
+                    glitter.openDiaLog('dialog/Dia_Error.html','Dia_Error',false,true,{},function (){})
+                }
+            })
+        }
+
+    }
+    /*
+    * idCopy函式
+    * 須先Program後IdCopy
+    * */
+    function idCopy(){
+        var canCopy={}
+        for(var a=0;a<wheelArray.length;a++){
+            if((itemData[""+(a*2)]!==undefined)&&(itemData[""+(a*2+1)]!==undefined)){
+                //當判斷已經ＣＯＰＹ成功則不進行Copy
+                if(!itemData[""+(a*2+1)].result){
+                    canCopy[""+(a*2+1)]=itemData[""+(a*2+1)]
+                }
+            }
+            //當判斷為OBD時只需要有新傳感器的值
+            if((glitter.selectFunction.select===glitter.selectFunction.enum.ObdRelearn)&&(itemData[""+(a*2+1)]!==undefined)){
+                if(!itemData[""+(a*2+1)].result){
+                    canCopy[""+(a*2+1)]=itemData[""+(a*2+1)]
+                }
+            }
+        }
+        //如果canCopy長度為0跳出提醒
+        if(Object.keys(canCopy).length===0){
+            glitter.openDiaLog('dialog/Dia_Info.html','Dia_Info',false,true,glitter.getLan(532),function (){})
+        }else{
+            program(canCopy)
+        }
+    }
+    /*
+    * 燒錄函式
+    * */
+    function program(canCopy) {
+        if (!toggle) {
+            return
+        }
+        toggle = false
+        glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.getLan(8))
+        if(glitter.selectFunction.select===glitter.selectFunction.enum.ObdRelearn){
+            glitter.command.loadingOBD(function (result){
+                if(result==='cancel'){glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                    return}
+                if(result){
+                    glitter.command.getOBDid(function (sensor){
+                        if(sensor==='cancel'){glitter.closeDiaLogWithTag("Dia_Loading_Cancel");return}
+                        if(sensor){
+                            var writeSensor=[]
+                            for(var a=0;a<parseInt(glitter.mmyInterFace.selectMMY.Wheel_Count,10);a++){
+                                itemData[""+(a*2)]={id:sensor[a]}
+                                if(itemData[""+(a*2+1)]===undefined){
+                                    itemData[""+(a*2+1)]=itemData[""+(a*2)]
+                                    writeSensor=writeSensor.concat(sensor[a])
+                                }else{
+                                    writeSensor=writeSensor.concat(itemData[""+(a*2+1)].id)
+                                }
+                            }
+                            glitter.command.writeObd(writeSensor,function (result){
+                                glitter.closeDiaLogWithTag("Dia_Loading_Cancel");
+                                if(result==='cancel'){return}
+                                if(result){
+                                    for(var a=0;a<parseInt(glitter.mmyInterFace.selectMMY.Wheel_Count,10);a++){
+                                        itemData[""+(a*2+1)].result=true
+                                        itemData[""+(a*2)].result=true
+                                    }
+                                    selectPosition.position=-1
+                                    notifyList()
+                                }else{
+                                    glitter.openDiaLog('dialog/Dia_Error_Hint.html','Dia_Error_Hint',false,true,glitter.getLan(132),function (){})
+                                }
+                            })
+                        }else{
+                            glitter.closeDiaLogWithTag("Dia_Loading_Cancel");
+                            glitter.openDiaLog('dialog/Dia_Error_Hint.html','Dia_Error_Hint',false,true,glitter.getLan(132),function (){})
+                        }
+                    })
+                }else{
+                    glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                    glitter.openDiaLog('dialog/Dia_Error_Hint.html','Dia_Error_Hint',false,true,glitter.getLan(132),function (){})
+                }
+            })
+        }else{
+            glitter.command.program(canCopy, function (result) {
+                if (result) {
+                    setTimeout(function () {
+                        glitter.command.checkPrId(function (itemlist) {
+                            toggle = true
+                            if (itemlist === 'cancel') { glitter.command.commandFinish(function () {glitter.closeDiaLogWithTag("Dia_Loading_Cancel")})
+                            } else if (itemlist.length > 0) {
+                                var senList=[]
+                                Object.keys(canCopy).map(function (data) {
+                                    itemData[data].result = false
+                                    senList=senList.concat({
+                                        original:itemData[""+(parseInt(data,10)-1)].id,
+                                        newSensor:itemData[data].id,
+                                        position:data
+                                    })
+                                })
+                                itemlist.map(function (result) {
+                                    Object.keys(canCopy).map(function (data) {
+                                        if (result.id.substring(4, 8) === canCopy[data].id.substring(4, 8)) {
+                                            itemData[data] = result
+                                            itemData[data].result=false
+                                        }
+                                    })
+                                })
+                                var size=0
+                                function startCopy(){
+                                    if(size===senList.length){
+                                        glitter.command.commandFinish(function () {glitter.closeDiaLogWithTag("Dia_Loading_Cancel")})
+                                        notifyList(false)
+                                        return
+                                    }
+                                    glitter.command.idCopy(senList[size].original,senList[size].newSensor,function (result){
+                                        if(result==="cancel"){
+                                            glitter.command.commandFinish(function () {glitter.closeDiaLogWithTag("Dia_Loading_Cancel")})
+                                            return
+                                        }else itemData[senList[size].position].result = !!result;
+                                        size+=1
+                                        startCopy()
+                                    })
+                                }
+                                setTimeout(function (){
+                                    startCopy()
+                                },1000)
+
+//                             if (canCopy.length === Object.keys(canCopy).length) {
+//                                 $('#bottomBar').html(`
+// <div id="cancel" class="leftBottom" style="width: 50%;" onclick="glitter.goBack()" >
+//         ${glitter.getLan(28)}
+//         </div>
+//          <div id="next" class="rightBottom2" onclick="glitter.changePage('page/Page_Relearm_Procedure_Munu.html','Page_Relearm_Procedure_Munu',true,{})" >
+//         ${glitter.getLan(135)}
+//         </div>`)
+//                             }
+                            } else {
+                                glitter.command.commandFinish(function () {glitter.closeDiaLogWithTag("Dia_Loading_Cancel")})
+                                Object.keys(canCopy).map(function (data) {
+                                    itemData[data].result = false
+                                })
+                                glitter.openDiaLog('dialog/Dia_Error_Hint.html', 'Dia_Error_Hint', false, true, glitter.getLan(147))
+                            }
+                            notifyList(false)
+                        }, Object.keys(canCopy).length)
+                    }, 5 * 1000)
+                    return
+                }
+                glitter.command.commandFinish(function () {
+                    toggle = true
+                    Object.keys(canCopy).map(function (data) {
+                        itemData[data].result = false
+                    })
+                    glitter.openDiaLog('dialog/Dia_Error_Hint.html', 'Dia_Error_Hint', false, true, glitter.getLan(147))
+                    glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                    notifyList(false)
+                })
+            })
+        }
+
+    }
+    //選擇某列
+    function clickItem(result){
+        switch (glitter.selectWay){
+            case 0:
+                readSensor()
+                break
+            case 1:
+                keyInId(result)
+                break
+            case 2:
+                glitter.openQrScanner(function (data){
+                    if(data.indexOf(",")!==-1){
+                        data=data.split(',')[1]
+                        var data2 = {
+                            idCount: data.length,
+                            id: data,
+                            bat: "",
+                            kpa: "",
+                            c: "",
+                            vol: ""
+                        }
+                        itemData["" + result]=data2
+                        notifyList(true)
+                    }else if(data.indexOf("*")!==-1){
+                        data=data.split('*')[1]
+                        var data2 = {
+                            idCount: data.length,
+                            id: data,
+                            bat: "",
+                            kpa: "",
+                            c: "",
+                            vol: ""
+                        }
+                        itemData["" + result]=data2
+                        notifyList(true)
+                    }else if(data.length<=8){
+                        var data2 = {
+                            idCount: data.length,
+                            id: data,
+                            bat: "",
+                            kpa: "",
+                            c: "",
+                            vol: ""
+                        }
+                        itemData["" + result]=data2
+                        notifyList(true)
+                    }
+                })
+                break
+        }
+    }
+    function keyInId(position){
+        glitter.openDiaLog('dialog/Dia_Keyboard.html', 'Dia_Keyboard', false, true, {
+            length:8,
+            callback: function (data) {
+
+            },
+            data: (itemData["" + position]===undefined) ? '' : itemData["" + position].id,
+            writeC:function (data) {
+                glitter.closeDiaLog()
+                var data2 = {
+                    idCount: data.length,
+                    id: data,
+                    bat: "",
+                    kpa: "",
+                    c: "",
+                    vol: ""
+                }
+                itemData["" + position]=data2
+                if(data===''){itemData["" + position]=undefined}else{
+                    notifyList(true)
+                }
+            }
+        })
+    }
+</script>

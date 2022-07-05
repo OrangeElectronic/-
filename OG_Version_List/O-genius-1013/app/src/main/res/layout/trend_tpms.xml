@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+    <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="1dp"
+            android:background="#BFD1DD">
+
+        <TextView
+                android:id="@+id/wp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="LF"
+                android:textColor="@color/check_text_color"
+                android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#DAEEFB" >
+
+        <ImageView
+                android:id="@+id/imageView30"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignStart="@id/spinner2"
+                android:layout_alignTop="@id/spinner2"
+                android:layout_alignEnd="@id/spinner2"
+                android:layout_alignBottom="@id/spinner2"
+                app:srcCompat="@drawable/cornerwhite" />
+
+        <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp" />
+    </RelativeLayout>
+
+</LinearLayout>

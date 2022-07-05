@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+.center{
+    align-items: center;justify-content: center;
+}
+
+</style>
+<script src="glitterBundle/ControlInstance.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    var changeScreen=false
+    var page_Enable=[false,false,false]
+    //紀錄頁面順序
+    var page_position=[0,0,0]
+    //glitter.select_position=0
+    var clickTimer=glitter.getClock()
+    var clickPage=""
+    glitter.homeTitleClick=function (position,page){
+        // if( clickTimer.stop() < 10){
+        //     return
+        // }
+        // clickTimer.zeroing()
+
+        if(page===clickPage){
+            console.log("homeTitleClick:"+position+","+page)
+            glitter.select_position=position
+
+            glitter.titleButton(position,page)
+            //glitter.callbacks.fire(position,page)
+        }
+
+        //glitter.titleBarData.update()
+    }
+    glitter.homeTitleChange=function (position,page) {
+        if(page!==clickPage){
+            return ``
+        }
+
+        //clickPage=page
+        pageEnable()
+        console.log("homeTitleChange:"+position+","+ clickPage+","+JSON.stringify(page_position)+","+JSON.stringify(page_Enable))
+        //console.log("pageEnable:"+select_position+" , "+ JSON.stringify(page_position))
+        var homeClass=`flex: 1;height: 100%;display: flex`
+        var hometitle=`
+<div id="homeTitle" style="flex: auto;display: flex;align-items: center;justify-content: center;height: 100%;">
+    <div style="flex: 1;text-align: left;">${glitter.getLanguage(glitter.titleBarData.text)}</div>
+    ${page_Enable[0] ? `<div class="center" style="${homeClass};background-color:${page_position[0]===position ? `#FF910B` : `coral`};" onclick="glitter.homeTitleClick(${page_position[0]},'${clickPage}')">${glitter.getLanguage(glitter.tireShow.titleText[0])}</div>`:``}
+    ${page_Enable[1] ? `<div class="center" style="${homeClass};background-color:${page_position[1]===position ? `#FF910B` : `coral`};" onclick="glitter.homeTitleClick(${page_position[1]},'${clickPage}')">${glitter.getLanguage(glitter.tireShow.titleText[1])}</div>`:``}
+    ${page_Enable[2] ? `<div class="center" style="${homeClass};background-color:${page_position[2]===position ? `#FF910B` : `coral`};" onclick="glitter.homeTitleClick(${page_position[2]},'${clickPage}')">Raw Data</div>`:``}
+</div>`
+        $('#homeTitle').html(hometitle)
+        return hometitle
+    }
+
+    lifeCycle.onCreateView=function (){
+        var hometitle="false"
+        //*
+        //select_position=0
+        console.log("viewtitle:true")
+
+        //&& glitter.page_home_sreen_ble
+        if(changeScreen && (glitter.page_home_sreen_ble || glitter.changeTitlePage)){
+            if(glitter.page_home_sreen_ble){
+                clickPage="home"
+            }else if(glitter.changeTitlePage){
+                clickPage="setting"
+            }
+            console.log("hometitle:" + clickPage + " true")
+            hometitle = glitter.homeTitleChange(glitter.select_position,clickPage)
+        }
+
+        var html=``
+            // <div style="width: 20px;"></div>
+        if(glitter.titleBarData.open){
+            html = `
+<div style="width:100%;display: flex;height: 50px;align-items: center;justify-content: center;font-size: 18px;background-color: #EE4F15;color: white;">
+     ${(glitter.titleBarData.withBack) ?
+        `<img src="image/landscape_tab_009.png" style="width: 50px;height: 50px;" onclick="glitter.goBack()">`:`<div style="width: 50px;"></div>`}
+     <div style="width: 40px;"></div>
+     ${hometitle!=="false" ? `` :
+         ((glitter.titleBarData.text!=="工程模式") ?
+        `<div style="flex:auto;text-align: center;" onClick="">${glitter.getLanguage(glitter.titleBarData.text)}</div>`:
+        `<div style="flex: auto; text-align: center;align-items: center;">${glitter.getLanguage(glitter.titleBarData.text)}</div>`)
+     }
+     ${hometitle!=="false" ? hometitle : ``}
+     ${(glitter.titleBarData.bleConnect) ?
+        '<img src="image/ble_connect.png" style="width: 50px;height: 30px;" >':'<div style="width: 50px;"></div>'}
+     ${(glitter.titleBarData.withHome || glitter.titleBarData.withSetting) ?
+        `<img src="image/${srcImage()}" style="width: 40px;height: 40px;" onclick="changePage()"><div style="width: 5px;"></div>`:`<div style="width: 50px;"></div>`}
+</div>`
+        }
+        //${(glitter.titleBarData.withSetting) ? ' <img src="image/btn_setting_system.png" style="width: 40px;height: 40px;" onclick="changeSetting()"><div style="width: 5px;"></div>':'<div style="width: 50px;"></div>'}
+        // text-align: center;
+        return html
+    }
+
+    function pageEnable(){
+        //var page_Enable=[true,false,false]
+        page_Enable=[false,false,false]
+        //紀錄頁面順序
+        page_position=[0,0,0]
+        //預設首頁面
+        switch (glitter.app) {
+            case "HT471A":
+                page_Enable[1] = true
+                break
+            default:
+                page_Enable[0] = true
+                break
+        }
+
+        // var page_Count=page_Enable.filter(function (value, index, arrSelf) {
+        //    value===true
+        // }).length
+        //頁數計算
+        var page_Count=0
+        //預設頁數
+        switch (glitter.app) {
+            default:
+                page_Count = 1
+                break
+        }
+
+        //有開啟頁面的判斷
+        //1.前車頁面
+        if(glitter.tireShow.carID[1]!==""){
+            page_Enable[0]=true
+            // page_Count++
+            // page_position[0]=page_Count-1
+        }
+        //2.後車頁面
+        if(glitter.tireShow.carID[2]!==""){
+            page_Enable[1]=true
+            switch (glitter.app) {
+                case "HT471A":
+                    break
+                default:
+                    page_Count++
+                    page_position[1] = page_Count - 1
+                    break
+            }
+        }
+        //3.工程模式頁面
+        if(glitter.setSystem.engineer==="true" && !glitter.changeTitlePage){
+            page_Enable[2]=true
+            page_Count++
+            page_position[2]=page_Count-1
+        }
+    }
+
+    function srcImage(){
+        var image='menu_home.png'
+        if(glitter.titleBarData.withHome){
+            image='menu_home.png'
+        }
+        if(glitter.titleBarData.withSetting){
+            image='btn_setting_system.png'
+        }
+        console.log("srcImage:"+image)
+        return image
+    }
+
+    function changePage(){
+        //console.log("changeSetting:true")
+        if(glitter.titleBarData.withHome){
+            glitter.goMenu()
+        }
+        else if(glitter.titleBarData.withSetting){
+            //glitter.changePage('page/Page_Setting_Function.html', "Page_Setting_Function", true, {})
+            glitter.changePage('page/Page_Setting_Car.html', "Page_Setting_Car", true, {})
+        }
+    }
+
+    lifeCycle.onCreate=function (){
+        if(glitter.screenPage==="PORTRAIT" || glitter.screenPage===undefined){
+            changeScreen=false
+        }else{
+            changeScreen=true
+        }
+
+        glitter.titleBarData.update=function (){
+            if(glitter.page_home_sreen_ble){
+                //**changeScreen
+                //glitter.select_position=0
+            }
+            select_position=0
+
+            //console.log("select_position_update_true:"+select_position)
+            $('body').html(lifeCycle.onCreateView())
+        }
+        glitter.share.orientationPageCallback.push({callback: function (screen) {
+            //console.log("select_position_orientation_true:"+select_position)
+            //console.log("screentitle:true")
+            if(screen==="PORTRAIT"){
+                changeScreen=false
+            }else{
+                changeScreen=true
+            }
+            //畫面轉換時為初始值*
+            //glitter.select_position=0
+            glitter.titleBarData.update()
+        },tag:"titleBar"})
+    }
+</script>

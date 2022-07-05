@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ue.kt_frag.Frag_Program_Detail" android:background="@color/white">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/topli" android:layout_below="@id/pll_title"
+            android:layout_marginTop="10dp">
+        <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:alpha="0.8"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:text="jz.425"
+                android:textColor="@color/title_color"
+                android:textSize="21sp" android:layout_weight="1" android:layout_gravity="center_vertical"/>
+        <ImageView
+                android:src="@mipmap/btn_email_n"
+                android:layout_width="100dp"
+                android:layout_height="100dp" android:id="@+id/imageView49" android:layout_weight="0"
+                android:layout_marginEnd="20dp" android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <com.de.rocket.ue.layout.PercentLinearLayout
+            android:id="@+id/pll_title"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/color_FF314A56">
+
+        <TextView
+                android:layout_below="@+id/v_title_bar"
+                android:id="@+id/tv_program_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/color_white"
+                android:gravity="center"
+                android:text=""
+                android:textSize="20sp"/>
+
+    </com.de.rocket.ue.layout.PercentLinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_program"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topli"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="60dp"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/iv_scan_tips"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/bt_menue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/btn_letf"
+                android:gravity="center"
+                android:text="@string/app_menue"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white"
+                android:textSize="18sp"/>
+        <ImageView
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"/>
+
+        <Button
+                android:id="@+id/bt_program"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/btn_right"
+                android:gravity="center"
+                android:text="jz.28"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white"
+                android:textSize="18sp"/>
+
+    </LinearLayout>
+    <com.orange.tpms.widget.ScanWidget
+            android:visibility="gone"
+            android:id="@+id/scw_tips"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</RelativeLayout>

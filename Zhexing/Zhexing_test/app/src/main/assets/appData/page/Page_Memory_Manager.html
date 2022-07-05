@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        margin: 0;
+        padding: 0;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        flex-direction: column;
+        overflow-x: hidden;
+        display: flex;
+    }
+
+    .arror {
+        width: 60px;
+        height: 60px;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 600;
+        display: flex;
+    }
+
+    .CarPlace {
+        background-image: url("../img/img_trailer8_rear.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .wheel {
+        width: 40px;
+        height: 40px;
+        margin-left: 12px;
+    }
+
+    .wheel2 {
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+    }
+
+
+    .btable td {
+        border-width: 1px;
+        border-color: #6AC6D7;
+        border-style: solid;
+        margin: 0;
+        padding: 0;
+    }
+
+    .btable {
+        border-spacing: 0;
+    }
+
+    input {
+        margin-left: 10px;
+        height: 100%;
+        background-color: transparent;
+        color: white;
+        font-size: 16px;
+        width: calc(100% - 20px);
+        outline: none;
+        border-style: none;
+    }
+
+    .tit {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 50%;
+        height: 100%;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        border-color: white;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .itemList {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+    }
+
+    .itemList table {
+        width: 100%;
+    }
+
+    .itemList tr {
+        height: 50px;
+    }
+
+    .itemList td {
+        width: 25%;
+        position: relative;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-color: white;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .itemList td h3 {
+        position: absolute;
+        color: #E64E00;
+        font-size: 12px;
+        top: -5px;
+        left: 5px;
+    }
+
+    .unSelect {
+        width: 50%;
+        height: 44px;
+        text-align: center;
+        line-height: 44px;
+        color: white;
+        font-size: 16px;
+        background-color: #BBBBBB;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #BBBBBB;
+    }
+
+    .select {
+        width: 50%;
+        height: 44px;
+        text-align: center;
+        line-height: 44px;
+        font-size: 16px;
+        color: white;
+        background-color: #FF9E00;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #E64E00;
+
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/extension.js"></script>
+<script src="../carView3.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    * showTime要顯示的時間點
+    * */
+    var showTime = new Date()
+    /**/
+    lifeCycle.onCreateView = function () {
+        return glitter.getTitleBar(glitter.getLan(683)) + `
+<div style="width:100%;align-items:center;display:flex;height: 60px;text-align: center;background-color: white;
+     color: #002F51;">
+     <div class="arror" onclick="previousTime()"> < </div>
+     <h3 style="flex: auto;" id="timetitle">` + showTime.format('yyyy-MM-dd') + `</h3>
+     <div class="arror" onclick="nextTime()"> > </div>
+</div>
+<div style="height: 44px;width: 100%;display: flex;">
+<div style="display: flex;width:100%;">
+<div class="unSelect select" id="i1" onclick="select(1)">
+總數: ..
+</div>
+<div class="unSelect" id="i2" onclick="select(2)">
+已上傳: ..
+</div>
+<div class="unSelect" id="i3" onclick="select(3)">
+未上傳: ..
+</div>
+<div class="unSelect" id="i4" onclick="select(4)">
+總筆數: ..
+</div>
+</div>
+</div>
+
+
+<div style="display: flex;height: calc(100% - 70px);margin-top:10px;overflow-y:scroll;width:100%;flex-direction: column;align-items: center;"><div id='itemList' class="itemList"></div>
+</div>
+             `
+    }
+
+
+    /*
+    *
+    * */
+    var selection = 1
+    var carData = undefined
+    var unit='pre'
+    lifeCycle.onCreate = function () {
+        getData()
+    }
+
+    function getData() {
+        $('#itemList').html('')
+        $('#itemList').append(`
+<div style="width: 100%;height: 60px;display: flex;">
+<div style="flex: auto;"></div>
+<div onclick="unit=(unit==='tem')?'pre':'tem';getData()" style="margin-right:10px;margin-top:10px;display: flex;flex-direction: column;align-content: center;justify-content: center;font-size: 11px;color: white;padding: 0;text-align: center;">
+<img src="${(unit==='tem')?'../img/btn_temperature_normal.png':'../img/btn_tpms_normal.png'}" style="width: 50px;height: 50px;position: relative;">
+<span style="margin-top: -5px;">${glitter.getLan(729)}</span>
+</div>
+</div>`)
+        var end = new Date()
+        end.setDate(showTime.getDate() + 1)
+        var map = {
+            admin: rootActivity().userInfoMation.admin,
+            request: "getManagerCarData",
+            start: showTime.format('yyyy-MM-dd hh:mm:ss'),
+            end: end.format('yyyy-MM-dd hh:mm:ss')
+        }
+        rootActivity().apiRequest.postWithDialog(map, function (data) {
+            let lastSelect=selection
+            select(1)
+            carCount = 0
+            carData = JSON.parse(data.data)
+            var haveUpload=0
+            var needUpload=0
+            var plate = []
+            var carList=[]
+            for (var i = 0; i < carData.length; i++) {
+                plate = plate.concat(carData[i].platNumber)
+                if ( (carList.indexOf(carData[i].platNumber)===-1)) {
+                    carCount += 1
+                    haveUpload += 1
+                    $('#itemList').append(adDataList(carData[i],true))
+                    carList.push(carData[i].platNumber)
+                }else{
+                    $('#itemList').append(adDataList(carData[i],undefined))
+                }
+            }
+
+            var dd = rootActivity().carInterFace.getData_Setting_Car()
+            for (var a = 0; a < dd.length; a++) {
+                if (carList.indexOf(dd[a].plateNumber) === -1) {
+                    var map = {
+                        json: '[{"id":"","wh":"1","lon":"NA","tem":"","lan":"NA","count":"10","pre":"","data_name":"' + dd[a].carType + '","plateNumber":"' + dd[a].plateNumber + '"}]',
+                        time: "2020-11-26 09:37:25"
+                    }
+                    if (selection === 1 || selection === 3) {
+                        carCount += 1
+                        needUpload += 1
+                        $('#itemList').append(adDataList(map,false))
+                    }
+                }
+            }
+            $("#i1").html(glitter.getLan(725)+':' + carCount)
+            $("#i2").html(glitter.getLan(726)+':' + haveUpload)
+            $("#i3").html(glitter.getLan(727)+':' + needUpload)
+            $("#i4").html(glitter.getLan(728)+':' + carData.length)
+             select(lastSelect)
+        }, function (data) {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(210)+'!!')
+        })
+
+    }
+
+    function select(a) {
+        $('#i'+selection).toggleClass("select")
+        $('#i'+a).toggleClass("select")
+        selection = a
+        $('.allData').hide()
+        switch (a){
+            case 1:
+                $('.haveData').show()
+                $('.noData').show()
+                break
+            case 2:
+                $('.haveData').show()
+                $('.noData').hide()
+                break
+            case 3:
+                $('.haveData').hide()
+                $('.noData').show()
+                break
+            case 4:
+                $('.allData').show()
+                $('.noData').hide()
+                break
+
+        }
+    }
+
+    var carCount = 0
+    var colorToggle = true
+
+    function adDataList(json,haveData) {
+        try {
+            if(json.address==='NA' || json.address==='' || json.address==='undefined' || json.address===undefined){json.address=glitter.getLan(727)}
+            if(json.staffNumber==='NA' || json.staffNumber==='' || json.staffNumber==='undefined' || json.staffNumber===undefined){json.staffNumber=glitter.getLan(727)}
+            if(json.driverName==='NA' || json.driverName==='' || json.driverName==='undefined' || json.driverName===undefined){json.driverName=glitter.getLan(727)}
+            var data = JSON.parse(json["json"])
+            var line = 2
+            var item = [1, 2, 4, 5, 6, 7]
+            var itemPlace = [2, 1, 6, 5, 4, 3]
+            var itemTitle = ["B", "A", "F", "E", "D", "C"]
+            if (data.length === 0) {
+                return ""
+            }
+            switch (data[0].data_name) {
+                case "N_2":
+                    line = 1
+                    item = [1, 2]
+                    itemPlace = [1,  2]
+                    itemTitle = ["1", '2']
+                    break
+                case "R_4":
+                    line = 2
+                    item = [1, 2, 5, 6]
+                    itemPlace = [3, 1, 4, 2]
+                    itemTitle = ["3", '1', '4', '2']
+                    break
+                case "R_8":
+                    line = 2
+                    item = [0, 1, 2, 3, 4, 5, 6, 7]
+                    itemPlace = [3, 7, 5, 1, 4, 8, 6, 2]
+                    itemTitle = [3, 7, 5, 1, 4, 8, 6, 2]
+                    break
+                case "R_12":
+                    line = 3
+                    item = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                    itemPlace = [4, 10, 7, 1, 5, 11, 8, 2, 6, 12, 9, 3]
+                    itemTitle = [4, 10, 7, 1, 5, 11, 8, 2, 6, 12, 9, 3]
+                    break
+                case "R_16":
+                    line = 4
+                    item = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                    itemPlace = [5, 13, 9, 1, 6, 14, 10, 2, 7, 15, 11, 3, 8, 16, 12, 4]
+                    itemTitle = [5, 13, 9, 1, 6, 14, 10, 2, 7, 15, 11, 3, 8, 16, 12, 4]
+                    break
+                case "R_20":
+                    line = 5
+                    item = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+                    itemPlace = [6, 16, 11, 1, 7, 17, 12, 2, 8, 18, 13, 3, 9, 19, 14, 4, 10, 20, 15, 5]
+                    itemTitle = [6, 16, 11, 1, 7, 17, 12, 2, 8, 18, 13, 3, 9, 19, 14, 4, 10, 20, 15, 5]
+                    break
+                case 'F_6_24':
+                    line = 2
+                    item = [1, 2, 4, 5, 6, 7]
+                    itemPlace = [2, 1, 6, 5, 4, 3]
+                    itemTitle = ["B", 'A', 'F', 'E', 'D', 'C']
+                    break
+                case 'F_8_242':
+                    line = 3
+                    item = [1, 2, 4, 5, 6, 7, 9, 10]
+                    itemPlace = [2, 1, 6, 5, 4, 3, 8, 7]
+                    itemTitle = ["B", 'A', 'F', 'E', 'D', 'C', 'H', 'G']
+                    break
+                case 'F_8_224':
+                    line = 3
+                    item = [1, 2, 5, 6, 8, 9, 10, 11]
+                    itemPlace = [2, 1, 4, 3, 8, 7, 6, 5]
+                    itemTitle = ["B", 'A', 'D', 'C', 'H', 'G', 'F', 'E']
+                    break
+                case 'F_10_244':
+                    line = 3
+                    item = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11]
+                    itemPlace = [2, 1, 6, 5, 4, 3, 10, 9, 8, 7]
+                    itemTitle = ["B", 'A', 'F', 'E', 'D', 'C', 'J', 'I', 'H', 'G']
+                    break
+                case 'N_4':
+                    line = 2
+                    item = [1, 2, 5, 6]
+                    itemPlace = [2, 1, 4, 3]
+                    itemTitle = ["B", 'A', 'D', 'C']
+                    break
+                case 'N_6':
+                    line = 2
+                    item = [1, 2, 4, 5, 6, 7]
+                    itemPlace = [2, 1, 6, 5, 4, 3]
+                    itemTitle = ["B", 'A', 'F', 'E', 'D', 'C']
+                    break
+                case 'N_8_224':
+                    line = 3
+                    item = [1, 2, 5, 6, 8, 9, 10, 11]
+                    itemPlace = [2, 1, 4, 3, 8, 7, 6, 5]
+                    itemTitle = ["B", 'A', 'D', 'C', 'H', 'G', 'F', 'E']
+                    break
+                case 'N_8_242':
+                    line = 3
+                    item = [1, 2, 4, 5, 6, 7, 9, 10]
+                    itemPlace = [2, 1, 6, 5, 4, 3, 8, 7]
+                    itemTitle = ["B", 'A', 'F', 'E', 'D', 'C', 'H', 'G']
+                    break
+                case 'N_10_244':
+                    line = 3
+                    item = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11]
+                    itemPlace = [2, 1, 6, 5, 4, 3, 10, 9, 8, 7]
+                    itemTitle = ["B", 'A', 'F', 'E', 'D', 'C', 'J', 'I', 'H', 'G']
+                    break
+                case 'N_10_2224':
+                    line = 4
+                    item = [1, 2, 5, 6, 9, 10, 12, 13, 14, 15]
+                    itemPlace = [2, 1, 4, 3, 6, 5, 10, 9, 8, 7]
+                    itemTitle = ["B", 'A', 'D', 'C', 'F', 'E', 'J', 'I', 'H', 'G']
+                    break
+                case 'N_12':
+                    line = 4
+                    item = [1, 2, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+                    itemPlace = [2, 1, 4, 3, 8, 7, 6, 5, 12, 11, 10, 9]
+                    itemTitle = ["B", 'A', 'D', 'C', 'H', 'G', 'F', 'E', 'L', 'K', 'J', 'I']
+                    break
+                case 'N_14':
+                    line = 4
+                    item = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+                    itemPlace = [2, 1, 6, 5, 4, 3, 10, 9, 8, 7, 14, 13, 12, 11]
+                    itemTitle = ["B", 'A', 'F', 'E', 'D', 'C', 'J', 'I', 'H', 'G', 'N', 'M', 'L', 'K']
+                    break
+                default:
+                    return ''
+            }
+           // btn_tpms_normal
+            //btn_temperature_normal
+            colorToggle = !colorToggle
+            var newDate = new Date(Date.parse(json.time.replace('.0', '').replace(/-/g, "/")));
+            // newDate.setTime(newDate.getTime()+(1000*60*60*8))
+            console.log("isOBD"+json.isOBD)
+            var html = `
+<div class="`+((haveData===undefined) ? '':((haveData)?'haveData':'noData'))+` allData" style="position:relative;width:calc(100% - 40px);margin-top: 20px;border-color: white;border-width: 10px;border-style: solid;">
+<div style="color:white;height:40px;width: 100%;display: flex;background-color: ` + ((colorToggle) ? '#387191' : '#FF9E00') + `;align-items: center;justify-content: center;">
+` + ((json.isOBD==="true") ? (`OBD->${data[0].plateNumber}`):data[0].plateNumber) + `
+</div>
+<div style="height:40px;width: 100%;display: flex;background-color: ` + ((colorToggle) ? '#3F99AA' : '#F76F02') + `;align-items: center;justify-content: center;">
+<h3 class="tit">` + ((json.address===glitter.getLan(727)) ? glitter.getLan(727):(newDate.format("hh:mm").replace(".0", "") ))+ `</h3>
+<h3 class="tit">` + json.address + `</h3>
+</div>
+<div style="height:40px;width: 100%;display: flex;background-color: ` + ((colorToggle) ? '#3F99AA' : '#F76F02') + `;align-items: center;justify-content: center;">
+<h3 class="tit">` + json.driverName + `</h3>
+<h3 class="tit">` + json.staffNumber + `</h3>
+</div>
+<table cellspacing="0">`
+            if(unit==='tem'){
+                for (var lin = 0; lin < line; lin++) {
+                    html += '<tr>'
+                    for (var a = 0; a < 4; a++) {
+                        var index = (lin * 4 + a)
+                        if (item.indexOf(index) === -1) {
+                            html += '<td></td>'
+                        } else {
+                            var it = data.filter(function (e) {
+                                return ((parseInt(e.wh)) === itemPlace[item.indexOf(index)])
+                            })
+
+                            if (it.length === 0) {
+                                html += '<td><h3>' + itemTitle[item.indexOf(index)] + '</h3>' + 'NA</td>'
+                            } else {
+                                console.log('wh--' + it[0].wh)
+                                if (parseInt(it[0][unit]) < rootActivity().userInfoMation.minPre) {
+                                    html += '<td style="color: red;"><h3>' + itemTitle[item.indexOf(index)] + '</h3>' + ((it[0][unit] === '') ? 'NA' : glitter.temToSetting(parseInt(it[0][unit]))) + '</td>'
+                                } else {
+                                    html += '<td><h3>' + itemTitle[item.indexOf(index)] + '</h3>' + ((it[0][unit] === '') ? 'NA' : glitter.temToSetting(parseInt(it[0][unit]))) + '</td>'
+                                }
+                            }
+
+                        }
+                    }
+                    html += '</tr>'
+                }
+            }else{
+                for (var lin = 0; lin < line; lin++) {
+                    html += '<tr>'
+                    for (var a = 0; a < 4; a++) {
+                        var index = (lin * 4 + a)
+                        if (item.indexOf(index) === -1) {
+                            html += '<td></td>'
+                        } else {
+                            var it = data.filter(function (e) {
+                                return ((parseInt(e.wh)) === itemPlace[item.indexOf(index)])
+                            })
+
+                            if (it.length === 0) {
+                                html += '<td><h3>' + itemTitle[item.indexOf(index)] + '</h3>' + 'NA</td>'
+                            } else {
+                                console.log('wh--' + it[0].wh)
+                                if (parseInt(it[0][unit]) < rootActivity().userInfoMation.minPre) {
+                                    html += '<td style="color: red;"><h3>' + itemTitle[item.indexOf(index)] + '</h3>' + ((it[0][unit] === '') ? 'NA' : glitter.preToSetting(parseInt(it[0][unit]))) + '</td>'
+                                } else {
+                                    html += '<td><h3>' + itemTitle[item.indexOf(index)] + '</h3>' + ((it[0][unit] === '') ? 'NA' : glitter.preToSetting(parseInt(it[0][unit]))) + '</td>'
+                                }
+                            }
+
+                        }
+                    }
+                    html += '</tr>'
+                }
+            }
+
+            html += `
+        </table>
+</div>
+        `
+            return html
+        } catch (e) {
+            console.log(e)
+            return ''
+        }
+
+    }
+
+    /*
+    * 時間切換
+    * */
+    function previousTime() {
+        showTime.addDays(-1)
+        $('#timetitle').html(showTime.format('yyyy-MM-dd'))
+        getData()
+    }
+
+    function nextTime() {
+        if (new Date().getTime() > showTime.addDays(1).getTime()) {
+            $('#timetitle').html(showTime.format('yyyy-MM-dd'))
+            getData()
+        } else {
+            showTime.addDays(-1)
+        }
+    }
+</script>

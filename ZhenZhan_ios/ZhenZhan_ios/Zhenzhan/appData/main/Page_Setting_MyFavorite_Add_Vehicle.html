@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+    }
+    #viewclass{
+        width: 100%;
+        /*display: flex;*/
+        flex-direction: column;
+        /*align-content: center;*/
+        /*margin-bottom: 5%;*/
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    .enterBt {
+        background-image: url("../image/btn_botton.png");
+        width: 100%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .delete {
+        width: 30px;
+        height: 30px;
+        background-color: white;
+        color: #40606F;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+
+    let data = {};
+    data.text=["Select Car Manufacturer","Select Model","Select Year"]
+    data.make=["One1","One2","One3","One4","One5","One6"]
+    data.model=["Two1","Two2","Two3","Two4","Two5","Two6"]
+    data.year=["Three1","Three2","Three3"]
+    var makePos=0
+    var modelPos=0
+    var yearPos=0
+
+    lifeCycle.onCreate=function(){
+     updateView()
+        $('#add_Vehicle').click(function () {
+            // glitter.changePage('main/Page_Setting_MyFavorite.html',"Page_Setting_MyFavorite",true,{});
+            gBundle.addC(data.make[makePos]+"/"+data.model[modelPos]+"/"+data.year[yearPos])
+            glitter.goBack("Page_Setting_MyFavorite")
+        })
+  }
+  function updateView(){
+      let Adapter=new GlAdapter(document.getElementById('viewclass'),
+          function (){return data.text.length},
+          function (position) {
+          var mmy=[]
+          var pos=0
+          if(position===0){
+              mmy=data.make
+              pos=makePos
+          }else if(position===1){
+              mmy=data.model
+              pos=modelPos
+          }else if(position===2){
+              mmy=data.year
+              pos=yearPos
+          }
+              //id=' + position + '
+              //<img id=' + "test"+position + ' height="30%" width="100%" >
+              let html = `<div style="height:60px;width:100%;font-size:20px;background-color:white;color:black;display: flex;flex-direction: row;justify-content: left;align-items: center;margin-top: 5%;margin-left: 10%">
+` + data.text[position] + `</div>
+<div id=`+"spinner"+position +` class="enterBt" style="height: 60px;width:auto;justify-content: left;color: black;background-image: url(../image/img_dropdown.png);margin-left: 10%;margin-right: 10%;padding-left:5% ">
+` + mmy[pos] + `</div>
+${(position===data.text.length-1) ? `<div style="width: 100%;height: 10px"></div>`:``}
+`
+              return html
+          } )
+      Adapter.notifyDataSetChange()
+
+      for (var i=0;i<data.text.length;i++){
+          var id = "spinner"+i
+          $("#"+id).click(function () {
+              var mmy=[]
+              if(this.id==="spinner0"){
+                  mmy=data.make
+              }else if(this.id==="spinner1"){
+                  mmy=data.model
+              }else if(this.id==="spinner2"){
+                  mmy=data.year
+              }
+              changeTitle(this.id,mmy)
+          })
+      }
+      function changeTitle(id,mmy){
+          var json = []
+          //var id = this.id
+          for (var i = 0; i <mmy.length; i++) {
+              json = json.concat({
+                  title: mmy[i], click: function (tit) {
+                      console.log("MMY:"+i+","+mmy[i])
+
+                          for (var m = 0; m <mmy.length; m++) {
+                              if(tit===mmy[m]){
+                                  if(id==="spinner0"){
+                                      if(makePos!==m){
+                                          makePos=m
+                                          modelPos=0
+                                          yearPos=0
+                                      }
+                                  }else if(id==="spinner1"){
+                                      if(modelPos!==m){
+                                          modelPos=m
+                                          yearPos=0
+                                      }
+                                  }else if(id==="spinner2"){
+                                      if(yearPos!==m){
+                                          yearPos=m
+                                      }
+                                  }
+                                  $('#mmyTitle').text(data.make[makePos]+"/"+data.model[modelPos]+"/"+data.year[yearPos])
+
+                                  break
+                              }
+                          }
+
+                          updateView()
+                          glitter.closeDiaLog()
+                  }
+              })
+          }
+          glitter.openDiaLog('dialog/Dia_List_Item.html', 'Dia_List_Item', false,true,json)
+      }
+
+  }
+
+  lifeCycle.onCreateView=function (){
+        return (`<div style="width: 100%;height: 60px;background-color: #1F333E;color: white;display:flex;justify-content: center;align-items: center">My Favorite</div>
+            <div id="mmyTitle" style="height:60px;width:95%;font-size:20px;background-color:#40606F;color:white;display: flex;flex-direction: row;justify-content: left;align-items: center;padding-left: 5%">
+` + data.make[makePos]+"/"+data.model[modelPos]+"/"+data.year[yearPos] + `
+</div>
+            <div style="width: 100%;height: calc(100% - 240px);" id="viewclass"></div>
+
+            <div id="add_Vehicle" class="enterBt">Add Vehicle</div>
+
+`)
+  }
+</script>

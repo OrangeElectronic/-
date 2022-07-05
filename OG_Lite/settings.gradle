@@ -1,0 +1,2 @@
+include ':app',':blelibrary',':fotalibrary', ':jzutil'
+rootProject.name='OG_Lite'

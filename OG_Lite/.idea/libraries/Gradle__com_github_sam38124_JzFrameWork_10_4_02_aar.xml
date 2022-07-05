@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.sam38124:JzFrameWork:10.4.02@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c5acfbb00348ae19c7194c4fb460cf32/jetified-JzFrameWork-10.4.02/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c5acfbb00348ae19c7194c4fb460cf32/jetified-JzFrameWork-10.4.02/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c5acfbb00348ae19c7194c4fb460cf32/jetified-JzFrameWork-10.4.02/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.sam38124/JzFrameWork/10.4.02/e6b1c763a3427154d9ce4a1440683fab2754f40/JzFrameWork-10.4.02-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

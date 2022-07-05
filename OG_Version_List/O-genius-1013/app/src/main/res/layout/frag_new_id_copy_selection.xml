@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp" android:background="@color/check_text_color" android:id="@+id/topre">
+
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/text_carSelect" android:gravity="center"
+                android:layout_centerInParent="true" android:textColor="@color/color_white" android:textSize="20sp"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_below="@id/topre">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/view31" android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" app:srcCompat="@drawable/bt_id_copy_single"
+                    android:id="@+id/imageView42"/>
+            <TextView
+                    android:text="Single Sensor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView10" android:gravity="center"
+                    android:textSize="20sp" android:textColor="@color/color_black"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/view20" android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" android:id="@+id/view19" android:background="@color/gray"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/view22" android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" app:srcCompat="@drawable/bt_id_copy_multiple"
+                    android:id="@+id/imageView44"/>
+            <TextView
+                    android:text="Multiple Sensor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView11" android:gravity="center"
+                    android:textSize="20sp" android:textColor="@color/color_black"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/view21" android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

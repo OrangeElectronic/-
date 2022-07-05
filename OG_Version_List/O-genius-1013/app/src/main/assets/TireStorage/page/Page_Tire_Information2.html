@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: auto;
+        color: white;
+        font-size: 16px;
+    }
+
+    html {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .flexGray {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 100%;
+        background-color: #cdcbcb;
+        color: #2F4C63;
+        font-size: 14px;
+    }
+
+    .flexWhite {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-right: 10px;
+        padding-left: 10px;
+        width: calc(100% - 50px);
+        background-color: white;
+        color: #2F4C63;
+    }
+
+    .verticalFlex {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        padding-right: 10px;
+        padding-left: 10px;
+        width: calc(100% - 50px);
+        height: 100%;
+        background-color: white;
+        color: #2F4C63;
+    }
+
+    input {
+        border: 1px solid lightgray;
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+        color: black;
+    }
+
+    .bottomBar {
+        display: flex;
+        height: 50px;
+    }
+
+    #Content {
+        overflow-y: scroll;
+        height: calc(100vh - 170px);
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/botton_Press.png");
+        background-color: #FF4400;
+        width: 100%;
+        height: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .blueHint {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .flexItem {
+        width: 100%;
+        height: 50px;
+        min-height: 50px;
+        display: flex;
+        background-color: #EBF6FF;
+    }
+
+    .blueHint h3 {
+        color: black;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid lightgray;
+        margin: 0;
+        height: 50px;
+    }
+
+    .Tposition {
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+    }
+
+    .spinner {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% - 20px);
+        height: calc(100% - 10px);
+        border-radius: 10px;
+        padding-left: 10px;
+        background-image: url("../img/down.png");
+        background-repeat: no-repeat;
+        background-size: 15px 15px;
+        background-position: right 10px center;
+        border: 1px solid lightgray;
+    }
+
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .flex {
+        display: flex;
+        align-content: center;
+        width: 100%;
+        height: 60px;
+    }
+
+    .minTitle {
+        color: black;
+        display: flex;
+        position: relative;
+        align-content: center;
+        justify-content: center;
+        background-color: lightgray;
+        width: 50px;
+        height: 60px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .maxItem {
+        width: calc(50%);
+        height: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .maxItem img {
+        width: 50px;
+        height: 50px;
+    }
+
+    input {
+        border: 1px solid lightgray;
+        width: calc(100% - 20px);
+        height: 40px;
+        color: black;
+        font-size: 16px;
+        margin-top: 7px;
+        padding-left: 10px;
+    }
+
+    .flex div {
+        border: 1px solid whitesmoke;
+    }
+</style>
+<body>
+<script>
+    "use strict";
+    lifeCycle.onCreate = function () {
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                    $(document.activeElement).trigger('input')
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                        $(document.activeElement).trigger('input')
+                    }
+                }
+            }
+        }
+        var map= ['LF', 'RF', 'LR', 'RR']
+        map.map(function (data) {
+            let data2 = gBundle.carFile.filter(function (da) {
+                return da.TireLocal === data
+            })[0]
+            $('#' + data).val(data2.Dot)
+            $('#' + data).bind('input propertychange', function () {
+                data2.Dot = $(this).val()
+            });
+        })
+        updateSn()
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+     <div style="background-color: #2F4C63;height: 60px;width: 100%;display: flex;align-items: center;">
+    <h3 class="title">${glitter.language(552)}</h3>
+</div>
+<div style="background-color: #EBF6FF;height: 50px;width: 100%;color: black;display: flex;align-items: center;justify-content: center;">
+${glitter.language(563)}
+</div>
+<div>
+<div class="flex">
+<div class="minTitle">${glitter.language(312)}</div>
+<div class="maxItem">
+<input id="LF">
+</div>
+<div class="minTitle">${glitter.language(309)}</div>
+<div class="maxItem">
+<input id="RF">
+</div>
+</div>
+<div class="flex">
+<div class="minTitle">${glitter.language(311)}</div>
+<div class="maxItem">
+<input id="LR">
+</div>
+<div class="minTitle">${glitter.language(310)}</div>
+<div class="maxItem">
+<input id="RR">
+</div>
+</div>
+</div>
+<div style="background-color: #EBF6FF;height: 50px;width: 100%;color: black;display: flex;align-items: center;justify-content: center;">
+${glitter.language(90)}
+</div>
+<div id="Sn_Place">
+
+</div>
+  <div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+          <div id="cancel" class="leftBottom" onclick=" glitter.changePage('page/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" >
+        ${glitter.language(562)}
+        </div>
+         <div id="next" class="rightBottom" onmousedown="
+         checkSwitch();
+         " >
+        ${glitter.language(145)}
+        </div>
+</div>
+    `
+    }
+
+    function checkSwitch() {
+        glitter.share.getMMY(`select count(1)
+                              from \`Summary table\`
+                              where \`Make\` = '${gBundle.Make}'
+                                and \`Model\` = '${gBundle.Model}'
+                                and \`Year\` = '${gBundle.Year}'
+                                and \`OG Programe\` = 'True'`,
+            function (result) {
+                var count = result.data[0]["count(1)"]
+                if (count === '0') {
+                    glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, gBundle)
+                } else {
+                    glitter.changePage('page/Page_Excute_Selection.html','Page_Excute_Selection',true, gBundle)
+                }
+            })
+    }
+
+    window.addEventListener("resize", function (v) {
+        this.LastWindowHeight = this.CurWindowHeight;
+        this.CurWindowHeight = window.innerHeight;
+        if ((this.LastWindowHeight - this.CurWindowHeight) / this.LastWindowHeight > 0.25) {
+            document.activeElement.scrollIntoView()
+            $('#Content').css('height', 'calc(100vh - 120px)')
+            $('#bottomBar').hide()
+        } else {
+            $('#Content').css('height', 'calc(100vh - 180px)')
+            $('#bottomBar').show()
+        }
+    });
+
+    function scan(place) {
+        glitter.runJsInterFace("scanText", {}, function (data) {
+            if(data.result){
+                gBundle.carFile.filter(function (da) {
+                    return da.TireLocal === place
+                })[0].SN=data.data
+            }
+            updateSn()
+        })
+    }
+
+    function updateSn() {
+        var html = []
+            var array=['LF', 'RF', 'LR', 'RR']
+        array.map(function (data,position) {
+            var ptext= [glitter.language(312),glitter.language(309),glitter.language(311),glitter.language(310)][position]
+            let data2 = gBundle.carFile.filter(function (da) {
+                return da.TireLocal === data
+            })[0]
+            html.push(`
+            <div class="minTitle">${ptext}</div>
+            ${((data2.SN !== undefined) && (data2.SN !== '')) ? `
+            <div class="maxItem" onclick="scan('${data}')">
+${data2.SN}
+</div>
+            ` : `<div class="maxItem" onclick="scan('${data}')">
+<img src="../img/scanb.png">
+</div>`}
+            `)
+        })
+        $('#Sn_Place').html(`<div class="flex">
+${html[0]}
+${html[1]}
+</div>
+<div class="flex">
+${html[2]}
+${html[3]}
+</div>`)
+    }
+    lifeCycle.onResume = function () {
+        glitter.keyEventListener = function (json) {
+            var keyb = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 30, 31, 32, 33, 34]
+            if (json.mAction == 0) {
+                if (keyb.indexOf(json.mKeyCode) !== -1) {
+                    var b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+                    var data2 = $(document.activeElement).val() + b[keyb.indexOf(json.mKeyCode)]
+                    $(document.activeElement).val(data2)
+                    $(document.activeElement).trigger('input')
+                } else if (json.mKeyCode == 67) {
+                    var data = $(document.activeElement).val()
+                    if (data.length > 0) {
+                        $(document.activeElement).val(data.substring(0, data.length - 1))
+                        $(document.activeElement).trigger('input')
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

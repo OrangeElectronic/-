@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "156271401764",
+    "project_id": "ogenius",
+    "storage_bucket": "ogenius.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156271401764:android:872c256d706f85721171b1",
+        "android_client_info": {
+          "package_name": "com.orange.oglite_glitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156271401764-83013so9n8dnjsui75a6kheadqmki7pr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzku3WueYimHLTnhGKwN90Pt2XDII0ZvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156271401764-83013so9n8dnjsui75a6kheadqmki7pr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+    }
+  body{
+      width: 100%;
+      height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+<body>
+<script>
+  lifeCycle.onCreate=function (){
+
+  }
+  lifeCycle.onCreateView=function (){
+    return `
+<div style="text-align:center;background-color: #EC671A;border-radius: 10px;display: flex;flex-direction: column;align-content: center;justify-content: center;width: calc(100% - 100px);">
+<img src="../img/close.png" style="width: 30px;margin-left:auto;margin-right: 5px;right: 0;float: right;">
+<span style="color: white;width: calc(100% - 50px);margin-left:auto;margin-right: auto;font-size: 16px;">${glitter.getLan(525)}</span>
+<div style="border-radius: 10px;width: calc(100% - 20px);margin: 5px;border: 1px solid white;display: flex;align-items: center;">
+<img src="../img/read.png" style="width: 60px;height: 60px;margin: 10px;">
+<h3 style="color: white;font-size: 16px;" >${glitter.getLan(404)}</h3>
+</div>
+<div style="border-radius: 10px;width: calc(100% - 20px);margin: 5px;border: 1px solid white;display: flex;align-items: center;">
+<img src="../img/scanw.png" style="width: 60px;height: 60px;margin: 10px;">
+<h3 style="color: white;font-size: 16px;" >${glitter.getLan(120)}</h3>
+</div>
+<div style="border-radius: 10px;width: calc(100% - 20px);margin: 5px;border: 1px solid white;display: flex;align-items: center;">
+<img src="../img/icon_key_in.png" style="width: 60px;height: 60px;margin: 10px;">
+<h3 style="color: white;font-size: 16px;" >${glitter.getLan(26)}</h3>
+</div>
+</div>
+    `
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/bg_32414e_r8">
+
+        <TextView
+                android:id="@+id/textView47"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="jz.504"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/textView47">
+
+            <RelativeLayout
+                    android:id="@+id/ee"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView38"
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="0dp"
+                    app:srcCompat="@mipmap/oglite_hint" />
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="-100dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_toEndOf="@id/ee"
+                    android:padding="10dp"
+                    android:text="jz.505"
+                    android:textColor="@color/color_white"
+                    android:textSize="14sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

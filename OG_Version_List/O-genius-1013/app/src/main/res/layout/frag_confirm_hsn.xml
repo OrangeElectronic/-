@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp" android:background="#314A56">
+
+            <TextView
+                    android:text="Vehicle data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/textView74" android:gravity="center"
+                    android:textColor="@color/color_white" android:textSize="18sp"/>
+        </RelativeLayout>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp" app:srcCompat="@mipmap/abarth" android:id="@+id/imageView50"
+                android:layout_marginTop="10dp"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:background="@drawable/stroke">
+                <TextView
+                        android:text="jz.482"
+                        android:layout_width="100dp"
+                        android:layout_height="55dp" android:id="@+id/textView78"
+                        android:background="@color/color_FF314A56" android:layout_weight="0" android:gravity="center"
+                        android:textColor="@color/color_white"/>
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/make" android:layout_weight="1"
+                        android:textColor="@color/Black" android:textSize="20sp" android:textStyle="bold"
+                        android:paddingStart="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:background="@drawable/stroke">
+                <TextView
+                        android:text="jz.55"
+                        android:layout_width="100dp"
+                        android:layout_height="55dp" android:id="@+id/textView79" android:layout_weight="0"
+                        android:background="@color/color_FF314A56" android:gravity="center"
+                        android:textColor="@color/color_white"/>
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/model" android:layout_weight="1"
+                        android:textColor="@color/Black" android:textSize="20sp" android:textStyle="bold"
+                        android:paddingStart="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:background="@drawable/stroke">
+                <TextView
+                        android:text="jz.484"
+                        android:layout_width="100dp"
+                        android:layout_height="55dp" android:id="@+id/textView80" android:layout_weight="0"
+                        android:background="@color/color_FF314A56" android:textColor="@color/color_bg"
+                        android:gravity="center"/>
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/year" android:layout_weight="1"
+                        android:textColor="@color/Black" android:textSize="20sp" android:textStyle="bold"
+                        android:paddingStart="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp" android:layout_alignParentBottom="true"
+            android:background="@color/color_unite_bg">
+        <TextView
+                android:text="jz.659"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" android:id="@+id/textView75" android:layout_weight="1"
+                android:gravity="center" android:textColor="@color/color_white" android:textSize="16sp"
+                android:background="@mipmap/btn_letf"/>
+        <TextView
+                android:text="jz.113"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" android:id="@+id/textView77" android:layout_weight="1"
+                android:gravity="center" android:textColor="@color/color_white" android:textSize="16sp"
+                android:background="@mipmap/btn_right"/>
+    </LinearLayout>
+</RelativeLayout>

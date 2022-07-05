@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../img/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*background-size: 100% 100%;*/
+    }
+    #viewclass{
+        width: 100%;
+        /*display: flex;*/
+        flex-direction: column;
+        /*align-content: center;*/
+        /*margin-bottom: 5%;*/
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    .titleText{
+        height:60px;
+        width:100%;
+        font-size:20px;
+        background-color:white;
+        color:black;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .enterBt {
+        background-image: url("../img/btn_botton.png");
+        width: 100%;
+        height: 60px;
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .delete {
+        width: 30px;
+        height: 30px;
+        background-color: white;
+        color: #40606F;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .tdSelect {
+        border-style:solid;display:flex;align-items:center;color: black;
+        border-width: 1px;
+        border-radius: 5px;
+        color: gray;
+        font-size: 20px;
+        background-image: url("../img/grag.png");
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+
+    let data = {};
+    data.text=["Area","Languages"]
+    data.Content=["The application will provide the local contents upon the area you select.",""]
+    data.area=["Select","EU","North America","Taiwan"]
+    data.languages=["Select", "Dansk", "Deutsch", "English", "Italiano", "Slovinčina", "繁體中文", "简体中文", "日本語","Español","Français"]
+
+    var areaPos=0
+    var lanPos=0
+
+    lifeCycle.onCreate=function(){
+     updateView()
+        $('#Enter').click(function () {
+            glitter.goBack()
+        })
+  }
+  function updateView(){
+      let Adapter=new GlAdapter(document.getElementById('viewclass'),
+          function (){return data.text.length},
+          function (position) {
+          var spiiner=[]
+          var pos=0
+          if(position===0){
+              spiiner=data.area
+              pos=areaPos
+          }else if(position===1){
+              spiiner=data.languages
+              pos=lanPos
+          }
+          var content=``
+          if(data.Content[position]!==""){
+              content=`<div class="titleText" style="height: auto;width:auto;">`+data.Content[position]+`</div>`
+          }
+              //id=' + position + '
+              //<img id=' + "test"+position + ' height="30%" width="100%" >
+              let html = `
+<div class="titleText" style="margin-top: 5%;font-weight: bold">
+` + data.text[position] + `</div>
+`+ content +`
+<div id=`+"spinner"+position +` class="tdSelect" style="height: 60px;width:auto;margin-top: 1%;margin-left: 10%;margin-right: 10%;padding-left:5% ">
+` + spiiner[pos] + `</div>
+${(position===data.text.length) ? `<div style="width: 100%;height: 10px"></div>`:``}
+`
+              return html
+          } )
+      Adapter.notifyDataSetChange()
+
+      for (var i=0;i<data.text.length;i++){
+          var id = "spinner"+i
+          $("#"+id).click(function () {
+              var spiiner=[]
+              if(this.id==="spinner0"){
+                  spiiner=data.area
+              }else if(this.id==="spinner1"){
+                  spiiner=data.languages
+              }
+              changeTitle(this.id,spiiner)
+          })
+      }
+      function changeTitle(id,spiiner){
+          var json = []
+          //var id = this.id
+          for (var i = 0; i <spiiner.length; i++) {
+              json = json.concat({
+                  title: spiiner[i], click: function (tit) {
+                      console.log("MMY:"+i+","+spiiner[i])
+
+                          for (var m = 0; m <spiiner.length; m++) {
+                              if(tit===spiiner[m]){
+                                  if(id==="spinner0"){
+                                      if(areaPos!==m){
+                                          areaPos=m
+                                      }
+                                  }else if(id==="spinner1"){
+                                      if(lanPos!==m){
+                                          lanPos=m
+                                      }
+                                  }
+
+                                  break
+                              }
+                          }
+
+                          updateView()
+                          glitter.closeDiaLog()
+                  }
+              })
+          }
+          glitter.openDiaLog('dialog/Dia_List_Item.html', 'Dia_List_Item', false,true,json)
+      }
+
+  }
+
+  lifeCycle.onCreateView=function (){
+        return (`<div style="width: 100%;height: 60px;background-color: #1F333E;color: white;display:flex;justify-content: center;align-items: center">Area & Language</div>
+
+            <div style="width: 100%;height: calc(100% - 180px);" id="viewclass"></div>
+            <div id="Enter" class="enterBt">Enter</div>
+
+`)
+  }
+</script>

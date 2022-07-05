@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .content {
+        width: 100%;
+        height: 100%;
+        /*display: flex;*/
+        /*align-items: center;*/
+        /*justify-content: center;*/
+        /*flex-direction: column;*/
+        /*background-image: url('../image/portrait_bg_004.PNG');*/
+        /*background-repeat: no-repeat;*/
+        /*background-attachment: fixed;*/
+        background-color: #1d1d1d;
+        border-radius: 5px;
+    }
+
+    .setbackground{
+        height:60px;width:60px;
+        background-image:url('../image/portrait_tab_005.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<script src="../jsLib/lottie.js"></script>
+<body id="body">
+
+</body>
+</html>
+<script>
+    var Adapter=''
+    //language:["English","繁體中文"]
+    var testMusic = "01"
+    //靜音 glitter.getLanguage("124")
+    var data={select_Music:["mute","01","02","03"],text:[glitter.getLanguage("124"),"01","02","03"]}
+    var touchBlack=`${event(function (e){
+        $(e).css("background-color","black") })}`
+    var touchGray=`${event(function (e){
+        $(e).css("background-color","gray") })}`
+
+    lifeCycle.onCreateView = function () {
+        // <lottie-player src="../lottieFile/loading2.json"  background="transparent"  speed="1"  style="position:absolute;width: 200px;"  loop  autoplay></lottie-player>
+        return `
+        <div id="music_View" class="content" style="color: black;">
+        </div>
+        `
+    }
+
+    lifeCycle.onCreate=function(){
+        Adapter=new GlAdapter(document.getElementById('music_View'),
+            function (){return data.text.length},
+            function (position) {
+                var selectImage=`<div style="height:60px;width:60px;"></div>`
+                if(glitter.tpmsValue.music===data.select_Music[position]){
+                    selectImage=`<img src="../image/portrait_tab_005.png" style="height:60px;width:60px;">`
+                }
+                // onclick="changeLanguage('${data.music[position]}')"
+                return `
+                <div id="music${position}" style="height:60px;width: 100%;display:flex;align-items: center;font-size: 20px;color:white;"
+                    ontouchstart="${touchGray}" ontouchend="${touchBlack}">
+                    ${selectImage}
+                    ${data.text[position]}
+                </div>
+                <div style="height:0.5px;width:100%;background-color:gray;"></div>`
+            })
+
+        changeMusic()
+    }
+
+    function changeMusic(){
+        //console.log("changeLanguage:"+language)
+        for(var i=0;i<data.text.length;i++){
+            $('#music'+i).click(function (){
+                var position=this.id.replace("music","")
+                if( glitter.tpmsValue.music!==data.select_Music[position]) {
+                    glitter.tpmsValue.music = data.select_Music[position]
+                    glitter.setPro("setMusic",data.select_Music[position])
+                    glitter.runJsInterFace("changeSound", {music:data.select_Music[position]}, function (response) {
+
+                    })
+
+                    Adapter.notifyDataSetChange()
+                    changeMusic()
+                }
+
+                return false
+            })
+        }
+    }
+
+
+</script>

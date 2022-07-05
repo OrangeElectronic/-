@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Frag.Frag_SettingPager_Unit">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/app_units_tire"
+                android:textColor="@color/Black"
+                android:textSize="21sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/textView53"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/stroke_white">
+
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/tire_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/textView53"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="28dp" />
+
+            <TextView
+                android:id="@+id/textView51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tire_spinner"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/app_units_temp"
+                android:textColor="@color/Black"
+                android:textSize="21sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/textView51"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/stroke_white">
+
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/tem_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/textView51"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="50dp" />
+
+            <TextView
+                android:id="@+id/textView52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tem_spinner"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="ID (Dec / Hex)"
+                android:textColor="@color/Black"
+                android:textSize="21sp"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/textView52"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/stroke_white"
+                android:visibility="gone">
+
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/numeral_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/textView52"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="50dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/btn_rectangle"
+        android:text="@string/Set_up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="21sp" />
+
+</RelativeLayout>

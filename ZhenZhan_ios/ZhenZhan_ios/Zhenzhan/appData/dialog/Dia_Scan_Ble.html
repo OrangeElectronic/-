@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #content {
+        width: calc(100% - 100px);
+        height: 70%;
+        background: #406D91;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+    }
+    .BleText{
+        /*width: calc(100% - 20px);*/
+        /*height: 10%;*/
+        height: 50px;
+        width: 95%;
+        color: white;
+        font-size: 14px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding-left: 5%;
+        flex-shrink:0
+    }
+    #content h4{
+        color: white;
+        font-size: 16px;
+    }
+    .spi{
+        background: white;
+        height: 1px;
+        width: 100%;
+        flex-shrink:0
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<body></body>
+</html>
+<script>
+    lifeCycle.onCreateView = function () {
+        return `
+        <div id="content">
+        <h4>連線設備</h4>
+</div>
+        `
+    }
+
+    var bleData = 0
+    lifeCycle.onCreate=function (){
+        glitter.share.bleUtil.startScan()
+        var clock = Clock()
+        if(glitter.changeType!==glitter.CarType){
+            glitter.changeType = glitter.CarType
+            glitter.bleList = []
+        }
+
+        if(glitter.CarType !== "Tread_depth")
+
+        $('body').html(' <div id="content">\n' +
+            '        <h4>連線設備</h4>\n' +
+            '<div class="spi"></div></div>')
+        function timer(){
+
+ //            if(bleData<glitter.bleList.length){
+ //                bleData++
+ //                $('#content').append(`<div class="BleText" id="`+"ble"+bleData+`" onclick="connect(`+(bleData-1)+`)" style="background-color:#406D91">`+glitter.bleList[bleData-1].name+`</div>
+ // <div class="spi"></div>`)
+ //
+ //                var text_button = document.getElementById('ble'+bleData)
+ //                text_button.addEventListener('touchstart', function (event) {
+ //                    console.log('touchstart' + ':' + this.id)
+ //                    $('#'+this.id).css('background-color', "#E64E00")
+ //                }, false);
+ //                text_button.addEventListener('touchend', function (event) {
+ //                    console.log('touchend' + ':' + this.id)
+ //                    $('#'+this.id).css('background-color', "#406D91")
+ //                }, false);
+ //            }
+
+            if(clock.stop() > 1000*10 && (glitter.bleList===undefined || glitter.bleList.length===0)){
+                clock = Clock()
+                console.log("藍芽異常")
+                glitter.openDiaLog('dialog/Dia_Info_Problem.html', 'Dia_Info_Problem_noBle', false, true, "藍芽異常<br>請重開定位與藍芽")
+            }
+            if(glitter.bleList.length!==0){
+                //console.log("藍芽正常")
+                glitter.closeDiaLogWithTag("Dia_Info_Problem_noBle")
+                clock = Clock()
+            }
+
+            if(bleData<glitter.bleList.length){
+                for(var a=bleData;a<glitter.bleList.length;a++){
+                    //glitter.connect(`+a+`)
+                    $('#content').append(`<div class="BleText" id="`+"ble"+a+`" onclick="" style="background:#406D91">`+glitter.bleList[a].name+`</div>
+<div class="spi"></div>`)
+//              document.getElementById('content').innerHTML += `<div class="BleText" id="`+"ble"+a+`" onclick="connect(`+a+`)" style="background-color:#406D91">`+glitter.bleList[a].name+`</div>
+// <div class="spi"></div>`
+
+                    var text_button = document.getElementById('ble'+a)
+                    $('#ble'+a).click(function () {
+                        //e.preventDefault()
+                        var num=this.id.replace("ble","")
+                        glitter.connect(num)
+                        return false
+                    })
+
+                    text_button.addEventListener('touchstart', function (event) {
+                        console.log('touchstart' + ':' + this.id)
+                        $('#'+this.id).css('background', "#E64E00")
+                    }, false);
+                    text_button.addEventListener('touchend', function (event) {
+                        console.log('touchend' + ':' + this.id)
+                        $('#'+this.id).css('background', "#406D91")
+                    }, false);
+                }
+                //bleData++
+                bleData=bleData+glitter.bleList.length
+            }
+
+        }
+        setInterval(timer,1000)
+    }
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+
+    var pos=undefined
+    glitter.connect=function (position){
+        pos=position
+        glitter.share.bleUtil.isConnect({
+            callback: function (response){
+                let res=response.result
+                try {
+                    if(res&&(glitter.bleList[position].address===glitter.publicBeans.lastConnect)){
+                        console.log("isConnect:"+glitter.bleList[position].address)
+                        glitter.publicBeans.lastConnect=glitter.bleList[position].address
+                        glitter.share.bleUtil.stopScan()
+                        gBundle()
+                    }else{
+                        console.log("isConnect:"+"false")
+                        glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                        if(res){
+                            console.log("藍芽disConnect_dialog")
+                            glitter.share.bleUtil.disConnect()
+                        }
+                        setTimeout(function (){
+                            glitter.share.bleUtil.connect({
+                                data:{
+                                    address: glitter.bleList[pos].address,
+                                    timeOut: 10
+                                },
+                                callback:function (response){
+                                    if(response.result){
+                                        setTimeout(glitter.runExclusive,3000)
+                                    }else{
+                                        glitter.closeDiaLogWithTag('Dia_Loading_notext')
+                                        glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '連線失敗')
+                                    }
+                                }
+                            })
+                        },3000)
+                    }
+                }catch (e){
+                    alert(e)
+                }
+            }
+        })
+    }
+
+    //Calipers
+    var run=0
+    glitter.runExclusive =function () {
+        if(glitter.CarType === "Tread_depth"){
+            console.log("glitter.Tread_depth_end")
+            glitter.closeDiaLogWithTag('Dia_Loading_notext')
+            glitter.publicBeans.lastConnect=glitter.bleList[pos].address
+            glitter.share.bleUtil.stopScan()
+            gBundle()
+            glitter.closeDiaLogWithTag('Dia_Scan_Ble')
+            return
+        }
+
+        var cart = '00'
+        if(glitter.CarType === "F"){
+            cart = 'B1'
+        }
+        if(glitter.CarType === "R"){
+            cart = 'B2'
+        }
+        console.log("glitter.CarType:"+glitter.CarType)
+        glitter.command.exclusive(cart,function (data) {
+            run++
+            if(run===2){
+                glitter.closeDiaLogWithTag('Dia_Loading_notext')
+                glitter.publicBeans.lastConnect=glitter.bleList[pos].address
+                glitter.share.bleUtil.stopScan()
+                gBundle()
+                glitter.closeDiaLogWithTag('Dia_Scan_Ble')
+                run=0
+            }else{
+                if(data){
+                    setTimeout(glitter.runExclusive,500)
+                }else{
+                    run=0
+                }
+            }
+        })
+    }
+
+    function conn(){
+        alert(122132)
+
+    }
+</script>

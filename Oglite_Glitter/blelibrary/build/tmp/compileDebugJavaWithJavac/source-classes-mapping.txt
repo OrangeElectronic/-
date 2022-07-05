@@ -1,0 +1,146 @@
+com/onsemi/ble/BleConfiguration.java
+ com.onsemi.ble.BleConfiguration
+com/onsemi/ble/PeripheralCallback.java
+ com.onsemi.ble.PeripheralCallback
+com/onsemi/ble/NotConnectedException.java
+ com.onsemi.ble.NotConnectedException
+com/onsemi/ble/TaskStopScan.java
+ com.onsemi.ble.TaskStopScan
+com/onsemi/ble/Service.java
+ com.onsemi.ble.Service
+com/onsemi/ble/TaskDisconnect.java
+ com.onsemi.ble.TaskDisconnect
+ com.onsemi.ble.TaskDisconnect$1
+com/onsemi/ble/TaskSet2MbPhy.java
+ com.onsemi.ble.TaskSet2MbPhy
+ com.onsemi.ble.TaskSet2MbPhy$1
+ com.onsemi.ble.TaskSet2MbPhy$2
+com/onsemi/ble/TimeoutException.java
+ com.onsemi.ble.TimeoutException
+com/onsemi/blelibrary/BuildConfig.java
+ com.onsemi.blelibrary.BuildConfig
+com/onsemi/ble/UpdateController.java
+ com.onsemi.ble.UpdateController
+com/onsemi/ble/NotConnectableException.java
+ com.onsemi.ble.NotConnectableException
+com/onsemi/ble/BluetoothGattCharacteristicClone.java
+ com.onsemi.ble.BluetoothGattCharacteristicClone
+com/onsemi/ble/TaskRequestMtu.java
+ com.onsemi.ble.TaskRequestMtu
+ com.onsemi.ble.TaskRequestMtu$1
+ com.onsemi.ble.TaskRequestMtu$2
+com/onsemi/ble/PeripheralManager.java
+ com.onsemi.ble.PeripheralManager
+com/onsemi/ble/TaskReadRemoteRssi.java
+ com.onsemi.ble.TaskReadRemoteRssi
+ com.onsemi.ble.TaskReadRemoteRssi$1
+com/onsemi/ble/BleResult.java
+ com.onsemi.ble.BleResult
+com/onsemi/ble/CharacteristicChangedListener.java
+ com.onsemi.ble.CharacteristicChangedListener
+com/onsemi/ble/TaskCompletedCallback.java
+ com.onsemi.ble.TaskCompletedCallback
+com/onsemi/ble/TaskDiscoverServices.java
+ com.onsemi.ble.TaskDiscoverServices
+ com.onsemi.ble.TaskDiscoverServices$1
+com/onsemi/ble/Version.java
+ com.onsemi.ble.Version
+com/onsemi/ble/TaskPeripheral.java
+ com.onsemi.ble.TaskPeripheral
+com/onsemi/ble/TaskBase.java
+ com.onsemi.ble.TaskBase
+ com.onsemi.ble.TaskBase$1
+com/onsemi/ble/NotSupportedException.java
+ com.onsemi.ble.NotSupportedException
+com/onsemi/ble/Peripheral.java
+ com.onsemi.ble.Peripheral
+com/onsemi/ble/PeripheralManagerListener.java
+ com.onsemi.ble.PeripheralManagerListener
+com/onsemi/ble/CharacteristicPermissions.java
+ com.onsemi.ble.CharacteristicPermissions
+com/onsemi/ble/CharacteristicListener.java
+ com.onsemi.ble.CharacteristicListener
+com/onsemi/ble/BleException.java
+ com.onsemi.ble.BleException
+com/onsemi/ble/BufferAccess.java
+ com.onsemi.ble.BufferAccess
+com/onsemi/ble/TaskStartScan.java
+ com.onsemi.ble.TaskStartScan
+com/onsemi/ble/CharacteristicProperties.java
+ com.onsemi.ble.CharacteristicProperties
+com/onsemi/ble/PeripheralManagerImpl.java
+ com.onsemi.ble.PeripheralManagerImpl
+ com.onsemi.ble.PeripheralManagerImpl$1
+ com.onsemi.ble.PeripheralManagerImpl$2
+com/onsemi/ble/TaskCharacteristic.java
+ com.onsemi.ble.TaskCharacteristic
+com/onsemi/ble/Log.java
+ com.onsemi.ble.Log
+com/onsemi/ble/CharacteristicImpl.java
+ com.onsemi.ble.CharacteristicImpl
+ com.onsemi.ble.CharacteristicImpl$1
+ com.onsemi.ble.CharacteristicImpl$2
+ com.onsemi.ble.CharacteristicImpl$3
+ com.onsemi.ble.CharacteristicImpl$4
+com/onsemi/ble/TaskConnect.java
+ com.onsemi.ble.TaskConnect
+ com.onsemi.ble.TaskConnect$1
+ com.onsemi.ble.TaskConnect$2
+com/onsemi/ble/TaskCharacteristicRead.java
+ com.onsemi.ble.TaskCharacteristicRead
+ com.onsemi.ble.TaskCharacteristicRead$1
+com/onsemi/ble/UpdateOptions.java
+ com.onsemi.ble.UpdateOptions
+com/onsemi/ble/ExceptionHelper.java
+ com.onsemi.ble.ExceptionHelper
+ com.onsemi.ble.ExceptionHelper$1
+com/onsemi/ble/TaskController.java
+ com.onsemi.ble.TaskController
+ com.onsemi.ble.TaskController$1
+com/onsemi/ble/Characteristic.java
+ com.onsemi.ble.Characteristic
+com/onsemi/ble/ServiceImpl.java
+ com.onsemi.ble.ServiceImpl
+com/onsemi/ble/TaskCharacteristicChangeNotification.java
+ com.onsemi.ble.TaskCharacteristicChangeNotification
+ com.onsemi.ble.TaskCharacteristicChangeNotification$1
+com/onsemi/ble/PeripheralImpl.java
+ com.onsemi.ble.PeripheralImpl
+ com.onsemi.ble.PeripheralImpl$1
+ com.onsemi.ble.PeripheralImpl$10
+ com.onsemi.ble.PeripheralImpl$11
+ com.onsemi.ble.PeripheralImpl$12
+ com.onsemi.ble.PeripheralImpl$13
+ com.onsemi.ble.PeripheralImpl$14
+ com.onsemi.ble.PeripheralImpl$15
+ com.onsemi.ble.PeripheralImpl$16
+ com.onsemi.ble.PeripheralImpl$2
+ com.onsemi.ble.PeripheralImpl$3
+ com.onsemi.ble.PeripheralImpl$4
+ com.onsemi.ble.PeripheralImpl$5
+ com.onsemi.ble.PeripheralImpl$6
+ com.onsemi.ble.PeripheralImpl$7
+ com.onsemi.ble.PeripheralImpl$8
+ com.onsemi.ble.PeripheralImpl$9
+com/onsemi/ble/PeripheralChangedListener.java
+ com.onsemi.ble.PeripheralChangedListener
+com/onsemi/ble/TaskCharacteristicChangeIndication.java
+ com.onsemi.ble.TaskCharacteristicChangeIndication
+ com.onsemi.ble.TaskCharacteristicChangeIndication$1
+com/onsemi/ble/Disposable.java
+ com.onsemi.ble.Disposable
+com/onsemi/ble/TaskCharacteristicWrite.java
+ com.onsemi.ble.TaskCharacteristicWrite
+ com.onsemi.ble.TaskCharacteristicWrite$1
+com/onsemi/ble/PeripheralState.java
+ com.onsemi.ble.PeripheralState
+com/onsemi/ble/CreatePeripheralFunction.java
+ com.onsemi.ble.CreatePeripheralFunction
+com/onsemi/ble/TaskControllerListener.java
+ com.onsemi.ble.TaskControllerListener
+com/onsemi/ble/StringHelper.java
+ com.onsemi.ble.StringHelper
+com/onsemi/ble/UuidHelper.java
+ com.onsemi.ble.UuidHelper
+com/onsemi/ble/UpdateControllerListener.java
+ com.onsemi.ble.UpdateControllerListener

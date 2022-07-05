@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    body{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;flex-direction: column;align-items: center;justify-content: center;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/extension.js"></script>
+<body>
+</body>
+</html>
+<script>
+    var sensorList=[]
+    lifeCycle.onCreate=function (){
+        Object.keys(gBundle).forEach(function (key){
+            sensorList.push(gBundle[key])
+            gBundle[key].tem=gBundle[key].c
+        });
+    }
+    lifeCycle.onCreateView=function (){
+        return `
+        <div style="border-radius:10px;background-color: #E64E00;width: calc(100% - 30px);display: flex;flex-direction: column;align-items: center;justify-content: center;">
+        <h3 style="color: white;font-size: 20px;margin: 10px;">${glitter.getLan(594)}</h3>
+        <input id="mail" style="margin-top:10px;width: calc(100% - 20px);height: 40px;color: black;font-size: 15px;" placeholder="E-mail" value="${glitter.publicBeans.mail || ''}">
+        <div style="width: 100%;height: 50px;margin-top: 20px;display: flex;border-top: 1px solid white;">
+        <div style="width: 50%;height: 100%;display: flex;align-items: center;justify-content: center;color: white;font-size: 16px;overflow: hidden;
+        word-break: break-all;" onclick="glitter.closeDiaLog()">
+        ${glitter.getLan(3)}
+</div>
+<div style="width: 1px;height: 100%;background-color: white;"></div>
+ <div style="width: 50%;height: 100%;display: flex;align-items: center;justify-content: center;color: white;font-size: 16px;" onclick="send()">
+        ${glitter.getLan(344)}
+</div>
+</div>
+</div>
+        `
+    }
+
+    function send(){
+        let date = (new Date()).format("yyyy-MM-dd HH:mm").replace(".0", "")
+        glitter.publicBeans.mail=$('#mail').val()
+        glitter.share.dataLoading(true)
+        glitter.storePublicBeans()
+        glitter.postRequest('PublicLogic', 'sendSensorData', {
+            sensorList:sensorList,
+            preUnit:glitter.publicBeans.pressure.replace(":",""),
+            account:glitter.publicBeans.account,
+            temUnit:glitter.publicBeans.tem.replace("°",""),
+            mail:glitter.publicBeans.mail,
+            exFun:'Program',
+            make:glitter.mmyInterFace.selectMake,
+            model:glitter.mmyInterFace.selectModel,
+            year:glitter.mmyInterFace.selectYear,
+            time:date
+        }, function (response){
+            glitter.share.dataLoading(false)
+            if(response){
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(487),function () {
+                    setTimeout(function (){
+                        glitter.closeDiaLog()
+                    },100)
+                })
+            }else{
+                glitter.openDiaLog('dialog/Dia_Error_Hint.html','Dia_Error_Hint',false,true,glitter.getLan(386),function (){})
+            }
+        })
+    }
+</script>

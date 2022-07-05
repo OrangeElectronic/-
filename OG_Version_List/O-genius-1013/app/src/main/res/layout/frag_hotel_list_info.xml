@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
+
+    <TextView
+            android:id="@+id/tt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Verknüpfung O-Genius Account and Passwort"
+            android:textColor="@color/color_FF000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    <TextView
+            android:id="@+id/textView43"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tt"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="left"
+            android:text='Schritt 1.  Starten Sie das TopM R6-System (Computer-Basis)  1. Klicken Sie auf die Registerkarte" "Vorbereitung". 2. Geben Sie "RDKS" in den Suchbereich ein.  3. Klicken Sie auf Alle. '
+            android:textSize="16sp" />
+
+    <ImageView
+            android:id="@+id/imageView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/lin"
+            android:layout_below="@id/textView43"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/button8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/color_FF314A56"
+                android:text="Überspringen"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white"
+                android:textSize="16sp" />
+
+        <Button
+                android:id="@+id/button11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/color_FF314A56"
+                android:text="Weiter"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white"
+                android:textSize="16sp"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        background-size: 150% 150%;
+        background-image: url("../img/img_background_menu.png");
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+    }
+
+    body {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    h1 {
+        line-height: 35px;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    td {
+        width: 45%;
+        height: 45%;
+    }
+
+    tr {
+        height: 30%;
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    * 是否為管理者
+    * */
+    var manager = rootActivity().userInfoMation.manager
+    glitter.staffNumber = ''
+    // manager = 'true'
+    lifeCycle.onCreateView = function () {
+        return `
+     <div  style="background-color: #002F51;width: 100%;height:80px;text-align: center;border-bottom-left-radius: 80px;">
+     <h1>${glitter.getLan(679)}</h1>
+     </div>
+     <div style="height: 50px;width: 100%;margin-bottom: 0px;">
+     <div style="padding-left: 20px;padding-right: 20px;float: right;background-color: #E64E00;
+     color:white;height: 50px;margin-top: -25px;border-bottom-left-radius: 10px;border-top-left-radius: 10px;
+     font-size: 14px;line-height: 50px;min-width: 150px">
+     ` + ((glitter.staffNumber === '') ? '尚未登入' : (rootActivity().userInfoMation.first_Name + rootActivity().userInfoMation.name + `/` + rootActivity().userInfoMation.staffNumber)) + `
+</div>
+</div>
+<div style="height: 20px;width: 100%;margin-top: -15px;">
+<div style="display:flex;align-items:center;padding-left: 10px;padding-right: 10px;float: right;
+     color:#aaaaaa;height: 20px;margin-top: 0px;border-bottom-left-radius: 10px;border-top-left-radius: 10px;
+     font-size: 14px;line-height: 50px;">
+     <img src="../img/icon_address_person.png" style="width: 20px;height: 20px;">
+     <h3 style="color: white;font-size: 11px;margin-left: 10px;" id="placeText">${glitter.getLan(680)}</h3>
+</div>
+</div>
+<table style="flex:auto;width: 100%;height: calc(100% - 190px);margin-top: 25px;">
+  <tr style="">
+  <td style="vertical-align: bottom;">
+   <div style="display: flex;flex-direction: column;align-items: center;bottom: 0;position: relative;"
+   onclick="glitter.selectFunction='trigger';glitter.changePage('page/Page_Check_Select.html','Page_Check_Select',true,'')">
+    <img src="../img/btn_check_tpms.png" style="width: calc(100% - 60px);border-radius: 20px;border-width: 1px;border-color: white;border-style:solid;">
+    <h3 style="color: white;margin-top: 10px;font-size: 16px;">${glitter.getLan(681)}</h3>
+</div>
+  </td>
+  <td style="vertical-align: bottom;">
+   <div style="display: flex;flex-direction: column;align-items: center;bottom: 0;position: relative;"
+   onclick="toSettingTire()">
+    <img src="../img/btn_tire_setting.png" style="width: calc(100% - 60px);border-radius: 20px;border-width: 1px;border-color: white;border-style:solid;">
+    <h3 style="color: white;margin-top: 10px;font-size: 16px;">${glitter.getLan(682)}</h3>
+</div>
+  </td>
+</tr>
+<tr>
+  <td style="padding: 0;vertical-align: top;">
+   <div style="display: flex;flex-direction: column;align-items: center;margin-top: 0;position: relative;top: 0;float: top;" onclick="checkMemory()">
+    <img src="../img/btn_wheel_record_check.png" style="width: calc(100% - 60px);border-radius: 20px;border-width: 1px;border-color: white;border-style:solid;">
+    <h3 style="color: white;margin-top: 10px;font-size: 16px;">${glitter.getLan(683)}</h3>
+</div>
+  </td>
+  ` + ((manager !== 'false') ? `<td style="padding: 0;vertical-align: top;">
+   <div style="display: flex;flex-direction: column;align-items: center;margin-top: 0;position: relative;top: 0;float: top;" onclick="glitter.changePage('page/Page_Manager.html','Page_Manager',true,{})">
+    <img src="../img/icon_user.png" style="width: calc(100% - 60px);border-radius: 20px;border-width: 1px;border-color: white;border-style:solid;">
+    <h3 style="color: white;margin-top: 10px;font-size: 16px;">${glitter.getLan(684)}</h3>
+</div>
+  </td>` : `<td style="padding: 0;vertical-align: top;">
+   <div style="display: flex;flex-direction: column;align-items: center;margin-top: 0;position: relative;top: 0;float: top;" onclick="glitter.changePage('page/Page_Setting.html', 'Page_Setting',true, '')">
+    <img src="../img/btn_setting_system.png" style="width: calc(100% - 60px);border-radius: 20px;border-width: 1px;border-color: white;border-style:solid;">
+    <h3 style="color: white;margin-top: 10px;font-size: 16px;">${glitter.getLan(685)}</h3>
+</div>
+  </td>`) + `
+
+</tr>
+<tr>
+<td style="padding: 0;vertical-align: top;">
+   <div style="display: flex;flex-direction: column;align-items: center;margin-top: 0;position: relative;top: 0;float: top;" onclick="obdConfigure()">
+    <img src="../img/icon_OBD.png" style="width: calc(100% - 60px);border-radius: 20px;border-width: 1px;border-color: white;border-style:solid;">
+    <h3 style="color: white;margin-top: 10px;font-size: 16px;"
+    onclick="obdConfigure()"
+    >${glitter.getLan(686)}</h3>
+</div>
+  </td>
+` + ((manager === 'false') ? `` : `<td style="padding: 0;vertical-align: top;">
+   <div style="display: flex;flex-direction: column;align-items: center;margin-top: 0;position: relative;top: 0;float: top;" onclick="glitter.changePage('page/Page_Setting.html', 'Page_Setting',true, '')">
+    <img src="../img/btn_setting_system.png" style="width: calc(100% - 60px);border-radius: 20px;border-width: 1px;border-color: white;border-style:solid;">
+    <h3 style="color: white;margin-top: 10px;font-size: 16px;">${glitter.getLan(36)}</h3>
+</div>
+  </td>`) + `
+</tr>
+</table>
+<div style="display: flex;height: 50px;align-items: center;">
+<img src="../img/app_img_logo.png" style="height: 40px;">
+<h3 style="color: white;font-size:14px;line-height: 40px;height: 40px;">${glitter.getLan(679)}_V${glitter.share.version}</h3>
+</div>
+    `
+    }
+    lifeCycle.onResume = function () {
+        glitter.getGPS(function (result) {
+            $('#placeText').html(result.address)
+        })
+    }
+
+    function toSettingTire() {
+        if (manager === 'false') {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(687))
+        } else {
+            glitter.changePage('page/Page_Setting_List.html', 'Page_Setting_List', true, '')
+        }
+    }
+
+    function checkMemory() {
+        if (manager === 'false') {
+            glitter.changePage('page/Page_Check_Memory.html', 'Page_Check_Memory', true, {})
+        } else {
+            glitter.changePage('page/Page_Memory_Manager.html', 'Page_Memory_Manager', true, {})
+        }
+    }
+
+    lifeCycle.onCreate = function () {
+        checkStaff()
+    }
+
+    function checkStaff() {
+        glitter.getPro("staffNumber", function (data) {
+            glitter.staffNumber = (data.data === undefined) ? '' : data.data
+            glitter.openDiaLog('dialog/Dia_Set_Carrer.html', 'Dia_Set_Carrer', false, false, {}, function () {
+                manager = "false"
+                glitter.managerList.map(function (data) {
+                    if (data.toUpperCase() === glitter.staffNumber.toUpperCase()) {
+                        manager = "true"
+                    }
+                })
+                rootActivity().userInfoMation.manager = manager
+                $('body').html('')
+                $('body').html(lifeCycle.onCreateView())
+                if (glitter.type === glitter.deviceTypeEnum.Android) {
+                    glitter.runJsInterFace("getDeviceName", {}, function (result) {
+                        glitter.data_name = `{"staff":"${glitter.staffNumber}","device":"${result.result}"}`
+                    })
+                }
+                if(glitter.share.lastBleConnection){
+                    toLastOBD()
+                }
+                requestGps()
+            })
+        })
+    }
+
+    /*
+    * 定位請求
+    * */
+    function requestGps() {
+        glitter.gpsUtil.callback.denied = function () {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(688), function () {
+                requestGps()
+            })
+            console.log("glitter.gpsUtil.callback.denied")
+        }
+        glitter.gpsUtil.callback.grant = function () {
+            console.log("glitter.gpsUtil.callback.grant")
+        }
+        glitter.gpsUtil.callback.notOpen = function () {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(689), function () {
+                requestGps()
+            })
+            console.log("glitter.gpsUtil.callback.notOpen")
+        }
+        glitter.gpsUtil.manager.requestGPSPermission()
+    }
+
+    function obdConfigure() {
+        function switchPage() {
+            glitter.selectFunction = 'obd';
+            glitter.changePage('page/Page_Check_Select.html', 'Page_Check_Select', true, '')
+            glitter.closeDiaLog()
+        }
+        glitter.share.bleUtil.isConnect({
+            callback: function (response) {
+                if (response.result) {
+                    switchPage()
+                } else {
+                    glitter.openDiaLog('dialog/Dia_Scan_Ble.html', 'Dia_Scan_Ble', false, true, function () {
+                        setTimeout(function () {
+                            switchPage()
+                        }, 3000)
+                    })
+                }
+            }
+        })
+    }
+    function toLastOBD(){
+        glitter.getPro("lastSelectCar",function (response){
+            if (response.data) {
+                var dataMap = JSON.parse(response.data)
+                glitter.checkCar = dataMap.checkCar
+                glitter.checkCar2 = dataMap.checkCar2
+                glitter.openDiaLog('dialog/Dia_Scan_Ble.html', 'Dia_Scan_Ble', false, true, function () {
+                    setTimeout(function () {
+                        glitter.command.readCounter = 0
+                        glitter.selectFunction = 'obd'
+                        glitter.changePage('page/Page_Check_Detail_OBD.html', 'Page_Check_Detail_OBD', true, (glitter.checkCar2) ? 2:1)
+                    }, 3000)
+                })
+                glitter.openDiaLog('dialog/Dia_Loading.html', 'Time_Out', false, false, glitter.getLan(690))
+                setTimeout(function (){
+                    glitter.closeDiaLogWithTag('Time_Out')
+                },15*1000)
+            }else{
+                glitter.closeDiaLog()
+            }
+        })
+    }
+
+    lifeCycle.onResume = function () {
+    }
+
+</script>

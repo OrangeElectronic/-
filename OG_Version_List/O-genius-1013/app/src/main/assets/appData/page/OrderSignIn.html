@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width">
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100%;
+    }
+    .flexBox{
+        padding: 0;
+        margin-left: 49px;
+        margin-right: 49px;
+        height: 50px;
+        display: flex;
+    }
+    .timg{
+        margin: 0;
+        padding: 0;
+        width: 50px;
+        height: 50px;
+        position: relative;
+    }
+    input{
+        padding: 0;
+        height: 100%;
+        margin: 0;
+        top: 0;
+        outline: 0;
+        border-width: 0 0 1px;
+        border-color: black;
+        position: relative;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../jsLib/EventLinstener.js"></script>
+<body >
+<div style="position: absolute;bottom: 60px;height: calc(100% - 60px);overflow-y: hidden;" id="scrollView">
+    <img src="../icon/iv_logo.png" style="width: 100%;">
+    <div class="flexBox">
+        <div> <img src="../icon/user.png" class="timg" alt=""></div>
+        <input style="width: 70%;flex: auto;" placeholder="E-mail" id="emailEdit">
+
+    </div>
+    <br>
+    <div class="flexBox">
+        <div>   <img src="../icon/lock.png" class="timg"></div>
+
+        <input style="width: 70%;flex: auto;" placeholder="E-mail" id="passwordEdit">
+        <script>
+            $('#passwordEdit').attr('placeholder',rootActivity().ogInterFace.getLan("jz.78"))
+        </script>
+    </div>
+</div>
+<script>
+    $("#scrollView").css("height",$(document).height()-60+'px')
+</script>
+<div style="position: absolute;bottom: 60px;width: 100%;height: 60px;background:	#32414E;display: flex;" id="bottomBar">
+    <div style="width: 50%;line-height: 60px;text-align: center;color: white;" id="menu" onclick="glitter.closeApp()">jz.77</div>
+    <div style="width: 1px;height: 60px;background: white;"></div>
+    <div style="flex:auto;line-height: 60px;text-align: center;color: white;" id="signIn" onclick="signIn()">jz.75</div>
+</div>
+<script>
+    $('#menu').html(rootActivity().ogInterFace.getLan("jz.9"))
+    $('#signIn').html(rootActivity().ogInterFace.getLan("jz.75"))
+    function signIn() {
+        glitter.openDiaLog('dialog/DataLoading.html', 'DataLoading', false, false, '{}')
+        var admin=$('#emailEdit').val()
+        var password=$('#passwordEdit').val()
+        $.ajax({
+            type: "POST",
+            url: `http://bento2.orange-electronic.com/SelectMysql`, // serializes the form's elements.
+            data: "select count(1) from `orange_userdata`.shipadmin where admin='"+admin+"' and password='"+password+"'",
+            timeout:1000*10,
+            success: function (data) {
+                glitter.closeDiaLog()
+                var json = JSON.parse(data)
+                if(json[0]["count(1)"]==="1"){
+                    glitter.setPro("ShipSignIn","true")
+                    glitter.setHome('page/OrderListPage.html', 'OrderListPage', '{}')
+                }else{
+                    var map = {}
+                    map.text = rootActivity().ogInterFace.getLan("jz.205")
+                    glitter.openDiaLog('dialog/HintText.html', 'HintText', false, true, map)
+                }
+            }
+            ,
+            error: function (data) {
+                glitter.closeDiaLog()
+                var map = {}
+                map.text = rootActivity().ogInterFace.getLan("jz.206")
+                glitter.openDiaLog('dialog/HintText.html', 'HintText', false, true, map)
+            }
+        });
+    }
+    var originHeight=$(document).height()
+    $(document).bind('resize', function () {
+        if (originHeight > $(document).height()) {
+            $("#scrollView").css("bottom",'-70px')
+            $('#bottomBar').hide()
+        } else {
+            $("#scrollView").css("bottom",'60px')
+            $('#bottomBar').show()
+        }
+    });
+
+    // document.querySelector('input').addEventListener('input', updateValue);
+    //
+    // function updateValue(e) {
+    //     e.scrollIntoView();
+    // }
+
+</script>
+</body>
+</html>

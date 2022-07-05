@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../glitterBundle/fontStyle/notesanstc.css" rel="stylesheet">
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+
+<style>
+    html {
+        width: 100%;
+        height: calc(100% - 60px);
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        width: calc(100% - 30px);
+        height: calc(100% - 10px);
+        overflow-y: scroll;
+        margin-top: 10px;
+        margin-left: 30px;
+        margin-right: 10px;
+        overflow-x: hidden;
+    }
+
+    .item {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .wrapper .item .itemImg {
+        width: calc(100vw / 2 - 50px);
+        height: calc(100vw / 2 - 50px);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-repeat: no-repeat;
+    }
+
+    .wrapper .item .itemTitle {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: calc(100vw / 2 - 50px);
+        text-align: center;
+    }
+
+</style>
+<body>
+
+</body>
+</html>
+<script>
+
+    let itemArray = [{
+        img: 'btn_check_sensor_n',
+        title: glitter.getLan(10),
+        click: function () {
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+            glitter.selectFunction.select=glitter.selectFunction.enum.ReadSensor
+        }
+    }, {
+        img: 'btn_program_n',
+        title: glitter.getLan(12),
+        click: function () {
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+            glitter.selectFunction.select=glitter.selectFunction.enum.Program
+        }
+    }, {
+        img: 'btn_id_copy_n',
+        title: glitter.getLan(117),
+        click: function () {
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+            glitter.selectFunction.select=glitter.selectFunction.enum.IdCopy
+            // glitter.runJsInterFace("SignInFaceBook",{},function (callback){
+            //     alert(JSON.stringify(callback))
+            // })
+        }
+    }, {
+        img: 'btn_obdii_relearn_n',
+        title: glitter.getLan(15),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.ObdRelearn
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+        }
+    }, {
+        img: 'btn_id_copy_by_obd_n',
+        title: glitter.getLan(401),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.IdCopy_OBD
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+        }
+    }, {
+        img: 'btn_relearnprocedure_p',
+        title: glitter.getLan(135),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.Relearn_Procedure
+            glitter.changePage('page/Page_Vehicle_Selection.html', 'Page_Vehicle_Selection', true, {})
+        }
+    },
+        {
+        img: 'tire_storage',
+        title: glitter.getLan(538),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.OSOM
+            glitter.changePage('tireStorage/Page_Function_Select.html', 'Page_Function_Select', true, {})
+        }
+    },
+        {
+        img: 'btn_setting_n',
+        title: glitter.getLan(36),
+        click: function () {
+            glitter.changePage("page/Page_Select_Setting_OGLite.html",'Page_Select_Setting_OGLite',true,{})
+            glitter.selectFunction.select=glitter.selectFunction.enum.Setting
+        }
+    },{
+        img: 'btn_users_manual_p',
+        title: glitter.getLan(18),
+        click: function () {
+            glitter.selectFunction.select=glitter.selectFunction.enum.Manual
+        }
+    }]
+    lifeCycle.onCreate = function () {
+        if(glitter.publicBeans.language==="tw"){
+            glitter.fileModelInterFace.domain='https://bento3.orange-electronic.com'
+        }else{
+            glitter.fileModelInterFace.domain='https://bento2.orange-electronic.com'
+        }
+        glitter.canUpdate=true
+        for (var i = 0; i < itemArray.length; i++) {
+            if(itemArray[i]!==undefined){
+                $("#list").append(`<div class="item" id="item${i}" onclick="itemArray[${i}].click()">
+<img class="itemImg" src="../img/${itemArray[i].img}.png">
+<h3 class="itemTitle">${itemArray[i].title}</h3>
+</div>`)
+            }
+        }
+
+        requestGps()
+        glitter.share.checkVersion()
+
+    }
+    lifeCycle.onCreateView = function () {
+        return `
+<div id="list" class="wrapper"></div>
+`
+    }
+    function print(fun){
+        return fun()
+    }
+    lifeCycle.onResume = function () {
+        glitter.canUpdate=true
+        glitter.share.checkVersion()
+    }
+
+    /*
+  * 定位請求
+  * */
+    function requestGps() {
+        glitter.gpsUtil.callback.denied = function () {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '定位權限已關閉，如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟!!',function (){
+                requestGps()
+            })
+            console.log("glitter.gpsUtil.callback.denied")
+        }
+        glitter.gpsUtil.callback.grant = function () {
+            console.log("glitter.gpsUtil.callback.grant")
+        }
+        glitter.gpsUtil.callback.notOpen = function () {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '在"設置">"隱私"中打開"定位服務"來允許APP確認您的當前位置',function (){
+                requestGps()
+            })
+            console.log("glitter.gpsUtil.callback.notOpen")
+        }
+        glitter.gpsUtil.manager.requestGPSPermission()
+    }
+</script>

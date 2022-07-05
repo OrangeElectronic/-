@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        margin: 0;
+        padding: 0;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    tr {
+        width: 100%;
+        display: flex;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33%;
+    }
+    .text{
+        width: 100%;height: calc(100% - 120px);overflow-y: scroll;
+    }
+
+</style>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    lifeCycle.onCreateView = function () {
+        return glitter.getTitleBar('新增車輛') + `
+        <div style="width: 100%;height: 60px;line-height: 60px;text-align: center;background-color: white;
+     color: #002F51;">
+     選擇品牌
+</div>
+<div id="list" style="width: 100%;height: calc(100% - 120px);overflow-y: scroll;">
+</div>
+     `
+    }
+    var modelIt=undefined
+    lifeCycle.onCreate = function () {
+        glitter.getModel(function (model) {
+            modelIt=model
+            new GlAdapter(document.getElementById('list'),function () {
+                return model.length
+            },function (pos) {
+                return `
+             <div style="height: 64px;width: calc(100% - 20px);display: flex;align-items: center;margin-left: 10px;" onclick="selectModel('`+pos+`')">
+         <img src="../img/tire.png" style="width: 60px;height: 60px;">
+         <h3 style="color: white;line-height: 64px;font-size: 16px;flex: auto;margin-left: 5px;">`+model[pos].Model+`</h3>
+         </div>
+         <div style="width: calc(100% - 20px);margin-left:10px;height: 1px;background-color: #6AC6D7;"></div>
+         `
+            })
+        })
+
+    }
+
+    function selectModel(pos) {
+        glitter.selectModel=modelIt[pos].Model
+        glitter.setCar.model=glitter.selectModel
+        glitter.changePage('page/Page_Select_Year.html','Page_Select_Year',true,'')
+    }
+</script>

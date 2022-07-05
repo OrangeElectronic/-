@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: calc(100% - 110px);
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .leftBottom {
+        background-image: url("../img/btn_letf.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .rightBottom {
+        background-image: url("../img/right_line.png");
+        background-color: #FF4400;
+        width: 60%;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .flex {
+        width: 100%;
+        display: flex;
+        height: 50px;
+    }
+
+    .flex div {
+        height: 100%;
+        border: 0.5px solid #99A7B3;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .scrollView {
+        position: absolute;
+        z-index: 2;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 170px;
+        background-color: white;
+        overflow-y: scroll;
+    }
+
+    .scrollView h3 {
+        display: flex;
+        color: white;
+        margin: 0;
+        background-size: 100% 100%;
+    }
+
+    .scrollView .it {
+        background-color: #314a56;
+        color: white;
+        border-bottom: 1px solid white;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .fullBottom {
+
+        background-image: url("../img/btn_rectangle.png");
+        flex: auto;
+        height: 50px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+</style>
+<body>
+<script>
+    var make=glitter.mmyInterFace.selectMake.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+    var model=glitter.mmyInterFace.selectModel.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+    var year=glitter.mmyInterFace.selectYear.replace(/>/g,"&gt;").replace(/</g,"&lt;")
+
+    var single = false
+    //Sensor數據
+    var sensorData = []
+    //是否點擊方匡位置
+    var focus = -1
+    //選擇的燒錄行數
+    var selectRows = 0
+    //是否能執行按鈕事件（防止重複執行）
+    var toggle = true
+    lifeCycle.onCreate = function () {
+        //判斷有無預先加載Sensor
+        if (gBundle.sensorList === undefined) {
+            single = true
+            sensorData = [
+                {
+                    oldSensor: '',
+                    newSensor: '',
+                    result: undefined
+                }
+            ]
+            focus = 0
+            updateView()
+        } else {
+            single = false
+            selectRows = -1
+            for (var a = 0; a < glitter.mmyInterFace.selectMMY["Wheel_Count"]; a++) {
+                sensorData.push({
+                    oldSensor: (gBundle.sensorList[a] === undefined) ? '' : gBundle.sensorList[a].id,
+                    newSensor: '',
+                    result: undefined
+                })
+                if ((gBundle.sensorList[a] !== undefined)) {
+                    if (selectRows === -1) {
+                        selectRows = a
+                    }
+                }
+            }
+            updateView()
+        }
+        glitter.readRxReceive = function () {
+            read()
+        }
+    }
+    lifeCycle.onResume=function (){
+        glitter.readRxReceive = function () {
+            read()
+        }
+    }
+    function updateView() {
+        $('#contentList').html(`
+        <h3 style="font-size: 18px;width: calc(100% - 40px);margin: 20px;text-align: center;color: orangered;">${glitter.getLan(425)}</h3>
+        <div id="selectWay" class="scrollView">
+<div style="flex: auto;"></div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=0;updateView();">
+<img src="../img/icon_read_sensor.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.getLan(143)}</h3>
+</div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=1;updateView();">
+<img src="../img/icon_key_in.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.getLan(26)}</h3>
+</div>
+<div class="it" style="height: 30%;" onclick="glitter.selectWay=2;updateView();">
+<img src="../img/icon_scan.png" style="margin-left:10px;height:50px;">
+<h3 style="color: white;flex: auto;margin-left:10px;">${glitter.getLan(19)}</h3>
+</div>
+</div>
+        `)
+        var img = ''
+        switch (glitter.selectWay) {
+            case 0:
+                img = '<img src="../img/readblack.png" style="width:100%;height:calc(100%);">'
+                break
+            case 1:
+                img = '<img src="../img/key%20in.png" style="width:100%;height:calc(100%);">'
+                break
+            case 2:
+                img = '<img src="../img/scan.png" style="width:100%;height:calc(100%);">'
+                break
+        }
+        $('#selectWay').hide()
+        $('#contentList').append(`
+<div class="flex" style="background-color: #D7D8D9;">
+<div  style="width: 50px;" onclick="
+if(single){
+    $('#selectWay').toggle()
+}
+">${(single) ? img : ''}</div>
+<div style="flex: auto;">
+${glitter.getLan(417)}
+</div>
+<div style="flex:auto;">
+${glitter.getLan(418)}
+</div>
+<div style="width: 50px;">
+${glitter.getLan(303)}
+</div>
+</div>`)
+        if (single) {
+            $('#contentList').append(`
+<div class="flex" style="background-color: white;">
+<div  style="width: 50px;background-color: #D7D8D9;">1</div>
+<div style="max-width:calc((100% - 104px)/2);flex: auto;background-color: ${(focus === 0) ? '#FF9D07' : 'white'};color: ${(focus === 0) ? 'white' : 'black'};" id="original-0">
+${(glitter.share.isDEC()&&(sensorData[0].oldSensor.length>0)) ? parseInt(sensorData[0].oldSensor,16):sensorData[0].oldSensor}
+</div>
+<div style="flex:auto;max-width:calc((100% - 104px)/2);">
+${(glitter.share.isDEC()&&sensorData[0].result) ? parseInt(sensorData[0].newSensor,16):sensorData[0].newSensor}
+</div>
+<div style="width: 50px;background-color: white;">
+${(sensorData[0].result === undefined) ? `` : `<img src="${sensorData[0].result ? '../img/icon_check_sensor_ok.png' : '../img/icon_check_sensor_fail.png'}" style="width: 40px;height: 40px;">`}
+</div>
+</div>
+`)
+            $('#original-0').click(function () {
+                if (!sensorData[0].result) {
+                    if (focus === 0) {
+                        focus = -1
+                    } else {
+                        focus = 0
+                    }
+                    if (focus === 0) {
+                        read()
+                    }
+                    updateView()
+                }
+            })
+            if (sensorData[0].result) {
+                $('#contentList').append(`<div style="display: flex;width: 100%;margin-top:10px;height: 50px;align-items: center;justify-content: center;">
+<div style="
+display:flex;align-items: center;justify-content: center;background-image: url('../img/bt_long_unselect.png');width: 150px;height: 40px;color: white;background-repeat: no-repeat;background-size: 100% 100%;"
+onclick="
+            single = true
+            sensorData=[{
+                    oldSensor:'',
+                    newSensor:'',
+                    result:undefined
+                }]
+            focus=-1
+            updateView()
+">${glitter.getLan(134)}</div>
+</div>`)
+            }
+        } else {
+            var wheelArray = [glitter.getLan(312), glitter.getLan(309), glitter.getLan(310), glitter.getLan(311)]
+            sensorData.map(function (data, position) {
+                $('#contentList').append(`
+<div class="flex" style="${
+                    glitter.print(function () {
+                        if(data.result){
+                            return `background-color: white;`
+                        }else if(selectRows === position){
+                            return `background-color: #F7AF00;`
+                        }else{
+                            return `background-color: lightgray;`
+                        }
+                    })
+                  }" onclick="${(data.oldSensor === '') ? '' : `selectRows=${position};updateView();`}">
+<div  style="width: 50px;background-color: #D7D8D9;">${wheelArray[position]}</div>
+<div style="max-width:calc((100% - 104px)/2);flex: auto;" id="original-0">
+${(glitter.share.isDEC()&&(data.oldSensor.length>0)) ? parseInt(data.oldSensor,16):data.oldSensor}
+</div>
+<div style="flex:auto;max-width:calc((100% - 104px)/2);">
+${(glitter.share.isDEC()&&data.result) ? parseInt(data.newSensor,16):data.newSensor}
+</div>
+<div style="width: 50px;background-color: white;">
+${(data.result === undefined) ? `` : `<img src="${data.result ? '../img/icon_check_sensor_ok.png' : '../img/icon_check_sensor_fail.png'}" style="width: 40px;height: 40px;">`}
+</div>
+</div>
+`)
+            })
+        }
+        //按鈕事件定義
+
+        switch (sensorData[selectRows].result) {
+            //尚未燒錄
+            case undefined:
+                if(glitter.selectFunction.select===glitter.selectFunction.enum.OSOM){
+                    $('#bottomBar').html( ` <div id="cancel" class="leftBottom" onclick="
+        glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle.data)" >
+        ${glitter.getLan(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="writeSensor()" >
+        ${glitter.getLan(143)}
+        </div>`)
+                }else{
+                    $('#bottomBar').html(`
+                  <div id="cancel" class="leftBottom" onclick="glitter.goMenu()" >
+        ${glitter.getLan(9)}
+        </div>
+         <div id="next" class="rightBottom" onclick="writeSensor()" >
+        ${glitter.getLan(13)}
+        </div>
+                `)
+                }
+
+                break
+            //燒錄失敗
+            case false:
+                if(glitter.selectFunction.select===glitter.selectFunction.enum.OSOM){
+                    $('#bottomBar').html( ` <div id="cancel" class="leftBottom" onclick="
+        glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle.data)" >
+        ${glitter.getLan(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="writeSensor()" >
+        ${glitter.getLan(134)}
+        </div>`)
+                }else{
+                    $('#bottomBar').html(`
+                  <div id="cancel" class="leftBottom" onclick="glitter.changePage('page/Page_Comic_Relearm_Procedure.html','Page_Comic_Relearm_Procedure',true,{})" >
+        ${glitter.getLan(135)}
+        </div>
+         <div id="next" class="rightBottom" onclick="writeSensor()" >
+        ${glitter.getLan(288)}
+        </div>
+                `)
+                }
+
+                break
+            //燒錄成功
+            default:
+                if(glitter.selectFunction.select===glitter.selectFunction.enum.OSOM){
+                    $('#bottomBar').html(`
+                   <div id="cancel" class="leftBottom" onclick="glitter.changePage('page/Page_Comic_Relearm_Procedure.html','Page_Comic_Relearm_Procedure',true,{})" >
+        ${glitter.getLan(135)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+            glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle.data)
+         " >
+        ${glitter.getLan(145)}
+        </div>
+                `)
+                }else{
+                    if(single){
+                        $('#bottomBar').html(`
+                  <div id="cancel" class="leftBottom" onclick="glitter.goMenu()" >
+        ${glitter.getLan(9)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+         ${event(()=>{
+                            single = true
+                            sensorData=[{
+                                oldSensor:'',
+                                newSensor:'',
+                                result:undefined
+                            }]
+                            focus=-1
+                            updateView()
+                        })}
+         " >
+        ${glitter.getLan(813)}
+        </div>
+                `)
+                    }else{
+                        if(sensorData.find(function (dd){
+                            return !dd.result && (dd.oldSensor !== '')
+                        })){
+
+                            $('#bottomBar').html(`
+                  <div id="cancel" class="leftBottom" onclick="glitter.goMenu()" >
+        ${glitter.getLan(9)}
+        </div>
+         <div id="next" class="rightBottom" onclick="
+         selectRows=sensorData.indexOf(sensorData.find(function (dd){
+                          return !dd.result && (dd.oldSensor !== '')
+                        }))
+                        updateView()
+         " >
+        ${glitter.getLan(145)}
+        </div>
+                `)
+                        }else{
+                            $('#bottomBar').html(`
+                  <div id="cancel" class="fullBottom" onclick="glitter.goMenu()" >
+        ${glitter.getLan(9)}
+        </div>
+
+                `)
+                        }
+
+                    }
+
+                }
+
+                break
+        }
+        if (focus !== -1 && (glitter.selectFunction.select!==glitter.selectFunction.enum.OSOM)) {
+            $('#bottomBar').html(`
+                  <div id="cancel" class="leftBottom" onclick="glitter.goBack()" >
+        ${glitter.getLan(9)}
+        </div>
+         <div id="next" class="rightBottom" onclick="read()" >
+        ${glitter.getLan(404)}
+        </div>
+                `)
+        }
+    }
+
+    //寫入（步驟->讀新Sensor->燒錄->寫入）
+    function writeSensor() {
+        if (sensorData[selectRows].oldSensor === '') {
+            focus = selectRows
+            read()
+            return;
+        }
+        if (!toggle) {
+            return
+        }
+        var clock = Clock()
+        glitter.command.cancel = false
+        toggle = false
+        glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.getLan(8))
+        glitter.canshowConnect = false
+        //燒錄函示
+        function program() {
+            glitter.command.program({
+                "1": {id: sensorData[selectRows].newSensor}
+            }, function (result) {
+                glitter.canshowConnect = true
+                if (result) {
+                    toggle = true
+                    if (result === "cancel") {
+                        glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                    } else {
+                        if (result) {
+                            setTimeout(function () {
+                                while(sensorData[selectRows].newSensor.length<8){sensorData[selectRows].newSensor=`0${sensorData[selectRows].newSensor}`}
+                                var id=((["HOSTKA03","HOSWA306"].indexOf(glitter.mmyInterFace.selectMMY["Direct Fit"])!==-1) ?
+                                    (sensorData[selectRows].newSensor.substring(2,8)+sensorData[selectRows].newSensor.substring(0,2))
+                                    : (glitter.mmyInterFace.selectMMY["ID1"]+glitter.mmyInterFace.selectMMY["ID2"]+glitter.mmyInterFace.selectMMY["ID3"]+glitter.mmyInterFace.selectMMY["ID4"]))
+                                if(["HOSTKA03","HOSWA306"].indexOf(glitter.mmyInterFace.selectMMY["Direct Fit"])!==-1){
+                                    if(glitter.mmyInterFace.selectMMY["Direct Fit"]==='HOSTKA03'){
+                                        id = id.replaceAt(7, "8")
+                                    }else{
+                                        id = id.replaceAt(7, "5")
+                                    }
+                                }else{
+                                    for(var a=0;a<id.length;a++){
+                                        try {
+                                            var ar=["O","X"]
+                                            if(ar.indexOf(id.substring(a,a+1))!==-1){ id = id.replaceAt(a,sensorData[selectRows].newSensor.substring(a,a+1))}
+                                        }catch (e){
+
+                                        }
+                                    }
+                                }
+
+                                glitter.command.idCopy(sensorData[selectRows].oldSensor, id, function (result) {
+                                    if(result){
+                                        glitter.mysqlDataBase.insertCopy({
+                                            error:'success',
+                                            exTime:clock.stop(),
+                                            original:sensorData[selectRows].oldSensor,
+                                            new:sensorData[selectRows].newSensor
+                                        })
+                                        sensorData[selectRows].newSensor=sensorData[selectRows].oldSensor
+                                        if(glitter.selectFunction.select===glitter.selectFunction.enum.OSOM){
+                                            if(gBundle.data.triepress===undefined){
+                                                gBundle.data.triepress={}
+                                            }
+                                            gBundle.data.triepress[""+selectRows]=result
+                                        }
+                                    }else{
+                                        glitter.mysqlDataBase.insertCopy({
+                                            error:`10-1-0`,
+                                            exTime:clock.stop()
+                                        })
+                                    }
+                                    glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                                    if (result === "cancel") {
+                                        glitter.command.commandFinish(function () {
+                                            glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                                        })
+                                    } else {
+                                        glitter.command.commandFinish(function () {
+                                            sensorData[selectRows].result = result
+                                            updateView()
+                                            glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                                        })
+                                    }
+                                })
+                            }, 4000)
+                        } else {
+                            itemData[selectRows].result = false
+                            glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                            updateView()
+                        }
+                    }
+                } else {
+                    glitter.command.commandFinish(function () {
+                        toggle = true
+                        sensorData[selectRows].result = false
+                        updateView()
+                        glitter.openDiaLog('dialog/Dia_Error_Hint.html', 'Dia_Error_Hint', false, true, glitter.getLan(147))
+                        glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                    })
+                }
+
+            })
+        }
+        //讀取函示
+        function readNewSensor() {
+            glitter.command.readMultiSensor(1, function (result, itemList) {
+                setTimeout(function () {
+                    glitter.command.readMultiSensor(1, function (result, itemlist) {
+                        if (result === "cancel") {
+                            glitter.command.commandFinish(function () {
+                            })
+                            glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                            toggle = true
+                            return
+                        }
+                        if (result) {
+                            itemlist.map(function (result) {
+                                sensorData[selectRows].newSensor = result.id
+                            })
+                            updateView()
+                            program()
+                        } else {
+                            glitter.command.commandFinish(function () {
+                            })
+                            glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                            sensorData[selectRows].result = false
+                            updateView()
+                            toggle = true
+                            glitter.openDiaLog('dialog/Dia_Error.html', 'Dia_Error', false, true, {}, function () {
+                            })
+                        }
+                    }, true)
+                }, 5000)
+            })
+        }
+        readNewSensor()
+    }
+
+    //讀取
+    function read() {
+        if (!toggle) {
+            return
+        }
+        switch (glitter.selectWay) {
+            case 0:
+                toggle = false
+                glitter.openDiaLog('dialog/Dia_Loading_Cancel.html', 'Dia_Loading_Cancel', false, false, glitter.getLan(231) + "...")
+                glitter.command.readSensor(function (result) {
+                    toggle = true
+                    glitter.closeDiaLogWithTag("Dia_Loading_Cancel")
+                    if (result === "cancel") {
+                        return
+                    }
+                    if (result) {
+                        sensorData[focus].oldSensor = result.id
+                        focus = -1
+                        updateView()
+                    } else {
+                        glitter.openDiaLog('dialog/Dia_Error.html', 'Dia_Error', false, true, {}, function () {
+                        })
+                    }
+                })
+                break
+            case 1:
+                glitter.openDiaLog('dialog/Dia_Keyboard.html', 'Dia_Keyboard', false, true, {
+                    length:(glitter.share.isDEC()) ? 10:8,
+                    callback: function (data) {},
+                    data:((glitter.share.isDEC()) ? `${parseInt(sensorData[focus].oldSensor,16)}`.replace("NaN",""):sensorData[focus].oldSensor),
+                    writeC: function (data) {
+                        if(glitter.share.isDEC()){
+                            data=parseInt(data,10).toString(16);
+                        }
+                        sensorData[focus].oldSensor = data
+                        focus = -1
+                        updateView()
+                        glitter.closeDiaLog()
+                    }
+                })
+                break
+            case 2:
+                glitter.openQrScanner(function (data) {
+                    if (data.indexOf(",") !== -1) {
+                        data = data.split(',')[1]
+                        sensorData[focus].oldSensor = data
+                        focus = -1
+                        updateView()
+                    } else if (data.indexOf("*") !== -1) {
+                        data = data.split('*')[1]
+                        sensorData[focus].oldSensor = data
+                        focus = -1
+                        updateView()
+                    } else if (data.length <= 8) {
+                        sensorData[focus].oldSensor = data
+                        focus = -1
+                        updateView()
+                    }
+                })
+                break
+        }
+
+    }
+
+    lifeCycle.onCreateView = function () {
+        return `
+    <div style="height: 60px;background-color: #1f333e;display: flex;align-content: center;justify-content: center;flex-direction: column;text-align: center;color: white;">
+    ${make}/${model}/${year}
+</div>
+<div style="flex: auto;" id="contentList">
+
+</div>
+
+<div id="bottomBar" style="position:absolute;bottom:60px;width:100%;display: flex;margin-top: 20px;">
+${
+            glitter.print(function (){
+                if(glitter.selectFunction.select===glitter.selectFunction.enum.OSOM){
+                    return ` <div id="cancel" class="leftBottom" onclick="
+        glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle.data)" >
+        ${glitter.getLan(562)}
+        </div>
+         <div id="next" class="rightBottom" onclick="readSensor()" >
+        ${glitter.getLan(143)}
+        </div>`
+                }else{
+                    return ` <div id="cancel" class="leftBottom" onclick="glitter.goMenu()" >
+        ${glitter.getLan(9)}
+        </div>
+         <div id="next" class="rightBottom" onclick="readSensor()" >
+        ${glitter.getLan(143)}
+        </div>`
+                }
+            })
+        }
+
+</div>
+
+    `
+    }
+
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+    String.prototype.replaceAt = function(index, replacement) {
+        return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+    }
+</script>
+</body>
+</html>

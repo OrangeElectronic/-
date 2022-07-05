@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html{
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../image/start_ble.png');*/
+        background-repeat: no-repeat;
+        /*background-attachment: fixed;*/
+        background-color: black;
+        /*background-size: 100% 100%;*/
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+    }
+    .viewCenter{
+        align-items: center;
+        justify-content: center;
+    }
+    .tireSensor{
+        background-image: url(../image/portrait_btn_001_n.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    .enterBt {
+        background-image: url("../image/btn_botton_p.png");
+        /*width: 100%;*/
+        /*height: 60px;*/
+        background-repeat: no-repeat;
+        color: white;
+        font-size: 20px;
+        background-size: 100% 100%;
+        /*display: flex;*/
+        /*align-items: center;*/
+        /*justify-content: center;*/
+    }
+    .contrast{
+        -webkit-filter:contrast(3);
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<script src="../jslib/touch.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+
+    var data = {}
+    data.selectTire = {position:"",id:""}
+    data.selectTire1 = 0
+    data.selectTire2 = 0
+    var change_tire = []
+    var change_two = glitter.app==="HT450" && glitter.enter_ID === glitter.change_ID && false
+
+    var carType=glitter.carType
+    var car="01"
+    if(carType===1){
+        car="01"
+    }else if(carType===2){
+        car="02"
+    }
+    //紀錄現在畫面方向，直向:false，橫向:true
+    var changeScreen=false
+    if(glitter.screenPage==="PORTRAIT" || glitter.screenPage===undefined){
+        changeScreen=false
+    }else{
+        changeScreen=true
+    }
+
+    var tireStatus=glitter.tireStatus[carType]
+    data.sensorID =
+          ["0","","","","",
+              "","","","",
+              "","","","",
+              "","","",""]
+    data.change_Sensor =
+        ["0","","","","",
+            "","","","",
+            "","","","",
+            "","","",""]
+    // var a=undefined
+    // alert(a??"1234")
+    var Adapter=''
+
+    var upload_Name="ID學碼"
+    var titleName=glitter.getLanguage("43")
+    if(glitter.enter_ID === glitter.key_In_ID){
+        titleName=glitter.getLanguage("43")
+        upload_Name="ID學碼"
+    }else if(glitter.enter_ID === glitter.trigger_ID){
+        titleName=glitter.getLanguage("122")
+        upload_Name="洩壓/觸發學碼"
+    }else if(glitter.enter_ID === glitter.change_ID){
+        titleName=glitter.getLanguage("40")
+        upload_Name="輪胎對調"
+    }
+
+    glitter.share.orientationPageCallback.push({callback: function (screen) {
+        console.log("setTire:"+screen)
+        if(screen==="PORTRAIT"){
+            changeScreen=false
+        }else{
+            changeScreen=true
+        }
+        $('body').html(lifeCycle.onCreateView())
+        touchChange("Enter")
+        viewAdapter()
+        //Adapter.notifyDataSetChange()
+    },tag:"Page_Setting_Enter_ID"})
+
+    lifeCycle.onCreateView=function (){
+
+        //輸入ID 確認
+        return`
+<div style="width: 100%;height: calc(100% - 50px);${changeScreen ? `display:flex;`:``}">
+        ${changeScreen ? ``:
+        `<div id="title" class="viewCenter" style="width:100%;height:50px;display: flex;background-color: gray;color:white;font-size:18px;">
+            ${titleName}
+        </div>`}
+
+        <div style="${changeScreen ? `height:100%;width:calc(100% - 60px)`:`height:calc(100% - 110px);width: 100%`};display: flex;justify-content: center;align-items: center;overflow-y: scroll;overflow-x: hidden;">
+            <div id="wheelView" style="height:95%;width: 100%;"></div>
+        </div>
+        <div id="Enter" class="viewCenter enterBt" style="display: flex;${changeScreen ? `height:100%;width:60px;`:`height:60px;width:100%;`}" onclick="enterID()">
+            ${glitter.getLanguage("79")}
+        </div>
+
+        ${glitter.app!=="HT430" && glitter.enter_ID === glitter.change_ID ? ``:`
+
+        `}
+</div>`
+    }
+
+    lifeCycle.onCreate=function () {
+
+        //Call back when the onCreateView function is executed
+        // if(glitter.app!=="HT430" && glitter.enter_ID === glitter.change_ID){}
+        // else{
+        //     touchChange("Enter")
+        // }
+        touchChange("Enter")
+        viewAdapter()
+
+        //**
+        glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+        readAllCommand(function (data) {
+            
+        })
+
+    }
+
+    function viewAdapter(){
+        function tireView(pos){
+            var tireImage='portrait_btn_001_n.png'
+            if(data.selectTire.position===(pos).toString()){
+                tireImage='portrait_btn_023.png'
+            }
+            var change_Pos=1
+            if(glitter.enter_ID === glitter.change_ID){
+                if(car==="01"){
+                    if(pos>1){
+                        change_Pos = parseInt(pos)-2
+                    }
+                }else if(car==="02"){
+                    change_Pos = parseInt(pos)+14
+                }
+                //console.log("selectTire1:"+data.selectTire1+","+"selectTire2:"+data.selectTire2+","+"change_Pos:"+change_Pos)
+
+                if(data.selectTire1===pos){
+                    tireImage='portrait_btn_017_h.png'
+                }if(data.selectTire2===pos){
+                    tireImage='portrait_btn_023.png'
+                }
+                if(data.change_Sensor[pos]!==data.sensorID[pos] && data.selectTire1!==pos){
+                    tireImage='portrait_btn_023.png'
+                }
+
+                // switch (glitter.app){
+                //     case "HT430":
+                //         if(data.selectTire1===pos){
+                //             tireImage='portrait_btn_017_h.png'
+                //         }if(data.selectTire2===pos){
+                //             tireImage='portrait_btn_023.png'
+                //         }
+                //         if(data.change_Sensor[pos]!==data.sensorID[pos] && data.selectTire1!==pos){
+                //             tireImage='portrait_btn_023.png'
+                //         }
+                //         break
+                //     default:
+                //         if(data.selectTire1===change_Pos){
+                //             tireImage='portrait_btn_023.png'
+                //         }if(data.selectTire2===change_Pos){
+                //             tireImage='portrait_btn_023.png'
+                //         }
+                //         break
+                // }
+            }
+
+            var allView=``
+            if(tireStatus[pos].open){
+                //width: 60%;height: 60%;
+
+                //** HT430 tire any change
+                // onclick="selectTire('${glitter.enter_ID === glitter.change_ID ? (glitter.app==="HT430" ? pos:change_Pos) : (pos)}')">
+                // ${glitter.enter_ID === glitter.change_ID ? (glitter.app==="HT430" ? data.change_Sensor[pos]:data.sensorID[pos]): data.sensorID[pos]}
+
+                //** All tire any change
+                // onclick="selectTire('${pos}')">
+                // ${glitter.enter_ID === glitter.change_ID ? data.change_Sensor[pos] : data.sensorID[pos]}
+
+                allView =`
+<div class="tireSensor viewCenter" style="display:flex;width: 25%;height: 100%;background-image: url(../image/${tireImage})" align='center' valign="middle">
+     <div class="viewCenter" style="display:flex;width: 70%;height: 70%;color: white;font-size:30px;word-break: break-all;"
+          onclick="selectTire('${pos}')">
+          ${glitter.enter_ID === glitter.change_ID ? data.change_Sensor[pos] : data.sensorID[pos]}
+     </div>
+</div>`
+            }else {
+                allView =
+                    `<div style="width: 25%;height: 100%;" align='center' valign="middle"></div>`
+            }
+
+            return allView
+        }
+
+        var html=``
+
+        for(var position=0;position < 4;position++){
+            if(changeScreen){
+                html += `
+<div style="width: 100%;height: 25%;display: flex;">
+
+          `+tireView(0*4+(4-position))+`
+          `+tireView(1*4+(4-position))+`
+          `+tireView(2*4+(4-position))+`
+          `+tireView(3*4+(4-position))+`
+
+</div>`
+            }else {
+                html += `
+<div style="width: 100%;height: 25%;display: flex;">
+       `+tireView(position*4+1)+`
+       `+tireView(position*4+2)+`
+       `+tireView(position*4+3)+`
+       `+tireView(position*4+4)+`
+</div>`
+            }
+
+        }
+
+        //console.log("sensorID:"+JSON.stringify(data.sensorID))
+
+        $('#wheelView').html(html)
+
+        // Adapter=new GlAdapter(document.getElementById('wheelView'),
+        //     function (){return 4},
+        //     function (position) {
+        //
+        //         function tireView(pos){
+        //             var tireImage='portrait_btn_001_n.png'
+        //             if(data.selectTire.position===(pos+1).toString()){
+        //                 tireImage='portrait_btn_023.png'
+        //             }
+        //             var allView=``
+        //
+        //             if(tireStatus[pos+1].open){
+        //                 allView =
+        //                     `<td class="tireSensor" style="width: 25%;height: 50%;background-image: url(../image/${tireImage})" align='center' valign="middle">
+        //                          <div class="viewCenter" style="display:flex;width: 60%;height: 60%;color: white;font-size:30px;word-break: break-all;"
+        //                          onclick="selectTire('${pos+1}')">
+        //                          `+tireStatus[pos+1].id+`
+        //                          </div>
+        //                      </td>`
+        //             }else {
+        //                 allView =
+        //                     `<td style="width: 25%;height: 50%;" align='center' valign="middle"></td>`
+        //             }
+        //
+        //             return allView
+        //         }
+        //         var html = `<table style="width: 100%;height: 135px;">
+        //                     <tr style="width: 100%;height: 100%;">
+        //                        `+tireView(position*4)+`
+        //                        `+tireView(position*4+1)+`
+        //                        `+tireView(position*4+2)+`
+        //                        `+tireView(position*4+3)+`
+        //
+        //                     </tr>
+        //                 </table>`
+        //
+        //         return html
+        //     } )
+    }
+
+    function selectTire(position){
+        if(glitter.enter_ID === glitter.change_ID){
+
+            if(data.selectTire1===0){
+                data.selectTire1 = parseInt(position)
+            }else if(data.selectTire2===0 && data.selectTire1!==parseInt(position)){
+                data.selectTire2 = parseInt(position)
+            }
+
+            //**
+            //if(glitter.app==="HT430" && data.selectTire1!==0 && data.selectTire2!==0){
+            if(data.selectTire1!==0 && data.selectTire2!==0){
+                function changePos(pos){
+                    var change_Pos = pos
+                    if(car==="01"){
+                        if(pos>1){
+                            change_Pos = parseInt(pos)+2
+                        }
+                    }else if(car==="02"){
+                        change_Pos = parseInt(pos)-14
+                    }
+                    return change_Pos
+                }
+
+                var tire1=data.change_Sensor[data.selectTire1]
+                var tire2=data.change_Sensor[data.selectTire2]
+                data.change_Sensor[data.selectTire1] = tire2
+                data.change_Sensor[data.selectTire2] = tire1
+                data.selectTire1 = 0
+                data.selectTire2 = 0
+
+                //two tire change
+                if (change_two) {
+                    enterID()
+                }
+            }
+            //console.log("selectTire1:"+data.selectTire1+","+"selectTire2:"+data.selectTire2)
+        }else{
+            data.selectTire.position = position.toString()
+            data.selectTire.id = data.sensorID[parseInt(position)]
+        }
+
+        console.log("selectTire:"+JSON.stringify(data.change_Sensor))
+
+        if(glitter.enter_ID === glitter.change_ID && data.selectTire1!==0 && data.selectTire2!==0){
+
+            //**
+            // if(glitter.app!=="HT430"){
+            //     //確定更改位置
+            //     glitter.openDiaLog('dialog/Dia_Info_Problem_Bt.html', 'Dia_Info_Problem_Bt', false, false, {
+            //         title:glitter.getLanguage("90"),
+            //         cancel:function () {
+            //             glitter.closeDiaLog('Dia_Info_Problem_Bt')
+            //             data.selectTire1=0
+            //             data.selectTire2=0
+            //             viewAdapter()
+            //         },
+            //         ok:function () {
+            //             glitter.closeDiaLogWithTag('Dia_Info_Problem_Bt')
+            //             viewAdapter()
+            //             writeSwapTire()
+            //
+            //         }}, function () {})
+            // }else{
+            //
+            // }
+
+        }
+
+        viewAdapter()
+        //Adapter.notifyDataSetChange()
+    }
+
+    function enterID(){
+        console.log("enterID:true " +　glitter.app + data.selectTire.id)
+
+        if(data.selectTire.id==="" && glitter.enter_ID !== glitter.change_ID){
+            return
+        }
+        if(glitter.enter_ID === glitter.key_In_ID){
+            glitter.openDiaLog('dialog/Dia_Keyboard_Proportional.html', 'Dia_Keyboard_Proportional', true, true, {
+                callback: function (data) {
+                    // if(idVerify(data)){
+                    //     $('#' + id).val(data)
+                    // }
+                },
+                data: data.selectTire.id,
+                writeC:function (data) {
+                    if(data.replace(/\n/g,"").length === 6){
+                        glitter.closeDiaLogWithTag('Dia_Keyboard_Proportional')
+                        glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress', false, false)
+                        writeSensorID(data.replace(/\n/g,""))
+                    }
+                }
+            })
+        }else if(glitter.enter_ID === glitter.trigger_ID){
+            glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress', false, false,{name:"學碼中"})
+            writeSensorID()
+        }
+        //**
+        //else if(glitter.enter_ID === glitter.change_ID && glitter.app==="HT430"){
+        else if(glitter.enter_ID === glitter.change_ID){
+            console.log("change_tire_text:true")
+
+            change_tire = []
+            //if(data.selectTire1!==0 && data.selectTire2!==0){
+                for(var i=1;i < data.sensorID.length;i++){
+                    // function repeat(position){
+                    //     //var repeat=false
+                    //     for(var i=0;i<change_tire.length;i++){
+                    //         if(change_tire[i][0]===data.change_Sensor[position] && change_tire[i][1]===data.sensorID[position]){
+                    //             //repeat=true
+                    //             console.log("\nsensorID1:"+change_tire[i][0]+","+data.change_Sensor[position] +"\nsensorID2:"+ change_tire[i][1]+","+data.sensorID[position])
+                    //             return true
+                    //         }
+                    //     }
+                    //     return false
+                    // }
+
+                    //if(data.sensorID[i] !== data.change_Sensor[i] && !repeat(i)){
+                    if(data.sensorID[i] !== data.change_Sensor[i]){
+                        change_tire = change_tire.concat("test")
+                        var newAdd = [data.sensorID[i],data.change_Sensor[i]]
+                        change_tire[change_tire.length - 1] = newAdd
+                        //change_tire = change_tire.concat([data.sensorID[i],data.change_Sensor[i]])
+                        //change_tire = change_tire.concat(data.sensorID[i])
+                        //change_tire = change_tire.concat(data.change_Sensor[i])
+                    }
+                }
+
+                for(var i=0;i<change_tire.length;i++){
+                    var change_1 = change_tire[i][0]
+                    var change_2 = change_tire[i][1]
+                    if(change_1 > change_2){
+                        while (change_1 > change_2){
+                            for(var number=0;number<change_tire.length;number++){
+                                var number_1 = change_tire[number][0]
+                                var number_2 = change_tire[number][1]
+                                if(change_2===number_1){
+                                    change_2=number_2
+                                    break
+                                }
+                            }
+                        }
+                        change_tire[i][1]=change_2
+                    }
+                }
+
+            //console.log("\nsensorID1:"+JSON.stringify(data.sensorID) + "\nsensorID2:"+JSON.stringify(data.change_Sensor)+ "\nchange_tire:"+JSON.stringify(change_tire))
+            console.log("\nchange_tire:"+JSON.stringify(change_tire))
+
+            change_tire = change_tire.filter(function(item) {
+                var change_1 = item[0]
+                var change_2 = item[1]
+                return change_1 !== change_2
+            });
+
+            //glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+            //writeLen = 0
+            //writeSwapTire()
+
+            if(change_tire.length===0){
+                return;
+            }
+            //確定更改位置
+            glitter.openDiaLog('dialog/Dia_Info_Problem_Bt.html', 'Dia_Info_Problem_Bt', false, true, {
+                title:glitter.getLanguage("90"),
+                cancel:function () {
+                    glitter.closeDiaLog('Dia_Info_Problem_Bt')
+                    if(change_two){
+                        change_tire = []
+                        for(var i=1;i < data.sensorID.length;i++){
+                            data.change_Sensor[i] = data.sensorID[i]
+                        }
+                        viewAdapter()
+                    }
+                },
+                ok:function () {
+                    glitter.closeDiaLogWithTag('Dia_Info_Problem_Bt')
+                    glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress', false, false)
+                    writeLen = 0
+                    writeSwapTire()
+
+                }}, function () {})
+            // for(i=0;i<change_tire.length;i++){
+            //     var change_1 = change_tire[i][0]
+            //     var change_2 = change_tire[i][1]
+            //     if(change_1 === change_2){
+            //         change_tire.splice(i,1)
+            //     }
+            // }
+
+                // var change_tire_text = ""
+                // for(var i=0;i < change_tire.length/2;i++){
+                //     change_tire_text += change_tire[i*2] +","+ change_tire[i*2+1] + "  "
+                // }
+            console.log("\nchange_tire:"+JSON.stringify(change_tire))
+            //}
+        }
+    }
+
+    function writeSensorID(sensorID){
+        //02
+        var position = parseInt(data.selectTire.position)
+        switch (glitter.app){
+            case "HT471A":
+                break
+            default:
+                if(car==="01"){
+                    if(position>1){
+                        position = parseInt(data.selectTire.position)-2
+                    }
+                }else if(car==="02"){
+                    position = parseInt(data.selectTire.position)+14
+                }
+                break
+        }
+
+        var positionHex = position.toString(16).toUpperCase()
+        if(positionHex.length < 2){
+            positionHex="0"+positionHex
+        }
+
+        if(glitter.enter_ID === glitter.key_In_ID){
+            glitter.command.writeSensorID(
+                car,positionHex,sensorID,
+                function (result) {
+
+                    if(result===false){
+                        //**
+                        glitter.closeDiaLogWithTag('Dia_Info_Progress')
+                        glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+
+                        //readAllCommand()
+                        //return
+                    }else{
+                        //**
+                        // glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                        // glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+
+                        //var code = result.charCodeAt();
+
+                        //**
+                        // data.selectTire.id = sensorID
+                        // data.sensorID[parseInt(data.selectTire.position)] = data.selectTire.id
+                        // tireStatus[parseInt(data.selectTire.position)].id = data.selectTire.id
+                        // glitter.init_TireStatus(car,parseInt(data.selectTire.position))
+
+                        //**
+                        //viewAdapter()
+
+                    }
+
+                    //輪胎ID
+                    glitter.updateMemmory({mode_data:"設定-"+upload_Name+car,result_data:(result!==false ? "success":"fail")})
+
+                    if(result!=="false"){
+                        //讀取驗證
+                        readAllCommand(function (sensor_data) {
+                            //console.log("sensor_data:"+positionHex+sensorID+","+JSON.stringify(sensor_data))
+                            glitter.closeDiaLogWithTag('Dia_Info_Progress')
+
+                            if(sensor_data.indexOf(positionHex+sensorID)!==-1){
+                                data.selectTire.id = sensorID
+                                data.sensorID[parseInt(data.selectTire.position)] = data.selectTire.id
+                                tireStatus[parseInt(data.selectTire.position)].id = data.selectTire.id
+                                glitter.init_TireStatus(car,parseInt(data.selectTire.position))
+
+                                glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+                            }else{
+                                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+                            }
+                        })
+                    }
+                })
+        }else if(glitter.enter_ID === glitter.trigger_ID){
+            glitter.command.deflationSensorID(
+                car,positionHex,
+                function (result) {
+                    if(result==="false"){
+                        //**
+                        glitter.closeDiaLogWithTag('Dia_Info_Progress')
+                        glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+                        //return
+                    }else{
+                        //**
+                        //glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                        //glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+
+                        //var code = result.charCodeAt();
+                        //**
+                        // data.selectTire.id = result
+                        // data.sensorID[parseInt(data.selectTire.position)] = data.selectTire.id
+                        // tireStatus[parseInt(data.selectTire.position)].id = data.selectTire.id
+                        // glitter.init_TireStatus(car,parseInt(data.selectTire.position))
+
+                        //**
+                        //viewAdapter()
+                    }
+
+                    //輪胎ID(洩壓、觸發)
+                    glitter.updateMemmory({mode_data:"設定-"+upload_Name+car,result_data:(result!=="false" ? "success":"fail")})
+
+                    if(result!=="false"){
+                        //讀取驗證
+                        readAllCommand(function (sensor_data) {
+                            //console.log("sensor_data:"+positionHex+sensorID+","+JSON.stringify(sensor_data))
+                            glitter.closeDiaLogWithTag('Dia_Info_Progress')
+
+                            if(sensor_data.indexOf(positionHex+result)!==-1){
+                                data.selectTire.id = result
+                                data.sensorID[parseInt(data.selectTire.position)] = data.selectTire.id
+                                tireStatus[parseInt(data.selectTire.position)].id = data.selectTire.id
+                                //glitter.init_TireStatus(car,parseInt(data.selectTire.position))
+
+                                glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+                            }else{
+                                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+                            }
+                        })
+                    }
+                })
+        }
+
+    }
+    var writeLen = 0
+    function writeSwapTire(){
+        //**
+        //if (glitter.app==="HT430" && writeLen >= change_tire.length) {
+        if (writeLen >= change_tire.length) {
+            writeLen = 0
+            //glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+            //glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+            glitter.updateMemmory({mode_data:"設定-"+upload_Name+car,result_data:("success")})
+
+            //讀取驗證
+            readAllCommand(function (sensor_data) {
+                //console.log("sensor_data:"+positionHex+sensorID+","+JSON.stringify(sensor_data))
+                glitter.closeDiaLogWithTag('Dia_Info_Progress')
+
+                if(sensor_data.length!==0 && sensor_data[0]!== "false"){
+                    glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+                }
+            })
+            //writeRow()
+
+            change_tire = []
+            for(var i=1;i < data.sensorID.length;i++){
+                data.change_Sensor[i] = data.sensorID[i]
+            }
+            viewAdapter()
+            return
+        }
+
+        var selectHex1,selectHex2
+        selectHex1=change_tire[writeLen][0].toString(16)
+        selectHex2=change_tire[writeLen][1].toString(16)
+        //**
+        // if(glitter.app!=="HT430"){
+        //     selectHex1=data.selectTire1.toString(16)
+        //     selectHex2=data.selectTire2.toString(16)
+        // }else{
+        //     selectHex1=change_tire[writeLen][0].toString(16)
+        //     selectHex2=change_tire[writeLen][1].toString(16)
+        // }
+
+        if(selectHex1.length<2){
+            selectHex1="0"+selectHex1
+        }
+        if(selectHex2.length<2){
+            selectHex2="0"+selectHex2
+        }
+
+        console.log("change_tire:"+"selectHex1:"+selectHex1+","+"selectHex2:"+selectHex2)
+
+        //**
+        //if(glitter.app==="HT430" && change_tire.length===0){
+        if(change_tire.length===0){
+            glitter.closeDiaLogWithTag('Dia_Info_Progress')
+            return;
+        }
+
+        glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress', false, false)
+        glitter.command.writeSwapTire(
+            car,selectHex1.toUpperCase()+selectHex2.toUpperCase(),
+            function (result) {
+                if (result) {
+                    //補輪位的位置
+                    function change_Pos(position) {
+                        if(car==="01"){
+                            if(position>1){
+                               return  parseInt(position)+2
+                            }
+                        }else if(car==="02"){
+                            return  parseInt(position)-14
+                        }
+                        return position
+                    }
+
+                    glitter.init_TireStatus(car,change_Pos(change_tire[writeLen][0]))
+                    glitter.init_TireStatus(car,change_Pos(change_tire[writeLen][1]))
+                    writeLen += 1
+                    setTimeout(writeSwapTire,1000)
+
+                    //**
+                    // if(glitter.app!=="HT430"){
+                    //     glitter.closeDiaLogWithTag('Dia_Info_Progress')
+                    //     glitter.openDiaLog('dialog/Dia_Info_Success.html', 'Dia_Info_Success', false, true)
+                    //     var position1=data.sensorID.indexOf(data.selectTire1)
+                    //     var position2=data.sensorID.indexOf(data.selectTire2)
+                    //     data.sensorID[position1] = data.selectTire2
+                    //     data.sensorID[position2] = data.selectTire1
+                    //     data.selectTire1=0
+                    //     data.selectTire2=0
+                    // }else{
+                    //     writeLen += 1
+                    //     setTimeout(writeSwapTire,1000)
+                    // }
+                }else{
+                    glitter.closeDiaLogWithTag('Dia_Info_Progress')
+                    glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, false,function () {
+
+                    })
+                    setTimeout(function () {
+                        glitter.closeDiaLog('Dia_Info_Fail')
+                        glitter.goBack("Page_Setting_Car",true)
+                    },1000)
+
+                    // if(glitter.app!=="HT430") {
+                    //     data.selectTire1 = 0
+                    //     data.selectTire2 = 0
+                    // }else{
+                    //     //已完成的位置
+                    //     var success_change_tire = change_tire.filter(function (value, index, arrSelf){
+                    //         return index < writeLen
+                    //     })
+                    //     //未完成的位置
+                    //     change_tire = change_tire.filter(function (value, index, arrSelf){
+                    //         return index >= writeLen
+                    //     })
+                    //
+                    //     console.log("change_tire:"+JSON.stringify(change_tire)+","+"run_change_tire:"+JSON.stringify(success_change_tire))
+                    //
+                    //     // //完成與未完成間，過濾出還需調換的位置
+                    //     // var need_change=[]
+                    //     // success_change_tire.map(function (value, index, arrSelf){
+                    //     //     var have = false
+                    //     //     change_tire.map(function (change_value, index, arrSelf){
+                    //     //         //判斷完成的位置value[1]，是否還需調換
+                    //     //         if(value[1]===change_value[0] || value[1]===change_value[1]){
+                    //     //             have = true
+                    //     //         }
+                    //     //     })
+                    //     //
+                    //     //     if(!have){
+                    //     //         need_change = need_change.concat(value[1])
+                    //     //     }
+                    //     //     need_change = need_change.concat(value[0])
+                    //     //     //return data.sensorID[i]===value[0] && changeCount.length===0
+                    //     // })
+                    //     //
+                    //     // console.log("change_tire:"+JSON.stringify(need_change))
+                    //     // for(var i=1;i < data.sensorID.length;i++){
+                    //     //     if(data.sensorID[i] !== data.change_Sensor[i]){
+                    //     //         if(need_change.indexOf(data.sensorID[i])!==-1 ||
+                    //     //            need_change.indexOf(data.change_Sensor[i])!==-1){
+                    //     //             data.change_Sensor[i] = data.sensorID[i]
+                    //     //         }
+                    //     //     }
+                    //     // }
+                    //
+                    //     for(var i=1;i < data.sensorID.length;i++){
+                    //         var changefilter = change_tire.filter(function (value, index, arrSelf){
+                    //             return value[0]===data.sensorID[i]
+                    //         })
+                    //         if(changefilter.length!==0){
+                    //             data.change_Sensor[i] = changefilter[0][1]
+                    //         }else{
+                    //             data.change_Sensor[i] = data.sensorID[i]
+                    //         }
+                    //     }
+                    //
+                    //     writeLen = 0
+                    // }
+                }
+                //**
+                //if(glitter.app!=="HT430" || !result) {
+                if(!result) {
+                    //調換輪胎
+                    glitter.updateMemmory({mode_data: "設定-" + upload_Name + car, result_data: (result ? "success" : "fail")})
+                    viewAdapter()
+                }
+            })
+    }
+
+    function readAllCommand(callback){
+        //**
+        //glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+
+        //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+        glitter.command.readAllSensorID(car,16,function (read_data) {
+            //     var data=['01A11111','02A22222','03A33333','04A44444','05A55555','06A66666','07A77777',
+            //               '08A88888','09A99999','0AAAAAAA','0BABBBBB','0CACCCCC','0DADDDDD','0EAEEEEE']
+            console.log("ble-command:" + JSON.stringify(read_data))
+            //glitter.closeDiaLog()
+            // var carPosition=0
+            // for(var pos=0;pos < data.length;pos++){
+            //     if(data[pos]!==carDefine[carType].carIndex[pos+1]){
+            //
+            //     }
+            // }
+
+            if (read_data.length===0 || read_data[0]=== "false") {
+                glitter.closeDiaLog()
+                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true, '讀取失敗', function () {
+                    setTimeout(function () {
+                        //glitter.goBack()
+                        glitter.readSensorID = []
+                    }, 200)
+                })
+
+                // if(reRead<3){
+                //     reRead++
+                //     glitter.showToast("第"+reRead+"次")
+                //     setTimeout(readAllCommand,500)
+                // }else{
+                //     glitter.closeDiaLog()
+                //     glitter.openDiaLog('dialog/Dia_Info_Bt.html', 'Dia_Info_Bt', false, false, {
+                //         title: '讀取失敗，是否重新讀取?',
+                //         cancel: function () {
+                //             glitter.closeDiaLog()
+                //             glitter.goBack()
+                //             glitter.readSensorID=[]
+                //         },
+                //         ok: function () {
+                //             glitter.closeDiaLog()
+                //             glitter.openDiaLog('dialog/Dia_Loading_notext.html', 'Dia_Loading_notext', false, false)
+                //             //glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, "讀取中...")
+                //             readAllCommand()
+                //         }
+                //     })
+                //     reRead=0
+                // }
+
+                //return
+            } else {
+
+                // for(var i=0;i<read_data.length;i++){
+                //     var Pos=read_data[i].substring(0,2)
+                //     var id=read_data[i].substring(2,8)
+                //     //data.sensorID[parseInt(Pos,16) - 1] = id
+                //     glitter.tireStatus[parseInt(Pos,16)].id = id
+                //     //glitter.readSensorID=glitter.readSensorID.concat(id)
+                // }
+                for (var i = 0; i < read_data.length; i++) {
+                    var Pos = read_data[i].substring(0, 2)
+                    switch (glitter.app){
+                        case "HT471A":
+                            break
+                        default:
+                            if(car==="01" && parseInt(Pos,16)>1){
+                                Pos = (parseInt(Pos,16)+2).toString(16)
+                            }
+                            if(car==="02"){
+                                Pos = (parseInt(Pos,16)-14).toString(16)
+                            }
+                            break
+                    }
+
+                    var id = read_data[i].substring(2, 8)
+
+                    data.sensorID[parseInt(Pos, 16)] = id
+                    if(glitter.enter_ID === glitter.change_ID){
+                        if(car==="01"){
+                            data.sensorID[parseInt(Pos, 16)] = i+1
+                            data.change_Sensor[parseInt(Pos, 16)]= i+1
+                        }if(car==="02"){
+                            data.sensorID[parseInt(Pos, 16)] = 15+i
+                            data.change_Sensor[parseInt(Pos, 16)]= 15+i
+                        }
+                    }
+                }
+
+                callback(read_data)
+                glitter.share.home.updateUI(car,glitter.updateData.SENSOR_ID,read_data)
+                viewAdapter()
+                //Adapter.notifyDataSetChange()
+
+                //glitter.closeDiaLog()
+                glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                //glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '讀取完畢!!')
+            }
+            //輪胎ID
+            glitter.updateMemmory({mode_data:"讀取-"+upload_Name+car,result_data:(read_data.length===0 || read_data[0]=== "false" ? "fail":"success")})
+        })
+
+    }
+
+</script>

@@ -1,0 +1,70 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "JzOsAdapter",
+        "repositoryURL": "https://github.com/sam38124/JzOsAdapter.git",
+        "state": {
+          "branch": null,
+          "revision": "0c3a073a99e3895ae0016c973269622e16a591aa",
+          "version": "1.0.9"
+        }
+      },
+      {
+        "package": "JzOsFrameWork",
+        "repositoryURL": "https://github.com/sam38124/JzOsFrameWork",
+        "state": {
+          "branch": null,
+          "revision": "ded9b034e86ec28c4258a31b3be3a2ad3702bef5",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "JzOsHttpExtension",
+        "repositoryURL": "https://github.com/sam38124/JzOsHttpExtension",
+        "state": {
+          "branch": null,
+          "revision": "b40142dcb54831f1d15e456a99c49449e803a53e",
+          "version": "1.0.2"
+        }
+      },
+      {
+        "package": "JzOsSerialization",
+        "repositoryURL": "https://github.com/sam38124/JzOsSerialization",
+        "state": {
+          "branch": null,
+          "revision": "feb0f882d00dda15e1ba56686bab276ffd338653",
+          "version": "1.0.5"
+        }
+      },
+      {
+        "package": "JzOsSqlHelper",
+        "repositoryURL": "https://github.com/sam38124/JzOsSqlHelper.git",
+        "state": {
+          "branch": null,
+          "revision": "b564123e37fa87f7880cb94fbbe5b93b2da05567",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "JzOsTaskHandler",
+        "repositoryURL": "https://github.com/sam38124/JzOsTaskHandler",
+        "state": {
+          "branch": null,
+          "revision": "d2c5f541a235f76585e3cabc27617dbefd609fb9",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "SwiftSoup",
+        "repositoryURL": "https://github.com/scinfu/SwiftSoup",
+        "state": {
+          "branch": null,
+          "revision": "774dc9c7213085db8aa59595e27c1cd22e428904",
+          "version": "2.3.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

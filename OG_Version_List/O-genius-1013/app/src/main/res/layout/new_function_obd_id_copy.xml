@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+            android:id="@+id/li"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/gomenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:background="@mipmap/btn_letf"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/MENU"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp"/>
+
+        <TextView
+                android:id="@+id/sending_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/btn_right"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/app_sensor_info_read"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/li">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/read_MMY_Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/title_black"
+                    android:gravity="center"
+                    android:text="hello_blank_fragment"
+                    android:textColor="@color/white"
+                    android:textSize="21sp" />
+
+            <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/read_MMY_Title"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:alpha="0.8"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:text="jz.425"
+                    android:textColor="@color/title_color"
+                    android:textSize="21sp" android:visibility="gone"/>
+            <RelativeLayout
+                    android:id="@+id/Car_and_init"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView53"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp">
+
+                <RelativeLayout
+                        android:id="@+id/motorre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:visibility="gone">
+
+                    <ImageView
+                            android:id="@+id/imageView37"
+                            app:srcCompat="@mipmap/img_motorcycle_w"
+                            android:layout_width="400dp"
+                            android:layout_height="200dp"
+                            android:layout_centerHorizontal="true"/>
+
+                    <ImageView
+                            android:id="@+id/fw"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_centerHorizontal="true"
+                            android:translationX="-90dp"
+                            android:translationY="80dp"
+                            app:srcCompat="@mipmap/img_motorcycle_wheel_normal"/>
+
+                    <ImageView
+                            android:id="@+id/rw"
+                            app:srcCompat="@mipmap/img_motorcycle_wheel_normal"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_centerHorizontal="true"
+                            android:translationX="80dp"
+                            android:translationY="80dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:id="@+id/Car_img_R"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:visibility="visible" android:layout_centerHorizontal="true">
+
+                    <TextView
+                            android:id="@+id/LF_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@mipmap/icon_tire_cancel"
+                            android:gravity="center"
+                            android:text="@string/app_fl"
+                            android:textColor="@color/white"/>
+
+                    <TextView
+                            android:id="@+id/LR_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/LF_image"
+                            android:background="@mipmap/icon_tire_cancel"
+                            android:gravity="center"
+                            android:text="@string/app_rl"
+                            android:textColor="@color/white"/>
+
+                    <TextView
+                            android:id="@+id/RF_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@mipmap/icon_tire_cancel"
+                            android:gravity="center"
+                            android:text="@string/app_fr"
+                            android:textColor="@color/white" android:layout_alignParentEnd="true"/>
+
+                    <TextView
+                            android:id="@+id/RR_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/RF_image"
+                            android:background="@mipmap/icon_tire_cancel"
+                            android:gravity="center"
+                            android:text="@string/app_rr"
+                            android:textColor="@color/white" android:layout_alignParentEnd="true"/>
+
+                    <TextView
+                            android:id="@+id/Car_image"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:background="@mipmap/img_car_four_tire"/>
+
+                    <TextView
+                            android:id="@+id/SP_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <TextView
+                        android:id="@+id/show_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="jz.442"
+                        android:textSize="18sp"
+                        android:visibility="gone"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/Car_and_Sensor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Car_and_init"
+            >
+
+                <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:padding="1dp">
+
+                    <View
+                            android:id="@+id/view12"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_alignParentTop="true"
+                            android:background="#BBBBBB"/>
+
+                    <LinearLayout
+                            android:id="@+id/Sensor_Data"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@id/view12"
+                            android:orientation="horizontal">
+
+                        <View
+                                android:id="@+id/view6"
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="#BBBBBB"/>
+
+                        <TextView
+                                android:id="@+id/WH_text"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"/>
+
+                        <View
+                                android:id="@+id/view8"
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="#BBBBBB"/>
+
+                        <TextView
+                                android:id="@+id/Vehice_ID_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2"
+                                android:background="@color/gray"
+                                android:gravity="center"
+                                android:text="jz.417"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp"/>
+
+                        <View
+                                android:id="@+id/view9"
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="#BBBBBB"/>
+
+                        <TextView
+                                android:id="@+id/New_ID_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2"
+                                android:background="@color/gray"
+                                android:gravity="center"
+                                android:text="jz.418"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp"/>
+
+                        <View
+                                android:id="@+id/view10"
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="#BBBBBB"/>
+
+                        <TextView
+                                android:id="@+id/check_text"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray"
+                                android:gravity="center"
+                                android:text="@string/app_ok"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp"/>
+
+                        <View
+                                android:id="@+id/view11"
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="#BBBBBB"/>
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/view13"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@id/Sensor_Data"
+                            android:background="#BBBBBB"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/ShowReadView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/view13"
+                            android:layout_alignStart="@id/Sensor_Data"
+                            android:layout_alignEnd="@id/Sensor_Data"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <TextView
+                    android:text="jz.437"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp" android:id="@+id/re_read"
+                    android:layout_below="@id/Car_and_Sensor" android:layout_centerHorizontal="true"
+                    android:textSize="20sp" android:background="@mipmap/bt_long_unselect" android:gravity="center"
+                    android:textColor="@color/color_white" android:visibility="gone" android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

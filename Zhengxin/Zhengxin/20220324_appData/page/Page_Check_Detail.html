@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+</head>
+<style>
+    body {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        flex-direction: column;
+        overflow-x: hidden;
+        background-image: url("../img/img_background.png");
+        background-size: 150% 150%;
+    }
+
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+    }
+
+    .CarPlace {
+        background-image: url("../img/img_trailer8_rear.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .wheel {
+        width: 40px;
+        height: 40px;
+        margin-left: 12px;
+    }
+
+    .wheel2 {
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+    }
+
+    .select {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 50px;
+        height: 50px;
+        color: gray;
+        text-align: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .btable {
+        border-spacing: 0;
+    }
+
+    input {
+        margin-left: 10px;
+        height: 100%;
+        background-color: transparent;
+        color: white;
+        font-size: 16px;
+        width: calc(100% - 20px);
+        outline: none;
+        border-style: none;
+    }
+
+    #preBt {
+        display: flex;
+        color: white;
+        height: 110px;
+        width: 96px;
+        align-items: flex-end;
+        justify-content: center;
+        background-image: url("../img/btn_temperature_abnormal.png");
+        background-size: 96px 96px;
+        background-repeat: no-repeat;
+    }
+
+    #temBt {
+        justify-content: center;
+        align-items: flex-end;
+        display: flex;
+        color: white;
+        height: 110px;
+        width: 96px;
+        background-image: url("../img/btn_temperature_normal.png");
+        background-size: 96px 96px;
+        background-repeat: no-repeat;
+    }
+
+    #carName {
+        display: flex;
+        height: 110px;
+        width: 70px;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .inline {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-image: url("../img/img_line_left01.png");
+        background-size: 100% 70px;
+        background-position: bottom right;
+
+    }
+
+    .inline2 {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-image: url("../img/img_line_right01.png");
+        background-size: 100% 70px;
+        background-position: bottom right;
+
+    }
+
+    .intext {
+        flex: auto;
+        min-width: 50%;
+        height: 100%;
+        width: 50%;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+
+    }
+
+    .intexts {
+        flex: auto;
+        min-width: 50%;
+        height: 100%;
+        width: 50%;
+        font-size: 25px;
+        font-weight: 600;
+        color: white;
+        display: flex;
+        justify-content: center;
+        padding-top: 0px;
+    }
+
+    #hint {
+        background-color: #E64E00;
+        opacity: 0.8;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70px;
+        border-radius: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .carSelect.act {
+        min-width: 144px;
+        background-color: #E64E00;
+        background-image: url("../img/checkmark.png");
+        background-size: 25px 25px;
+        background-repeat: no-repeat;
+        background-position: 10px 10px;
+    }
+
+    .carSelect {
+        min-width: 144px;
+        background-color: #3F99AA;
+        color: white;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        font-size: 16px;
+        margin-top: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .Select{
+        background-color: orange;
+        height: 50px;display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+    .nSelect{
+        background-color: lightgray;
+        height: 50px;display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+</style>
+<link rel="stylesheet" href="../glitterBundle/bootstrap2.css">
+<script src="../carView2.js"></script>
+<script src="../glitterBundle/extension.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+  * 單位設定
+  * */
+    var pUnit = ["kPa", "psi", "bar"]
+    var tUnit = ["C", "F"]
+    /**/
+    var selectCheck = glitter.checkCar
+    var viewModel={
+        isArtc:false,
+        selectType:0
+    }
+    var userInfoMation = rootActivity().userInfoMation
+    lifeCycle.onCreateView = function () {
+        glitter.checkCarName=selectCheck.carType
+        var topSelect = ``
+        if (gBundle !== 1) {
+            topSelect = `
+            <div style="display: flex;align-items: center;justify-content: center;">
+            <div class="carSelect act" onclick="selectFR(0)" id="frontBt">
+            ${glitter.getLan(696)}</div>
+             <div class="carSelect" onclick="selectFR(1)" id="rearBt"> ${glitter.getLan(699)}</div></div>
+            `
+        }
+
+        return (glitter.getTitleBar(glitter.getLan(566)) + `
+<div id="itemList" style="display:flex;flex-direction:column;width: 100%;overflow-y: scroll;height: calc(100% - 120px);overflow-x: hidden;">
+ <div style="font-size:16px;font-weight:600;width: 100%;height: 60px;line-height: 60px;text-align: center;background-color: white;
+     color: #002F51;">
+     ` + selectCheck.plateNumber + `
+</div>
+<div id="selectView">
+${bindView({
+            bind: 'selectView',
+            view: function (){
+                if(viewModel.isArtc){
+                    var clickEvent=event(function (e) {
+                        $('.Select').addClass('nSelect')
+                        $('.Select').removeClass('Select')
+                        $(e).removeClass('nSelect')
+                        $(e).addClass('Select')
+                        viewModel.selectType=parseInt($(e).attr('hint'),10)
+                        updateSensor()
+                    },'click')
+                    return `<div class="row h-auto m-0">
+<div class="col-2  Select" onclick="${clickEvent}" hint="0">胎壓</div>
+<div class="col-2 nSelect" onclick="${clickEvent}" hint="1">胎溫</div>
+<div class="col-2 nSelect" onclick="${clickEvent}" hint="2">電壓</div>
+<div class="col-2 nSelect" onclick="${clickEvent}" hint="3">運轉</div>
+<div class="col-2 nSelect" onclick="${clickEvent}" hint="4">X軸</div>
+<div class="col-2 nSelect" onclick="${clickEvent}" hint="5">Z軸</div>
+</div>`
+                } else {
+                    return `<div style="display: flex;width: 100%;align-items: center;justify-content: space-around;">
+<div id="preBt" onclick="changeSelect(0)">${pUnit[userInfoMation.punit]}</div>
+<div style="color: orange;font-size: 16px;" id="carName">${userInfoMation.first_Name + userInfoMation.name}</div>
+<div id="temBt" onclick="changeSelect(1)">${tUnit[userInfoMation.tunit]}</div>
+</div>`
+                }
+            },
+            dataList:[{obj:viewModel,key:"isArtc"}]
+        })}
+</div>
+
+` + topSelect + `
+<div style="flex: auto;margin-top:10px;position: relative;justify-content: center;align-items: center;display: flex;">
+<div style="height: 300px;width: 100%;display: flex;margin-top: 0;justify-content: center;">
+` + getLeft(selectCheck.carType) + `
+<div style="width:144px;height: 100%;" class="CarPlace">
+` + getCarView(selectCheck.carType) + `
+</div>
+` + getRight(selectCheck.carType) + `
+<div id="hint">${glitter.getLan(700)}</div>
+</div>
+</div>
+</div>
+<div style="flex: auto;"></div>
+<div class="sig" style="height: 50px;margin: 10px;width:calc(100% - 20px);display: flex;">
+<div onclick="upload()" style="display:flex;align-items:center;justify-content:center;color: white;height: 50px;width: calc(50% - 10px);text-align: center;border-width: 1px;border-color:#92C0DF;border-style: solid;border-top-left-radius: 25px;border-bottom-left-radius: 25px;">
+${glitter.getLan(701)}
+</div>
+<div id="scanBt" style="display:flex;align-items:center;justify-content:center;background-color:#6AC6D7;margin-left:10px;color: white;height: 50px;flex:auto;text-align: center;border-width: 1px;border-color:#92C0DF;border-style: solid;border-bottom-right-radius: 25px;border-top-right-radius: 25px;" onclick="trigger()">
+${glitter.getLan(490)}
+
+</div>
+</div>
+   `)
+    }
+    var focus = 1
+    var waitSwitch = undefined
+    var startDate=new Date()
+    lifeCycle.onCreate = function () {
+        glitter.share.bleUtil.disConnect({})
+        for (var b = 0; b < selectCheck.count; b++) {
+            $('#n' + (b + 1)).html('--')
+            $('#n' + (b + 1)).css('color', 'gray')
+        }
+        waitSwitch()
+        changeSelect(0)
+        glitter.ratioCaluate.triggerMap={}
+
+    }
+    lifeCycle.onDestroy = function (){
+        glitter.ratioCaluate.startTime= (startDate).format("yyyy-MM-dd hh:mm:ss").replace(".0","")
+        glitter.ratioCaluate.plate=selectCheck.plateNumber
+        glitter.ratioCaluate.endTime=(new Date()).format("yyyy-MM-dd hh:mm:ss").replace(".0","")
+        glitter.ratioCaluate.sensor=selectCheck.sensor
+        glitter.ratioCaluate.upload()
+    }
+
+    setInterval(function (){
+        if((new Date()-startDate)>30*1000){
+            glitter.ratioCaluate.startTime= (startDate).format("yyyy-MM-dd hh:mm:ss").replace(".0","")
+            glitter.ratioCaluate.plate=selectCheck.plateNumber
+            glitter.ratioCaluate.endTime=(new Date()).format("yyyy-MM-dd hh:mm:ss").replace(".0","")
+            glitter.ratioCaluate.sensor=selectCheck.sensor
+            glitter.ratioCaluate.upload()
+            glitter.ratioCaluate.triggerMap={}
+            startDate=new Date()
+        }
+    },3*1000)
+
+    /*
+    * 更新顯示資料
+    * */
+    var sensorInfo = new Map()
+    var allTire = 0
+    var lastConnect = ""
+    var triggerResult = {}
+    function updateSensor() {
+        allTire = 0
+        console.log('tryTrigger-updateSensor')
+        var tempNeedTrigger=[]
+        for (let a = 0; a < selectCheck.sensor.length; a++) {
+            let sen = selectCheck.sensor[a]
+            if (sen.id === '') {
+                $('#n' + sen.wh).html('--')
+                $('#n' + sen.wh).css('color', 'gray')
+                continue
+            } else {
+                allTire += 1
+                if(needTrigger===undefined){
+                    glitter.sensorMap[sen.id]={}
+                    glitter.sensorMap[sen.id].wh=sen.wh
+                    glitter.sensorMap[sen.id].plateNumber=selectCheck.plateNumber
+                }
+            }
+            glitter.serialUtil.getObject(sen.id, "sensorData", function (data) {
+                if(data===undefined){return}
+                triggerResult[sen]= true
+                $('#hint').hide()
+                data.plateNumber = selectCheck.plateNumber
+                data.wh = sen.wh
+                data.count = selectCheck.count
+                data.data_name = selectCheck.carType
+                $('#n' + sen.wh).css('color', 'white')
+                $('#w' + sen.wh).attr('src', '../img/icon_wheel_ok.png')
+                if(data.company==='artc'&&!viewModel.isArtc){
+                    viewModel.isArtc=true
+                }
+                switch (viewModel.selectType){
+                    case 0:
+                        $('#n' + sen.wh).html('' + glitter.preToSetting(data.pre))
+                        if (data.pre < userInfoMation.minPre) {
+                            $('#w' + sen.wh).attr('src', '../img/icon_wheel_fail.png')
+                            $('#n' + sen.wh).css('color', 'red')
+                            $('#preBt').css('background-image', 'url("../img/btn_tpms_abnormal.png")')
+                        } else {
+                            $('#n' + sen.wh).css('color', 'white')
+                            $('#w' + sen.wh).attr('src', '../img/icon_wheel_ok.png')
+                        }
+                        break
+                    case 1:
+                        $('#n' + sen.wh).html('' + glitter.temToSetting(data.tem))
+                        if (data.tem > userInfoMation.temAdvice) {
+                            $('#w' + sen.wh).attr('src', '../img/icon_wheel_fail.png')
+                            $('#n' + sen.wh).css('color', 'red')
+                            $('#temBt').css('background-image', 'url("../img/btn_temperature_abnormal.png")')
+                        } else {
+                            $('#n' + sen.wh).css('color', 'white')
+                            $('#w' + sen.wh).attr('src', '../img/icon_wheel_ok.png')
+                        }
+                        break
+                    case 2:
+
+                        $('#n' + sen.wh).html('' + data.v || '')
+                        break
+                    case 3:
+                        $('#n' + sen.wh).html('' + data.isRunning || '')
+                        break
+                    case 4:
+                        $('#n' + sen.wh).html('' + data.xSpeed || '')
+                        break
+                    case 5:
+                        $('#n' + sen.wh).html('' + data.zSpeed || '')
+                        break
+                }
+
+                sensorInfo.set(sen.id, data)
+                if (data.pre < userInfoMation.minPre) {
+                    ErrorAdvice()
+                }
+            }, function () {
+                triggerResult[sen]= false
+                if (glitter.type === glitter.deviceTypeEnum.Ios) {
+                    return;
+                }
+                tempNeedTrigger=tempNeedTrigger.concat(sen.id)
+            })
+        }
+        needTrigger=tempNeedTrigger
+    }
+
+    setInterval(updateSensor, 3000)
+
+    /*
+    * 更改胎溫胎壓選擇
+    * */
+    function changeSelect(sel) {
+        viewModel.selectType = sel
+        $('#preBt').css('background-image', 'url("../img/btn_tpms_normal.png")')
+        $('#temBt').css('background-image', 'url("../img/btn_temperature_normal.png")')
+        $('#preBt').css('opacity', '0.6')
+        $('#temBt').css('opacity', '0.6')
+        if (viewModel.selectType == 0) {
+            $('#preBt').css('opacity', '1.0')
+        } else {
+            $('#temBt').css('opacity', '1.0')
+        }
+        updateSensor()
+    }
+
+    /*
+    * 資料上傳
+    * */
+    var uploading = false
+    function upload() {
+        if (uploading) {
+            return
+        }
+        if (sensorInfo.size === 0) {
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(705))
+            return;
+        }
+        uploading = true
+        var uploadItem = []
+        for (var value of sensorInfo.values()) {
+            value.driverName = userInfoMation.first_Name + userInfoMation.name
+            uploadItem = uploadItem.concat(value)
+        }
+        glitter.getGPS(function (result) {
+            var map = {}
+            map.plate = selectCheck.plateNumber
+            map.request = "uploadSensor"
+            map.driverName = userInfoMation.first_Name + userInfoMation.name
+            map.data = JSON.stringify(uploadItem)
+            map.address = result.address
+            map.staffNumber = glitter.staffNumber
+            map.version=glitter.share.version
+            map.userInfo = JSON.stringify(userInfoMation)
+            rootActivity().apiRequest.postWithDialog(map, function (data) {
+                if (data.result === "true") {
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(487))
+                } else {
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(706))
+                }
+                uploading = false
+            }, function () {
+                uploading = false
+            })
+        })
+    }
+
+    /*
+    * 胎壓異常
+    * */
+    var cancelAlert = false
+    var clock = new Clock()
+    function ErrorAdvice() {
+        if(clock.stop()<3){
+            return;
+        }
+        clock.zeroing()
+        console.log("跑完ErrorAdvice")
+        if (cancelAlert) {
+            return
+        }
+        glitter.runJsInterFace("SoundManager_PlayAssets",{
+            rout:'appData/sound/preError.mp3'
+        },function (){})
+        glitter.openDiaLog("dialog/Dia_ShowError.html", "Dia_ShowError", false, false, function () {
+            cancelAlert = true
+        }, function () {
+        })
+    }
+
+
+    /*
+    * 胎壓檢測按鈕
+    * */
+    function trigger() {
+        cancelAlert = true
+        glitter.openDiaLog('dialog/Dia_Loading.html', 'Dia_Loading', false, false, glitter.getLan(702))
+
+        function close() {
+            glitter.closeDiaLog("Dia_Loading")
+            updateSensor()
+            if (sensorInfo.size<allTire) {
+                glitter.openDiaLog('dialog/Dia_Orange_Info.html', 'Dia_Orange_Info', false, true, glitter.getLan(703), function () {
+                    cancelAlert = false
+                })
+            } else {
+                glitter.openDiaLog('dialog/Dia_Orange_Info.html', 'Dia_Orange_Info', false, true,  glitter.getLan(704)+"!!", function () {
+                    cancelAlert = false
+                })
+            }
+        }
+
+        setTimeout(close, 2500)
+    }
+
+    /*
+    * 更換前後車
+    * */
+    function selectFR(position) {
+        sensorInfo = new Map()
+        $('body').html('')
+        if (position === 0) {
+            selectCheck = glitter.checkCar
+        } else {
+            selectCheck = glitter.checkCar2
+        }
+        $('body').append(lifeCycle.onCreateView())
+        lifeCycle.onCreate()
+        if (position !== 0) {
+            $("#frontBt").toggleClass('act')
+            $("#rearBt").toggleClass('act')
+        }
+    }
+
+    /**
+     * 判斷trigger時間多久
+     * **/
+    var startTime =new Date()
+    var endTime = undefined
+    var updateTime=undefined
+    var timer=setInterval(function getTriggerTime() {
+        endTime = new Date()
+        if(needTrigger===undefined){
+            return
+        }
+        var tresult=(needTrigger.length===0)
+        if(((endTime-startTime)>120*1000)||tresult){
+            var success=[]
+            var error=[]
+            for (let a = 0; a < selectCheck.sensor.length; a++) {
+                let sen = selectCheck.sensor[a]
+                if (sen.id === '') {
+                    continue
+                } else {
+                    allTire += 1
+                }
+                if(needTrigger.filter(function (data){return data===sen.id}).length===0){
+                    success=success.concat(sen.id)
+                }else{
+                    error=error.concat(sen.id)
+                }
+            }
+            glitter.getGPS(function (result) {
+                if(updateTime===undefined){
+                    updateTime=new Date()
+                }
+                rootActivity().apiRequest.postRequest({
+                    plate : selectCheck.plateNumber,
+                    request : "uploadTriggerTime",
+                    driverName : userInfoMation.first_Name + userInfoMation.name,
+                    data : `${JSON.stringify(triggerTime)}`,
+                    address : result.address,
+                    staffNumber : glitter.staffNumber,
+                    userInfo : JSON.stringify(userInfoMation),
+                    type:tresult,
+                    success:JSON.stringify(success),
+                    error:JSON.stringify(error),
+                    triggerTime:(updateTime-startTime)
+                }, function (data) {
+                    if (data.result === "true") {
+                    } else {
+                        getTriggerTime()
+                    }
+                }, function () {
+                    getTriggerTime()
+                })
+            })
+            clearInterval(timer)
+        }
+    },1000)
+    /**
+    * Trigger判斷
+    * */
+    var needTrigger=undefined
+    var onConnect=''
+    var waitConnect=false
+    var lastTriggerTime=new Date()
+    var triggerTime={}
+    var triggerTimer=setInterval(function (){
+        if(waitConnect||(needTrigger===undefined)||(glitter.type===glitter.deviceTypeEnum.Ios)){return}
+        console.log('triggerTimer')
+        var tempTrigger=needTrigger
+        var temSEN=''
+        var temCount=0
+        for(var i=0;i<tempTrigger.length;i++){
+            if(triggerTime[tempTrigger[i]]===undefined){triggerTime[tempTrigger[i]]=0}
+            if(temSEN===''||triggerTime[tempTrigger[i]]<temCount){
+                temSEN=tempTrigger[i]
+                temCount=triggerTime[tempTrigger[i]]
+            }
+        }
+        let sen=temSEN
+        glitter.share.bleUtil.isConnect({
+            callback:function (response){
+                if(response.result){
+                    var address = '00:C0:BF'
+                    for (var i = 0; i < sen.length / 2; i++) {
+                        address += (":" + sen.substring(i * 2, i * 2 + 2))
+                    }
+                    if(address.length<17){return;}
+                    if(waitConnect){return}
+                    if (!response.result) {
+                        if(triggerTime[sen]===undefined){triggerTime[sen]=0}
+                        triggerTime[sen]+=1
+                        console.log('onTrigger:'+sen+'--time:'+triggerTime[sen])
+                        lastTriggerTime=new Date()
+                        waitConnect=true
+                        glitter.share.bleUtil.connect(address, 10, function (result) {
+                            waitConnect=false
+                            if (result) {
+                                glitter.share.bleUtil.writeHex("0AB70A", "00008D81-0000-1000-8000-00805F9B34FB", "00008D82-0000-1000-8000-00805F9B34FB")
+                                needTrigger=tempTrigger.filter(function (data){return data!==sen})
+                            }
+                        })
+                    }else{
+                        if(((new Date())-lastTriggerTime)>10*1000){
+                            glitter.share.bleUtil.disConnect()
+                        }
+                    }
+                }
+            }
+        })
+    },2000)
+
+    function Clock() {
+        return {
+            start: new Date(),
+            stop: function () {
+                return parseInt((new Date()) - (this.start))
+            },
+            zeroing: function () {
+                this.start = new Date()
+            }
+        }
+    }
+</script>

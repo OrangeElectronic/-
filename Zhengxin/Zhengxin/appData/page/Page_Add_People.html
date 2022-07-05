@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<style>
+    html {
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+    }
+
+    body {
+        height: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flexbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .circleSelect.active {
+        background-color: #002F51;
+    }
+
+    .circleSelect {
+        border-radius: 18px;
+        background-color: white;
+        width: 18px;
+        height: 18px;
+        margin-left: 15px;
+        border-width: 3px;
+        border-color: white;
+        border-style: solid;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../model/UserInfoMation.js"></script>
+<body>
+</body>
+</html>
+<script>
+    "use strict";
+    /*
+    * 註冊選單項目
+    * */
+    var userInfo = new UserInfoMation()
+    class Item {
+        constructor(id, name, value) {
+            this.id = id
+            this.name = name
+            this.value = value
+        }
+    }
+    var itemList = [
+        new Item("first_Name", "* "+glitter.getLan(354), userInfo.first_Name),
+        new Item("name", "* "+glitter.getLan(93), userInfo.name),
+        new Item("staffNumber", "* "+glitter.getLan(741), userInfo.staffNumber),
+        new Item("phone", "* "+glitter.getLan(95), userInfo.phone),
+        new Item("email", "* "+glitter.getLan(76), userInfo.email)
+    ]
+    var circleSelect = [
+        new Item("driver", "", 0),
+        new Item("manager", "", 1),
+        new Item("agree", "", 2)
+    ]
+    /**********************************/
+    lifeCycle.onCreateView=function(){
+        var tableHtml = ''
+        for (var i = 0; i < itemList.length; i++) {
+            tableHtml += `
+             <div  style="margin-left:30px;margin-top:20px;margin-right:30px;display:flex;align-items: center;height: 40px;">
+             <h3 style="min-width:100px;font-size:14px;text-align:center;color: #92C0DF;" >` + itemList[i].name + `</h3>
+             <input value="`+itemList[i].value+`" oninput="inputChange(` + i + `)" style="flex:auto;background-color: white;outline: none;border: none;height: 100%;max-width: calc(100% - 100px);padding-left: 10px;" id="` + itemList[i].id + `">
+             </div>
+            `
+        }
+
+        return `
+        <div  style="display:flex;align-items: center;height: 60px;background-color: #002F51">
+        <img src="../img/btn_back.png" style="width: 50px;height: 50px;" onclick="glitter.goBack()">
+        <h3 style="color: white;flex: auto;margin-right: 60px;text-align: center;">${glitter.getLan(730)}</h3></div>
+         <div style="width:100%;align-items:center;display:flex;height: 60px;text-align: center;background-color: white;
+     color: #002F51;margin-bottom: 20px;">
+     <h3 style="flex: auto;" id="timetitle">${glitter.getLan(731)}</h3>
+</div>
+<div style="display:flex;margin-left: 30px;margin-right: 30px;width: calc(100% - 60px); align-items: center;">
+         <h3 style="min-width:100px;font-size:14px;text-align:center;color: #92C0DF;" >${glitter.getLan(672)}</h3>
+         <div style="height: 100%; display: flex;align-items: center;">
+            <div class="circleSelect" id="driverSelect"></div>
+   <h3 style="color: white;font-size: 14px;margin-left: 15px;" >${glitter.getLan(673)}</h3>
+</div>
+ <div style="height: 100%;align-items: center;display: flex; ">
+            <div class="circleSelect" id="managerSelect"></div>
+   <h3 style="color: white;font-size: 14px;margin-left: 15px;" >${glitter.getLan(674)}</h3>
+</div>
+         </div>
+        ` + tableHtml + `
+<div style="flex: auto;"></div>
+<div class="sig" style="height: 50px;margin: 10px;display: flex;">
+<div style="margin-left:10px;color: white;height: 50px;flex:auto;text-align: center;line-height: 50px;border-width: 1px;border-color:#92C0DF;border-style: solid;border-radius:25px;background-color :#3F99AA;" onclick="SignIn()">
+${glitter.getLan(192)}
+</div>
+</div>
+</div>
+        `
+    }
+    lifeCycle.onCreate = function () {
+        $('.circleSelect').click(function (e) {
+            var clickedBtnID = $(this).attr('id');
+            $('#' + clickedBtnID).toggleClass("active");
+            switch (clickedBtnID) {
+                case "driverSelect":
+                    userInfo.driver = (userInfo.driver==="false") ? "true":"false"
+                    break
+                case "managerSelect":
+                    userInfo.manager = (userInfo.manager==="false") ? "true":"false"
+                    break
+            }
+        })
+        userInfo.driver='true'
+        userInfo.manager='false'
+        if(userInfo.driver==='true'){
+            $('#driverSelect').toggleClass("active");
+        }
+        if(userInfo.manager==='true'){
+            $('#managerSelect').toggleClass("active");
+        }
+    }
+
+    function inputChange(i) {
+        itemList[i].value = $("#" + itemList[i].id).val()
+        userInfo[itemList[i].id] = itemList[i].value
+    }
+
+    function SignIn() {
+        for (var i = 0; i < itemList.length; i++) {
+            if (itemList[i].value === "") {
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(742) + (itemList[i].name.replace(" ", "").replace("*", "")))
+                return
+            }
+        }
+        startUpdate()
+    }
+
+    function deleteUser() {
+        glitter.openDiaLog("dialog/Dia_Check.html", "Dia_Check", false, false, function () {
+            var map = {}
+            map.request = "deleteUser"
+            map.admin = userInfo.admin
+            rootActivity().apiRequest.postWithDialog(map, function (data) {
+                if (data.result === "true") {
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(740)+'!!',function () {
+glitter.goBack()
+                    })
+                } else {
+                    glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(739)+'!!')
+                }
+            }, function (error) {
+
+            })
+        }, function () {})
+    }
+
+    function startUpdate() {
+        if(userInfo.driver === "false" && userInfo.manager === "false"){
+            glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(738)+'!!')
+            return;
+        }
+        var map = {}
+        map.request = "addPeople"
+        map.admin = rootActivity().userInfoMation.admin
+        map.data = JSON.stringify(userInfo)
+        rootActivity().apiRequest.postWithDialog(map, function (data) {
+            if (data.result === "true") {
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(212)+'!!',function () {
+
+                })
+            } else {
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(534)+'!!')
+            }
+        }, function (error) {
+
+        })
+    }
+</script>

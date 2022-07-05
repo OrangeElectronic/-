@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+    }
+
+    html {
+        width: 100%;
+        height: 100%;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+    }
+
+    .unSelect {
+        width: 50%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        color: #828282;
+        font-size: 16px;
+        background-color: #BBBBBB;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #BBBBBB;
+    }
+
+    .select {
+        width: 50%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 16px;
+        color: #002F51;
+        background-color: white;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #E64E00;
+
+    }
+
+    .item {
+        display: flex;
+        width: 100%;
+        height: 64px;
+        align-items: center;
+    }
+
+    .item div {
+        width: 25%;
+        color: white;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modify {
+        background-color: #274B64;
+        border-radius: 10px;
+        border-width: 1px;
+        border-color: white;
+        font-size: 14px;
+        height: 32px;
+        border-style: solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 70px;
+    }
+</style>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    * item為所有選項
+    * */
+    var selectType = 1
+    var item = []
+    var adapter = undefined
+    lifeCycle.onCreateView = function () {
+        return `
+    <div  style="display:flex;align-items: center;height: 60px;width:100%;background-color: #002F51">
+        <img src="../img/btn_back.png" style="width: 50px;height: 50px;" onclick="glitter.goBack()">
+        <h3 style="color: white;flex: auto;margin-right: 0px;text-align: center;">${glitter.getLan(684)}</h3>
+        <img src="../img/btn_home.png"  style="width: 50px;height: 50px;" onclick="glitter.goMenu()">
+    </div>
+<div style="display: flex;width:100%;">
+<div class="unSelect select" id="frontSelect" onclick="frontSelect()">
+${glitter.getLan(673)}
+</div>
+<div class="unSelect" id="rearSelect" onclick="rearSelect()">
+${glitter.getLan(674)}
+</div>
+</div>
+<div style="height: calc(100% - 170px);overflow-y: scroll;width: 100%;" id="itemList">
+</div>
+<h3 style="font-size:14px;margin:0;border-radius:30px;background-color: #3F99AA;border-width:1px;border-style:solid;border-color:rgba(106, 198, 215, 100);width: 90%;height: 40px;text-align: center;line-height: 40px;color: white;padding: 0;" onclick="next()">${glitter.getLan(730)}</h3>
+`
+    }
+    lifeCycle.onCreate = function () {
+        adapter = new GlAdapter(document.getElementById("itemList"), function () {
+            return item.length
+        }, function (position) {
+            var text = '' + position
+            while (text.length < 3) {
+                text = '0' + text
+            }
+            if (selectType === 1) {
+                if (item[position].driver === 'true') {
+                    return `<div class="item">
+<div>` + text + `</div>
+<div>` + item[position].name + `</div>
+<div>` + item[position].staffNumber + `</div>
+<div onclick="toEditPeople(` + position + `)">
+<h3 class="modify">${glitter.getLan(568)}</h3>
+</div>
+</div>
+<div style="background-color: #6AC6D7;height: 1px;"></div>
+`
+                } else {
+                    return ``
+                }
+            } else if (selectType === 2) {
+                if (item[position].manager === 'true') {
+                    return `<div class="item">
+<div>` + text + `</div>
+<div>` + item[position].name + `</div>
+<div>` + item[position].staffNumber + `</div>
+<div onclick="toEditPeople(` + position + `)">
+<h3 class="modify">${glitter.getLan(568)}</h3>
+</div>
+</div>
+<div style="background-color: #6AC6D7;height: 1px;"></div>
+`
+                } else {
+                    return ``
+                }
+            }
+
+        })
+        getData()
+    }
+
+    function frontSelect() {
+        selectType = 1
+        document.getElementById("frontSelect").classList.add('select');
+        document.getElementById("rearSelect").classList.remove('select');
+        adapter.notifyDataSetChange()
+    }
+
+    function rearSelect() {
+        selectType = 2
+        document.getElementById("rearSelect").classList.add('select');
+        document.getElementById("frontSelect").classList.remove('select');
+        adapter.notifyDataSetChange()
+    }
+
+    function next() {
+        glitter.changePage('page/Page_Add_People.html', 'Page_Add_People', true, 'Rear')
+    }
+
+    lifeCycle.onResume = function () {
+    }
+
+    function getData() {
+        var map = {request: 'getUserList', admin: rootActivity().userInfoMation.admin}
+        rootActivity().apiRequest.postWithDialog(map, function (result) {
+            if (result.result === 'true') {
+                item = JSON.parse(result.data)
+                adapter.notifyDataSetChange()
+            } else {
+                glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, '加載失敗!!')
+            }
+        })
+    }
+
+    function toEditPeople(position) {
+        var canDelete = ((item.filter(function (data) {return data.manager === 'true'}).length > 1) || (item[position].manager === 'false'))
+        glitter.changePage('page/Page_Edit_People.html', 'Page_Edit_People', true, {
+            data: item[position],
+            canDelete: canDelete
+        })
+    }
+
+    lifeCycle.onResume = function () {
+        getData()
+    }
+</script>

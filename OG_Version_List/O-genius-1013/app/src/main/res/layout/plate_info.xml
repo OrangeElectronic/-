@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true">
+
+        <Button
+                android:id="@+id/button9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/btn_letf"
+                android:text="@string/MENU"
+                android:textColor="@android:color/white" />
+
+        <Button
+                android:id="@+id/setup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/btn_right"
+                android:text="@string/Set_up"
+                android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="車牌"
+                        android:textColor="@color/color_black"
+                        android:textSize="17sp" />
+
+                <EditText
+                        android:id="@+id/text1"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="0"
+                        android:background="@drawable/stroke"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:paddingStart="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/Select_CAR_Make"
+                        android:textColor="@color/color_black"
+                        android:textSize="17sp" />
+
+                <Spinner
+                        android:id="@+id/make"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/textView24"
+                        android:layout_gravity="center_vertical"
+                        android:background="@mipmap/img_dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/Select_CAR_Model"
+                        android:textColor="@color/color_black"
+                        android:textSize="17sp" />
+
+                <Spinner
+                        android:id="@+id/model"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/textView25"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:background="@mipmap/img_dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/Select_Year"
+                        android:textColor="@color/color_black"
+                        android:textSize="17sp" />
+
+                <Spinner
+                        android:id="@+id/year"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/textView28"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:background="@mipmap/img_dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="上次紀錄時間"
+                        android:textColor="@color/color_black"
+                        android:textSize="17sp" />
+
+                <TextView
+                        android:id="@+id/text5"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/stroke"
+                        android:ems="10"
+                        android:gravity="center_vertical"
+                        android:inputType="textPersonName"
+                        android:paddingStart="10dp"
+                        android:textSize="17sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

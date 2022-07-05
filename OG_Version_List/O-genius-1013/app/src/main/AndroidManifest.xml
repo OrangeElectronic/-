@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.orange.tpms"
+>
+<!--    android:sharedUserId="android.uid.system"-->
+    <!-- 摄像头 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.SET_TIME_ZONE" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SET_TIME" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.location.network" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/> <!-- 振铃 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Wifi相关 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SHUTDOWN" tools:ignore="ProtectedPermissions" />
+    <uses-permission
+            android:name="android.permission.WRITE_SETTINGS"
+            tools:ignore="ProtectedPermissions" />
+    <uses-permission
+            android:name="android.permission.DEVICE_POWER"
+            tools:ignore="ProtectedPermissions" />
+
+    <application
+            android:name=".app.TPMSApp"
+            android:icon="@mipmap/tpms_logo"
+            android:label="TPMS"
+            android:largeHeap="true"
+            android:roundIcon="@mipmap/tpms_logo"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning"
+            android:allowBackup="true">
+        <activity
+                android:name=".ue.activity.KtActivity"
+                android:alwaysRetainTaskState="true"
+                android:launchMode="singleInstance"
+                android:screenOrientation="portrait"
+                android:theme="@style/MainAppTheme">
+
+            <meta-data
+                    android:name="android.webkit.WebView.EnableSafeBrowsing"
+                    android:value="true" />
+            <meta-data
+                    android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+                    android:value="ocr" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:windowSoftInputMode="adjustPan"
+                android:name="com.jianzhi.glitter.GlitterActivity"
+                android:launchMode="singleInstance"
+                android:screenOrientation="portrait"
+                android:theme="@style/MainAppTheme"
+                >
+            <meta-data
+                    android:name="android.webkit.WebView.EnableSafeBrowsing"
+                    android:value="true" />
+        </activity>
+        <!--                <activity-->
+        <!--                        android:name=".ue.activity.TestLf"-->
+        <!--                        android:alwaysRetainTaskState="true"-->
+        <!--                        android:screenOrientation="portrait"-->
+        <!--                        android:launchMode="singleInstance"-->
+        <!--                        android:theme="@style/MainAppTheme"-->
+        <!--                        android:windowSoftInputMode="adjustPan">-->
+
+        <!--                    <meta-data-->
+        <!--                            android:name="android.webkit.WebView.EnableSafeBrowsing"-->
+        <!--                            android:value="true" />-->
+        <!--                    <meta-data-->
+        <!--                            android:name="com.google.firebase.ml.vision.DEPENDENCIES"-->
+        <!--                            android:value="ocr" />-->
+
+        <!--                    <intent-filter>-->
+        <!--                        <action android:name="android.intent.action.MAIN" />-->
+        <!--                        <category android:name="android.intent.category.HOME" />-->
+        <!--                        <category android:name="android.intent.category.DEFAULT" />-->
+        <!--                        <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--                    </intent-filter>-->
+        <!--                </activity>-->
+        <!--        <service-->
+        <!--                android:name="com.example.customerlibrary.Server_Firebase"-->
+        <!--                android:enabled="true"-->
+        <!--                android:exported="false"-->
+        <!--                android:stopWithTask="false">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+        <!--            </intent-filter>-->
+        <!--        </service>-->
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="PhotoPicker"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/s" />
+        </provider>
+
+    </application>
+
+</manifest>

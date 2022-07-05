@@ -1,0 +1,28 @@
+PODS:
+  - IQKeyboardManagerSwift (6.2.1)
+  - Kingfisher (5.3.1)
+  - lottie-ios (3.0.4)
+  - ViewPager-Swift (2.0.1)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - lottie-ios
+  - ViewPager-Swift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - lottie-ios
+    - ViewPager-Swift
+
+SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: 0f0ae8935360b4003e6ea1ac7c19898f01e2f7c7
+  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
+  lottie-ios: 55a2de40418f8de2b155efaba4d4d1a025a5c570
+  ViewPager-Swift: 7d83f5d4888a0fa808c08c8405ba84e603a2eb58
+
+PODFILE CHECKSUM: 9d2a5c0946f0687adf991c73421c119ca6ea3700
+
+COCOAPODS: 1.6.1

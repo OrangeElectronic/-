@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+<style>
+    html{
+        height: 100%;
+        width: 100%;
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        /*background-image: url('../img/img_background.png');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        overflow-x: hidden;
+        /*background-size: 100% 100%;*/
+    }
+    .inview {
+        width: 96%;
+        height: calc(75% - 64px);
+        /*display: flex;*/
+        align-items: center;
+        flex-direction: column;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<script src="../glitterBundle/GlAdapter.js"></script>
+<body>
+
+</body>
+</html>
+<script>
+    //data=[{1:["Device name","O-Genius Lite"],2:["MCU version","1.0"],3:["Software version","2020042801"],4:["Database version","2020042801"]}]
+    var data ={}
+    data.device=[glitter.getLan(54),glitter.getLan(56),glitter.getLan(57),glitter.getLan(414),glitter.getLan(59),glitter.getLan(447),'Bootloader']
+    data.version=["O-Genius Lite",glitter.publicBeans.sn,glitter.share.apkverVersion,glitter.publicBeans.mcuVersion,glitter.publicBeans.localVersion.mmyVersion,glitter.publicBeans.bleVersion.replace('.fota',''),
+        glitter.publicBeans.bootloaderVersion]
+    lifeCycle.onCreate=function(){
+        //touchButton("updateButton")
+    }
+    lifeCycle.onCreateView=function (){
+        //console.log("version:"+data.)
+        var version=``
+        for(var i=0;i<data.device.length;i++){
+            version +=`<div id="updateButton" style="height: 64px;width: 100%;display: flex;margin-top: 0px;justify-content: left;align-items: center;flex-direction:row;font-size: 20px">
+<div style="height: auto;width:44%;white-space:pre-line;overflow:hidden;word-break:break-all;margin-left:5%;margin-right:1%;">`+data.device[i]+`</div>
+<div style="height: auto;width:44%;white-space:pre-line;overflow:hidden;word-break:break-all;text-align:right;margin-left:1%;margin-right:5%;">`+data.version[i]+`</div>
+</div>
+<div style="height: 1px;width: 100%;background-color: #A2A2A2"></div>`
+        }
+
+        return `
+
+<div style="height: 25%;width: 100%;display: flex;margin-top: 0;justify-content: center;">
+    <img style="height: 100%;width: 70%;" src="../img/img_logo.png" onclick="toBeta()">
+</div>
+<div class="inview">
+`+version+`
+</div>
+        `
+    }
+    var clickTime=0
+   function toBeta(){
+       clickTime+=1
+       if(clickTime===10){
+           clickTime=0
+           glitter.publicBeans.beta=(!glitter.publicBeans.beta)
+           alert(glitter.publicBeans.beta)
+       }
+   }
+    function touchButton(button){
+        let obj = document.getElementById(button)
+        obj.addEventListener('touchstart', function (event) {
+            console.log('touchstart' + ':' + this.id)
+            $('#' + button).css('background-color', "#E64E00")
+            $('#' + button).css('color', "white")
+        }, false);
+        obj.addEventListener('touchend', function (event) {
+            console.log('touchend' + ':' + this.id)
+            $('#' + button).css('background-color', "white")
+            $('#' + button).css('color', "black")
+
+        }, false);
+        obj.addEventListener('touchmove', function (event) {
+            //console.log('touchmove')
+            if(!(this.offsetTop <= event.touches[0].clientY && this.offsetTop+this.offsetHeight >= event.touches[0].clientY &&
+                this.offsetLeft <= event.touches[0].clientX && this.offsetLeft+this.offsetWidth >= event.touches[0].clientX)){
+                console.log('notouch:true')
+                $('#' + button).css('background-color', "white")
+                $('#' + button).css('color', "black")
+            }
+
+        },false);
+    }
+</script>

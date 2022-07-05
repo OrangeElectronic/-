@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../glitterBundle/ControlInstance.js"></script>
+    <link href="../glitterBundle/bootstrap2.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        flex-direction: column;
+        overflow-x: hidden;
+        background: none;
+        overflow-y: hidden;
+    }
+
+    html {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+        background-size: 150% 150%;
+        background-image: url("../img/img_background.png");
+    }
+
+</style>
+<body>
+<script>
+    var play=true
+    lifeCycle.onCreate = function () {
+
+    }
+    lifeCycle.onCreateView = function () {
+        var lastScrollBt = true
+        return `
+${(glitter.getTitleBar("RowData紀錄"))}
+<div style="width: 100%;height: calc(100% - 100px);overflow-y: scroll;" id="datalist" class="text-white">
+${bindView({
+            bind: 'datalist',
+            view: function () {
+                var html = ''
+                if(!play){
+                    return  $('#datalist').html()
+                }
+                glitter.share.memoryData.map(function (data) {
+                    var dataConcert = JSON.parse(JSON.stringify(data))
+                    var time = dataConcert.time
+                    dataConcert.time = undefined
+                    var innerHtml=""
+                    Object.keys(dataConcert).map(function (data){
+                        if((dataConcert[data]!==undefined)&&(data!=='address')){
+                            innerHtml+=`${data}=${dataConcert[data]} , `
+                        }
+
+                    })
+                    html += ` <div style="width: 100%;min-height: 50px;word-break: break-word;" class="my-2">${innerHtml}<br><br>${time}</div>
+<div class="w-100" style="background-color: white;height: 1px;"></div>
+`
+                })
+                return html
+            }, onCreate: function () {
+            }
+            ,
+            dataList: [{obj: glitter.share, key: 'memoryData'}]
+        })}
+${glitter.print(function () {
+        })}
+</div>
+<div class="w-100 btn btn-primary" style="" id="playBy" onclick="${event(function (){
+            play=!play
+            notifyDataChange('playBy')
+        })}">
+${bindView({
+            bind:'playBy',
+            view:function () {
+                if(play){
+                    return `暫停`
+                }else{
+                    return `繼續`
+                }
+            }
+        })}
+</div>
+
+        `
+    }
+</script>
+</body>
+</html>

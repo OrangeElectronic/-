@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<script src="../glitterBundle/ControlInstance.js"></script>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .big {
+        margin-top: 10px;
+        border-bottom: 1px black solid;
+        height: 210px;
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .small {
+        margin-top: 0px;
+        border-bottom: 1px black solid;
+        height: 110px;
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .smallText {
+        color: #314a56;
+        font-size: 16px;
+        flex: auto;
+        margin-left: 10px;
+    }
+    .bigBottom {
+        position: absolute;
+        background-image: url("../img/btn_rectangle.png");
+        width: 100%;
+        height: 50px;
+        bottom: 60px;
+        background-size: 100% 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+</style>
+<body>
+
+</body>
+</html>
+<script>
+    if(glitter.isOG){
+        lifeCycle.onCreate = function () {
+            glitter.openDiaLog('tireStorage/dialog/Dia_Confirm_InforMation.html','Dia_Confirm_InforMation',false,false,gBundle,function (){})
+            glitter.runJsInterFace("getMmyInterFace",{
+                make:gBundle.Make,
+                model:gBundle.Model,
+                year:gBundle.Year
+            },function (response){
+                var ex=true
+                if(response.data["OG Programe"]!=="True"){
+                    $('#Program').hide()
+                }else{
+                    ex=false
+                }
+                if(response.data["OG CopyID"]!=="True"){
+                    $('#Copy').hide()
+                }else{
+                    ex=false
+                }
+                if(response.data["OG Read"]!=="True"){
+                    $('#Read').hide()
+                }else{
+                    ex=false
+                }
+                if(ex){
+                    glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)
+                }
+            })
+        }
+
+        lifeCycle.onCreateView = function () {
+            return `
+    <h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #FF9E00;color: white;width: 100%;">
+${glitter.language(68)}
+</h3>
+<div style="height: calc(100% - 170px);overflow-y: scroll;" id="itemList">
+<div id="Read" class="big" onclick="glitter.changePage('tireStorage/Page_ReadSensor.html','Page_ReadSensor',true,gBundle)">
+<img src="../img/btn_check_sensor_p.png" style="height: 170px;width: 170px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">${glitter.language(231)}</h3>
+</div>
+<div  id="Program"  class="small" onclick="glitter.changePage('tireStorage/Page_Program_Detail.html', 'Page_Program_Detail', true, gBundle);">
+<img src="../img/program_sensor.png" style="height: 100px;width: 100px;">
+<h3 class="smallText">${glitter.language(12)}</h3>
+</div>
+<div id="Copy" class="small" onclick="glitter.changePage('tireStorage/Page_ReadSensor_ToCopy.html','Page_ReadSensor_ToCopy',true,gBundle)">
+<img src="../img/id_copy.png" style="height: 100px;width: 100px;">
+<h3 class="smallText">${glitter.language(13)}</h3>
+</div>
+</div>
+<div onclick="glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)" style="
+height: 50px;width: 100%;background-color: #2F4C63;color: white;display: flex;align-items: center;justify-content: center;">
+${glitter.language(561)}
+</div>
+    `
+        }
+    }else{
+        lifeCycle.onCreate = function () {
+            glitter.selectWay=0
+            glitter.mmyInterFace.numberChoice=4
+            glitter.mmyInterFace.selectMake=gBundle.Make
+            glitter.mmyInterFace.selectModel=gBundle.Model
+            glitter.mmyInterFace.selectYear=gBundle.Year
+            setTimeout(function (){
+                glitter.openDiaLog('dialog_tireStorage/Dia_Confirm_Tire.html','Dia_Confirm_Tire',false,false,gBundle,function (){})
+                var ex=true
+                if(glitter.mmyInterFace.selectMMY["OG Programe"]!=="True"){
+                    $('#Program').hide()
+                }else{
+                    ex=false
+                }
+                if(glitter.mmyInterFace.selectMMY["OG CopyID"]!=="True"){
+                    $('#Copy').hide()
+                }else{
+                    ex=false
+                }
+                if(glitter.mmyInterFace.selectMMY["OG Read"]!=="True"){
+                    $('#Read').hide()
+                }else{
+                    ex=false
+                }
+                if(ex){
+                    glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)
+                }
+            },200)
+
+        }
+
+        lifeCycle.onCreateView = function () {
+            return `
+    <h3 style="margin:0;display: flex;align-items:center;justify-content:center;height: 60px;background-color: #FF9E00;color: white;width: 100%;">
+${glitter.getLan(68)}
+</h3>
+<div style="height: calc(100% - 160px);overflow-y: scroll;" id="itemList">
+<div id="Read" class="big" onclick="glitter.changePage('page/Page_ReadSensor.html','Page_ReadSensor',true,gBundle)">
+<img src="../img/btn_check_sensor_p.png" style="height: 170px;width: 170px;">
+<h3 style="color: #314a56;font-size: 20px;margin-top: 5px;">${glitter.getLan(231)}</h3>
+</div>
+
+<div  id="Program"  class="small" onclick="glitter.changePage('page/Page_Program_Detail.html', 'Page_Program_Detail', true, gBundle);">
+<img src="../img/program_sensor.png" style="height: 100px;width: 100px;">
+<h3 class="smallText">${glitter.getLan(12)}</h3>
+</div>
+<div id="Copy" class="small" onclick="glitter.changePage('page/Page_ReadSensor_ToCopy.html','Page_ReadSensor_ToCopy',true,gBundle)">
+<img src="../img/id_copy.png" style="height: 100px;width: 100px;">
+<h3 class="smallText">${glitter.getLan(13)}</h3>
+</div>
+</div>
+ <div id="bigBottom" class="bigBottom" onclick="
+   glitter.changePage('tireStorage/Page_Confirm_Infomation.html','Page_Confirm_Infomation',true,gBundle)
+ ">${glitter.getLan(612)}</div>
+    `
+        }
+    }
+
+
+</script>

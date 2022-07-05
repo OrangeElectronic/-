@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <ImageView
+            android:id="@+id/imag"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:srcCompat="@mipmap/serch" />
+
+    <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imag"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/app_home_check_sensor"
+            android:textColor="#314A56"
+            android:textSize="20sp" />
+
+    <TextView
+            android:id="@+id/itemCount"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@id/imag"
+            android:layout_alignEnd="@id/imag"
+            android:background="@drawable/circlered"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/color_white"
+            android:translationX="5dp"
+            android:translationY="-5dp" />
+
+</RelativeLayout>
