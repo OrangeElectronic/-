@@ -158,7 +158,7 @@
 
         //**
         glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
-        readAllCommand(function (data) {
+        glitter.readAllCommand(function (data) {
             
         })
 
@@ -565,7 +565,7 @@
 
                     if(result!=="false"){
                         //讀取驗證
-                        readAllCommand(function (sensor_data) {
+                        glitter.readAllCommand(function (sensor_data) {
                             //console.log("sensor_data:"+positionHex+sensorID+","+JSON.stringify(sensor_data))
                             glitter.closeDiaLogWithTag('Dia_Info_Progress')
 
@@ -612,7 +612,7 @@
 
                     if(result!=="false"){
                         //讀取驗證
-                        readAllCommand(function (sensor_data) {
+                        glitter.readAllCommand(function (sensor_data) {
                             //console.log("sensor_data:"+positionHex+sensorID+","+JSON.stringify(sensor_data))
                             glitter.closeDiaLogWithTag('Dia_Info_Progress')
 
@@ -643,7 +643,7 @@
             glitter.updateMemmory({mode_data:"設定-"+upload_Name+car,result_data:("success")})
 
             //讀取驗證
-            readAllCommand(function (sensor_data) {
+            glitter.readAllCommand(function (sensor_data) {
                 //console.log("sensor_data:"+positionHex+sensorID+","+JSON.stringify(sensor_data))
                 glitter.closeDiaLogWithTag('Dia_Info_Progress')
 
@@ -802,7 +802,7 @@
             })
     }
 
-    function readAllCommand(callback){
+    glitter.readAllCommand = function (callback){
         //**
         //glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
 

@@ -131,12 +131,14 @@
         }
     }]
     lifeCycle.onCreate = function () {
+        glitter.canUpdate=true
+        glitter.share.checkVersion()
         if(glitter.publicBeans.language==="tw"){
             glitter.fileModelInterFace.domain='https://bento3.orange-electronic.com'
         }else{
             glitter.fileModelInterFace.domain='https://bento2.orange-electronic.com'
         }
-        glitter.canUpdate=true
+
         for (var i = 0; i < itemArray.length; i++) {
             if(itemArray[i]!==undefined){
                 $("#list").append(`<div class="item" id="item${i}" onclick="itemArray[${i}].click()">
@@ -145,10 +147,7 @@
 </div>`)
             }
         }
-
         requestGps()
-        glitter.share.checkVersion()
-
     }
     lifeCycle.onCreateView = function () {
         return `

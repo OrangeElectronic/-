@@ -317,7 +317,6 @@ glitter.connectFunction = function connect(position, restart) {
                             callback: function (response) {
                                 canConnect=true
                                 glitter.lastConnectAddress = glitter.bleList[pos].address
-
                                 //判斷成功則關閉Dialog
                                 function success() {
                                     lastConnectAddress = glitter.bleList[pos].address
@@ -331,7 +330,6 @@ glitter.connectFunction = function connect(position, restart) {
                                         glitter.share.checkVersion()
                                     }
                                 }
-
                                 //判斷失敗則跳提醒
                                 function error() {
                                     glitter.onwaiting = false
@@ -342,7 +340,6 @@ glitter.connectFunction = function connect(position, restart) {
                                         glitter.openDiaLog('dialog/Dia_Info.html', 'info', false, true, glitter.getLan(256))
                                     }
                                 }
-
                                 //delay
                                 function delay(callback) {
                                     setTimeout(function () {

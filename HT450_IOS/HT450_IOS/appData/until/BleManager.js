@@ -127,14 +127,18 @@ glitter.runJsInterFace("Glitter_BLE_SetCallBack",{},function (response){
                         if (glitter.bleList.filter(function (data) {
                             return data.name !== "DfuTarg"
                         }).length > 0){
-                            //console.log("dfu_timer_end:3s")
-                            if (clock.stop() > 6*1000) {
+                            console.log("dfu_timer_end:3s")
+                            if (clock.stop() > 5*1000) {
                                 function reConnect() {
                                     glitter.bleAddress = glitter.main_bleAddress
                                     glitter.ble_DFU = false
                                     glitter.dfu_timer = undefined
                                     glitter.bleConnectDailog(function () {
                                         error_Dialog()
+                                        //防iOS未在斷線的區間，而未執行到成功連線的Command
+                                        if(glitter.deviceType === glitter.deviceTypeEnum.Ios){
+                                            glitter.startHomeCommand()
+                                        }
                                     })
                                 }
                                 reConnect()
@@ -152,33 +156,42 @@ glitter.runJsInterFace("Glitter_BLE_SetCallBack",{},function (response){
                 glitter.ble_DFU_success=false
 
                 //DFU模式掃描連線藍芽
-                glitter.bleStartScan(function (name) {
-                    console.log("bleStartScan:"+name)
+                glitter.ble_DFU_Function = function () {
+                    glitter.bleStartScan(function (name) {
+                        console.log("bleStartScan:"+name)
 
-                    //setTimeout(glitter.bleConnectDailog,3000)
+                        //setTimeout(glitter.bleConnectDailog,3000)
+                        var clock=glitter.getClock()
+                        glitter.dfu_timer = setInterval(function () {
+                            //**
+                            //if (clock.stop() > 5*1000) {
+                            var mAddress = glitter.bleList.filter(function (data) {
+                                return data.name === "DfuTarg"
+                            })
+                            if (mAddress.length > 0) {
+                                console.log("dfu_timer:3s")
+                                //3 10
+                                //** if (clock.stop() > 3*1000) {
+                                if (clock.stop() > 3*1000) {
+                                    function connect(){
+                                        glitter.main_bleAddress = glitter.bleAddress
+                                        glitter.bleAddress = mAddress[0].address
+                                        //glitter.bleAddress = "00:1C:97:FF:FF:FF"
 
-                    var clock=glitter.getClock()
-                    glitter.dfu_timer = setInterval(function () {
-                        //if (clock.stop() > 5*1000) {
-                        if (glitter.bleList.filter(function (data) {
-                            return data.name === "DfuTarg"
-                        }).length > 0) {
-                            //console.log("dfu_timer:3s")
-                            if (clock.stop() > 3*1000) {
-                                function connect(){
-                                    glitter.main_bleAddress = glitter.bleAddress
-                                    glitter.bleAddress = "00:1C:97:FF:FF:FF"
-                                    glitter.bleConnectDailog()
-                                    clearInterval(glitter.dfu_timer)
+                                        glitter.bleConnectDailog()
+                                        clearInterval(glitter.dfu_timer)
+                                    }
+                                    connect()
+                                    //setTimeout(connect,3000)
                                 }
-                                connect()
-                                //setTimeout(connect,3000)
                             }
-                        }
-                        // glitter.dfu_timer=undefined
-                        //}
-                    }, 10)
-                })
+                            // glitter.dfu_timer=undefined
+                            //}
+                        }, 10)
+                    })
+                }
+                glitter.ble_DFU_Function()
+
             }else{
                 if(glitter.disconnectTimer){clearInterval(glitter.disconnectTimer);}
                 var clock=glitter.getClock()
@@ -262,6 +275,10 @@ glitter.runJsInterFace("Glitter_BLE_SetCallBack",{},function (response){
                 if (glitter.bleList === undefined) {
                     glitter.bleList = []
                 }
+                //**
+                if(response.name === undefined){
+                    return
+                }
                 //response.name.indexOf("HT470A") === -1 &&
                 if (response.name.indexOf("HT430") === -1 && response.name.indexOf("HT471A") === -1
                     && (response.name.indexOf("DfuTarg") === -1)) {
@@ -320,13 +337,17 @@ glitter.bleStartScan = function(callback){
         if (!response.result) {
             glitter.runJsInterFace("Glitter_BLE_StartScan", {}, function (response) {
                 console.log(response.result)
-                callback(response.name)
+                //**
+                if(callback!==undefined){
+                    callback(response.name)
+                }
+                
             })
         }
     })
 }
 
-glitter.bleRecord = function (position) {
+glitter.bleRecord = function (position,callback) {
     glitter.bleAddress = glitter.bleList[position].address
     glitter.uploadData.ble_serial = glitter.bleList[position].name
     if(glitter.uploadData.ble_serial.indexOf("HT471A")!==-1){
@@ -337,6 +358,7 @@ glitter.bleRecord = function (position) {
     } else{
         glitter.app = "HT430"
     }
+    callback()
 }
 glitter.bleConnectDailog =function (callback){
     // && !glitter.ble_DFU
@@ -398,7 +420,10 @@ glitter.bleConnectDailog =function (callback){
 
         }
 
-        callback()
+        if(callback!==undefined){
+            callback(response.result)
+        }
+        
     })
 }
 
@@ -507,7 +532,12 @@ function connectTimer(){
                         //if(glitter.bleList.length > 0 && ble_Address_array.length===0){
                         if (glitter.bleList.length === 1 && ble_Address_array.length === 0) {
 
-                            glitter.bleRecord(0)
+                            glitter.bleRecord(0,function () {
+                                setTimeout(function () {
+                                    cantConnect = false;
+                                }, 15 * 1000)
+                                glitter.bleConnectDailog()
+                            })
                             // glitter.bleAddress = glitter.bleList[0].address
                             // glitter.uploadData.ble_serial = glitter.bleList[0].name
                             //
@@ -521,11 +551,6 @@ function connectTimer(){
                             //     glitter.app = "HT430"
                             //     //glitter.app = "HT471A"
                             // }
-
-                            setTimeout(function () {
-                                cantConnect = false;
-                            }, 15 * 1000)
-                            glitter.bleConnectDailog()
                         }
                     }
                 } else {

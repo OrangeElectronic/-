@@ -68,7 +68,10 @@ function onCreate() {
     //
     var haveCycleUpdate=false
     glitter.share.checkVersion = function () {
-        if(haveCycleUpdate){return}
+        console.log('glitter.share.checkVersion')
+        if(haveCycleUpdate){
+            console.log('haveCycleUpdate')
+            return}
         glitter.share.bleUtil.isConnect({
             callback: function (result) {
                 if (result.result) {

@@ -72,6 +72,7 @@ class Command {
                                         txChannel: "00008d82-0000-1000-8000-00805f9b34fb"
                                     }
                                 }else{
+                                    console.log("8D82")
                                     return  {
                                         data: data.replace(/ /g, ''),
                                         rxChannel: "8D82",
@@ -436,7 +437,8 @@ class Command {
                         if(bool){
                             console.log("notConnect:true")
                             reCommand=0
-                            send()
+                            clock.zeroing()
+                            //send()
                         }
                     })
 
@@ -639,7 +641,8 @@ class Command {
                         if(bool){
                             console.log("notConnect:true")
                             reCommand=0
-                            send()
+                            clock.zeroing()
+                            //send()
                         }
                     })
                     //7000 3000 5000
@@ -954,7 +957,8 @@ class Command {
                         if(bool){
                             console.log("notConnect:true")
                             reCommand=0
-                            send()
+                            clock.zeroing()
+                            //send()
                         }
                     })
 

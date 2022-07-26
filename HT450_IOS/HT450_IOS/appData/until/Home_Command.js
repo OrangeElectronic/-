@@ -38,12 +38,14 @@ glitter.startHomeCommand = function () {
                                     //時間同步
                                     startSyncTime(function (){
                                         glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                                        rePageCommand()
                                     })
                                 })
                             }else{
                                 //時間同步
                                 startSyncTime(function (){
                                     glitter.closeDiaLogWithTag('Dia_Progress_Spinner')
+                                    rePageCommand()
                                 })
                             }
                         })
@@ -82,7 +84,9 @@ glitter.startHomeCommand = function () {
                         readTPMS("02",function () {
                             readAllStatus("02",function () {
                                 sync_time("01",function (){
-                                    readConnectRSSI("02")
+                                    readConnectRSSI("02",function () {
+                                        rePageCommand()
+                                    })
                                 })
                             })
                         })
@@ -90,6 +94,38 @@ glitter.startHomeCommand = function () {
                 })
             })
         })
+    }
+
+    //exist Page do reCommand(ble connect after ble disconnect)
+    function rePageCommand() {
+        for (var i = 0; i < glitter.iframe.length; i++) {
+            console.log("rePageCommand:"+glitter.iframe[i].id)
+            switch (glitter.iframe[i].id){
+                case "Page_Setting_Enter_ID":
+                    glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+                    function readAll(){
+                        glitter.readAllCommand(function () {
+
+                        })
+                    }
+                    setTimeout(readAll,1000)
+                    break
+                case "Page_Setting_TirePositionSet":
+                    glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
+                    setTimeout(glitter.readMainCarRow,1000)
+                    break
+                case "Page_Setting_TPMS":
+                    glitter.readTPMS()
+                    break
+                case "Page_Setting_Car":
+                    glitter.settingCar()
+                    break
+                case "Page_Setting_Other":
+                    glitter.adpaterTPMSPage()
+                    break
+            }
+        }
+
     }
 
     //glitter.playSound("false")
@@ -264,7 +300,7 @@ function sync_time(car,callback){
         })
 }
 
-function readConnectRSSI(car){
+function readConnectRSSI(car,callback){
 
     glitter.command.readConnectRSSI(
         car,
@@ -282,6 +318,6 @@ function readConnectRSSI(car){
             }
             //"讀取-連線藍芽強度",(result === "false" ? "fail" : "success")
             glitter.updateMemmory({mode_data:"讀取-連線藍芽強度",result_data:(result === "false" ? "fail" : "success")})
-
+            callback()
         })
 }

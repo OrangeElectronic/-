@@ -8,8 +8,8 @@ function onCreate() {
         glitter.share.phoneModel=response.model
         glitter.share.phoneVersion=response.version
     })
-    glitter.webUrl = 'https://bento3.orange-electronic.com'
-    // glitter.webUrl='http://192.168.7.148'
+    // glitter.webUrl = 'https://bento3.orange-electronic.com'
+    glitter.webUrl='http://192.168.7.149'
    function setParameter(){
        //RF測試模式
        glitter.share.rftest=false
@@ -30,7 +30,7 @@ function onCreate() {
        //開關更新函示
        glitter.canUpdate = false
        //APP版本
-       glitter.share.apkverVersion = '1.71'
+       glitter.share.apkverVersion = '1.73'
        //判斷是否支援298
        glitter.share.support298=true
        //燒錄檔案判斷測試
@@ -67,7 +67,10 @@ function onCreate() {
     //
     var haveCycleUpdate=false
     glitter.share.checkVersion = function () {
-        if(haveCycleUpdate){return}
+        console.log('glitter.share.checkVersion')
+        if(haveCycleUpdate){
+            console.log('haveCycleUpdate')
+            return}
         glitter.share.bleUtil.isConnect({
             callback: function (result) {
                 if (result.result) {

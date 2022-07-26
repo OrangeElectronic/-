@@ -223,7 +223,7 @@
             console.log("titleButton:"+position)
             $('.single-item').slick('slickGoTo',position)
         //**changeScreen
-        //slickPage = position
+        slickPage = position
         //}
     },pageTag:"home"})
 
@@ -243,7 +243,7 @@
         })
     }
 
-    function createPage(){
+    function createPage(exist){
         //需建立頁面的頁數
         var slickCount=page_Enable.filter(function (value, index, arrSelf) {
                value===true
@@ -288,7 +288,19 @@
 
             //<!--                     <iframe style="height: 100%;width:100%;pointer-events: none;" src=`+hint[i]+`></iframe>-->
             // (changeScreen ? 'display:flex;' :'overflow-y: scroll;')
-            if(viewID!==""){
+
+            //**
+            //console.log("viewID:"+$('#'+viewID).html())
+            //if(viewID!=="" && exist && $('#'+viewID).html()!==undefined){
+            if(viewID!=="" && $('#'+viewID).html()!==undefined){
+                console.log("viewID:true")
+                document.getElementById(viewID).style.cssText = `height: 100%;width:100%;`+(i!==2 ? (changeScreen ? 'display:flex;' :'') : `background:gray`)+``
+                $('#'+viewID).html(allView)
+            }
+
+            //if(viewID!=="" && !exist && $('#'+viewID).html()===undefined){
+            if(viewID!=="" && $('#'+viewID).html()===undefined){
+                console.log("viewID_1:false")
                 $('.single-item').append(`
                 <div id="${viewID}" style="height: 100%;width:100%;`+(i!==2 ? (changeScreen ? 'display:flex;' :'') : `background:gray`)+`">
                 `+(allView)+`
@@ -301,21 +313,26 @@
         //glitter.homeTitleChange(0)
         //glitter.homeTitleChange(slickPage,"home")
 
-        $('.single-item').slick({
-            infinite: false});
-        $('.slick-arrow').hide()
-        $('.single-item').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-            //console.log("beforeChange:"+currentSlide+","+nextSlide)
-            console.log("beforeChange_Home:"+nextSlide)
-            slickPage=nextSlide
-            //glitter.select_position=nextSlide
-            $('#title').html(changeTitle(nextSlide))
-            if(changeScreen){
-                glitter.homeTitleChange(nextSlide,"home")
-                //glitter.titleBarData.update()
-                //glitter.homeTitleClick(nextSlide)
-            }
-        });
+        //!exist
+        if(!exist){
+            console.log("viewID_2:false")
+            $('.single-item').slick({
+                infinite: false});
+            $('.slick-arrow').hide()
+            $('.single-item').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                //console.log("beforeChange:"+currentSlide+","+nextSlide)
+                console.log("beforeChange_Home:"+nextSlide)
+                slickPage=nextSlide
+                //glitter.select_position=nextSlide
+                $('#title').html(changeTitle(nextSlide))
+                if(changeScreen){
+                    glitter.homeTitleChange(nextSlide,"home")
+                    //glitter.titleBarData.update()
+                    //glitter.homeTitleClick(nextSlide)
+                }
+            });
+        }
+
         //$('#title').html(changeTitle(0))
     }
 
@@ -839,31 +856,12 @@
         //glitter.share.home.commadMessage("RX:"+"53B5020A12125EFEED0A")
         //glitter.share.home.commadMessage("RX:"+"53B7020AFFFFFFFFED0A")
         //return
-        button_OTA()
 
         if($('#keyInTx').val().length!==0 && $('#keyInTx').val().length===20){
             glitter.command.send("test",$('#keyInTx').val())
             //glitter.share.home.commadMessage($('#keyInTx').val())
         }
     }
-    function button_OTA() {
-
-        glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress_ble', false, false,{name:"更新中"})
-        glitter.runJsInterFace("getDownloadFile", {start_DFU:"true"}, function (response) {
-            if(response.result==="true"){
-                glitter.ble_DFU = true
-                glitter.closeDiaLogWithTag("Dia_Info_Progress_ble")
-                glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress_ble', false, false,{name:"連線中"})
-                glitter.command.send("OTA","01")
-            }else{
-                glitter.closeDiaLogWithTag("Dia_Info_Progress_ble")
-                glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
-            }
-        })
-        //glitter.runJsInterFace("DFU", {start_DFU:"true"}, function (response) {
-        //})
-    }
-
 
     var command_data_save=``
     var error_code=[]
@@ -876,8 +874,11 @@
 
             //var timeInMs = new Date();
             var timeInMs =new Date().format("yyyy-MM-dd hh:mm:ss");
-            //log顯示
-            var command_data = `<div style="width: calc(100% - 20px);height:auto;word-break: break-all;color:black;font-size:16px;">${data+" ,"+timeInMs}</div>`
+            function command_View(text){
+                return `<div style="width: calc(100% - 20px);min-height:20px;height:auto;color:black;font-size:16px;">${text}</div>`
+            }
+            //log顯示 height:auto;height:20px;
+            var command_data = command_View(data+" ,"+timeInMs)
 
             // glitter.uploadData.command_logdata += data +" ,"+timeInMs+"\n"
             // glitter.setPro("command_logdata",glitter.uploadData.command_logdata)
@@ -895,7 +896,8 @@
                         glitter.share.home.updateUI(sensor.substring(0,2),glitter.updateData.TIRE_STATUS,[sensor.substring(2,16)])
                     }
                     if(message!==""){
-                        command_data += `<div style="width: calc(100% - 20px);height:auto;word-break: break-all;color:black;font-size:16px;">${message+" ,"+timeInMs}</div>`
+                        //height:20px;height:auto;
+                        command_data += command_View(message+" ,"+timeInMs)
                         glitter.save_Logdata(message +" ,"+timeInMs+"\n")
                     }
                 }
@@ -987,7 +989,8 @@
                         }
                     }
                     if(message!==""){
-                        command_data += `<div style="width: calc(100% - 20px);height:auto;word-break: break-all;color:black;font-size:16px;">${message+" ,"+timeInMs}</div>`
+                        //height:20px;height:auto;
+                        command_data += command_View(message+" ,"+timeInMs)
                         glitter.updateMemmory({mode_data: "狀態-" + upload_Name, result_data:message+",\n"+rx20})
                         glitter.save_Logdata(message +" ,"+timeInMs+"\n")
                     }
@@ -1191,25 +1194,40 @@
         }
 
     }
+    //class="slick-track"的防止判斷
+    var screenString = (changeScreen ? "LANDSCAPE":"PORTRAIT")
     glitter.share.orientationPageCallback.push( {callback:function (screen) {
+        //console.log("orientationPage:"+screenString+","+screen)
+        //**
+        if(screenString===screen){
+            return
+        }
         //console.log("orientationPage:"+sreen)
         if(screen==="PORTRAIT"){
             changeScreen=false
         }else{
             changeScreen=true
         }
+        screenString = screen
         //console.log("slickPage0:"+slickPage)
-        $('body').html(lifeCycle.onCreateView())
+
+        //**
+        //$('body').html(lifeCycle.onCreateView()) document.getElementsByClassName
+        document.getElementById("title").style.height = `${changeScreen ? `0px`:`60px`}`
+        //$("#title").style("height",`${changeScreen ? `0px`:`60px`}`)
+        document.querySelector(".single-item").style.height = `calc(100% - ${changeScreen ? `60px`:`110px`})`
+        //$(".single-item").style("height",`calc(100% - ${changeScreen ? `60px`:`110px`})`)
 
         //console.log("slickPage1:"+slickPage)
-        createPage()
+        createPage(true)
 
         //**changeScreen
         //$('#title').html(changeTitle(0))
-        //$('#title').html(changeTitle(slickPage))
+        $('#title').html(changeTitle(slickPage))
+        glitter.homeTitleChange(slickPage,"home")
 
         //**changeScreen
-        glitter.titleButton(slickPage,"home")
+        //glitter.titleButton(slickPage,"home")
         //glitter.callbacks.fire(slickPage,'home');
 
         if(glitter.setSystem.engineer==="true"){

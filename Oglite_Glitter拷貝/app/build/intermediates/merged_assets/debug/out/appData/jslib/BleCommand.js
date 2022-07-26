@@ -1341,6 +1341,7 @@ class BleCommand {
                 var rx = glitter.command.rx
                 if (clock.stop() > 2500) {
                     if(rx.indexOf("60787776757473")!==-1){
+                        glitter.command.rx=''
                         clock.zeroing()
                     }else{
                         if (fal >= 20) {
@@ -1422,6 +1423,10 @@ class BleCommand {
             var clock = Clock()
             let timer = setInterval(function () {
                 var rx = glitter.command.rx
+                if(rx.indexOf("60787776757473")!==-1){
+                    glitter.command.rx=''
+                    clock.zeroing()
+                }
                 if (clock.stop() > 5000) {
                     fal += 1
                     clock.zeroing()

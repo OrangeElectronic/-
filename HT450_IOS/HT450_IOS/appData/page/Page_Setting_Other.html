@@ -50,14 +50,14 @@
     //var keep_Screen=false
     // var engineer=true
     //data.text=["Language","Keep Screen On","Engineer Mode","Firmware Version","Rear Version","Device Name","Software Number","Software Version"]
-    data.text=["51","52","53","56","118","114","113","57"]
-    data.versionAndButton=[">",glitter.setSystem.keepScreen,glitter.setSystem.engineer,glitter.setSystem.firmware1,glitter.setSystem.firmware2,glitter.setSystem.device_name,glitter.uploadData.uid,glitter.setSystem.appVersion]
+    data.text=["51","52","53","56","118","55","114","113","57"]
+    //data.versionAndButton=[">",glitter.setSystem.keepScreen,glitter.setSystem.engineer,glitter.setSystem.firmware1,glitter.setSystem.firmware2,glitter.setSystem.device_name,glitter.uploadData.uid,glitter.setSystem.appVersion]
     var Adapter=``
 
     lifeCycle.onCreate=function(){
         //console.log("button_engineer:"+(!glitter.setSystem.engineer))
 
-        adpaterPage()
+        glitter.adpaterTPMSPage()
       //Adapter.notifyDataSetChange()
 
       // for(var i=0;i<data.text.length;i++) {
@@ -108,8 +108,11 @@
       // }
   }
 
-  function adpaterPage(){
-      Adapter=new GlAdapter(document.getElementById('viewclass'),
+    glitter.adpaterTPMSPage = function(){
+        //data.versionAndButton = []
+        data.versionAndButton=[">",glitter.setSystem.keepScreen,glitter.setSystem.engineer,glitter.setSystem.firmware1,glitter.setSystem.firmware2,">",glitter.setSystem.device_name,glitter.uploadData.uid,glitter.setSystem.appVersion]
+
+        Adapter=new GlAdapter(document.getElementById('viewclass'),
           function (){return data.text.length},
           function (position) {
               //console.log("viewclass:"+position)
@@ -155,11 +158,14 @@
                   //console.log("button_engineer:"+glitter.setSystem.engineer)
                   versionAndView=buttonView("engineer",engineer)
                   buttton_Event=`buttonChange('engineer')`
-              }else if(position===3 || (position===4 && engineer==="true") || position===5 || position===6){
+              }else if(position===3 || (position===4 && engineer==="true") || position===6 || position===7){
                   touchBlack=``
                   touchGray=``
                   versionAndView=data.versionAndButton[position]
-              }else if(position===7){
+              }else if(position===5 && engineer==="true"){
+                  versionAndView=data.versionAndButton[position]
+                  buttton_Event=`firmware_Update()`
+              }else if(position===8){
                   versionAndView=data.versionAndButton[position]
                   if(engineer==="false"){
                       buttton_Event=`buttonChange('engineer')`
@@ -185,7 +191,7 @@
 
               if(engineer==="false"){
                   //console.log("engineerHTML:"+glitter.setSystem.engineer+","+position)
-                  if(position===2 || position===4){
+                  if(position===2 || position===4 || position===5){
                       console.log("engineerHTML:null")
                       html=``
                   }
@@ -211,6 +217,22 @@
               Adapter.notifyDataSetChange()
           }},function (){
           glitter.goBack = glitter.goMenu
+      })
+  }
+
+  function firmware_Update(){
+      glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress_ble', false, false,{name:"更新中"})
+      glitter.runJsInterFace("getDownloadFile", {app_type:glitter.app}, function (response) {
+          console.log("getDownloadFile:"+response.result)
+          if(response.result==="true"){
+              glitter.ble_DFU = true
+              glitter.closeDiaLogWithTag("Dia_Info_Progress_ble")
+              glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress_ble', false, false,{name:"連線中"})
+              glitter.command.send("OTA","01")
+          }else{
+              glitter.closeDiaLogWithTag("Dia_Info_Progress_ble")
+              glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
+          }
       })
   }
 

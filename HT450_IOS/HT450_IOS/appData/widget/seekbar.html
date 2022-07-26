@@ -107,17 +107,30 @@ body{
         var max=gBundle.max
         var min=gBundle.min
         var step=gBundle.step
+        console.log("progressbarUI_1:"+tpmsModel[linst])
+        
         $('#seekbar_input').attr('max',`${max}`)
         $('#seekbar_input').attr('min',`${min}`)
         $('#seekbar_input').attr('step',`${step}`)
-
+        //parseInt
+        //$('#seekbar_input').attr('value',tpmsModel[linst].toString())
+        //$('#seekbar_input').attr('value',1000)
         // $('#seekbar_role').attr('aria-valuemax',`${max}`)
         // $('#seekbar_role').attr('aria-valuemin',`${min}`)
-        //handle.style
 
         function progressbarUI(value){
             progressbar.style.width = ((value-min)/((max-min)/100)) + '%';
             progressbar.setAttribute('aria-valuenow', value);
+
+            $('#seekbar_input').attr('value',value)
+            //$('#seekbar_input').css('width',"100%")
+            //$('#seekbar_input').html()
+            //handle.setAttribute('value',value)
+            //$('#seekbar_input').attr('value',1000)
+            //document.getElementById('seekbar_input').setAttribute('value', value);
+            //progressbar_Input.setAttribute('value', value);
+            console.log("progressbarUI_2:"+parseInt(value,10))
+            //handle.style.width = ((value-min)/((max-min)/100)) + '%';
         }
         addObserver({obj:tpmsModel,key:linst},function (){
             // $('#seekbar_input').attr('max',`${max}`)
@@ -140,8 +153,11 @@ body{
             if(tpmsModel[linst]>max){tpmsModel[linst]=max}
             if(tpmsModel[linst]<min){tpmsModel[linst]=min}
             //progressbar.style.width = tpmsModel[linst]/(max/100) + '%';
+            
             progressbarUI(tpmsModel[linst])
-
+            //document.getElementById('seekbar_input').setAttribute('value', 1000);
+            //$('#seekbar_input').attr('value',1000)
+            
             //glitter.seekbarCallback(linst)
             //console.log(tpmsModel[linst])
         })
@@ -150,6 +166,9 @@ body{
 
         var handle = qs('.seekbar input[type="range"]');
         var progressbar = qs('.seekbar div[role="progressbar"]');
+
+        //var progressbar_Input = qs('seekbar_input');
+        //var progressbar_Input = qs('.seekbar input[type="range"]::-webkit-slider-thumb');
 
         handle.addEventListener('input', function(){
             //progressbar.style.width = this.value + '%';

@@ -5,6 +5,7 @@ function onCreate() {
     // glitter.setHome('widget/seekbar.html','seekbar',{})
     // return
     //glitter.setHome('page/Page_Logo_Show.html','Page_Logo_Show',{})
+    //**
     glitter.demo = (glitter.deviceType === glitter.deviceTypeEnum.Web) || false
     glitter.app="HT430"
     //glitter.app="HT471A"
@@ -239,6 +240,7 @@ function onCreate() {
             //設定單位
             setUnit()
             glitter.setHome('page/Page_Logo_Show.html', 'Page_Logo_Show', {})
+            //glitter.setHome('page/Page_Setting_TPMS.html', 'Page_Setting_TPMS', {})
         })
     })
 
@@ -273,6 +275,7 @@ function onCreate() {
     //glitter.copytitleButton = glitter.titleButton.clone()
     glitter.changePageListener = function (tag) {
         console.log("changePage:" + tag)
+        glitter.changePageTag = tag
 
         //是否開啟畫面旋轉(有運用到底層)
         function turnScreen(open){

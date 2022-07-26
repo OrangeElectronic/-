@@ -1224,9 +1224,7 @@ class Glitter {
                 callBackId: id,
                 data: data
             };
-            if(functionName==='getIpAddressInfo'){
-                console.log(JSON.stringify(map))
-            }
+
             $.ajax({
                 type: "POST",
                 url: this.webUrl + "/PostApi",

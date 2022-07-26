@@ -168,7 +168,7 @@ ${changeScreen ? ``:`<div id="title_Tire_Set" class="center_Class" style="height
         //Adapter.notifyDataSetChange()
 
         glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
-        readCarRow()
+        glitter.readMainCarRow()
     }
 
     function viewAdapter(){
@@ -329,7 +329,7 @@ ${changeScreen ? ``:`<div id="title_Tire_Set" class="center_Class" style="height
 
     var reRead=0
     var readResult=""
-    function readCarRow(){
+    glitter.readMainCarRow = function (){
         glitter.command.readRowWheels(
             car,
             function (result) {
@@ -340,7 +340,7 @@ ${changeScreen ? ``:`<div id="title_Tire_Set" class="center_Class" style="height
                     // if(reRead<3){
                     //     reRead++
                     //     //glitter.showToast("第"+reRead+"次")
-                    //     setTimeout(readCarRow,1000)
+                    //     setTimeout(readMainCarRow,1000)
                     //     return;
                     // }
 

@@ -100,10 +100,27 @@
                 timeText = "<br>success"
             }else if(time==="error"){
                 //glitter.ble_DFU = false
-                glitter.bleAddress = glitter.main_bleAddress
+
                // glitter.closeDiaLogWithTag("Dia_Info_Progress_ble")
                // glitter.openDiaLog('dialog/Dia_Info_Fail.html', 'Dia_Info_Fail', false, true)
                 timeText = "<br>error"
+
+                //燒錄失敗，如果還在OTA模式，則繼續做燒錄
+                //if (glitter.ble_DFU) {
+                glitter.runJsInterFace("Glitter_BLE_IsConnect", {}, function (response) {
+                    if (response.result) {
+                        if (glitter.ble_DFU) {
+                            console.log("dfu_reProgram:true")
+                            glitter.closeDiaLogWithTag("Dia_Info_Progress_ble")
+                            glitter.openDiaLog('dialog/Dia_Info_Progress.html', 'Dia_Info_Progress_ble', false, false, {name: "燒錄中"})
+                            glitter.runJsInterFace("DFU", {start_DFU: "true"}, function (response) {
+
+                            })
+                        } else {
+                            glitter.bleAddress = glitter.main_bleAddress
+                        }
+                    }
+                })
             }
 
             $('body').html(lifeCycle.onCreateView())

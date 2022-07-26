@@ -159,9 +159,12 @@
 
     var tpmsModel={value:dataTPMS.high_pressure,value2:dataTPMS.low_pressure,temValue:dataTPMS.high_temperature,alert:glitter.tpmsValue.playSound_Alarm}
     lifeCycle.onCreate=function (){
-        readTPMS()
 
-        createView()
+        glitter.readTPMS =function (){
+            readTPMS()
+            createView()
+        }
+        glitter.readTPMS()
 
         // function touchButton(color,change){
         //     touchColorChange("highPreReduce",color,change)
@@ -641,7 +644,10 @@ ${left20}`
                 glitter.tpmsValue.playSound_Alarm = tpmsModel.alert
                 glitter.setPro("setNotice",tpmsModel.alert.toString())
 
-                glitter.share.home.updateUI(cartype,glitter.updateData.TPMS,data)
+                if(!glitter.demo){
+                    glitter.share.home.updateUI(cartype,glitter.updateData.TPMS,data)
+                }
+
             }
             glitter.updateMemmory({mode_data:"讀取-警報值"+cartype,result_data:(data.length!==0 ? "success":"fail")})
 

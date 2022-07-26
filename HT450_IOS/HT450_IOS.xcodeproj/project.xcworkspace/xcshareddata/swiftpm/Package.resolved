@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "Glitter_BLE",
-        "repositoryURL": "https://github.com/sam38124/Glitter_IOS_Plugin_Bluetooth",
+        "package": "NordicDFU",
+        "repositoryURL": "https://github.com/NordicSemiconductor/IOS-DFU-Library",
         "state": {
           "branch": null,
-          "revision": "da96a6608844c29a683d92398cc57b1bd588db85",
-          "version": "2.0.8"
+          "revision": "ec5364755f4fcdf68d62ff4cf796d22e7b935f40",
+          "version": "4.13.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/sam38124/JzOsBleHelper",
         "state": {
           "branch": null,
-          "revision": "6bd8650ba02ef2b9de4dc920f1b4bb8ec677a215",
-          "version": "1.1.0"
+          "revision": "3eae07e796e9155a66e94f9d7bed80c96b96fa34",
+          "version": "1.1.1"
         }
       },
       {
@@ -44,6 +44,15 @@
           "branch": null,
           "revision": "4979910f22ad66ac8e7499df86822bcffdc22238",
           "version": "2.0.2"
+        }
+      },
+      {
+        "package": "ZIPFoundation",
+        "repositoryURL": "https://github.com/weichsel/ZIPFoundation",
+        "state": {
+          "branch": null,
+          "revision": "ec32d62d412578542c0ffb7a6ce34d3e64b43b94",
+          "version": "0.9.11"
         }
       }
     ]

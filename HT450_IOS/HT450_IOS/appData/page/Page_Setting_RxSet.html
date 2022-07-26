@@ -295,7 +295,7 @@ ${changeScreen ? ``:`<div id="title_Rx_Set" class="center_Class" style="display:
         adapterUpdata()
 
         glitter.openDiaLog('dialog/Dia_Progress_Spinner.html', 'Dia_Progress_Spinner', false, false)
-        readCarRow()
+        glitter.readCarRow()
     }
 
     function createView() {
@@ -767,7 +767,7 @@ ${changeScreen ? ``:`<div id="title_Rx_Set" class="center_Class" style="display:
     }
 
     var reRead=0
-    function readCarRow(){
+    glitter.readCarRow = function(){
 
         for(var i=0;i<4;i++){
             var tire1 = (tireStatus[i*4+1].open ? '1' : '0')

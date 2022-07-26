@@ -241,7 +241,9 @@
         //setTimeout(function (){
             console.log("ble_connect:true")
 
-        glitter.bleRecord(pos)
+        glitter.bleRecord(pos,function () {
+            glitter.bleConnectDailog()
+        })
         // glitter.bleAddress = glitter.bleList[pos].address
         // glitter.uploadData.ble_serial = glitter.bleList[pos].name
         // if(glitter.uploadData.ble_serial.indexOf("HT471A")!==-1){
@@ -252,8 +254,7 @@
         // } else{
         //     glitter.app = "HT450"
         // }
-
-        glitter.bleConnectDailog()
+        //glitter.bleConnectDailog()
 
             // glitter.runJsInterFace("Glitter_BLE_Connect", {
             //     address: glitter.bleList[pos].address,

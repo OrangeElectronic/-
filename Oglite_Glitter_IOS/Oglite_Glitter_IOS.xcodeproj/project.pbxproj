@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E04DACD28227EE00023B801 /* appData in Resources */ = {isa = PBXBuildFile; fileRef = 9E04DACC28227EE00023B801 /* appData */; };
 		9E071AB92739243200E34EEC /* Glitter_BLE in Frameworks */ = {isa = PBXBuildFile; productRef = 9E071AB82739243200E34EEC /* Glitter_BLE */; };
 		9E48A8A626AA9D400040D661 /* Page_Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E48A8A226AA9D400040D661 /* Page_Scanner.swift */; };
 		9E48A8A726AA9D400040D661 /* Page_Scanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E48A8A526AA9D400040D661 /* Page_Scanner.xib */; };
 		9E48A8AD26B8FBBE0040D661 /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 9E48A8AC26B8FBBE0040D661 /* ZipArchive */; };
+		9E88B75D287D4C1E00CDA72C /* appData in Resources */ = {isa = PBXBuildFile; fileRef = 9E88B75C287D4C1E00CDA72C /* appData */; };
 		CA5381CC262E8609005DD8E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5381CB262E8609005DD8E1 /* AppDelegate.swift */; };
 		CA5381CE262E8609005DD8E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5381CD262E8609005DD8E1 /* SceneDelegate.swift */; };
 		CA5381D0262E8609005DD8E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5381CF262E8609005DD8E1 /* ViewController.swift */; };
@@ -62,9 +62,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9E04DACC28227EE00023B801 /* appData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = appData; path = ../../Oglite_Glitter/app/src/main/assets/appData; sourceTree = "<group>"; };
 		9E48A8A226AA9D400040D661 /* Page_Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_Scanner.swift; sourceTree = "<group>"; };
 		9E48A8A526AA9D400040D661 /* Page_Scanner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page_Scanner.xib; sourceTree = "<group>"; };
+		9E88B75C287D4C1E00CDA72C /* appData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = appData; path = "../../Oglite_Glitter拷貝/app/src/main/assets/appData"; sourceTree = "<group>"; };
 		CA5381C8262E8609005DD8E1 /* Oglite_Glitter_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oglite_Glitter_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5381CB262E8609005DD8E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA5381CD262E8609005DD8E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 		CA5381CA262E8609005DD8E1 /* Oglite_Glitter_IOS */ = {
 			isa = PBXGroup;
 			children = (
-				9E04DACC28227EE00023B801 /* appData */,
+				9E88B75C287D4C1E00CDA72C /* appData */,
 				9E48A8A226AA9D400040D661 /* Page_Scanner.swift */,
 				9E48A8A526AA9D400040D661 /* Page_Scanner.xib */,
 				CAB87F7926311F94008EB7DE /* FotaPeripheral.swift */,
@@ -256,7 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E04DACD28227EE00023B801 /* appData in Resources */,
+				9E88B75D287D4C1E00CDA72C /* appData in Resources */,
 				CA5381D8262E860B005DD8E1 /* LaunchScreen.storyboard in Resources */,
 				CA5381D5262E860B005DD8E1 /* Assets.xcassets in Resources */,
 				9E48A8A726AA9D400040D661 /* Page_Scanner.xib in Resources */,
